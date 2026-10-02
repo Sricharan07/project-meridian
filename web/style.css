@@ -140,7 +140,7 @@ kbd { font: 500 11px var(--sans); color: var(--text-3); }
 .attach .icon { color: var(--text-2); }
 .attach .mono { color: var(--text-2); }
 details.trace { flex-basis: 100%; margin-top: 4px; color: var(--text-3); font-size: 12px; }
-details.trace summary { list-style: none; cursor: pointer; width: max-content; transition: color 0.15s; }
+details.trace summary { list-style: none; cursor: pointer; width: fit-content; max-width: 100%; transition: color 0.15s; }
 details.trace summary::-webkit-details-marker { display: none; }
 details.trace summary:hover { color: var(--text-2); }
 details.trace[open] { color: var(--text-2); }

@@ -58,8 +58,9 @@ export class SheetViewer {
     else if (frame) this.frame(frame, { animate: false });
   }
 
-  // Replace the marks without moving the view.
+  // Replace the marks without moving the view. An answer may cite one reading twice; it is marked once.
   setMarks(marks, focus = null) {
+    marks = [...new Map(marks.map((m) => [m.cite, m])).values()];
     this.svg.innerHTML = marks.map((m) => {
       const [x0, y0, x1, y1] = m.bbox;
       const pad = 2;
