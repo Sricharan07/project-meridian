@@ -32,7 +32,7 @@ def settle(readings: list[Observation]) -> tuple[Status, Observation | None]:
     reviewed = [r for r in readings if r.method == Method.REVIEW]
     if reviewed:
         return Status.CORRECTED, reviewed[-1]
-    exact = [r for r in readings if r.method in (Method.PDF_TEXT, Method.CSV, Method.CURATED, Method.TRANSCRIBED)]
+    exact = [r for r in readings if r.method in (Method.PDF_TEXT, Method.CSV, Method.MANIFEST, Method.CURATED, Method.TRANSCRIBED)]
     if exact:
         return (Status.BLANK, exact[0]) if exact[0].blank else (Status.EXACT, exact[0])
 

@@ -30,6 +30,7 @@ _lock = threading.Lock()
 HOW_READ = {
     Method.PDF_TEXT: "read from the sheet's text layer, so it is exactly what the sheet prints. Accepting says the sheet itself is wrong.",
     Method.CSV: "a BOM cell exactly as exported. Accepting overrides the BOM's own value.",
+    Method.MANIFEST: "taken from the dataset's manifest.",
     Method.OCR: "read by OCR from a scan.",
     Method.VISION: "read by the vision model from a scan.",
     Method.CURATED: "a decision recorded in curation/.",

@@ -13,6 +13,7 @@ from functools import cache
 from pathlib import Path
 
 from meridian import config
+from meridian.evidence import Method, Observation, Source
 
 
 @dataclass(frozen=True, slots=True)
@@ -56,6 +57,15 @@ def drawings() -> dict[str, Drawing]:
             degradation=asset.get("derivation", {}).get("derivation_profile", ""),
         )
     return out
+
+
+def manifest_observations(drawing: Drawing) -> list[Observation]:
+    """What the manifest says about a sheet, as citable evidence like anything else."""
+    source = Source(doc="dataset/manifest.json")
+    return [
+        Observation(f"{drawing.id}.subsystem", drawing.id, "subsystem", drawing.subsystem, source, Method.MANIFEST),
+        Observation(f"{drawing.id}.upstream", drawing.id, "upstream_file", drawing.upstream_path, source, Method.MANIFEST),
+    ]
 
 
 def _verify(path: Path, sha256: str) -> None:

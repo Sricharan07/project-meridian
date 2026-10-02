@@ -460,7 +460,8 @@ class KnowledgeBase:
         if not subsystem and not family:
             return {"error": f'No subsystem or BOM family called "{name}".', "subsystems": list(SUBSYSTEM_FAMILY),
                     "bom_families": all_families}
-        drawings = [{"ref": d, "name": self.drawing_name(d), "scan": info["degraded"], "bom_rows": self.links[d].parsed["rows"]}
+        drawings = [{"ref": d, "name": self.drawing_name(d), "scan": info["degraded"], "bom_rows": self.links[d].parsed["rows"],
+                     "cite": f"{d}.subsystem"}
                     for d, info in self.sheets.items() if info["subsystem"] == subsystem]
         rows = [{"ref": f"BOM.{r}", "name": self.cell(r, "name").value,
                  "type": self.cell(r, "type").value if self.cell(r, "type") else "",
@@ -468,7 +469,24 @@ class KnowledgeBase:
                 for r in self.bom_rows if self.cell(r, "family") and self.cell(r, "family").value == family]
         return {"subsystem": subsystem, "bom_family": family,
                 "mapping_note": "Z-axis sheets are filed under the BOM family Build-plate." if subsystem == "Z-axis" else None,
+                "drawing_count": len(drawings), "bom_row_count": len(rows),
                 "drawings": drawings, "bom_rows": rows}
+
+    def overview(self) -> dict:
+        """How the machine is organised: subsystems with their drawings and BOM rows, counted, not left to be counted."""
+        subsystems = []
+        for name, family in SUBSYSTEM_FAMILY.items():
+            drawings = [d for d, info in self.sheets.items() if info["subsystem"] == name]
+            rows = [r for r in self.bom_rows if self.cell(r, "family") and self.cell(r, "family").value == family]
+            subsystems.append({"subsystem": name, "bom_family": family, "drawing_count": len(drawings), "drawings": drawings,
+                               "scans": [d for d in drawings if self.sheets[d]["degraded"]], "bom_row_count": len(rows),
+                               "cites": [f"{d}.subsystem" for d in drawings]})
+        covered = set(SUBSYSTEM_FAMILY.values())
+        others = sorted({self.cell(r, "family").value for r in self.bom_rows if self.cell(r, "family")} - covered)
+        return {"drawing_count": len(self.sheets), "bom_row_count": len(self.bom_rows), "subsystems": subsystems,
+                "bom_families_without_drawings": {f: sum(1 for r in self.bom_rows if self.cell(r, "family") and
+                                                         self.cell(r, "family").value == f) for f in others},
+                "source": "Subsystems come from dataset/manifest.json; BOM families from the BOM's Part family column."}
 
     def with_material(self, material: str) -> dict:
         found = materials.read(material)

@@ -27,6 +27,7 @@ def build() -> dict:
     unread_by_vision = []
 
     for drawing in drawings.values():
+        observations += corpus.manifest_observations(drawing)
         if not drawing.degraded:
             observations += vector.read_clean(drawing)
             continue

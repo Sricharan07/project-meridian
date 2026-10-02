@@ -18,6 +18,7 @@ class Method(StrEnum):
     OCR = "ocr"                  # tesseract on a raster scan
     VISION = "vision"            # a vision model reading a raster scan
     CSV = "csv"                  # a BOM cell exactly as exported
+    MANIFEST = "manifest"        # the dataset's own inventory: which subsystem a sheet belongs to, its upstream file
     TRANSCRIBED = "transcribed"  # typed in by a person, e.g. labels on a system diagram
     CURATED = "curated"          # a person's judgement recorded in curation/, e.g. which BOM row a sheet documents
     REVIEW = "review"            # a correction proposed in chat and accepted in review
