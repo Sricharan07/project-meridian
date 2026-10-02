@@ -96,7 +96,7 @@ export class EvidencePanel {
     const part = await api.part(ref);
     const same = this.state.part?.ref === part.ref;
     if (!keepRefs && !same) this.state.refs = new Map();
-    Object.assign(this.state, { part, tab: part.drawing ? tab : "bom", sheet, marks, focus });
+    Object.assign(this.state, { part, tab: part.drawing || !["sheet", "model"].includes(tab) ? tab : "bom", sheet, marks, focus });
     this.root.classList.add("open");
     if (!same) this.navigate(`/part/${part.ref}`, { replace: true });
     this.render();

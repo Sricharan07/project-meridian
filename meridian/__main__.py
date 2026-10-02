@@ -10,7 +10,8 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("build", help="rebuild kb/ from dataset/ and curation/")
     sub.add_parser("score", help="score extraction and linking against eval/truth and curation")
-    sub.add_parser("eval", help="ask eval/questions.json twice, run the baseline and the correction scenario")
+    evaluate = sub.add_parser("eval", help="ask eval/questions.json twice, run the baseline and the correction scenario")
+    evaluate.add_argument("--rescore", metavar="RUN_DIR", help="score a finished run again after a grader fix, without asking")
     suppliers = sub.add_parser("suppliers", help="search the web for other suppliers, once, into kb/suppliers")
     suppliers.add_argument("--refresh", action="store_true", help="search again even where a response is cached")
     serve = sub.add_parser("serve", help="run the app")
@@ -28,8 +29,9 @@ def main() -> None:
             from meridian.scores import report
             print(report())
         case "eval":
-            from meridian.evaluation import run
-            print(json.dumps(run(), indent=1, ensure_ascii=False))
+            from pathlib import Path
+            from meridian.evaluation import rescore, run
+            print(json.dumps(rescore(Path(args.rescore)) if args.rescore else run(), indent=1, ensure_ascii=False))
         case "suppliers":
             from meridian import config, evidence, suppliers
             print(json.dumps(suppliers.run(list(evidence.read_jsonl(config.KB / "observations.jsonl")), args.refresh), indent=1))

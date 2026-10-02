@@ -24,7 +24,7 @@ from pathlib import Path
 
 from openai import OpenAI
 
-from meridian import config, corrections
+from meridian import config, corrections, learning
 from meridian.chat.agent import PRICES, Chat, question_key
 from meridian.evidence import Method
 from meridian.knowledge import KnowledgeBase
@@ -68,6 +68,21 @@ def run(repeats: int = 2) -> dict:
     return summary
 
 
+def rescore(run_dir: Path) -> dict:
+    """Score a finished run again with the current grader, for a grader fix; the answers are not asked again."""
+    questions = {q["id"]: q for q in json.loads(QUESTIONS.read_text())}
+    rows = [json.loads(line) for line in (run_dir / "answers.jsonl").open()]
+    order = [r["id"] for r in rows if r["run"] == 1]
+    runs = [[r["turn"] for r in rows if r["run"] == n] for n in sorted({r["run"] for r in rows})]
+    baseline = {b["id"]: b for b in map(json.loads, (run_dir / "baseline.jsonl").open())}
+    scenario = json.loads((run_dir / "correction.json").read_text())
+    summary = summarise([questions[i] for i in order], runs, [baseline[i] for i in order], scenario)
+    previous = run_dir / "summary.json"
+    previous.rename(run_dir / f"summary.before-rescore-{datetime.now(UTC):%H%M%S}.json")
+    previous.write_text(json.dumps(summary, indent=1, ensure_ascii=False))
+    return summary
+
+
 # --- asking ---------------------------------------------------------------------
 
 def _ask_all(kb: KnowledgeBase, questions: list[dict]) -> list[dict]:
@@ -85,6 +100,10 @@ def _correction_scenario(log: Path) -> dict:
     decided = corrections.decide(proposal.id, True, "evaluation run", "Scripted scenario; the sheet shows j7 at 200 dpi.", log)
     after_kb = KnowledgeBase.load(log)
     after = Chat(after_kb).ask(question).to_dict()
+    # A second kind of correction, settling a disputed scan reading, so the learning measures move twice.
+    settled = corrections.propose(after_kb, "D-011.p1.weight.ocr", "415.3", "OCR dropped the decimal point; the sheet prints 415.3.",
+                                  "", log, kind="dispute")
+    corrections.decide(settled.id, True, "evaluation run", "Scripted scenario; read off the sheet.", log)
     return {
         "question": question,
         "before": before,
@@ -95,6 +114,7 @@ def _correction_scenario(log: Path) -> dict:
         "answer_changed": before["answer"] != after["answer"],
         "after_mentions_correction": "C-001" in after["answer"],
         "original_still_citable": after_kb.evidence(proposal.target)["value"] == proposal.current_value,
+        "learning": learning.timeline(log),
     }
 
 
@@ -154,6 +174,8 @@ def summarise(questions: list[dict], runs: list[list[dict]], baseline: list[dict
     scored = [[score(q, t) for q, t in zip(questions, turns)] for turns in runs]
     first = runs[0]
     seconds = sorted(t["seconds"] for turns in runs for t in turns)
+    tools = sorted(sum(s["ms"] for s in t["steps"]) / 1000 for turns in runs for t in turns)
+    lookups = sorted(s["ms"] for turns in runs for t in turns for s in t["steps"])
     cost = [t["usage"]["usd"] for turns in runs for t in turns]
     by_category: dict[str, list[bool]] = {}
     for q, s in zip(questions, scored[0]):
@@ -170,7 +192,10 @@ def summarise(questions: list[dict], runs: list[list[dict]], baseline: list[dict
         "failures_run_1": {q["id"]: s["failed"] for q, s in zip(questions, scored[0]) if not s["pass"]},
         "repeatability": {"same_verdict": f"{sum(agreement)}/{len(agreement)}",
                           "citation_overlap_median": round(statistics.median(overlap), 2)},
-        "latency_seconds": {"median": statistics.median(seconds), "p90": seconds[int(0.9 * (len(seconds) - 1))]},
+        "latency_seconds": {"median": statistics.median(seconds), "p90": seconds[int(0.9 * (len(seconds) - 1))],
+                            "in_tools_median": round(statistics.median(tools), 3),
+                            "per_lookup_ms": {"median": statistics.median(lookups), "p90": lookups[int(0.9 * (len(lookups) - 1))],
+                                              "max": lookups[-1], "lookups": len(lookups)}},
         "cost_usd": {"per_answer_median": round(statistics.median(cost), 5), "all_runs": round(sum(cost), 4)},
         "rewritten_after_failed_check": sum(t["check"]["rewritten"] for turns in runs for t in turns),
         "still_failing_check": sum(not t["check"]["ok"] for turns in runs for t in turns),
@@ -183,12 +208,14 @@ def summarise(questions: list[dict], runs: list[list[dict]], baseline: list[dict
         },
         "correction": {k: scenario[k] for k in ("fit_relations_before", "fit_relations_after", "answer_changed",
                                                 "after_mentions_correction", "original_still_citable")},
+        "learning": {"before": scenario["learning"]["before"], "after": scenario["learning"]["now"],
+                     "steps": [[c["label"], c["before"], c["after"]] for step in scenario["learning"]["steps"] for c in step["changes"]]},
     }
 
 
 def _normal(text: str) -> str:
-    """Case-folded, with "45,000" read as 45000 and the drawings' decimal comma read as a point."""
-    text = re.sub(r"(?<![\d,.])([1-9]\d{0,2}),(\d{3})(?![\d,])", r"\1\2", text.casefold())
+    """Case-folded, with "45,000" read as 45000, the drawings' decimal comma read as a point, and ’ as '."""
+    text = re.sub(r"(?<![\d,.])([1-9]\d{0,2}),(\d{3})(?![\d,])", r"\1\2", text.casefold().replace("’", "'"))
     return re.sub(r"(\d),(\d)", r"\1.\2", text)
 
 

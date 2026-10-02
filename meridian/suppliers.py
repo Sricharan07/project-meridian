@@ -381,9 +381,10 @@ def _plain(value):
 
 
 def _part_number(text: str) -> tuple[str | None, str]:
-    """"SC501MF (likely 1.5 kW model)" is a number and a remark; "Unknown — ..." and "Not stated" are neither."""
-    m = re.fullmatch(r"\s*([A-Za-z0-9][\w./-]*\d[\w./-]*)\s*(?:\((.*)\))?\s*", text)
-    return (m.group(1), m.group(2) or "") if m else (None, text)
+    """"SC501MF (likely 1.5 kW model)" is a number and a remark, and so is "DN-19 GS-SRV"; "Unknown — ..." and
+    "Not stated" are neither: every word after the first starts with a capital or a digit."""
+    m = re.fullmatch(r"\s*([A-Za-z0-9][\w./-]*(?: [A-Z0-9][\w./-]*)*)\s*(?:\((.*)\))?\s*", text)
+    return (m.group(1), m.group(2) or "") if m and re.search(r"\d", m.group(1)) else (None, text)
 
 
 def _families(stated: list[str]) -> list[str]:

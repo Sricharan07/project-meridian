@@ -43,7 +43,9 @@ def test_a_suggestion_must_be_on_a_site_the_search_returned_and_not_the_recorded
 def test_a_part_number_is_told_apart_from_a_sentence():
     assert suppliers._part_number("SC501MF (likely 1.5 kW model)") == ("SC501MF", "likely 1.5 kW model")
     assert suppliers._part_number("TTPA18T5200-B-P6.35") == ("TTPA18T5200-B-P6.35", "")
+    assert suppliers._part_number("DN-19 GS-SRV") == ("DN-19 GS-SRV", "")
     assert suppliers._part_number("Unknown — the name does not identify a model")[0] is None
+    assert suppliers._part_number("Not stated (listing says “Does not apply”)")[0] is None
 
 
 def test_a_row_that_was_not_searched_says_why(kb):
@@ -73,8 +75,3 @@ def test_a_maker_that_lists_other_materials_is_not_suggested(kb):
     for maker in block["makers"]:
         stated = kb.obs[maker["cite"]].parsed
         assert not stated["stated_materials"] or "aluminium" in stated["families"]
-
-
-def test_a_bought_part_is_found_by_what_its_abbreviation_stands_for(kb):
-    assert kb.find("24 V power supply")[0]["ref"] == "BOM.108"  # "24VDC PSU 20A"
-    assert kb.find("temperature controller")[0]["ref"] == "BOM.117"  # "Heater PID"

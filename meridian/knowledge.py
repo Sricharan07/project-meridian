@@ -12,6 +12,7 @@ to them.
 import json
 import re
 from collections import defaultdict
+from difflib import get_close_matches
 from dataclasses import dataclass
 from functools import cached_property
 from pathlib import Path
@@ -173,10 +174,14 @@ class KnowledgeBase:
             if row in self.bom_rows:
                 return [self._entity_hit(f"BOM.{row}", ["BOM row number"], 10.0)]
 
-        wanted = words(spelled_out(query))
+        # A word that names nothing is read as the nearest word that does and starts the same way: "recoter" as
+        # "recoater", but not "asked" as "laske".
+        wanted = {w if w in self._vocabulary else
+                  next((v for v in get_close_matches(w, self._vocabulary, 3, 0.8) if v[0] == w[0]), w)
+                  for w in words(spelled_out(query))}
         hits = []
         for entity in self.entities:
-            aliases = self._aliases(entity)
+            aliases = self._alias_words[entity.ref]
             shared = wanted & aliases
             if not shared:
                 continue
@@ -185,6 +190,14 @@ class KnowledgeBase:
                 score += 0.05  # a sheet is the richer answer when both name the part equally well
             hits.append(self._entity_hit(entity.ref, sorted(shared), score))
         return sorted(hits, key=lambda h: -h["score"])[:limit]
+
+    @cached_property
+    def _alias_words(self) -> dict[str, set[str]]:
+        return {e.ref: self._aliases(e) for e in self.entities}
+
+    @cached_property
+    def _vocabulary(self) -> list[str]:
+        return sorted(set().union(*self._alias_words.values()))
 
     def _aliases(self, entity: Entity) -> set[str]:
         if entity.kind == "drawing":
