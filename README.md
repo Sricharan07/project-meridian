@@ -1,211 +1,241 @@
-# Project Meridian: Evidence-Grounded Drawing Intelligence
+# Meridian
 
-[Avathon](https://www.avathon.com) is an industrial AI company that builds and
-offers an autonomy platform for physical AI. We work with customers who
-manufacture parts and equipment, where the operational knowledge lives in BOMs,
-2D drawings, and 3D geometry that have to stay connected, inspectable, and
-correctable. This challenge is a compressed version of that problem: turn
-drawing and BOM evidence into a knowledge system an engineer can actually use.
+Chat over the drawings and bill of materials of the [OpenLPBF v2](https://github.com/DTUOpenAM/OpenLPBF_v2), a
+metal laser powder-bed-fusion machine. Every fact in an answer links to where it came from: a region of a sheet, a
+BOM cell, a diagram label, or a correction someone accepted. Asking about a part opens its drawing, and the 3D view
+when the part has one. When the sources disagree, or a scan cannot be read, the answer says so.
 
-## Mission
+The assignment brief is in [docs/brief.md](docs/brief.md).
 
-Create a simple locally runnable app that helps an engineer explore and question
-the design evidence for OpenLPBF v2, an open research-grade metal laser
-powder-bed-fusion machine.
+![An answer that raises a datasheet conflict, with the drawing opened beside it](docs/screenshots/chat-conflict.png)
 
-The required product is a **chat interface over extracted knowledge**, not a
-PDF dump or a search box over raw files. A user asks questions in chat; the
-system answers from structured knowledge derived from the drawings and BOM;
-asking about a part must **open or attach the drawing**, and a 3D
-reconstruction when one exists. The app must also include a small
-human-reviewed correction loop: propose in chat, accept or reject in a review
-UI, show that answers change after acceptance, and keep the original evidence
-visible.
+## Running it
 
-The app should also help a user understand how the machine is organized,
-connect drawing evidence to bill-of-materials (BOM) rows, and traverse
-component and subsystem interfaces. Materials, validation states, recorded
-costs, and recorded suppliers in the BOM are source evidence from a pinned
-snapshot.
+```bash
+./start.sh
+```
 
-We are interested in the quality of your decisions and experiments, not the
-amount of code. Stack, models, and UI framework are up to you.
+Then open http://localhost:8000. It needs Python 3.11 or newer. The first run creates `.venv` and installs three
+packages (FastAPI, uvicorn, the OpenAI client). The knowledge base in `kb/` is built and committed, so nothing is
+extracted at startup and no system packages are needed.
 
-## The dataset
+For live chat, put an OpenAI key in `.env` (created from `.env.example` on first run):
 
-`dataset/` describes one OpenLPBF v2 machine through:
+```
+OPENAI_API_KEY=sk-...
+```
 
-- 30 selected fabrication drawings spanning six connected subsystems: **Box**,
-  **Powder**, **Recoater**, **Optical**, **Gas Flow**, and **Z-axis**;
-- the full pinned BOM, with custom and purchased components, materials,
-  quantities, suppliers, supplier order numbers and links, costs in DKK,
-  `Design`, `Order`, and `V&V` states, design intent, notes, and free-text
-  `Interface with` relationships;
-- upstream documentation and system diagrams that provide additional context.
+Without a key everything except written answers still works: drawings, 3D views, the parts table and the review
+page. Chat replays the recorded answers from the last evaluation run for the example questions, labelled as
+recordings, and for any other question shows the evidence for the part it names.
 
-Most supplied drawings retain their clean upstream presentation. Eight are
-deterministic scan-like derivatives distributed without their pristine
-counterparts. These noisy documents test robustness while retaining public
-source provenance in the manifest. Treat clean and degraded documents alike as
-evidence, not guaranteed truth; preserve uncertainty when text or geometry is
-illegible.
+## Things to try
 
-The BOM is source evidence from a pinned snapshot, not guaranteed current
-procurement truth. Fields may be blank, misspelled, duplicated, inconsistent,
-or stale. Supplier links, prices, order numbers, and availability may have
-changed, and inclusion is not an endorsement.
+The example questions on the chat page are a good start. Some that show particular behaviour:
 
-See `dataset/README.md` for an orientation, `ATTRIBUTION.md` for source and
-license notices, and `dataset/manifest.json` for the asset inventory and
-provenance.
+| Ask | What to look for |
+|---|---|
+| Show me the recoater mount block. | Opens the drawing and the 3D reconstruction in the same turn |
+| How thick is the heating element plate? | The sheet prints a limit, 3,0 over 2,0; the model was built at 2,0, the value the title-block weight matches |
+| Which drawing documents the recoater stage plate? | Names D-014 and raises that its BOM row lists D-013's file |
+| Is the recoater arm made of stainless steel? | Aluminium by the BOM and the sheet's note; the scanned material field is disputed, and both readings are quoted |
+| What does the recoater arm weigh? | A scanned sheet: shows what each reader saw and which ones agree |
+| Is the BOM's motor plate drawing D-029 or D-030? | Says the evidence cannot tell, and why |
+| What did the Box subsystem cost, and what is missing from that figure? | A total from a dated snapshot, with the rows that have no cost |
 
-## What to build
+Clicking a citation opens its source in the panel on the right, with the region of the sheet outlined.
 
-Build an end-to-end locally runnable app, not disconnected notebooks. Derive
-useful structured knowledge from the supplied evidence, answer from that
-knowledge, and make it possible to inspect why an answer was produced.
+### A correction, end to end
 
-### Required
+1. Ask "What does the build cylinder fit into?" The vision model read two of D-023's fits as H7. The sheet says j7,
+   and the answer reports that those readings fail an ISO 286 check.
+2. Tell it so: "The Ø262 callout on the build cylinder drawing should read Ø262,0 j7 +0,026 / -0,026." The chat files
+   a correction instead of agreeing, and reports what the automatic checks found.
+3. Open **Review**. The correction shows the original reading on the sheet, the checks, and what accepting it would
+   change: a new inferred H8/j7 transition fit with the main platform.
+4. Enter your name and accept it. Ask the first question again. The answer now gives the fit, names the
+   correction, and still cites the original "H7" reading.
 
-These are the product bar. A submission that misses any of them is incomplete.
+The review log is `var/corrections.jsonl`. It is append-only and not committed; delete it to start over.
 
-**1. Chat over extracted knowledge.** The primary way to ask questions is chat.
-Answers must come from knowledge you extracted and structured (drawing fields,
-BOM rows, links, uncertainty), not from stuffing PDFs into a context window
-and dumping retrieved pages. Cite the supporting evidence (page, crop, region,
-BOM row, extracted text, or equivalent). If the evidence is missing, noisy, or
-conflicting, say so and abstain rather than guess.
+## How it works
 
-**2. 2D view plus orbitable 3D for at least 3 parts.** For a minimum of **3**
-parts, the user must be able to inspect the 2D drawing and orbit a 3D
-reconstruction built from that drawing. Label the 3D clearly as a
-**reconstruction from 2D evidence**, not native CAD. You do not have
-vendor solid models in this corpus; do not present the reconstruction as if
-you do. Prefer clean, geometrically simple parts for this requirement. Noisy
-or degraded drawings are for uncertainty testing, not a 3D requirement. You
-do not need to reconstruct all 30 drawings.
+```mermaid
+flowchart LR
+  subgraph build["python -m meridian build (offline, once)"]
+    D[30 drawings] --> R1[PDF text layer]
+    D --> R2[OCR + vision model]
+    B[BOM CSV] --> R3[one row per cell]
+    C[curation/] --> R4[links, diagram relations]
+  end
+  R1 & R2 & R3 & R4 --> O[(kb/observations.jsonl)]
+  O --> K[KnowledgeBase]
+  V[(var/corrections.jsonl)] --> K
+  K --> T[typed tools] --> M[gpt-6-luna] --> X[verifier] --> U[chat + evidence panel]
+  K --> RV[review page] --> V
+```
 
-**3. Chat must drive the visual.** Asking about a part in chat must open or
-attach that part's drawing. If you have a 3D reconstruction for that part, the
-same turn must make it available (open, attach, or deep-link). A chatbot that
-cannot show the sheet fails this requirement, even if the text answer is
-correct.
+**Observations, not fields.** The unit of knowledge is one source saying one thing in one place: "BOM row 30,
+Material: Aluminium", "D-011 title block, MATERIAL: 7075-T6, Plate (SS)". A part's material is never stored. It is
+worked out when asked, along with whether its sources agree, conflict or are missing. Citations, the distinction
+between a BOM claim and a drawing claim, abstention and the audit trail all come from that.
 
-**4. One governed correction.** A user proposes a correction in chat. A
-separate review UI lets a human inspect how it was checked and accept or
-reject it. After acceptance, the same question must produce a changed answer.
-The original evidence and a reviewable history remain visible; nothing is
-silently rewritten.
+**Reading the sheets.** The 22 clean sheets are read from their PDF text layer: the title block by fixed cells, the
+callouts by grouping nearby text, with the Ø, depth and counterbore symbols recognised from the drawn polylines that
+replace them in the text layer. The eight scans are read twice, by tesseract and by the vision model, independently.
+A value is "confirmed" only when both agree, and numbers have to agree exactly. Every fit tolerance is checked
+against ISO 286.
 
-### Bonus
+**Links and relations.** Which BOM row a drawing documents is a curated decision with its reason
+(`curation/links.csv`), and the automatic linker is scored against it. Relations come from the BOM's Interface with
+column, from the system diagrams (transcribed, citing the label regions), and from matching fit sizes across sheets.
+Each says which of the three it is.
 
-If the required product is working, these are valued extras, not substitutes
-for the bar above:
+**Chat.** The model sees nine tools over the knowledge base, never the documents. Caveats such as conflicting sources,
+uncertain links and failed checks are computed and put first in every tool result, so the model relays them rather
+than having to notice them. Before an answer is shown, a check rejects any citation that does not exist and any
+number that is in no tool result. Which sheet and 3D view to open is decided on the server from the tools that were
+called.
 
-- **Potential part suppliers.** Go beyond the recorded BOM supplier snapshot:
-  suggest who could make or supply a part, with the basis for the match and
-  the same temporal caveats as other procurement claims.
-- **Knowledge graph.** An interactive graph of parts, drawings, subsystems,
-  materials, interfaces, and other relationships you extract, reachable from
-  chat or a dedicated view.
-- **Richer learning system.** Expand the single required correction into a
-  broader loop: more update types, ingest of a new drawing, verification
-  before acceptance, or measurements that show the system improved.
+**3D.** Five clean, simple parts are rebuilt from their dimensions with constructive solid geometry
+(`meridian/geometry.py`). Each dimension cites its callout, or says how it was measured or why it was assumed. The computed mass is checked against the weight
+SolidWorks printed in the title block. All five are within 0.75 %. The view says it is a reconstruction, not CAD.
 
-### Design questions worth considering
+**Corrections** are events. Accepting one adds an observation that supersedes the original for display. The original
+keeps its id and its place on the sheet. Inferred relations are recomputed on load, so an accepted correction can
+create or remove one, and the review page shows that impact before anyone decides.
 
-- How can drawing fields and BOM rows be linked while retaining both sources?
-- How should free-text interface with evidence support traversal across
-  components and subsystems?
-- How should material, supplier, cost, and validation claims expose missing or
-  conflicting values?
-- What should happen when a noisy drawing is illegible or disagrees with the
-  BOM?
-- How do you reconstruct enough geometry to orbit a part without claiming
-  native CAD?
-- How should proposed corrections be reviewed, accepted or rejected, and
-  audited without erasing prior knowledge?
-- How do you know whether the system improved?
+The reasoning behind each choice, including the ones that did not work, is in [DECISIONS.md](DECISIONS.md).
 
-These are design questions. Choose and justify an approach rather than trying
-to infer a required internal architecture.
+## How well it works
 
-## Questions the chat should handle
+Measured with `python -m meridian score` and `python -m meridian eval`. Details, error analysis and every run's raw
+output are in [EVALUATION.md](EVALUATION.md).
 
-Your chat should support useful questions across more than one document. We
-are especially interested in questions involving:
+| | |
+|---|---|
+| Title-block fields, clean sheets | 161 / 161 |
+| Title-block fields, scans: OCR / vision model / settled | 36 / 69 / 58 of 70 |
+| Scan fields shown as confirmed while wrong | 0 |
+| Automatic linker against curation | 18 / 26 |
+| 3D mass check, largest difference | 0.74 % |
+| Chat questions passing every check, two runs | 26 / 28 and 27 / 28 |
+| Same verdict in both runs | 27 / 28 |
+| Content checks, this vs. pasting all documents into the prompt | 26 vs. 12 of 28 |
+| Latency, median / 90th percentile | 4.3 s / 7.1 s |
+| Cost per answer, median | $0.0009 |
 
-- machine, subsystem, drawing, and BOM organization;
-- drawing-to-BOM evidence and component interfaces;
-- shared materials across different parts;
-- recorded supplier, order-number, and cost evidence with temporal caveats;
-- clean-versus-noisy document behavior;
-- uncertainty, disagreement, missing information, and appropriate abstention;
-- the behavior and audit history before and after an accepted correction.
+## Limitations
 
-`fixtures/public_questions.json` contains examples, not a test contract. You
-may add or substitute questions that better demonstrate your system. Include
-at least one question that names a reconstructed part so we can see chat
-open the drawing and 3D.
+- Callouts on scans that only the vision model read have no position on the sheet. Citing one opens the sheet but
+  outlines nothing.
+- Callout grouping is by proximity. On D-024 it attaches a tolerance to the wrong holes; the ISO 286 check flags it,
+  but it is not fixed.
+- Single-reader scan values are shown with a caveat rather than hidden. One of them, D-003 sheet 2's scale, is wrong.
+- The links, diagram relations and title-block truth set were curated by one person, me. Four links are left
+  ambiguous and five are marked probable.
+- Supplier, price and order number answers come from a BOM snapshot (retrieved 2 September 2026), and say so. Nothing is
+  checked against current availability. The brief's bonus items (finding new suppliers, a graph view) were not built.
+- Without an API key, recorded answers do not change after a correction is accepted. The parts table and review page
+  do.
+- One user, one process: the review log has no locking.
 
-## Evidence and trust
+## Models, services and data sent out
 
-We will ask you to show where important facts and relationships came from.
-Useful evidence might be a page, crop, drawing region, BOM row, extracted text,
-diagram, or another representation you consider appropriate. Distinguish a BOM
-claim from a drawing claim and a recorded supplier from current availability.
-Distinguish a 3D reconstruction from native CAD.
+- **OpenAI `gpt-6-luna`**, through the Responses API with `store=false`.
+  - At build time, each of the ten scanned sheet images and an enlarged crop of its title block are sent once to be
+    transcribed. The responses are cached in `kb/vision/`, so running or rebuilding the app does not send them again.
+    The title blocks include the designer's name and contact details, which are public upstream and are not extracted.
+  - In chat, the question, the last few messages and the tool results are sent: extracted text from the BOM and
+    drawings, never the PDFs or images.
+  - `meridian eval` also sends the BOM and every sheet's extracted text, for the baseline.
+- **Tesseract** runs locally, at build time only.
+- No other services. Fonts (IBM Plex, OFL) and three.js (MIT) are vendored under `web/vendor/` with their licences.
+- The upstream originals of the eight degraded sheets and the upstream CAD files were not used.
 
-Avoid presenting guesses as facts. Make uncertainty, unsupported questions,
-source conflicts, and abstention visible in a way that helps a user decide
-what to trust. You decide how confidence, repeated observations, review, or
-other techniques fit into the solution.
+## Rebuilding and testing
 
-## Submission
+The committed `kb/` is the output of a build. To rebuild it, install tesseract (`brew install tesseract`) and:
 
-Submit the source code and everything needed to run the app locally. Include:
+```bash
+.venv/bin/pip install -r requirements-build.txt
+```
 
-- concise setup and launch instructions;
-- a short explanation of the architecture and key decisions;
-- examples of questions the app handles well, including at least one that
-  opens a drawing (and 3D when present);
-- known limitations and an analysis of important errors;
-- the models, services, and external data used;
-- measurements or observations about quality, reproducibility, cost, latency,
-  and important failure modes;
-- enough saved output or screenshots to review the result if a paid service is
-  unavailable: chat turns, the 2D/3D view for the reconstructed parts, and the
-  correction before/after.
+```bash
+.venv/bin/python -m meridian build
+```
 
-Use any language, models, storage system, graph representation, or UI
-framework. Keep credentials out of the submission and disclose if supplied
-files are sent to an external service.
+A rebuild with the vision responses cached takes about 7 seconds and makes no API calls. Then:
 
-## What we want to evaluate
+```bash
+.venv/bin/python -m pytest
+```
 
-We will evaluate how effectively the solution:
+```bash
+.venv/bin/python -m meridian score
+```
 
-- answers in chat from extracted knowledge rather than raw document dump;
-- opens or attaches the drawing (and 3D when built) when a part is discussed;
-- reconstructs orbitable 3D for at least 3 parts and labels it as
-  reconstruction, not native CAD;
-- extracts useful information while preserving source evidence;
-- discovers and represents relationships across drawings and the BOM;
-- answers multi-document questions and communicates uncertainty;
-- handles conflicting, noisy, missing, and unsupported information;
-- incorporates a chat-proposed, human-reviewed correction without silently
-  rewriting accepted knowledge;
-- provides an understandable and useful local experience;
-- measures quality, cost, latency, reproducibility, and failure modes;
-- can be reproduced and explained by its author.
+```bash
+.venv/bin/python -m meridian eval
+```
 
-Bonus work on supplier finding, a knowledge graph, or a richer learning
-system is scored only after the required bar is met.
+`eval` needs a key, takes about two minutes and costs about $0.13. It writes a new folder in `eval/runs/` and refreshes
+the recorded answers.
 
-There is no preferred framework, graph technology, ontology, or model. We do expect a working self contained version of the code that can run with simple start script and all requirements built in and documented. 
-A smaller coherent system with clear evidence and thoughtful evaluation is stronger than a broad system whose answers cannot be inspected.
+## Layout
 
-## Dataset rights
+```
+meridian/            the Python package
+  evidence.py        Observation, Source: the data model
+  sheets/            reading drawings: template, text layer, callouts, OCR, vision model
+  bom.py             reading the BOM, one observation per cell
+  reading.py         settling two readers into confirmed, disputed, single reader or blank
+  iso286.py          tolerance grade checks
+  linking.py         sheet-to-row candidates, and the curated decisions
+  relations.py       stated, diagram and inferred relations
+  knowledge.py       the KnowledgeBase every answer goes through
+  corrections.py     proposals, checks, impact and decisions
+  geometry.py        the five 3D reconstructions
+  chat/              tools, instructions, the answer check and the agent loop
+  server.py          the API and static files
+  build.py           dataset -> kb/
+  evaluation.py      the chat evaluation
+web/                 the UI: plain ES modules, no build step
+curation/            human decisions the build reads, with reasons
+kb/                  build output: observations, relations, page images, 3D models
+eval/                truth set, questions, every run, recorded answers
+tests/               parsing, settling, checking and correction rules
+dataset/             the supplied drawings, BOM and diagrams, unchanged
+```
 
-The supplied files are third-party open hardware material. Preserve the notices
-in `ATTRIBUTION.md` and the included license and do not publish the code or results publicly without attribution.
+## Screenshots
+
+A scanned sheet where the two readers disagree:
+
+![Disputed readings on a scanned title block](docs/screenshots/scan-disputed.png)
+
+The 3D view, with what each dimension was read from and the mass check:
+
+![Heating element plate reconstruction](docs/screenshots/model-3d.png)
+
+![Build plate reconstruction](docs/screenshots/model-3d-build-plate.png)
+
+A correction proposed in chat, pending in review, accepted, and the answer afterwards:
+
+![Correction proposed in chat](docs/screenshots/correction-proposed.png)
+
+![Correction pending review](docs/screenshots/review-pending.png)
+
+![Correction accepted](docs/screenshots/review-accepted.png)
+
+![The same question after the correction](docs/screenshots/correction-after.png)
+
+All 30 drawings, their BOM rows and how sure each link is:
+
+![Parts table](docs/screenshots/parts.png)
+
+## Attribution
+
+The dataset is curated from [DTUOpenAM/OpenLPBF_v2](https://github.com/DTUOpenAM/OpenLPBF_v2) at commit
+`98f76dad`, licensed under CERN-OHL-P-2.0. See [ATTRIBUTION.md](ATTRIBUTION.md) and
+`dataset/context/OpenLPBF-LICENSE.md`.

@@ -210,3 +210,57 @@ the page should not fight them.
 D-024's hole table is dense enough that its "H9 +0,052" tolerance groups with the
 M4 tapped holes instead of the Ø22 bores beside them. Callout grouping is by
 proximity, and here proximity is wrong.
+
+### Measured against pasting everything into the prompt
+
+28 questions in `eval/questions.json`, each with what a right answer must say,
+what it must not claim, which sheet it must open and which evidence it should
+cite. The grader is string matching on purpose: an LLM judge would need its own
+evaluation. Each question is asked twice, and the same questions go to a
+baseline that gets the whole BOM and every sheet's text in its prompt, 27k
+tokens, with no tools. The baseline passes 12 of 28 on content; this passes 26.
+Its failures are the interesting part: it told a user to change the BOM to
+aluminium on their say-so, and turned OCR's "4153" into "approximately 415.3 g".
+Details in `EVALUATION.md`.
+
+### A grader fix is applied to both sides
+
+The first run marked correct answers wrong: "back-door" for "back door",
+"45,000" for "45000", "does not state" for "not recorded". Each fix to the
+grader was made once and scored against the system and the baseline alike, and
+every run is kept in `eval/runs/` so the history shows which gains were the
+grader's and which were the system's.
+
+### Counts come from a tool, not from the model counting
+
+Asked how many drawings each subsystem has, one answer said "27 drawings total
+... Z-axis 5". It is 30 and 8. Another refused, because nothing citable said
+which subsystem a drawing belongs to. The manifest's assignment is now an
+observation like any other, and `machine_overview` returns the counts. The
+verifier lets small whole numbers through uncited, which is where the wrong
+count slipped past; putting the number in a tool result closed it.
+
+### The verifier's message is an instruction, not a remark
+
+A screenshot showed an answer that began "You're right: C-001 is the correction
+record ID ...". The model had cited `[C-001]`, the check rejected it, and the
+rewrite replied to the check instead of the user. The feedback now asks for the
+answer to be written again from the start without mentioning the check, and the
+instructions reserve square brackets for cite ids.
+
+### Every tool that names a part opens its sheet
+
+One question was answered entirely from `get_interfaces`, and the turn opened
+no drawing, because attachments were only taken from `get_part`. They are now
+taken from every tool result that names a part, plus the drawings the answer
+cites, and computed on the server so the model cannot forget them.
+
+### Without a key the app still shows its work
+
+The brief asks that the result can be reviewed when the paid service is not
+available. With no `OPENAI_API_KEY`, chat replays the recorded answers from the
+last evaluation run for the example questions, labelled as recordings with
+their date, and for anything else shows the part's evidence without prose.
+Sheets, 3D views, parts and review all work without a key. The evaluation
+runs against an empty review log of its own, and `MERIDIAN_VAR` does the same
+for a throwaway demo, so neither touches the real history.
