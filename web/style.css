@@ -173,3 +173,20 @@ table.facts tr.clickable:hover td { background: var(--sunken); }
 .model-label { position: absolute; left: 12px; top: 12px; right: 12px; max-width: 560px; padding: 6px 10px; font-size: 12.5px; color: var(--warn); background: rgba(255, 255, 255, 0.94); border-left: 2px solid var(--warn); border-radius: 4px; }
 .model-notes ul { margin: 0; padding-left: 18px; }
 .model-notes li { margin: 2px 0; }
+
+/* review */
+
+.correction { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 16px; max-width: 920px; }
+.correction-head { display: flex; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+.correction h3 { margin-top: 16px; }
+.checks { list-style: none; margin: 0; padding: 0; }
+.checks li { padding: 5px 0; border-bottom: 1px solid var(--line); }
+.checks li:last-child { border-bottom: 0; }
+.checks .status { display: inline-block; min-width: 46px; }
+.decide { display: flex; gap: 10px; align-items: flex-end; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.decide label { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: var(--text-2); }
+.decide label.grow { flex: 1; }
+.decide input { height: 40px; padding: 0 10px; font: inherit; color: var(--text); border: 1px solid var(--line-strong); border-radius: var(--radius); }
+.decide input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-tint); }
+.decision { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--line); color: var(--text-2); }
+.status.corrected { color: var(--accent); }

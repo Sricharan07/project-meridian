@@ -138,7 +138,8 @@ export class EvidencePanel {
         <table class="facts">${page.callouts.map((c) => html`
           <tr class="clickable ${c.cite === focus ? "hit" : ""}" data-focus="${c.cite}">
             <td class="mono">${c.text}</td>
-            <td class="muted">${c.kind}${c.fit_check ? html` <span class="status conflict">failed ISO 286 check</span>` : ""}</td>
+            <td class="muted">${c.kind}${c.fit_check ? html` <span class="status conflict">failed ISO 286 check</span>` : ""}${
+              c.corrected ? html` <span class="status corrected">corrected, ${c.corrected.by}, was ${c.corrected.was}</span>` : ""}</td>
             <td class="muted">${c.read_by === "pdf-text" ? "" : c.read_by}${c.confirmed_by_ocr ? " + ocr" : ""}</td>
           </tr>`)}</table></div>`);
 
@@ -177,7 +178,7 @@ export class EvidencePanel {
         <table class="facts">${Object.entries(BOM_COLUMNS).filter(([f]) => row.cells[f]).map(([f, column]) => {
           const cell = row.cells[f];
           return html`<tr class="${cell.cite === focus || cites.has(cell.cite) ? "hit" : ""}">
-            <th>${column}</th><td class="value">${cellText(f, cell)}</td><td>${raw(chip(cell.cite, { label: column, value: cell.value }))}</td></tr>`;
+            <th>${column}</th><td class="value">${cellText(f, cell)}${cell.corrected ? html` <span class="status corrected">corrected, was ${cell.corrected.was}</span>` : ""}</td><td>${raw(chip(cell.cite, { label: column, value: cell.value }))}</td></tr>`;
         })}</table>
         ${row.drawings.length > 1 ? html`<p class="muted">Also documented by ${row.drawings.filter((d) => d !== part.ref).join(", ")}.</p>` : ""}
       </div>`)}
@@ -225,6 +226,7 @@ function reading(f) {
     case "confirmed": return "OCR and vision agree";
     case "single reader": return `${f.readings?.find((r) => r.cite === f.cite)?.method || "one reader"} only`;
     case "disputed": return `OCR “${by("ocr")?.value || ""}”, vision “${by("vision")?.value || ""}”`;
+    case "corrected": return `${f.corrected.by}, was “${f.corrected.was}”`;
     case "blank": return "blank";
     default: return "unreadable";
   }

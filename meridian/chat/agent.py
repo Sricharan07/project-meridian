@@ -45,12 +45,14 @@ class Turn:
 class Chat:
     def __init__(self, kb: KnowledgeBase):
         self.kb = kb
-        self.tools = handlers(kb)
+        self.turn: dict = {}
+        self.tools = handlers(kb, self.turn)
         self.client = OpenAI(api_key=config.OPENAI_API_KEY) if config.OPENAI_API_KEY else None
 
     def ask(self, question: str, history: list[dict] = ()) -> Turn:
         if self.client is None:
             return self.offline(question)
+        self.turn["question"] = question
         started = time.monotonic()
         items: list = [*({"role": m["role"], "content": m["content"]} for m in history), {"role": "user", "content": question}]
         steps, outputs, usage = [], [], Counter()

@@ -15,12 +15,12 @@ from collections import defaultdict
 from dataclasses import dataclass
 from functools import cached_property
 
-from meridian import config, evidence, materials
+from meridian import config, corrections, evidence, materials
 from meridian.evidence import Method, Observation
 from meridian.linking import SUBSYSTEM_FAMILY
 from meridian.names import words
 from meridian.reading import Status, settle
-from meridian.relations import Relation, read_jsonl as read_relations
+from meridian.relations import Relation, inferred_fits, read_jsonl as read_relations
 
 TITLE_FIELDS = ["title", "note", "material", "weight", "date", "scale", "sheet"]
 PROCUREMENT_FIELDS = ["supplier", "supplier_order", "product_name", "link", "amount", "unit_cost", "total_cost", "order_status"]
@@ -40,23 +40,41 @@ class Entity:
 
 class KnowledgeBase:
     def __init__(self, observations: list[Observation], relations: list[Relation], sheets: dict,
-                 corrections: list[Observation] = ()):
-        self.obs = {o.id: o for o in [*observations, *corrections]}
-        self.relations = relations
+                 accepted: list[Observation] = (), proposals: list[corrections.Correction] = ()):
+        self.base_observations = observations
+        self.base_relations = [r for r in relations if r.kind != "inferred"]
         self.sheets = sheets
-        self.superseded_by = {(o.parsed or {})["supersedes"]: o for o in corrections}
+        self.accepted = list(accepted)      # corrections accepted in review, as observations
+        self.proposals = list(proposals)    # every correction ever proposed, whatever its status
+        self.obs = {o.id: o for o in [*observations, *self.accepted]}
+        self.superseded_by = {o.parsed["supersedes"]: o for o in self.accepted}
         self.by_subject: dict[str, list[Observation]] = defaultdict(list)
         for o in self.obs.values():
             self.by_subject[o.subject].append(o)
+        # Fits are inferred from what the sheets say now, so an accepted correction can add or remove one.
+        self.relations = self.base_relations + inferred_fits(self.current_observations())
 
     @classmethod
-    def load(cls, corrections: list[Observation] = ()) -> "KnowledgeBase":
+    def load(cls) -> "KnowledgeBase":
+        observations = list(evidence.read_jsonl(config.KB / "observations.jsonl"))
+        proposals = corrections.load()
         return cls(
-            list(evidence.read_jsonl(config.KB / "observations.jsonl")),
+            observations,
             read_relations(config.KB / "relations.jsonl"),
             json.loads((config.KB / "drawings.json").read_text()),
-            corrections,
+            corrections.accepted_observations(proposals, {o.id: o for o in observations}),
+            proposals,
         )
+
+    def with_correction(self, candidate: Observation) -> "KnowledgeBase":
+        """The knowledge as it would be if one more correction were accepted; used to preview its impact."""
+        return KnowledgeBase(self.base_observations, self.base_relations, self.sheets, [*self.accepted, candidate], self.proposals)
+
+    def current_observations(self) -> list[Observation]:
+        return [o for o in self.obs.values() if o.id not in self.superseded_by]
+
+    def current(self, subject: str) -> list[Observation]:
+        return [o for o in self.by_subject[subject] if o.id not in self.superseded_by]
 
     # --- entities -------------------------------------------------------------
 
@@ -172,19 +190,23 @@ class KnowledgeBase:
 
     def field(self, drawing: str, page: int, field: str) -> dict:
         """One title-block field, settled across every reader, with each reading kept."""
-        readings = [o for o in self.by_subject[drawing] if o.field == field and o.source.page == page]
-        current = [self.superseded_by.get(o.id, o) for o in readings]
-        status, shown = settle(current)
+        readings = [o for o in self.by_subject[drawing]
+                    if o.field == field and o.source.page == page and o.method != Method.REVIEW]
+        status, shown = settle([self.superseded_by.get(o.id, o) for o in readings])
         out = {"value": shown.value if shown else "", "status": status.value, "cite": shown.id if shown else None}
         if shown and (shown.parsed or {}).get("placeholder"):
             out["placeholder"] = True
-        if status in (Status.DISPUTED, Status.SINGLE) or len(readings) > 1:
+        if status in (Status.DISPUTED, Status.SINGLE, Status.CORRECTED) or len(readings) > 1:
             out["readings"] = [{"value": o.value, "method": o.method.value, "confidence": o.confidence, "cite": o.id}
                                for o in readings]
-        corrected = [self.superseded_by[o.id] for o in readings if o.id in self.superseded_by]
-        if corrected:
-            out["corrected"] = {"by": corrected[0].id, "was": [o.value for o in readings]}
+        if status == Status.CORRECTED:
+            out["corrected"] = self._correction_note(shown)
         return out
+
+    def _correction_note(self, review: Observation) -> dict:
+        original = self.obs[review.parsed["supersedes"]]
+        return {"by": review.parsed["correction"], "was": original.value, "was_cite": original.id,
+                "decided_by": review.parsed["decided_by"], "decided_at": review.parsed["decided_at"], "reason": review.note}
 
     def drawing(self, drawing: str) -> dict:
         info = self.sheets[drawing]
@@ -193,7 +215,7 @@ class KnowledgeBase:
             sheets.append({
                 "sheet": page,
                 "title_block": {f: self.field(drawing, page, f) for f in TITLE_FIELDS},
-                "callouts": [self._callout(o) for o in self.by_subject[drawing]
+                "callouts": [self._callout(o) for o in self.current(drawing)
                              if o.field == "callout" and o.source.page == page and self._shown_callout(o)],
             })
         return {
@@ -213,10 +235,13 @@ class KnowledgeBase:
         return not any((v.parsed or {}).get("ocr_match") == o.id for v in self.by_subject[o.subject])
 
     def _callout(self, o: Observation) -> dict:
-        p = {k: v for k, v in (o.parsed or {}).items() if k not in ("ocr_match", "ocr_similarity")}
+        hidden = ("ocr_match", "ocr_similarity", "supersedes", "correction", "decided_by", "decided_at")
+        p = {k: v for k, v in (o.parsed or {}).items() if k not in hidden}
         out = {"text": o.value, "cite": o.id, "read_by": o.method.value} | p
         if o.method == Method.VISION:
             out["confirmed_by_ocr"] = (o.parsed or {}).get("ocr_match") is not None
+        if o.method == Method.REVIEW:
+            out["corrected"] = self._correction_note(o)
         return out
 
     # --- parts ----------------------------------------------------------------
@@ -244,7 +269,15 @@ class KnowledgeBase:
             "comparisons": self.compare(ref),
             "relations": self.interfaces(ref),
             "model_3d": self.model_3d(ref),
+            "corrections": self.corrections_for(ref),
         }
+
+    def corrections_for(self, ref: str) -> list[dict]:
+        """Every correction proposed against this part or its BOM rows, whatever became of it."""
+        mine = self._counterparts(ref)
+        return [{"id": c.id, "status": c.status, "target": c.target, "was": c.current_value, "proposed": c.proposed_value,
+                 "reason": c.reason, "proposed_at": c.proposed_at, "decided_by": c.decided_by, "decided_at": c.decided_at}
+                for c in self.proposals if c.subject in mine]
 
     def bom_row(self, row: int) -> dict:
         cells = {}
@@ -253,7 +286,7 @@ class KnowledgeBase:
             if cell:
                 cells[field] = {"value": cell.value, "cite": cell.id} | ({"parsed": cell.parsed} if cell.parsed else {})
                 if cell.method == Method.REVIEW:
-                    cells[field]["corrected"] = {"by": cell.id, "was": self.obs[cell.parsed["supersedes"]].value}
+                    cells[field]["corrected"] = self._correction_note(cell)
         return {"row": row, "cells": cells, "drawings": self.drawings_of_row.get(row, [])}
 
     def compare(self, drawing: str) -> list[dict]:
@@ -364,10 +397,20 @@ class KnowledgeBase:
                     readings = "; ".join(f'{readers[r["method"]]} reads "{r["value"]}"' for r in f["readings"] if r["value"])
                     notes.append({"text": f"Sheet {page} {field} is disputed between the two readers: {readings}.",
                                   "cites": [r["cite"] for r in f["readings"]]})
-        for o in self.by_subject[drawing]:
+        for o in self.current(drawing):
             if (o.parsed or {}).get("fit_check"):
                 notes.append({"text": f'Callout "{o.value}" failed the ISO 286 check: {o.parsed["fit_check"]}. '
                                       "No fit relation is inferred from it.", "cites": [o.id]})
+        for c in self.proposals:
+            if c.subject not in self._counterparts(drawing):
+                continue
+            if c.status == "accepted":
+                notes.append({"text": f'Corrected by {c.id}, accepted by {c.decided_by} on {c.decided_at[:10]}: '
+                                      f'"{c.current_value}" now reads "{c.proposed_value}". Reason: {c.reason}',
+                              "cites": [f"{c.target}.{c.id}", c.target]})
+            elif c.status == "pending":
+                notes.append({"text": f'{c.id} is waiting for review: it proposes "{c.proposed_value}" in place of '
+                                      f'"{c.current_value}". Until it is decided the current value stands.', "cites": [c.target]})
         if self.sheets[drawing]["degraded"]:
             notes.append({"text": f"{drawing} is a degraded scan ({self.sheets[drawing]['degradation']}); its values "
                                   "were read by OCR and a vision model, not from a text layer.", "cites": []})
@@ -478,7 +521,7 @@ class KnowledgeBase:
         needle = text.casefold().strip()
         prose = {"note", "notes", "design_intent", "callout", "title", "label"}
         hits = []
-        for o in self.obs.values():
+        for o in self.current_observations():
             if o.field in prose and needle in o.value.casefold():
                 owner = o.subject if o.subject.startswith(("D-", "BOM.")) else None
                 hits.append({"ref": owner, "name": self.name(owner) if owner else o.subject,
@@ -495,6 +538,8 @@ class KnowledgeBase:
                "source": source, "label": o.source.label(), "confidence": o.confidence, "parsed": o.parsed, "note": o.note}
         if o.id in self.superseded_by:
             out["superseded_by"] = self.superseded_by[o.id].id
+        if o.method == Method.REVIEW:
+            out["correction"] = self._correction_note(o)
         return out
 
 

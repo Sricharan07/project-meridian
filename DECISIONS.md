@@ -142,6 +142,35 @@ from a reading that fails the check, which is why the cylinder currently has no
 inferred mate: the drawing does show j7, and a person can correct the reading
 through review.
 
+### ISO 286 band widths check every fit
+
+Every fit tolerance on the clean sheets has a band (upper minus lower deviation)
+exactly equal to the IT grade for its size: Ø262 H8 is +0,081/0 and IT8 for
+250 to 315 mm is 81 µm; Ø8 g8 is -0,005/-0,027, a 22 µm band, IT8 for 6 to 10 mm.
+So a misread digit shows up as a wrong band. `meridian/iso286.py` carries the IT
+table to 500 mm and the two fixed-deviation rules. It caught three different
+things: the vision model's H7 for j7 on D-023 (H rule), my own grouping error on
+D-024, where "H9 +0,052" landed on the Ø3,3 holes (52 µm is IT9 for Ø22, not
+Ø3,3), and the ambiguity in counterbore callouts, where it moves the fit to the
+counterbore whose size it actually matches (D-027, D-030).
+
+### Corrections are events, not edits
+
+A correction is proposed in chat, checked automatically, and decided on the
+Review page by a named person. `var/corrections.jsonl` only grows. Accepting
+adds a `review` observation that supersedes the original for display; the
+original keeps its id, its value and its place on the sheet, and points to its
+replacement. Inferred fits are recomputed from whatever the sheets currently
+say each time the knowledge base loads, so an accepted correction can create or
+remove a relation, and the review page shows that impact before anyone decides,
+by building the knowledge base with the candidate in place.
+
+Run end to end on D-023: before, the cylinder had no inferred mate because its
+fit readings failed the ISO check. The chat filed C-001 (j7, ISO 286: 52 µm
+band is IT7 at Ø262, straddles zero as j classes do); accepting it added the
+H8/j7 transition fit with the main platform, and asking the same question again
+produced that answer, naming C-001 and the original "H7" reading.
+
 ### Caveats are computed, not left for the model to notice
 
 The first chat answers were correct and incomplete. Asked which drawing documents

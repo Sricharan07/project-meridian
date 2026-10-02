@@ -9,6 +9,7 @@ const DIAGRAMS = { Zaxis_legend: "Z-axis diagram", RecoaterLegend: "Recoater dia
 
 export function citeLabel(id) {
   let m;
+  if ((m = id.match(/^(.+)\.(C-\d{3})$/))) return `${citeLabel(m[1])}, ${m[2]}`;
   if ((m = id.match(/^BOM\.(\d+)\.(.+)$/))) return `BOM ${m[1]} ${m[2].replaceAll("_", " ")}`;
   if ((m = id.match(/^(D-\d{3})\.bom-link$/))) return `${m[1]} link`;
   if ((m = id.match(/^(D-\d{3})\.p(\d+)\.(ocr|vision)\.[ac]\d+$/))) return `${m[1]} callout, ${m[3]}`;

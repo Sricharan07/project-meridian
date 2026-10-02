@@ -18,6 +18,7 @@ ABSTAIN_BELOW = 0.4    # a reader this unsure of itself is treated as having sai
 
 
 class Status(StrEnum):
+    CORRECTED = "corrected"      # a person accepted a correction in review; the original reading is kept
     EXACT = "exact"              # vector text or a CSV cell: characters are certain
     CONFIRMED = "confirmed"      # two independent readers agree
     SINGLE = "single reader"     # one reader produced it; the other could not
@@ -28,6 +29,9 @@ class Status(StrEnum):
 
 def settle(readings: list[Observation]) -> tuple[Status, Observation | None]:
     """The status of one field and the reading to show for it, if any."""
+    reviewed = [r for r in readings if r.method == Method.REVIEW]
+    if reviewed:
+        return Status.CORRECTED, reviewed[-1]
     exact = [r for r in readings if r.method in (Method.PDF_TEXT, Method.CSV, Method.CURATED, Method.TRANSCRIBED)]
     if exact:
         return (Status.BLANK, exact[0]) if exact[0].blank else (Status.EXACT, exact[0])

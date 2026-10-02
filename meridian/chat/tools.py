@@ -6,6 +6,7 @@ the narrow tool instead of pulling everything about a part every time.
 
 from collections.abc import Callable
 
+from meridian import corrections
 from meridian.knowledge import KnowledgeBase
 
 
@@ -54,10 +55,18 @@ DEFINITIONS = [
           "Find a word or phrase in drawing notes, callout text, BOM notes and design intent, e.g. 'weld', 'o-ring', "
           "'too tight'. Case-insensitive substring match.",
           {"text": {"type": "string"}}, ["text"]),
+    _tool("propose_correction",
+          "File a correction for review when the user says a value in the knowledge base is wrong. target is the cite id "
+          "of the one observation being corrected; proposed_value is its complete corrected text, written the way the "
+          "source prints it; reason is the user's reason. Nothing changes until a person accepts it in review. Returns "
+          "the correction id, the automatic checks and what accepting would change.",
+          {"target": {"type": "string"}, "proposed_value": {"type": "string"}, "reason": {"type": "string"}},
+          ["target", "proposed_value", "reason"]),
 ]
 
 
-def handlers(kb: KnowledgeBase) -> dict[str, Callable[..., object]]:
+def handlers(kb: KnowledgeBase, turn: dict) -> dict[str, Callable[..., object]]:
+    """`turn` carries the current question, which is filed with any correction it leads to."""
     return {
         "find_parts": lambda query: kb.find(query),
         "get_part": lambda ref: _or_unknown(kb, ref, kb.part),
@@ -66,7 +75,14 @@ def handlers(kb: KnowledgeBase) -> dict[str, Callable[..., object]]:
         "parts_with_material": lambda material: kb.with_material(material),
         "procurement": lambda refs, subsystem: kb.procurement(refs=refs, subsystem=subsystem),
         "search_text": lambda text: kb.search(text),
+        "propose_correction": lambda target, proposed_value, reason: _propose(kb, turn, target, proposed_value, reason),
     }
+
+
+def _propose(kb: KnowledgeBase, turn: dict, target: str, value: str, reason: str) -> dict:
+    c = corrections.propose(kb, target, value, reason, turn.get("question", ""))
+    return {"correction": c.id, "status": "waiting for review", "review_page": "/review", "target": c.target,
+            "current_value": c.current_value, "proposed_value": c.proposed_value, "checks": c.checks, "impact": c.impact}
 
 
 def _or_unknown(kb: KnowledgeBase, ref: str, call: Callable[[str], object]) -> object:

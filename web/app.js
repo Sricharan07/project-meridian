@@ -29,7 +29,7 @@ async function route() {
   layout.classList.toggle("wide", view !== "chat");
 
   if (view === "parts") return renderParts(left, { open: (ref) => { navigate("/"); evidence.openPart(ref); } });
-  if (view === "review") return renderReview(left, { open: (ref) => { navigate("/"); evidence.openPart(ref); } });
+  if (view === "review") return renderReview(left, { openCite: (id) => { navigate("/"); evidence.openCite(id); } });
 
   if (!left.querySelector(".composer")) chat.mount(left);
   const part = path.match(/^\/part\/([\w.-]+)$/);
