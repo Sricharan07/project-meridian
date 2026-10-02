@@ -7,7 +7,7 @@ when the part has one. When the sources disagree, or a scan cannot be read, the 
 
 The assignment brief is in [docs/brief.md](docs/brief.md).
 
-![An answer that raises a datasheet conflict, with the drawing opened beside it](docs/screenshots/chat-conflict.png)
+![An answer about the recoater mount block, with its sheet and 3D reconstruction side by side. The sheet's 30,0 callout is under the pointer, and the same dimension is lit on the model and in the table](docs/screenshots/model-3d.png)
 
 ## Running it
 
@@ -35,7 +35,7 @@ The example questions on the chat page are a good start. Some that show particul
 
 | Ask | What to look for |
 |---|---|
-| Show me the recoater mount block. | Opens the drawing and the 3D reconstruction in the same turn |
+| Show me the recoater mount block. | Opens the drawing, with a link to the sheet and the 3D reconstruction side by side |
 | How thick is the heating element plate? | The sheet prints a limit, 3,0 over 2,0; the model was built at 2,0, the value the title-block weight matches |
 | Which drawing documents the recoater stage plate? | Names D-014 and raises that its BOM row lists D-013's file |
 | Is the recoater arm made of stainless steel? | Aluminium by the BOM and the sheet's note; the scanned material field is disputed, and both readings are quoted |
@@ -43,7 +43,15 @@ The example questions on the chat page are a good start. Some that show particul
 | Is the BOM's motor plate drawing D-029 or D-030? | Says the evidence cannot tell, and why |
 | What did the Box subsystem cost, and what is missing from that figure? | A total from a dated snapshot, with the rows that have no cost |
 
-Clicking a citation opens its source in the panel on the right, with the region of the sheet outlined.
+Clicking a citation opens its source in the panel on the right, with the region of the sheet outlined. ⌘K (Ctrl K)
+finds any drawing or BOM row by name.
+
+### The sheet and the model
+
+Five parts have a **Sheet + 3D** tab. Every dimension the model was built from is boxed on the sheet where it was read
+and drawn on the model the way the sheet gives it. Point at either, or at a row of the table below, and the other two
+light up; click to zoom the sheet to the callout and bring the model in to the dimension. **Section** cuts the part
+like the sheet's section views, hatched, through the hole worth looking at; the slider moves the cut.
 
 ### A correction, end to end
 
@@ -98,7 +106,9 @@ number that is in no tool result. Which sheet and 3D view to open is decided on 
 called.
 
 **3D.** Five clean, simple parts are rebuilt from their dimensions with constructive solid geometry
-(`meridian/geometry.py`). Each dimension cites its callout, or says how it was measured or why it was assumed. The computed mass is checked against the weight
+(`meridian/geometry.py`). Each dimension cites its callout, or says how it was measured or why it was assumed, and
+says where it is drawn on the model and where it sits on the sheet; a test checks that every drawn dimension is as
+long as its label. The computed mass is checked against the weight
 SolidWorks printed in the title block. All five are within 0.75 %. The view says it is a reconstruction, not CAD.
 
 **Corrections** are events. Accepting one adds an observation that supersedes the original for display. The original
@@ -214,11 +224,14 @@ A scanned sheet where the two readers disagree:
 
 ![Disputed readings on a scanned title block](docs/screenshots/scan-disputed.png)
 
-The 3D view, with what each dimension was read from and the mass check:
+The build plate in section, after clicking the counterbore depth in the table: the sheet has zoomed to the hole
+callout and the model to the counterbore, cut and hatched:
 
-![Heating element plate reconstruction](docs/screenshots/model-3d.png)
+![Build plate reconstruction in section](docs/screenshots/model-3d-build-plate.png)
 
-![Build plate reconstruction](docs/screenshots/model-3d-build-plate.png)
+An answer that raises a datasheet conflict, with the drawing opened beside it:
+
+![Datasheet conflict](docs/screenshots/chat-conflict.png)
 
 A correction proposed in chat, pending in review, accepted, and the answer afterwards:
 

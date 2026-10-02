@@ -5,7 +5,7 @@ What I measured, how, and where it fails. Every number here can be reproduced:
 ```bash
 .venv/bin/python -m meridian score   # extraction and linking, no API calls
 .venv/bin/python -m meridian eval    # chat questions twice, baseline, correction scenario (~2 min, ~$0.13)
-.venv/bin/python -m pytest           # 51 tests on the parsing, settling, checking and correction rules
+.venv/bin/python -m pytest           # 84 tests: parsing, settling, checks, corrections, drawn dimensions
 ```
 
 Chat results are from `eval/runs/2026-10-02T063422Z/` unless a section says otherwise. Every answer,

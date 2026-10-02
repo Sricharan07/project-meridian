@@ -264,3 +264,20 @@ their date, and for anything else shows the part's evidence without prose.
 Sheets, 3D views, parts and review all work without a key. The evaluation
 runs against an empty review log of its own, and `MERIDIAN_VAR` does the same
 for a throwaway demo, so neither touches the real history.
+
+### The model and the sheet point at each other
+
+A 3D view next to a list of the dimensions it was built from says
+"reconstruction from 2D evidence"; it does not show it. Each dimension now
+carries where a drafter would draw it on the model and the box it was read
+from on the sheet, written in the same function as the solid. The panel puts
+the two side by side, and pointing at a callout, a drawn dimension or a table
+row lights up the other two. The placements are checked: every drawn
+dimension must be as long as its label. It has not failed yet; it would catch
+a placement that drifts from the number it labels.
+
+The section view is there because the interesting features are inside:
+D-026's counterbores and D-025's countersinks only show their depth when cut,
+which is why the sheets draw section views too. The cut face is found with the
+stencil buffer and hatched the way a section is.
+
