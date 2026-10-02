@@ -28,7 +28,7 @@ class Relation:
     a: str                       # "BOM.50", "D-027"
     b: str
     relation: str                # in the source's words where there are any
-    kind: str                    # stated | diagram | inferred
+    kind: str                    # stated | diagram | inferred | reviewed
     evidence: tuple[str, ...]    # observation ids
     note: str = ""
 

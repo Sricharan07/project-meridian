@@ -75,6 +75,19 @@ DEFINITIONS = [
           "the correction id, the automatic checks and what accepting would change.",
           {"target": {"type": "string"}, "proposed_value": {"type": "string"}, "reason": {"type": "string"}},
           ["target", "proposed_value", "reason"]),
+    _tool("propose_link_change",
+          "File a review request when the user says a drawing documents different BOM rows, or that its link is more or "
+          "less certain than recorded. rows are BOM row numbers; status is linked, probable or ambiguous; reason is the "
+          "user's reason. Nothing changes until a person accepts it. Returns the request id, checks and impact.",
+          {"drawing": _REF, "rows": {"type": "array", "items": {"type": "integer"}},
+           "status": {"type": "string", "enum": ["linked", "probable", "ambiguous"]}, "reason": {"type": "string"}},
+          ["drawing", "rows", "status", "reason"]),
+    _tool("propose_connection",
+          "File a review request when the user says two parts connect, or that a recorded connection between them is "
+          "wrong (remove true). a and b are refs; relation says how, in a few words ('is clamped by'). Nothing changes "
+          "until a person accepts it. Returns the request id, checks and impact.",
+          {"a": _REF, "b": _REF, "relation": {"type": "string"}, "reason": {"type": "string"}, "remove": {"type": "boolean"}},
+          ["a", "b", "relation", "reason", "remove"]),
 ]
 
 
@@ -92,12 +105,19 @@ def handlers(kb: KnowledgeBase, turn: dict) -> dict[str, Callable[..., object]]:
         "procurement": lambda refs, subsystem: kb.procurement(refs=refs, subsystem=subsystem),
         "search_text": lambda text: kb.search(text),
         "propose_correction": lambda target, proposed_value, reason: _propose(kb, turn, target, proposed_value, reason),
+        "propose_link_change": lambda drawing, rows, status, reason: _filed(
+            corrections.propose_link(kb, drawing, rows, status, reason, turn.get("question", ""), kb.corrections_log)),
+        "propose_connection": lambda a, b, relation, reason, remove: _filed(
+            corrections.propose_relation(kb, a, b, relation, reason, turn.get("question", ""), remove=remove, log=kb.corrections_log)),
     }
 
 
 def _propose(kb: KnowledgeBase, turn: dict, target: str, value: str, reason: str) -> dict:
-    c = corrections.propose(kb, target, value, reason, turn.get("question", ""), kb.corrections_log)
-    return {"correction": c.id, "status": "waiting for review", "review_page": "/review", "target": c.target,
+    return _filed(corrections.propose(kb, target, value, reason, turn.get("question", ""), kb.corrections_log))
+
+
+def _filed(c: corrections.Correction) -> dict:
+    return {"correction": c.id, "kind": c.kind, "status": "waiting for review", "review_page": "/review", "target": c.target,
             "current_value": c.current_value, "proposed_value": c.proposed_value, "checks": c.checks, "impact": c.impact}
 
 

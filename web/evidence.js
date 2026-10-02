@@ -6,7 +6,7 @@ import { api } from "./api.js";
 import { citeTarget } from "./cite.js";
 import { chip, isRed } from "./render.js";
 import { icon, mark } from "./icons.js";
-import { html, raw, mount, slide, $, $$ } from "./dom.js";
+import { html, raw, mount, slide, escape, $, $$ } from "./dom.js";
 import { SheetViewer } from "./sheet.js";
 import { ModelViewer, modelNotes } from "./model.js";
 
@@ -292,7 +292,13 @@ export class EvidencePanel {
     mount(body, html`<div class="doc-inner">${part.bom.map((row) => html`
       <section class="group">
         <h3 class="group-title">Row ${row.row} · ${row.cells.name?.value || ""}</h3>
-        ${part.bom_link ? html`<p class="note" style="margin:-2px 0 10px">${part.bom_link.status === "linked" ? "Linked" : `${capitalise(part.bom_link.status)} link`}: ${part.bom_link.basis} ${raw(chip(part.bom_link.cite, { label: "curation/links.csv", value: part.bom_link.status }))}</p>` : ""}
+        ${part.bom_link ? html`<p class="note" style="margin:-2px 0 10px">${part.bom_link.status === "linked" ? "Linked" : `${capitalise(part.bom_link.status)} link`}: ${part.bom_link.basis} ${raw(chip(part.bom_link.cite, { label: "curation/links.csv", value: part.bom_link.status }))}
+          ${part.drawing ? html`<button type="button" class="text-button" data-toggle="link-form">Change link</button>` : ""}</p>
+          ${part.drawing ? html`<form class="inline-form" data-form="link-form" hidden onsubmit="return false">
+            <label>BOM rows<input name="rows" value="${part.bom_link.rows.join(", ")}" inputmode="numeric"></label>
+            <label>Certainty<select name="status">${["linked", "probable", "ambiguous"].map((s) => html`<option ${s === part.bom_link.status ? raw("selected") : ""}>${s}</option>`)}</select></label>
+            <label class="grow">Reason<input name="reason" placeholder="What on the sheet and the BOM shows it"></label>
+            <button type="button" class="button" data-file="link">File for review</button></form>` : ""}` : ""}
         <div class="rows">${Object.entries(BOM_COLUMNS).filter(([f]) => row.cells[f]).map(([f, column]) => {
           const cell = row.cells[f];
           return html`<div class="row${cell.cite === focus || refs.has(cell.cite) ? " hit" : ""}">
@@ -307,8 +313,16 @@ export class EvidencePanel {
   renderRelations(body) {
     const groups = {};
     for (const r of this.state.part.relations || []) (groups[r.kind] ||= []).push(r);
+    const add = html`<section class="group"><h3 class="group-title">Add a connection</h3>
+      <form class="inline-form" onsubmit="return false">
+        <label class="grow">Connects to<input name="other" list="part-refs" placeholder="A part or drawing"></label>
+        <label>How<input name="relation" placeholder="is clamped by"></label>
+        <label class="grow">Reason<input name="reason" placeholder="What shows it"></label>
+        <button type="button" class="button" data-file="relation">File for review</button></form>
+      <datalist id="part-refs"></datalist></section>`;
     if (!Object.keys(groups).length) {
-      return mount(body, html`<div class="doc-inner"><div class="empty-page"><strong>No recorded relations</strong>Neither the BOM, the system diagrams nor a matching fit connects this part to another.</div></div>`);
+      mount(body, html`<div class="doc-inner"><div class="empty-page"><strong>No recorded relations</strong>Neither the BOM, the system diagrams nor a matching fit connects this part to another.</div>${add}</div>`);
+      return this.fillRefs(body);
     }
     mount(body, html`<div class="doc-inner">
       <a class="link-row" href="/graph?focus=${encodeURIComponent(this.state.part.ref)}" data-link><span>${raw(icon("graph", 14))} See these connections in the graph</span><span>${raw(icon("chevron", 14))}</span></a>
@@ -317,13 +331,62 @@ export class EvidencePanel {
         <div class="rows">${items.map((r) => html`<div class="relation">
           <span>${r.relation} <a href="/part/${r.other}" data-part="${r.other}">${r.other_name}</a> <span class="mono muted">${r.other}</span></span>
           <span>${raw(r.cites.map((c) => chip(c)).join(" "))}</span>
-          ${r.note && r.note !== "Label text." ? html`<span class="muted">${r.note}</span>` : ""}</div>`)}</div>
-      </section>`)}</div>`);
+          ${r.note && r.note !== "Label text." ? html`<span class="muted">${r.note}</span>` : ""}
+          <button type="button" class="text-button" data-toggle="withdraw-${r.other}">Withdraw</button>
+          <form class="inline-form" data-form="withdraw-${r.other}" hidden onsubmit="return false">
+            <label class="grow">Why it is wrong<input name="reason" placeholder="What shows they don't connect"></label>
+            <button type="button" class="button quiet" data-file="withdraw" data-other="${r.other}">File for review</button></form></div>`)}</div>
+      </section>`)}${add}</div>`);
+    this.fillRefs(body);
+  }
+
+  async fillRefs(body) {
+    const [drawings, rows] = await Promise.all([api.drawings(), api.bom()]);
+    $("#part-refs", body).innerHTML = [...drawings.map((d) => [d.ref, d.name]), ...rows.map((r) => [`BOM.${r.row}`, r.name])]
+      .map(([ref, name]) => `<option value="${ref}">${escape(name)}</option>`).join("");
+  }
+
+  // A correction filed from here waits for review like one filed from the chat.
+  async file(button) {
+    const { part } = this.state;
+    const form = button.closest("form");
+    const field = (name) => form ? $(`[name=${name}]`, form)?.value.trim() || "" : "";
+    let body;
+    if (button.dataset.use) {
+      body = { kind: "dispute", target: button.dataset.use, value: button.dataset.value,
+               reason: `Read the sheet: the ${button.dataset.reader === "OCR" ? "OCR" : "vision model"} reading is the right one.` };
+    } else if (button.dataset.file === "link") {
+      body = { kind: "link", drawing: part.ref, rows: field("rows").split(/[\s,;]+/).filter(Boolean).map(Number), status: field("status"), reason: field("reason") };
+    } else if (button.dataset.file === "relation") {
+      body = { kind: "relation", a: part.ref, b: field("other"), relation: field("relation"), reason: field("reason") };
+    } else {
+      body = { kind: "relation", a: part.ref, b: button.dataset.other, remove: true, reason: field("reason") };
+    }
+    if (!body.reason) return $("[name=reason]", form)?.focus();
+    button.disabled = true;
+    try {
+      const filed = await api.propose(body);
+      notify(`${filed.id} filed. It changes nothing until it is accepted on the Review page.`);
+      api.forget("part:");
+      document.dispatchEvent(new Event("corrections-changed"));
+      this.openPart(part.ref, { tab: this.state.tab, sheet: this.state.sheet });
+    } catch (error) {
+      notify(error.message, true);
+      button.disabled = false;
+    }
   }
 
   // --- events ------------------------------------------------------------------------------
 
   click(e) {
+    const toggle = e.target.closest("[data-toggle]");
+    if (toggle) {
+      const form = $(`[data-form="${CSS.escape(toggle.dataset.toggle)}"]`, this.root);
+      form.hidden = !form.hidden;
+      return form.hidden || $("input", form)?.focus();
+    }
+    const filing = e.target.closest("[data-file], [data-use]");
+    if (filing) return this.file(filing);
     const tab = e.target.closest("[data-tab]");
     if (tab && !tab.disabled) { this.state.tab = tab.dataset.tab; return this.render(); }
     const cite = e.target.closest("[data-cite]");
@@ -348,10 +411,17 @@ function titleRow(field, f, focus) {
     blank: ["blank", "Blank on the sheet"],
   };
   const [glyph, note] = states[f.status] || ["blank", "Unreadable"];
-  const value = f.status === "disputed"
-    ? html`<span class="reading">${oneLine(by("ocr")?.value) || "—"}<i>OCR</i></span><span class="reading">${oneLine(by("vision")?.value) || "—"}<i>Vision</i></span>`
-    : html`${f.value || html`<span class="muted">—</span>`}${f.placeholder ? html`<small>Template placeholder</small>` : ""}`;
   const cite = f.cite || f.readings?.[0]?.cite || "";
+  if (f.status === "disputed") {
+    // Settling a dispute is choosing one reading after looking at the sheet; it waits for review like any correction.
+    const [ocr, vision] = [by("ocr"), by("vision")];
+    const choice = (mine, other, name) => html`<span class="reading"><span class="val">${oneLine(mine?.value) || "—"}</span><i>${name}</i>${
+      mine?.value && other ? html`<button type="button" class="use" data-use="${other.cite}" data-value="${oneLine(mine.value)}" data-reader="${name}" title="File this reading for review">Use</button>` : ""}</span>`;
+    return html`<div class="row${cite === focus ? " lit" : ""}" data-focus="${cite}">
+      <span class="k">${FIELD_LABELS[field]}</span><span class="v">${choice(ocr, vision, "OCR")}${choice(vision, ocr, "Vision")}</span>
+      <span>${raw(mark("warn"))}</span></div>`;
+  }
+  const value = html`${f.value || html`<span class="muted">—</span>`}${f.placeholder ? html`<small>Template placeholder</small>` : ""}`;
   return html`<button type="button" class="row${cite && cite === focus ? " lit" : ""}" data-focus="${cite}">
     <span class="k">${FIELD_LABELS[field]}</span><span class="v">${value}${note && f.status !== "disputed" ? html`<small>${note}</small>` : ""}</span>
     <span>${glyph ? raw(mark(glyph)) : ""}</span></button>`;
@@ -382,6 +452,13 @@ function cellText(field, cell) {
     return `${cell.parsed.files.join(", ")} (attachment link expired ${cell.parsed.url_expired_on.join(", ")})`;
   }
   return cell.value;
+}
+
+function notify(text, error = false) {
+  document.querySelector(".toast")?.remove();
+  const toast = Object.assign(document.createElement("div"), { className: `toast${error ? " error" : ""}`, textContent: text });
+  document.body.append(toast);
+  setTimeout(() => toast.remove(), 5200);
 }
 
 const oneLine = (s) => (s || "").replace(/\s*\n\s*/g, " ");

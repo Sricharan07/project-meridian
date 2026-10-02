@@ -17,10 +17,24 @@ export async function renderDrawings(root, { open }) {
     <div class="page-head">
       <div><h1>Drawings</h1>
         <p>${drawings.length} sheets across six subsystems, ${scans} of them degraded scans, linked to ${status.bom_rows} BOM rows.</p></div>
-      <div class="filters">${Object.entries(FILTERS).map(([key, label]) => html`<button type="button" data-filter="${key}">${label}</button>`)}<span class="filter-indicator"></span></div>
+      <div class="page-actions">
+        <div class="filters">${Object.entries(FILTERS).map(([key, label]) => html`<button type="button" data-filter="${key}">${label}</button>`)}<span class="filter-indicator"></span></div>
+        <button type="button" class="button" data-add>${raw(icon("plus", 14))}Add drawing</button>
+      </div>
     </div>
     <div class="sections"></div>
-  </div></div>`);
+  </div></div>
+  <dialog class="add-drawing">
+    <form method="dialog" onsubmit="return false">
+      <h2>Add a drawing</h2>
+      <p class="note">It is read the way the supplied drawings were, then waits on the Review page until a person accepts it and says which BOM rows it documents. Clean PDFs need nothing extra; a scan needs tesseract and an API key.</p>
+      <label>PDF<input type="file" name="file" accept="application/pdf,.pdf" required></label>
+      <label>Subsystem<select name="subsystem">${ORDER.map((s) => html`<option>${s}</option>`)}</select></label>
+      <label>Where it comes from<input name="reason" placeholder="Revision B from the workshop, March"></label>
+      <p class="form-error" hidden></p>
+      <div class="dialog-actions"><button type="button" class="button quiet" data-cancel>Cancel</button><button type="button" class="button" data-upload>Read and file for review</button></div>
+    </form>
+  </dialog>`);
 
   const draw = () => {
     $$(".filters button", root).forEach((b) => b.classList.toggle("current", b.dataset.filter === filter));
@@ -37,12 +51,41 @@ export async function renderDrawings(root, { open }) {
   };
   draw();
 
-  root.onclick = (e) => {
+  const dialog = $("dialog.add-drawing", root);
+  root.onclick = async (e) => {
+    if (e.target.closest("[data-add]")) return dialog.showModal();
+    if (e.target.closest("[data-cancel]")) return dialog.close();
+    if (e.target.closest("[data-upload]")) return upload(e.target.closest("[data-upload]"));
     const button = e.target.closest("[data-filter]");
     if (button) { filter = button.dataset.filter; return draw(); }
     const item = e.target.closest("[data-ref]");
     if (item) open(item.dataset.ref);
   };
+}
+
+// Upload, then hand over to Review, where the reading is checked and the BOM link chosen.
+async function upload(button) {
+  const form = button.closest("form");
+  const error = $(".form-error", form);
+  const file = $("[name=file]", form).files[0];
+  const reason = $("[name=reason]", form).value.trim();
+  error.hidden = true;
+  if (!file) return $("[name=file]", form).focus();
+  if (!reason) return $("[name=reason]", form).focus();
+  button.disabled = true;
+  button.textContent = "Reading…";
+  const query = new URLSearchParams({ subsystem: $("[name=subsystem]", form).value, filename: file.name, reason });
+  const response = await fetch(`/api/ingest?${query}`, { method: "POST", headers: { "Content-Type": "application/pdf" }, body: file });
+  if (!response.ok) {
+    error.textContent = (await response.json().catch(() => ({}))).detail || "The upload failed.";
+    error.hidden = false;
+    button.disabled = false;
+    button.textContent = "Read and file for review";
+    return;
+  }
+  document.dispatchEvent(new Event("corrections-changed"));
+  history.pushState({}, "", "/review");
+  window.dispatchEvent(new PopStateEvent("popstate"));
 }
 
 function card(d, i) {
@@ -53,6 +96,7 @@ function card(d, i) {
       <div class="tags">
         <span>${raw(icon(d.scan ? "scan" : "sheet", 13))}${d.scan ? "Scan" : "Clean"}${d.sheets.length > 1 ? ` · ${d.sheets.length} sheets` : ""}</span>
         ${d.model_3d ? html`<span>${raw(icon("cube", 13))}3D</span>` : ""}
+        ${d.added ? html`<span class="accent">${raw(icon("plus", 13))}Added</span>` : ""}
         ${link}
       </div></div>
   </button>`;

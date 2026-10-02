@@ -21,6 +21,8 @@ export const api = {
   drawings: () => once("drawings", () => get("/api/drawings")),
   bom: () => once("bom", () => get("/api/bom")),
   graph: () => once("graph", () => get("/api/graph")),
+  learning: () => get("/api/learning"),
+  propose: (body) => post("/api/corrections", body),
   path: (a, b) => get(`/api/graph/path?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`),
   part: (ref) => once(`part:${ref}`, () => get(`/api/parts/${encodeURIComponent(ref)}`)),
   evidence: (id) => once(`evidence:${id}`, () => get(`/api/evidence/${encodeURIComponent(id)}`)),

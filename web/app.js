@@ -88,7 +88,12 @@ document.addEventListener("keydown", (e) => {
     chat.focus();
   }
 });
-document.addEventListener("corrections-changed", () => { api.forget("graph"); countReviews(); });
+document.addEventListener("corrections-changed", async () => {
+  // An accepted correction can add a drawing or move a link, so the lists the panels read are refreshed too.
+  ["graph", "drawings", "bom"].forEach((key) => api.forget(key));
+  countReviews();
+  evidence.drawings = Object.fromEntries((await api.drawings()).map((d) => [d.ref, d]));
+});
 
 $("#jump-open").insertAdjacentHTML("afterbegin", icon("search", 14));
 setupTheme();

@@ -50,21 +50,33 @@ class KnowledgeBase:
         self.accepted = list(accepted)      # corrections accepted in review, as observations
         self.proposals = list(proposals)    # every correction ever proposed, whatever its status
         self.obs = {o.id: o for o in [*observations, *self.accepted]}
-        self.superseded_by = {o.parsed["supersedes"]: o for o in self.accepted}
+        self.superseded_by = {o.parsed["supersedes"]: o for o in self.accepted if "supersedes" in o.parsed}
         self.by_subject: dict[str, list[Observation]] = defaultdict(list)
         for o in self.obs.values():
             self.by_subject[o.subject].append(o)
         # Fits are inferred from what the sheets say now, so an accepted correction can add or remove one.
-        self.relations = self.base_relations + inferred_fits(self.current_observations())
+        # Connections added in review join them; ones withdrawn in review leave, their evidence still citable.
+        reviewed = [o for o in self.accepted if o.field == "relation"]
+        withdrawn = {o.parsed["relation_id"] for o in reviewed if o.parsed.get("remove")}
+        added = [Relation(id=f"{o.parsed['a']}~{o.parsed['b']}~{o.parsed['correction']}", a=o.parsed["a"], b=o.parsed["b"],
+                          relation=o.parsed["relation"], kind="reviewed", evidence=(o.id,), note=o.note)
+                 for o in reviewed if not o.parsed.get("remove")]
+        self.relations = [r for r in self.base_relations + inferred_fits(self.current_observations()) if r.id not in withdrawn] + added
 
     @classmethod
     def load(cls, corrections_log: Path = corrections.LOG) -> "KnowledgeBase":
-        observations = list(evidence.read_jsonl(config.KB / "observations.jsonl"))
+        from meridian import ingest  # reads PDFs, so only loaded when the knowledge base is
+        observations, relations, sheets = ingest.hold_out(
+            list(evidence.read_jsonl(config.KB / "observations.jsonl")),
+            read_relations(config.KB / "relations.jsonl"),
+            json.loads((config.KB / "drawings.json").read_text()))
         proposals = corrections.load(corrections_log)
+        added, added_sheets = ingest.load_accepted(proposals)  # drawings added in the app and accepted in review
+        observations, sheets = observations + added, sheets | added_sheets
         return cls(
             observations,
-            read_relations(config.KB / "relations.jsonl"),
-            json.loads((config.KB / "drawings.json").read_text()),
+            relations,
+            sheets,
             corrections.accepted_observations(proposals, {o.id: o for o in observations}),
             proposals,
             corrections_log,
@@ -91,8 +103,8 @@ class KnowledgeBase:
 
     @cached_property
     def links(self) -> dict[str, Observation]:
-        """drawing id -> its curated BOM link observation."""
-        return {o.subject: o for o in self.obs.values() if o.field == "bom_link"}
+        """drawing id -> its BOM link: the curated decision, or the correction that replaced it in review."""
+        return {o.subject: self.superseded_by.get(o.id, o) for o in self.base_observations if o.field == "bom_link"}
 
     @cached_property
     def drawings_of_row(self) -> dict[int, list[str]]:
@@ -416,9 +428,7 @@ class KnowledgeBase:
             if c.subject not in self._counterparts(drawing):
                 continue
             if c.status == "accepted":
-                notes.append({"text": f'Corrected by {c.id}, accepted by {c.decided_by} on {c.decided_at[:10]}: '
-                                      f'"{c.current_value}" now reads "{c.proposed_value}". Reason: {c.reason}',
-                              "cites": [f"{c.target}.{c.id}", c.target]})
+                notes.append(self._decided(c))
             elif c.status == "pending":
                 notes.append({"text": f'{c.id} is waiting for review: it proposes "{c.proposed_value}" in place of '
                                       f'"{c.current_value}". Until it is decided the current value stands.', "cites": [c.target]})
@@ -428,6 +438,22 @@ class KnowledgeBase:
         return notes
 
     # --- relations ------------------------------------------------------------
+
+    @staticmethod
+    def _decided(c: corrections.Correction) -> dict:
+        """An accepted correction as a note on the part, worded for what it changed."""
+        by = f"accepted by {c.decided_by} on {c.decided_at[:10]}"
+        if c.kind == "drawing":  # information, not a caveat: no cites, so it is not counted as needing review
+            return {"text": f"Added in the app from {c.payload.get('filename')} as {c.id}, {by}. Reason: {c.reason}", "cites": []}
+        if c.kind == "relation":
+            what = "Withdrew the connection" if c.payload.get("remove") else "Added the connection"
+            return {"text": f'{what} "{c.proposed_value if not c.payload.get("remove") else c.current_value}" by {c.id}, {by}. '
+                            f"Reason: {c.reason}", "cites": [f"{c.payload['a']}.relation.{c.id}"]}
+        if c.kind == "link":
+            return {"text": f"Link changed by {c.id}, {by}: {c.current_value} is now {c.proposed_value}. Reason: {c.reason}",
+                    "cites": [f"{c.target}.{c.id}", c.target]}
+        return {"text": f'Corrected by {c.id}, {by}: "{c.current_value}" now reads "{c.proposed_value}". Reason: {c.reason}',
+                "cites": [f"{c.target}.{c.id}", c.target]}
 
     def _counterparts(self, ref: str) -> set[str]:
         if ref.startswith("D-"):
@@ -450,7 +476,7 @@ class KnowledgeBase:
                 "cites": list(r.evidence),
                 "note": r.note,
             })
-        order = {"stated": 0, "diagram": 1, "inferred": 2}
+        order = {"stated": 0, "diagram": 1, "reviewed": 2, "inferred": 3}
         return sorted(out, key=lambda x: (order[x["kind"]], x["other"]))
 
     # --- across parts -----------------------------------------------------------

@@ -16,6 +16,7 @@ import hashlib
 import io
 import json
 from datetime import UTC, datetime
+from pathlib import Path
 
 from openai import OpenAI
 from PIL import Image
@@ -81,8 +82,9 @@ SCHEMA = {
 LEGIBILITY_CONFIDENCE = {"clear": 0.9, "blank": 0.9, "partial": 0.5, "illegible": 0.0}
 
 
-def read_sheet(drawing_id: str, page: int, scan: ScanPage, reg: Registration) -> dict | None:
-    """The model's transcription of one page, from cache or a fresh call. None without either."""
+def read_sheet(drawing_id: str, page: int, scan: ScanPage, reg: Registration, cache: Path = CACHE) -> dict | None:
+    """The model's transcription of one page, from cache or a fresh call. None without either.
+    `cache` is kb/vision for the build; a drawing added in the app keeps its own under var/."""
     page_png = _png(scan.image)
     block = scan.image.crop(scan.to_pixels(reg.title_block))
     block_png = _png(block.resize((block.width * 2, block.height * 2), Image.LANCZOS))
@@ -90,7 +92,7 @@ def read_sheet(drawing_id: str, page: int, scan: ScanPage, reg: Registration) ->
         b"\0".join([config.MODEL.encode(), INSTRUCTIONS.encode(), json.dumps(SCHEMA).encode(), page_png, block_png])
     ).hexdigest()
 
-    cached = CACHE / f"{drawing_id}-p{page}.json"
+    cached = cache / f"{drawing_id}-p{page}.json"
     if cached.exists():
         record = json.loads(cached.read_text())
         if record["key"] == key:
@@ -111,7 +113,7 @@ def read_sheet(drawing_id: str, page: int, scan: ScanPage, reg: Registration) ->
         store=False,
     )
     reading = json.loads(response.output_text)
-    CACHE.mkdir(parents=True, exist_ok=True)
+    cache.mkdir(parents=True, exist_ok=True)
     cached.write_text(json.dumps({
         "key": key,
         "model": config.MODEL,

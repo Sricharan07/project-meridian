@@ -1,6 +1,5 @@
 # Rebuilding the knowledge base from dataset/. Also needs the tesseract binary.
 -r requirements.txt
-pymupdf==1.28.2
 pillow==12.3.0
 numpy==2.5.3
 manifold3d==3.5.4

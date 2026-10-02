@@ -1,4 +1,5 @@
-# Runtime: serving the app from the committed knowledge base.
+# Runtime: serving the app from the committed knowledge base, and reading a drawing added in the app.
 fastapi==0.142.2
 uvicorn==0.54.0
 openai==3.23.0
+pymupdf==1.28.2

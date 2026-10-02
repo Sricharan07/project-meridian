@@ -9,6 +9,13 @@ Rejecting changes no knowledge, and the proposal stays in the history.
 A proposal is checked before anyone looks at it: what kind of value it would
 replace, what the other reader saw, whether it holds together under ISO 286,
 whether it agrees with the other sources, and what accepting it would change.
+
+Five kinds, one log:
+  value     a reading or a cell is wrong; here is what it should say
+  dispute   two readers of a scan disagree; a person picked one after reading the sheet
+  link      a drawing documents different BOM rows, or with more or less certainty
+  relation  two parts connect (or don't), on a reviewer's word, as a "reviewed" relation
+  drawing   a drawing added in the app (meridian/ingest.py); accepting it says which BOM rows it documents
 """
 
 import json
@@ -55,6 +62,8 @@ class Correction:
     decided_at: str | None = None
     decided_by: str | None = None
     decision_note: str | None = None
+    kind: str = "value"                                # value | dispute | link | relation | drawing
+    payload: dict = field(default_factory=dict)        # what a link or relation correction sets
 
 
 def load(log: Path = LOG) -> list[Correction]:
@@ -70,11 +79,18 @@ def load(log: Path = LOG) -> list[Correction]:
             c = corrections[event["id"]]
             c.status = "accepted" if event["accept"] else "rejected"
             c.decided_at, c.decided_by, c.decision_note = event["at"], event["by"], event["note"]
+            if "link" in event:  # an added drawing: the BOM rows the reviewer said it documents
+                c.payload = c.payload | {"link": event["link"]}
     return list(corrections.values())
 
 
 def accepted_observations(corrections: list[Correction], observations: dict[str, Observation]) -> list[Observation]:
-    return [as_observation(c, observations[c.target]) for c in corrections if c.status == "accepted"]
+    return [relation_observation(c) if c.kind == "relation" else as_observation(c, observations[c.target])
+            for c in corrections if c.status == "accepted" and c.kind != "drawing"]  # added drawings load as their own observations
+
+
+def next_id(log: Path = LOG) -> str:
+    return f"C-{len(load(log)) + 1:03d}"
 
 
 def as_observation(c: Correction, original: Observation) -> Observation:
@@ -87,8 +103,22 @@ def as_observation(c: Correction, original: Observation) -> Observation:
         source=Source(doc=c.id, page=original.source.page, bbox=original.source.bbox,
                       row=original.source.row, column=original.source.column),
         method=Method.REVIEW,
-        parsed=(reparse(original, c.proposed_value) or {}) | {
+        parsed=(c.payload or reparse(original, c.proposed_value) or {}) | {
             "supersedes": c.target, "correction": c.id, "decided_by": c.decided_by, "decided_at": c.decided_at},
+        note=c.reason,
+    )
+
+
+def relation_observation(c: Correction) -> Observation:
+    """A connection added or removed in review. It supersedes nothing: the relation it changes keeps its evidence."""
+    return Observation(
+        id=f"{c.payload['a']}.relation.{c.id}",
+        subject=c.payload["a"],
+        field="relation",
+        value=c.proposed_value,
+        source=Source(doc=c.id),
+        method=Method.REVIEW,
+        parsed=c.payload | {"correction": c.id, "decided_by": c.decided_by, "decided_at": c.decided_at},
         note=c.reason,
     )
 
@@ -101,8 +131,9 @@ def reparse(original: Observation, value: str) -> dict | None:
     return parse_field(original.field, value)
 
 
-def propose(kb, target: str, value: str, reason: str, question: str, log: Path = LOG) -> Correction:
-    """File a correction against one observation. `kb` is the KnowledgeBase it is checked against."""
+def propose(kb, target: str, value: str, reason: str, question: str, log: Path = LOG, kind: str = "value") -> Correction:
+    """File a correction against one observation. `kb` is the KnowledgeBase it is checked against.
+    kind "dispute" is the same thing chosen from two readings: one reader's value replaces the other's."""
     original = kb.obs.get(target)
     if original is None:
         raise ValueError(f'No observation "{target}". Use a cite id from a tool result.')
@@ -117,6 +148,7 @@ def propose(kb, target: str, value: str, reason: str, question: str, log: Path =
         reason=reason.strip(),
         question=question.strip(),
         proposed_at=_now(),
+        kind=kind,
     )
     c.checks = [asdict(x) for x in _checks(kb, original, c)]
     c.impact = _impact(kb, kb.with_correction(as_observation(c, original)), original.subject)
@@ -124,7 +156,69 @@ def propose(kb, target: str, value: str, reason: str, question: str, log: Path =
     return c
 
 
-def decide(correction_id: str, accept: bool, by: str, note: str, log: Path = LOG) -> Correction:
+LINK_STATUSES = ("linked", "probable", "ambiguous")
+
+
+def propose_link(kb, drawing: str, rows: list[int], status: str, reason: str, question: str, log: Path = LOG) -> Correction:
+    """Say which BOM rows a drawing documents, and how sure that is."""
+    if drawing not in kb.sheets:
+        raise ValueError(f'No drawing "{drawing}".')
+    rows = sorted({int(r) for r in rows})
+    unknown = [r for r in rows if r not in kb.bom_rows]
+    if not rows or unknown:
+        raise ValueError(f"No BOM row {', '.join(map(str, unknown))}." if unknown else "Name at least one BOM row.")
+    if status not in LINK_STATUSES:
+        raise ValueError(f"A link is {', '.join(LINK_STATUSES)}.")
+    current = kb.links[drawing]
+    original = kb.obs[current.parsed.get("supersedes", current.id)]
+    c = Correction(
+        id=f"C-{len(load(log)) + 1:03d}", target=original.id, subject=drawing,
+        current_value=_link_text(current.parsed["rows"], current.parsed["status"]),
+        proposed_value=_link_text(rows, status), reason=reason.strip(), question=question.strip(),
+        proposed_at=_now(), kind="link", payload={"rows": rows, "status": status},
+    )
+    c.checks = [asdict(x) for x in _link_checks(kb, drawing, current, rows, c)]
+    c.impact = _impact(kb, kb.with_correction(as_observation(c, original)), drawing)
+    _append(log, {"event": "proposed", "at": c.proposed_at, "correction": asdict(c)})
+    return c
+
+
+def propose_relation(kb, a: str, b: str, relation: str, reason: str, question: str, *, remove: bool = False,
+                     log: Path = LOG) -> Correction:
+    """Add a connection between two parts on a reviewer's word, or withdraw one the sources assert."""
+    for ref in (a, b):
+        if ref not in kb.graph.nodes or kb.graph.nodes[ref].kind not in ("part", "drawing"):
+            raise ValueError(f'"{ref}" is not a drawing or a BOM row. Use a ref like D-015 or BOM.27.')
+    if a == b:
+        raise ValueError("A part does not connect to itself.")
+    existing = [r for r in kb.relations if {r.a, r.b} == {a, b}]
+    if remove:
+        if not existing:
+            raise ValueError(f"Nothing connects {a} and {b} to remove.")
+        r = existing[0]
+        payload = {"a": a, "b": b, "relation": r.relation, "remove": True, "relation_id": r.id}
+        current, proposed = f"{r.kind} relation: {kb.name(r.a)} {r.relation} {kb.name(r.b)}", "no connection"
+    else:
+        relation = relation.strip() or "connects to"
+        payload = {"a": a, "b": b, "relation": relation, "remove": False}
+        current = "; ".join(f"{r.kind} relation: {r.relation}" for r in existing) or "no recorded connection"
+        proposed = f"{kb.name(a)} {relation} {kb.name(b)}"
+    c = Correction(
+        id=f"C-{len(load(log)) + 1:03d}", target=a, subject=a, current_value=current, proposed_value=proposed,
+        reason=reason.strip(), question=question.strip(), proposed_at=_now(), kind="relation", payload=payload,
+    )
+    c.checks = [asdict(x) for x in _relation_checks(kb, a, b, existing, remove)]
+    c.impact = _impact(kb, kb.with_correction(relation_observation(c)), a)
+    _append(log, {"event": "proposed", "at": c.proposed_at, "correction": asdict(c)})
+    return c
+
+
+def _link_text(rows: list[int], status: str) -> str:
+    return f"BOM row{'s' if len(rows) > 1 else ''} {', '.join(map(str, rows))} ({status})"
+
+
+def decide(correction_id: str, accept: bool, by: str, note: str, log: Path = LOG, link: dict | None = None) -> Correction:
+    """Accept or reject, once, by a named person. Accepting an added drawing also says which BOM rows it documents."""
     if not by.strip():
         raise ValueError("A decision needs the reviewer's name.")
     current = {c.id: c for c in load(log)}
@@ -133,7 +227,15 @@ def decide(correction_id: str, accept: bool, by: str, note: str, log: Path = LOG
         raise ValueError(f"No correction {correction_id}")
     if c.status != "pending":
         raise ValueError(f"{correction_id} was already {c.status} by {c.decided_by} on {c.decided_at}")
-    _append(log, {"event": "decided", "id": correction_id, "accept": accept, "by": by.strip(), "note": note.strip(), "at": _now()})
+    event = {"event": "decided", "id": correction_id, "accept": accept, "by": by.strip(), "note": note.strip(), "at": _now()}
+    if c.kind == "drawing" and accept:
+        link = link or {}
+        rows = sorted({int(r) for r in link.get("rows", [])})
+        status = link.get("status") or ("linked" if rows else "ambiguous")
+        if status not in LINK_STATUSES:
+            raise ValueError(f"A link is {', '.join(LINK_STATUSES)}.")
+        event["link"] = {"rows": rows, "status": status}
+    _append(log, event)
     return {c.id: c for c in load(log)}[correction_id]
 
 
@@ -182,6 +284,80 @@ def _checks(kb, original: Observation, c: Correction) -> list[Check]:
         out += _material_checks(kb, original, c.proposed_value)
     if original.field == "datasheet":
         out += _datasheet_checks(kb, original, c.proposed_value)
+    return out
+
+
+def _link_checks(kb, drawing: str, current: Observation, rows: list[int], c: Correction) -> list[Check]:
+    from meridian.linking import SUBSYSTEM_FAMILY  # linking imports nothing from here; kept local like the graph's
+    out = [Check("What would change", "note", f'{drawing} is now linked to {c.current_value}. Basis: {current.note}',
+                 [current.id])]
+    candidates = {}
+    for line in (config.KB / "link_candidates.jsonl").read_text().splitlines():
+        cand = json.loads(line)
+        if cand["drawing"] == drawing:
+            candidates[cand["row"]] = (len(candidates) + 1, cand)
+    upstream = kb.sheets[drawing]["upstream_path"].rsplit("/", 1)[-1].rsplit(".", 1)[0].lower()
+    sheet_families = set()
+    for f in ("material", "note"):
+        reading = kb.field(drawing, 1, f)
+        if reading["value"] and reading["status"] != "disputed":
+            sheet_families = set((materials.read(reading["value"]) or {}).get("families", []))
+            if sheet_families:
+                break
+    for row in rows:
+        name, family = kb.cell(row, "name"), kb.cell(row, "family")
+        same = family and family.value == SUBSYSTEM_FAMILY.get(kb.sheets[drawing]["subsystem"])
+        out.append(Check(f"Row {row}", "pass" if same else "note",
+                         f'"{name.value if name else ""}", BOM family {family.value if family else "none"}; the drawing is in '
+                         f'{kb.sheets[drawing]["subsystem"]}{"" if same else ", a different subsystem"}.', [name.id] if name else []))
+        if row in candidates:
+            rank, cand = candidates[row]
+            out.append(Check("Automatic linker", "pass", f"Ranked row {row} number {rank} for {drawing}: {'; '.join(cand['reasons'])}."))
+        else:
+            out.append(Check("Automatic linker", "note", f"Did not propose row {row} for {drawing}."))
+        datasheet = kb.cell(row, "datasheet")
+        files = {f.rsplit(".", 1)[0].lower() for f in (datasheet.parsed or {}).get("files", [])} if datasheet else set()
+        if files:
+            out.append(Check("Datasheet file", "pass" if upstream in files else "note",
+                             f"Row {row} lists {', '.join(sorted(files))}; the drawing's file is {upstream}.", [datasheet.id]))
+        cell = kb.cell(row, "material")
+        theirs = set((cell.parsed or {}).get("families", [])) if cell else set()
+        if sheet_families and theirs:
+            ok = bool(sheet_families & theirs)
+            out.append(Check("Material", "pass" if ok else "fail",
+                             f"The sheet names {', '.join(sorted(sheet_families))}; row {row} names {', '.join(sorted(theirs))}.", [cell.id]))
+        others = [d for d in kb.drawings_of_row.get(row, []) if d != drawing]
+        if others:
+            out.append(Check("Other drawings", "note", f"Row {row} is also documented by {', '.join(others)}."))
+    return out
+
+
+def _relation_checks(kb, a: str, b: str, existing: list, remove: bool) -> list[Check]:
+    from meridian import graph
+    out = []
+    if remove:
+        r = existing[0]
+        out.append(Check("What asserts it", "note", f"A {r.kind} relation, from {', '.join(r.evidence)}. The evidence stays citable; "
+                                                     "the relation is withdrawn from answers and the graph.", [c for c in r.evidence if c in kb.obs]))
+        if r.kind == "inferred":
+            out.append(Check("Inferred", "note", "Inferred relations are recomputed from the fits; removing one says the fits do not mate."))
+        return out
+    if existing:
+        kinds = ", ".join(sorted({r.kind for r in existing}))
+        out.append(Check("Already recorded", "fail" if "stated" in kinds or "diagram" in kinds else "note",
+                         f"{kb.name(a)} and {kb.name(b)} are already connected ({kinds}).", [c for r in existing for c in r.evidence if c in kb.obs]))
+    p = graph.path(kb.graph, a, b, kinds=("interfaces", "documents"))
+    if p.get("found"):
+        out.append(Check("Through other parts", "note", f"Already connected in {len(p['hops'])} steps: "
+                         + " → ".join([p["hops"][0]["from"]["name"], *(h["to"]["name"] for h in p["hops"])]) + "."))
+    else:
+        out.append(Check("Through other parts", "note", "No chain of interfaces connects them yet; this would be the first."))
+    home = {e.a: e.b for e in kb.graph.edges if e.kind == "part_of"}
+    fa, fb = home.get(a), home.get(b)
+    if fa and fb:
+        same = fa == fb
+        out.append(Check("Subsystems", "pass" if same else "note",
+                         f"Both in {kb.graph.nodes[fa].label}." if same else f"{kb.graph.nodes[fa].label} and {kb.graph.nodes[fb].label}: a connection between subsystems."))
     return out
 
 
