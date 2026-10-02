@@ -28,8 +28,10 @@ def test_counterbore_depth_belongs_to_the_counterbore():
 
 
 def test_depth_tolerance_is_not_the_fit_tolerance():
+    # D-027: the H7 band (21 µm, IT7 at Ø20) belongs to the counterbore; ±0,05 belongs to its depth.
     p = parse("H7 +0,021 / 3 x ⌴Ø20,0 0,000 ↧4,0 ±0,05")
-    assert p["tolerance"] == {"upper": 0.021, "lower": 0.0}
+    assert p["counterbore"]["fit"] == "H7"
+    assert p["counterbore"]["tolerance"] == {"upper": 0.021, "lower": 0.0}
     assert p["depth"] == 4.0 and p["depth_tolerance"] == 0.05
 
 

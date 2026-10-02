@@ -15,6 +15,7 @@ import re
 from dataclasses import dataclass
 from statistics import median
 
+from meridian import iso286
 from meridian.sheets.template import Rect
 
 SYMBOLS = ("Ø", "↧", "±", "⌴")
@@ -297,14 +298,22 @@ def _read_numbers(text: str, stacked_pair: bool) -> dict:
 
 
 def _fit_problem(p: dict) -> str | None:
-    """ISO 286 fixes one deviation of H holes and h shafts at zero. A reading that breaks that has a misread letter
-    or number. The vision model read D-023's "j7 +0,026/-0,026" as "H7 +0,026/-0,026"; this is what catches it."""
+    """A fit reading that breaks ISO 286 was misread or grouped with the wrong feature (see iso286.py).
+
+    In a counterbore callout the fit may belong to the counterbore rather than the hole. When only the
+    counterbore's diameter satisfies the standard, the fit is moved there: D-030's "H6 +0,013" is IT6
+    for its Ø20 counterbore, not for the Ø13,5 hole.
+    """
     fit, tolerance = p.get("fit"), p.get("tolerance") or {}
-    if fit and fit.startswith("H") and tolerance.get("lower", 0) != 0:
-        return f"an {fit} bore has a lower deviation of 0, but this reads {tolerance['lower']:+g}; the class letter may be misread"
-    if fit and fit.startswith("h") and tolerance.get("upper", 0) != 0:
-        return f"an {fit} shaft has an upper deviation of 0, but this reads {tolerance['upper']:+g}; the class letter may be misread"
-    return None
+    if not fit:
+        return None
+    upper, lower = tolerance.get("upper"), tolerance.get("lower")
+    found = iso286.problems(fit, p.get("diameter", p.get("value")), upper, lower)
+    bore = p.get("counterbore")
+    if bore and (found or p.get("diameter") is None) and not iso286.problems(fit, bore["diameter"], upper, lower):
+        bore["fit"], bore["tolerance"] = p.pop("fit"), p.pop("tolerance")
+        return None
+    return "; ".join(found) + "; the reading, or the feature it was grouped with, is probably wrong" if found else None
 
 
 def _kind(p: dict) -> str:
