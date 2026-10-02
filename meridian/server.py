@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from meridian import config, corrections
+from meridian import config, corrections, graph
 from meridian.chat.agent import Chat
 from meridian.knowledge import KnowledgeBase
 
@@ -73,6 +73,16 @@ def bom_rows() -> list[dict]:
     k = kb()
     return [{"row": r, "name": k.cell(r, "name").value, "family": k.cell(r, "family").value if k.cell(r, "family") else "",
              "drawings": k.drawings_of_row.get(r, [])} for r in k.bom_rows]
+
+
+@app.get("/api/graph")
+def knowledge_graph() -> dict:
+    return kb().graph.to_dict()
+
+
+@app.get("/api/graph/path")
+def graph_path(a: str, b: str) -> dict:
+    return graph.path(kb().graph, a, b)
 
 
 @app.get("/api/parts/{ref}")

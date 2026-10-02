@@ -8,6 +8,7 @@ import { ChatView } from "./chat.js";
 import { EvidencePanel } from "./evidence.js";
 import { renderDrawings } from "./parts.js";
 import { renderReview } from "./review.js";
+import { renderGraph } from "./graph.js";
 import { setupJump } from "./jump.js";
 import { icon } from "./icons.js";
 import { $, $$, slide } from "./dom.js";
@@ -16,7 +17,7 @@ const layout = $("#layout");
 const left = $("#left");
 
 const evidence = new EvidencePanel($("#evidence"), { navigate });
-const chat = new ChatView({ evidence });
+const chat = new ChatView({ evidence, navigate });
 setupJump({ open: (ref) => { navigate("/"); evidence.openPart(ref); } });
 
 function navigate(path, { replace = false } = {}) {
@@ -27,13 +28,18 @@ function navigate(path, { replace = false } = {}) {
 
 async function route() {
   const path = location.pathname;
-  const view = path.startsWith("/drawings") || path.startsWith("/parts") ? "drawings" : path.startsWith("/review") ? "review" : "chat";
+  const view = path.startsWith("/drawings") || path.startsWith("/parts") ? "drawings" : path.startsWith("/review") ? "review"
+    : path.startsWith("/graph") ? "graph" : "chat";
   $$(".nav a").forEach((a) => a.classList.toggle("current", a.dataset.view === view));
   slide($(".nav-indicator"), $(".nav a.current"));
   layout.classList.toggle("wide", view !== "chat");
 
   if (view === "drawings") return renderDrawings(left, { open: (ref) => { navigate("/"); evidence.openPart(ref); } });
   if (view === "review") return renderReview(left, { openCite: (id) => { navigate("/"); evidence.openCite(id); } });
+  if (view === "graph") {
+    return renderGraph(left, { navigate, openPart: (ref) => { navigate("/"); evidence.openPart(ref); },
+                               openCite: (id) => { navigate("/"); evidence.openCite(id); } });
+  }
 
   if (!left.querySelector(".composer")) chat.mount(left);
   const part = path.match(/^\/part\/([\w.-]+)$/);
@@ -82,7 +88,7 @@ document.addEventListener("keydown", (e) => {
     chat.focus();
   }
 });
-document.addEventListener("corrections-changed", countReviews);
+document.addEventListener("corrections-changed", () => { api.forget("graph"); countReviews(); });
 
 $("#jump-open").insertAdjacentHTML("afterbegin", icon("search", 14));
 setupTheme();

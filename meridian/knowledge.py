@@ -75,6 +75,12 @@ class KnowledgeBase:
         return KnowledgeBase(self.base_observations, self.base_relations, self.sheets,
                              [*self.accepted, candidate], self.proposals, self.corrections_log)
 
+    @cached_property
+    def graph(self):
+        """Parts, drawings, subsystems, materials and suppliers as one graph, derived on demand."""
+        from meridian import graph  # the graph is built from this class, so it imports it lazily
+        return graph.build(self)
+
     def current_observations(self) -> list[Observation]:
         return [o for o in self.obs.values() if o.id not in self.superseded_by]
 

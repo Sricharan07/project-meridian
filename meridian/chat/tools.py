@@ -6,7 +6,7 @@ the narrow tool instead of pulling everything about a part every time.
 
 from collections.abc import Callable
 
-from meridian import corrections
+from meridian import corrections, graph
 from meridian.knowledge import KnowledgeBase
 
 
@@ -36,6 +36,15 @@ DEFINITIONS = [
           "What a part connects to: BOM 'Interface with' entries (kind stated), relations read off the system diagrams "
           "(kind diagram), and mating fits found across two sheets (kind inferred).",
           {"ref": _REF}, ["ref"]),
+    _tool("connection_path",
+          "How two parts or drawings connect: the cheapest chain of interfaces (stated, diagram or inferred), drawing-to-BOM "
+          "links and shared subsystems between them, each step with its kind and cite ids. A step through a shared "
+          "subsystem only says the parts belong together, not that they touch. Use for 'how does A relate to B'.",
+          {"a": _REF, "b": _REF}, ["a", "b"]),
+    _tool("subsystem_links",
+          "Which subsystems connect to which, counted from part-to-part interfaces, with the parts and cite ids. Use for "
+          "questions about how the machine's subsystems fit together.",
+          {}, []),
     _tool("machine_overview",
           "How the machine is organised: each subsystem with its drawing count, drawings, scans and BOM row count, and "
           "the BOM families that have no drawings. Use this for questions about the machine as a whole.",
@@ -73,6 +82,8 @@ def handlers(kb: KnowledgeBase, turn: dict) -> dict[str, Callable[..., object]]:
     """`turn` carries the current question, which is filed with any correction it leads to."""
     return {
         "machine_overview": lambda: kb.overview(),
+        "connection_path": lambda a, b: graph.path(kb.graph, a, b),
+        "subsystem_links": lambda: graph.subsystem_links(kb.graph),
         "find_parts": lambda query: kb.find(query),
         "get_part": lambda ref: _or_unknown(kb, ref, kb.part),
         "get_interfaces": lambda ref: _or_unknown(kb, ref, lambda r: {"attention": kb.attention(r), "relations": kb.interfaces(r)}),

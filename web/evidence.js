@@ -310,7 +310,9 @@ export class EvidencePanel {
     if (!Object.keys(groups).length) {
       return mount(body, html`<div class="doc-inner"><div class="empty-page"><strong>No recorded relations</strong>Neither the BOM, the system diagrams nor a matching fit connects this part to another.</div></div>`);
     }
-    mount(body, html`<div class="doc-inner">${Object.entries(groups).map(([kind, items]) => html`
+    mount(body, html`<div class="doc-inner">
+      <a class="link-row" href="/graph?focus=${encodeURIComponent(this.state.part.ref)}" data-link><span>${raw(icon("graph", 14))} See these connections in the graph</span><span>${raw(icon("chevron", 14))}</span></a>
+      ${Object.entries(groups).map(([kind, items]) => html`
       <section class="group"><h3 class="group-title">${KIND_TITLES[kind]}</h3>
         <div class="rows">${items.map((r) => html`<div class="relation">
           <span>${r.relation} <a href="/part/${r.other}" data-part="${r.other}">${r.other_name}</a> <span class="mono muted">${r.other}</span></span>

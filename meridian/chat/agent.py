@@ -159,6 +159,18 @@ class Chat:
                 "sheet": marks[0]["sheet"] if marks else 1, "highlights": marks, "model_3d": self.kb.model_3d(d)}
                for d, marks in highlights.items()]
         out += [{"type": "bom_row", "row": row, "name": self.kb.name(f"BOM.{row}"), "cites": cites} for row, cites in rows.items()]
+        # An answer about how parts connect can be followed in the graph, focused where it started.
+        for step in steps:
+            args = step["arguments"]
+            if step["tool"] == "connection_path" and args.get("a") in self.kb.graph.nodes and args.get("b") in self.kb.graph.nodes:
+                out.append({"type": "graph", "focus": args["a"], "to": args["b"]})
+                break
+            if step["tool"] == "get_interfaces" and args.get("ref") in self.kb.graph.nodes:
+                out.append({"type": "graph", "focus": args["ref"]})
+                break
+            if step["tool"] == "subsystem_links":
+                out.append({"type": "graph", "focus": None})
+                break
         return out
 
     # --- without an API key -------------------------------------------------------
