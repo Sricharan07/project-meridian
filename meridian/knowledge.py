@@ -563,6 +563,9 @@ class KnowledgeBase:
             out["superseded_by"] = self.superseded_by[o.id].id
         if o.method == Method.REVIEW:
             out["correction"] = self._correction_note(o)
+        if o.method in evidence.MACHINE_READ and o.field != "callout" and o.source.page:
+            # One reading of a scanned field is only as good as the field: say whether the readers agree.
+            out["status"] = self.field(o.subject, o.source.page, o.field)["status"]
         return out
 
 
