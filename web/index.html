@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meridian</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script type="importmap">
+    {"imports": {"three": "/static/vendor/three/three.module.min.js", "three/addons/": "/static/vendor/three/addons/"}}
+  </script>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="/" data-link>Meridian</a>
+    <nav>
+      <a href="/" data-link data-view="chat">Chat</a>
+      <a href="/parts" data-link data-view="parts">Parts</a>
+      <a href="/review" data-link data-view="review">Review</a>
+    </nav>
+    <span class="bar-meta" id="bar-meta"></span>
+  </header>
+  <main class="layout" id="layout">
+    <section class="left" id="left"></section>
+    <section class="evidence" id="evidence" aria-label="Evidence"></section>
+  </main>
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

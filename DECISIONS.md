@@ -123,6 +123,59 @@ tools ($0.10 / $0.50 per million input / output tokens). `gpt-5-nano` is cheaper
 on input but a generation older; `gpt-4.1-nano` shuts down on 2026-10-23. The
 model is one setting in `.env`.
 
+### The vision pass
+
+`gpt-6-luna` reads 69 of the 70 scan title-block fields correctly against OCR's
+36. After settling the two readings, 58 are right, 16 of them confirmed by both
+readers, and none is shown as exact or confirmed while wrong. Its one miss is a
+single-reader value (D-003 sheet 2 scale "1:15" for "1:5"), so it is shown with
+that caveat. The whole pass over ten sheets used 30,800 input and 7,382 output
+tokens: under a cent. The model sometimes copies a printed label into the value
+("SHEET 3 OF 3"); that is stripped the same way as for OCR.
+
+### Fit readings are checked against ISO 286
+
+On D-023 the vision model read "Ø262,0 j7 +0,026/-0,026" as "H7". Under ISO 286
+an H bore always has a lower deviation of zero, so "H7 ... -0,026" cannot be
+right, and the parser says so on the observation. No fit relation is inferred
+from a reading that fails the check, which is why the cylinder currently has no
+inferred mate: the drawing does show j7, and a person can correct the reading
+through review.
+
+### Caveats are computed, not left for the model to notice
+
+The first chat answers were correct and incomplete. Asked which drawing documents
+the recoater stage plate, the model named D-014 and never mentioned that the BOM
+row's datasheet field names D-013's file, though the conflict was in the tool
+result. Prompting harder did not fix it. `KnowledgeBase.attention()` now writes
+those caveats as plain sentences with citations (conflicting sources, links that
+are probable or ambiguous, disputed readings, failed fit checks) and puts them
+first in every part result. The model relays them; it no longer has to find
+them.
+
+### Every answer is checked mechanically
+
+`meridian/chat/verify.py` rejects an answer that cites an id that does not exist
+or states a number found in no tool result. A failing answer gets one rewrite;
+if it still fails it is shown with the problems listed. Writing the tests found
+two holes in my own check: "Ø" counts as a letter to Python's regex, so every
+diameter would have skipped it, and "DKK5,627.00" read as an identifier. Both are
+pinned by tests.
+
+### Reasoning effort
+
+At "low", one answer in about ten refused to cite or skipped a caveat. "medium"
+took the same 3 to 6 seconds and costs under a tenth of a cent per answer, so it
+is the setting. Conversations are not stored at OpenAI: requests use
+`store=false` and pass the encrypted reasoning back between tool rounds.
+
+### The UI has no build step
+
+Plain ES modules, one stylesheet, IBM Plex vendored with its licence, three.js
+vendored for the 3D view. Running the app needs Python and nothing else; Node is
+not involved at any point. The theme is light because the sheets are white, and
+the page should not fight them.
+
 ### Known extraction errors
 
 D-024's hole table is dense enough that its "H9 +0,052" tolerance groups with the
