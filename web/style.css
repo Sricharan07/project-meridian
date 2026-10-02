@@ -43,8 +43,19 @@ h3 { font-size: 13px; font-weight: 600; margin: 0 0 8px; }
 .bar nav a { color: var(--text-2); padding: 6px 10px; border-radius: var(--radius); }
 .bar nav a:hover { background: var(--sunken); text-decoration: none; }
 .bar nav a.current { color: var(--text); background: var(--bg); }
-.bar-meta { margin-left: auto; color: var(--text-3); font-size: 12.5px; }
-@media (max-width: 640px) { .bar-meta { display: none; } }  /* each answer says how it was made */
+.bar-meta { margin-left: 16px; color: var(--text-3); font-size: 12.5px; }
+.jump-open { margin-left: auto; height: 30px; display: flex; align-items: center; gap: 10px; padding: 0 8px 0 10px; color: var(--text-3); background: var(--sunken); border: 1px solid var(--line); border-radius: var(--radius); cursor: pointer; }
+.jump-open:hover { color: var(--text-2); border-color: var(--line-strong); }
+kbd { font: 500 11px var(--mono); color: var(--text-2); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 4px; padding: 1px 5px; }
+
+dialog.jump { width: min(620px, calc(100vw - 32px)); margin: 12vh auto auto; padding: 0; border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); color: var(--text); }
+dialog.jump::backdrop { background: rgba(28, 25, 23, 0.25); }
+dialog.jump input { width: 100%; height: 48px; padding: 0 16px; font: inherit; font-size: 15px; color: var(--text); border: 0; border-bottom: 1px solid var(--line); outline: none; }
+dialog.jump ul { list-style: none; margin: 0; padding: 6px; max-height: 50vh; overflow-y: auto; }
+dialog.jump li { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: baseline; padding: 7px 10px; border-radius: var(--radius); cursor: pointer; }
+dialog.jump li[aria-selected="true"] { background: var(--accent-tint); }
+dialog.jump li .muted { font-size: 12.5px; }
+@media (max-width: 640px) { .bar-meta, .jump-open { display: none; } }  /* each answer says how it was made */
 
 /* layout ------------------------------------------------------------------- */
 

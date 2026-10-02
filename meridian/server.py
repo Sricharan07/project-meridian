@@ -68,6 +68,13 @@ def drawings() -> list[dict]:
     ]
 
 
+@app.get("/api/bom")
+def bom_rows() -> list[dict]:
+    k = kb()
+    return [{"row": r, "name": k.cell(r, "name").value, "family": k.cell(r, "family").value if k.cell(r, "family") else "",
+             "drawings": k.drawings_of_row.get(r, [])} for r in k.bom_rows]
+
+
 @app.get("/api/parts/{ref}")
 def part(ref: str) -> dict:
     k = kb()

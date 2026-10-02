@@ -8,6 +8,7 @@ import { ChatView } from "./chat.js";
 import { EvidencePanel } from "./evidence.js";
 import { renderParts } from "./parts.js";
 import { renderReview } from "./review.js";
+import { setupJump } from "./jump.js";
 import { $, $$ } from "./dom.js";
 
 const layout = $("#layout");
@@ -15,6 +16,7 @@ const left = $("#left");
 
 const evidence = new EvidencePanel($("#evidence"), { navigate });
 const chat = new ChatView({ evidence });
+setupJump({ open: (ref) => { navigate("/"); evidence.openPart(ref); } });
 
 function navigate(path, { replace = false } = {}) {
   if (location.pathname === path) return;

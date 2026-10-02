@@ -19,6 +19,7 @@ const once = (key, load) => {
 export const api = {
   status: () => once("status", () => get("/api/status")),
   drawings: () => once("drawings", () => get("/api/drawings")),
+  bom: () => once("bom", () => get("/api/bom")),
   part: (ref) => once(`part:${ref}`, () => get(`/api/parts/${encodeURIComponent(ref)}`)),
   evidence: (id) => once(`evidence:${id}`, () => get(`/api/evidence/${encodeURIComponent(id)}`)),
   models: () => once("models", () => get("/kb/models/index.json")),
