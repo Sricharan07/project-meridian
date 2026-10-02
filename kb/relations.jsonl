@@ -1,0 +1,43 @@
+{"id": "BOM.10~BOM.12", "a": "BOM.10", "b": "BOM.12", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.10.interface_with"], "note": ""}
+{"id": "BOM.10~BOM.13", "a": "BOM.10", "b": "BOM.13", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.10.interface_with"], "note": ""}
+{"id": "BOM.10~BOM.14", "a": "BOM.10", "b": "BOM.14", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.10.interface_with"], "note": ""}
+{"id": "BOM.10~BOM.15", "a": "BOM.10", "b": "BOM.15", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.10.interface_with"], "note": ""}
+{"id": "BOM.11~BOM.15", "a": "BOM.11", "b": "BOM.15", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.11.interface_with"], "note": ""}
+{"id": "BOM.12~BOM.10", "a": "BOM.12", "b": "BOM.10", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.12.interface_with"], "note": ""}
+{"id": "BOM.12~BOM.13", "a": "BOM.12", "b": "BOM.13", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.12.interface_with"], "note": ""}
+{"id": "BOM.12~BOM.14", "a": "BOM.12", "b": "BOM.14", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.12.interface_with"], "note": ""}
+{"id": "BOM.14~BOM.10", "a": "BOM.14", "b": "BOM.10", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.14.interface_with"], "note": ""}
+{"id": "BOM.14~BOM.12", "a": "BOM.14", "b": "BOM.12", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.14.interface_with"], "note": ""}
+{"id": "BOM.14~BOM.15", "a": "BOM.14", "b": "BOM.15", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.14.interface_with"], "note": ""}
+{"id": "BOM.15~BOM.10", "a": "BOM.15", "b": "BOM.10", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.15.interface_with"], "note": ""}
+{"id": "BOM.15~BOM.11", "a": "BOM.15", "b": "BOM.11", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.15.interface_with"], "note": ""}
+{"id": "BOM.15~BOM.13", "a": "BOM.15", "b": "BOM.13", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.15.interface_with"], "note": ""}
+{"id": "BOM.15~BOM.14", "a": "BOM.15", "b": "BOM.14", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.15.interface_with"], "note": ""}
+{"id": "BOM.18~BOM.12", "a": "BOM.18", "b": "BOM.12", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.18.interface_with"], "note": ""}
+{"id": "BOM.18~BOM.13", "a": "BOM.18", "b": "BOM.13", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.18.interface_with"], "note": ""}
+{"id": "BOM.18~BOM.14", "a": "BOM.18", "b": "BOM.14", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.18.interface_with"], "note": ""}
+{"id": "BOM.18~BOM.15", "a": "BOM.18", "b": "BOM.15", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.18.interface_with"], "note": ""}
+{"id": "BOM.21~BOM.11", "a": "BOM.21", "b": "BOM.11", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.21.interface_with"], "note": ""}
+{"id": "BOM.21~BOM.15", "a": "BOM.21", "b": "BOM.15", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.21.interface_with"], "note": ""}
+{"id": "BOM.22~BOM.11", "a": "BOM.22", "b": "BOM.11", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.22.interface_with"], "note": ""}
+{"id": "BOM.22~BOM.15", "a": "BOM.22", "b": "BOM.15", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.22.interface_with"], "note": ""}
+{"id": "BOM.84~BOM.106", "a": "BOM.84", "b": "BOM.106", "relation": "interfaces with", "kind": "stated", "evidence": ["BOM.84.interface_with"], "note": ""}
+{"id": "PowderLegend.r15", "a": "BOM.89", "b": "BOM.92", "relation": "feeds", "kind": "diagram", "evidence": ["PowderLegend.l01", "PowderLegend.l02"], "note": "Through the part labelled \"Reservoir interface\", which has no BOM row of its own."}
+{"id": "PowderLegend.r16", "a": "BOM.90", "b": "BOM.92", "relation": "turns in", "kind": "diagram", "evidence": ["PowderLegend.l03", "PowderLegend.l02"], "note": "Label text."}
+{"id": "PowderLegend.r17", "a": "BOM.97", "b": "BOM.90", "relation": "drives", "kind": "diagram", "evidence": ["PowderLegend.l04", "PowderLegend.l03"], "note": "Mounted on the drum's axis."}
+{"id": "PowderLegend.r18", "a": "D-006", "b": "BOM.89", "relation": "supports", "kind": "diagram", "evidence": ["PowderLegend.l05", "PowderLegend.l01"], "note": "The two side plates in the diagram have the shape of D-006's left and right canister walls."}
+{"id": "PowderLegend.r19", "a": "D-006", "b": "BOM.13", "relation": "attaches to", "kind": "diagram", "evidence": ["PowderLegend.l05", "PowderLegend.l06"], "note": "Label text (spelled as on the diagram)."}
+{"id": "RecoaterLegend.r09", "a": "BOM.30", "b": "BOM.31", "relation": "mounts to", "kind": "diagram", "evidence": ["RecoaterLegend.l01", "RecoaterLegend.l02"], "note": "The diagram's \"Recoater plate\" rides the linear stage: that is BOM \"Recoater stage plate\" and D-014, not D-013, whose title is \"Recoater Plate\"."}
+{"id": "RecoaterLegend.r10", "a": "BOM.28", "b": "BOM.30", "relation": "mounts to", "kind": "diagram", "evidence": ["RecoaterLegend.l03", "RecoaterLegend.l01"], "note": "Exploded below the arm's horizontal leg; BOM intent for row 28 says the same."}
+{"id": "RecoaterLegend.r11", "a": "BOM.27", "b": "BOM.28", "relation": "clamped in", "kind": "diagram", "evidence": ["RecoaterLegend.l04", "RecoaterLegend.l03"], "note": "Exploded beside the wiper head."}
+{"id": "RecoaterLegend.r12", "a": "BOM.31", "b": "BOM.36", "relation": "rides on", "kind": "diagram", "evidence": ["RecoaterLegend.l02", "RecoaterLegend.l05"], "note": "Label text."}
+{"id": "RecoaterLegend.r13", "a": "BOM.33", "b": "BOM.13", "relation": "attaches to", "kind": "diagram", "evidence": ["RecoaterLegend.l06", "RecoaterLegend.l07"], "note": "Label text."}
+{"id": "RecoaterLegend.r14", "a": "BOM.37", "b": "BOM.44", "relation": "drives", "kind": "diagram", "evidence": ["RecoaterLegend.l08", "RecoaterLegend.l09"], "note": "Label text."}
+{"id": "Zaxis_legend.r01", "a": "BOM.50", "b": "BOM.13", "relation": "attaches to", "kind": "diagram", "evidence": ["Zaxis_legend.l01", "Zaxis_legend.l02"], "note": "Label text."}
+{"id": "Zaxis_legend.r02", "a": "BOM.46", "b": "BOM.13", "relation": "registers on", "kind": "diagram", "evidence": ["Zaxis_legend.l03", "Zaxis_legend.l04"], "note": "The cylinder's top edge carries the platform registration surfaces."}
+{"id": "Zaxis_legend.r03", "a": "BOM.48", "b": "BOM.47", "relation": "sits on", "kind": "diagram", "evidence": ["Zaxis_legend.l05", "Zaxis_legend.l06"], "note": "Stacking order in the exploded view."}
+{"id": "Zaxis_legend.r04", "a": "BOM.54", "b": "BOM.47", "relation": "seals", "kind": "diagram", "evidence": ["Zaxis_legend.l07", "Zaxis_legend.l06"], "note": "The seal sits in the build base's groove against the cylinder wall."}
+{"id": "Zaxis_legend.r05", "a": "BOM.47", "b": "BOM.58", "relation": "holds", "kind": "diagram", "evidence": ["Zaxis_legend.l08", "Zaxis_legend.l09"], "note": "Label text."}
+{"id": "Zaxis_legend.r06", "a": "BOM.47", "b": "BOM.56", "relation": "driven by", "kind": "diagram", "evidence": ["Zaxis_legend.l08", "Zaxis_legend.l10"], "note": "\"Spindles\" read as the Tr11x2 lead screws of the non-captive steppers. Interpretation."}
+{"id": "Zaxis_legend.r07", "a": "BOM.49", "b": "BOM.56", "relation": "holds", "kind": "diagram", "evidence": ["Zaxis_legend.l11", "Zaxis_legend.l12"], "note": "Three motors hang from the plate in the exploded view."}
+{"id": "Zaxis_legend.r08", "a": "BOM.55", "b": "BOM.49", "relation": "passes through", "kind": "diagram", "evidence": ["Zaxis_legend.l13", "Zaxis_legend.l11"], "note": "Shown standing in the motor plate."}

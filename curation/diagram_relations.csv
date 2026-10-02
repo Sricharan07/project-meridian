@@ -1,0 +1,20 @@
+diagram,a,a_label,a_box,b,b_label,b_box,relation,basis
+Zaxis_legend,BOM.50,Cylinder clamp ring (attach to main platform),105 155 340 224,BOM.13,main platform,25 194 339 224,attaches to,Label text.
+Zaxis_legend,BOM.46,Powder bed cylinder,86 63 340 93,BOM.13,Main platform registration surfaces,713 0 1156 30,registers on,The cylinder's top edge carries the platform registration surfaces.
+Zaxis_legend,BOM.48,Build plate,210 291 340 321,BOM.47,Build base,213 470 340 494,sits on,Stacking order in the exploded view.
+Zaxis_legend,BOM.54,Ceramic seal,186 422 340 446,BOM.47,Build base,213 470 340 494,seals,The seal sits in the build base's groove against the cylinder wall.
+Zaxis_legend,BOM.47,Build base (attach spindles and heaters),213 470 340 578,BOM.58,heaters,184 548 340 578,holds,Label text.
+Zaxis_legend,BOM.47,Build base (attach spindles and heaters),213 470 340 578,BOM.56,spindles,134 509 340 539,driven by,"""Spindles"" read as the Tr11x2 lead screws of the non-captive steppers. Interpretation."
+Zaxis_legend,BOM.49,Motor plate,198 614 340 643,BOM.56,Non-captive stepper motor,162 751 340 778,holds,Three motors hang from the plate in the exploded view.
+Zaxis_legend,BOM.55,Motor plate shaft,912 342 1129 372,BOM.49,Motor plate,198 614 340 643,passes through,Shown standing in the motor plate.
+RecoaterLegend,BOM.30,Recoater arm,870 564 1002 583,BOM.31,Recoater plate,858 376 1003 400,mounts to,"The diagram's ""Recoater plate"" rides the linear stage: that is BOM ""Recoater stage plate"" and D-014, not D-013, whose title is ""Recoater Plate""."
+RecoaterLegend,BOM.28,Wiper head,1021 691 1132 715,BOM.30,Recoater arm,870 564 1002 583,mounts to,Exploded below the arm's horizontal leg; BOM intent for row 28 says the same.
+RecoaterLegend,BOM.27,Soft wiper,1027 770 1132 794,BOM.28,Wiper head,1021 691 1132 715,clamped in,Exploded beside the wiper head.
+RecoaterLegend,BOM.31,Recoater plate,858 376 1003 400,BOM.36,Linear stage,359 333 525 356,rides on,Label text.
+RecoaterLegend,BOM.33,Main wall,149 350 241 369,BOM.13,Main Platform attachment,466 643 730 662,attaches to,Label text.
+RecoaterLegend,BOM.37,Stepper actuator,840 55 1010 79,BOM.44,Belt drive,825 144 919 163,drives,Label text.
+PowderLegend,BOM.89,Reservoir,274 184 391 222,BOM.92,Drum and seal housing,193 715 369 784,feeds,"Through the part labelled ""Reservoir interface"", which has no BOM row of its own."
+PowderLegend,BOM.90,Dispenser drum,186 799 380 829,BOM.92,Drum and seal housing,193 715 369 784,turns in,Label text.
+PowderLegend,BOM.97,Geared stepper actuator,1047 725 1239 788,BOM.90,Dispenser drum,186 799 380 829,drives,Mounted on the drum's axis.
+PowderLegend,D-006,Reservoir support,6 364 229 393,BOM.89,Reservoir,274 184 391 222,supports,The two side plates in the diagram have the shape of D-006's left and right canister walls.
+PowderLegend,D-006,Reservoir support,6 364 229 393,BOM.13,Main-platform attachement,849 969 1026 1032,attaches to,Label text (spelled as on the diagram).

@@ -1,0 +1,21 @@
+{
+ "source_revision": "98f76dad7b11d6f8fc7d59945d7fcf689df87ee7",
+ "model": "gpt-6-luna",
+ "observations": 2843,
+ "relations": 43,
+ "link_candidates": 86,
+ "sheets": 33,
+ "unread_by_vision": [
+  "D-001 sheet 1",
+  "D-003 sheet 1",
+  "D-003 sheet 2",
+  "D-003 sheet 3",
+  "D-009 sheet 1",
+  "D-011 sheet 1",
+  "D-020 sheet 1",
+  "D-022 sheet 1",
+  "D-023 sheet 1",
+  "D-030 sheet 1"
+ ],
+ "seconds": 7.1
+}

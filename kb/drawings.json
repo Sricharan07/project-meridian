@@ -1,0 +1,407 @@
+{
+ "D-001": {
+  "subsystem": "Box",
+  "upstream_path": "CAD/Technical Drawings/Box/Door_x2.PDF",
+  "degraded": true,
+  "degradation": "faded-scan-v1",
+  "sheets": [
+   {
+    "image": "pages/D-001-1.jpeg",
+    "width": 1190.4,
+    "height": 842.4
+   }
+  ]
+ },
+ "D-002": {
+  "subsystem": "Box",
+  "upstream_path": "CAD/Technical Drawings/Box/LeftWall.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-002-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-003": {
+  "subsystem": "Box",
+  "upstream_path": "CAD/Technical Drawings/Box/MainPlatform_Loop2.PDF",
+  "degraded": true,
+  "degradation": "skewed-scan-v1",
+  "sheets": [
+   {
+    "image": "pages/D-003-1.jpeg",
+    "width": 1182.4,
+    "height": 834.4
+   },
+   {
+    "image": "pages/D-003-2.jpeg",
+    "width": 1182.4,
+    "height": 834.4
+   },
+   {
+    "image": "pages/D-003-3.jpeg",
+    "width": 1182.4,
+    "height": 834.4
+   }
+  ]
+ },
+ "D-004": {
+  "subsystem": "Box",
+  "upstream_path": "CAD/Technical Drawings/Box/TopPlate.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-004-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-005": {
+  "subsystem": "Box",
+  "upstream_path": "CAD/Technical Drawings/Box/WindowFrame.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-005-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-006": {
+  "subsystem": "Powder",
+  "upstream_path": "CAD/Technical Drawings/Powder/CanisterWall_LeftAndRight.PDF",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-006-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-007": {
+  "subsystem": "Powder",
+  "upstream_path": "CAD/Technical Drawings/Powder/DispenserShaft_v6.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-007-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-008": {
+  "subsystem": "Powder",
+  "upstream_path": "CAD/Technical Drawings/Powder/PowderBracket.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-008-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-009": {
+  "subsystem": "Powder",
+  "upstream_path": "CAD/Technical Drawings/Powder/PowderCanister.pdf",
+  "degraded": true,
+  "degradation": "occluded-scan-v1",
+  "sheets": [
+   {
+    "image": "pages/D-009-1.jpeg",
+    "width": 1190.4,
+    "height": 842.4
+   }
+  ]
+ },
+ "D-010": {
+  "subsystem": "Powder",
+  "upstream_path": "CAD/Technical Drawings/Powder/PowderMotorPlate.PDF",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-010-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-011": {
+  "subsystem": "Recoater",
+  "upstream_path": "CAD/Technical Drawings/Recoater/RecoaterArm.PDF",
+  "degraded": true,
+  "degradation": "jpeg-scan-v1",
+  "sheets": [
+   {
+    "image": "pages/D-011-1.jpeg",
+    "width": 1190.4,
+    "height": 842.4
+   }
+  ]
+ },
+ "D-012": {
+  "subsystem": "Recoater",
+  "upstream_path": "CAD/Technical Drawings/Recoater/RecoaterMountBlock.PDF",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-012-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-013": {
+  "subsystem": "Recoater",
+  "upstream_path": "CAD/Technical Drawings/Recoater/RecoaterPlate.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-013-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-014": {
+  "subsystem": "Recoater",
+  "upstream_path": "CAD/Technical Drawings/Recoater/RecoaterStagePlate.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-014-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-015": {
+  "subsystem": "Recoater",
+  "upstream_path": "CAD/Technical Drawings/Recoater/Silicone270mm_1mm_x2.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-015-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-016": {
+  "subsystem": "Optical",
+  "upstream_path": "CAD/Technical Drawings/Optical/GalvoBottomPlate.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-016-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-017": {
+  "subsystem": "Optical",
+  "upstream_path": "CAD/Technical Drawings/Optical/GalvoMountPlate.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-017-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-018": {
+  "subsystem": "Optical",
+  "upstream_path": "CAD/Technical Drawings/Optical/GalvoMountSide_x2.PDF",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-018-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-019": {
+  "subsystem": "Optical",
+  "upstream_path": "CAD/Technical Drawings/Optical/SiliconePakningfTheta.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-019-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-020": {
+  "subsystem": "Optical",
+  "upstream_path": "CAD/Technical Drawings/Optical/f-theta-SealRing.PDF",
+  "degraded": true,
+  "degradation": "faded-scan-v1",
+  "sheets": [
+   {
+    "image": "pages/D-020-1.jpeg",
+    "width": 1190.4,
+    "height": 842.4
+   }
+  ]
+ },
+ "D-021": {
+  "subsystem": "Gas Flow",
+  "upstream_path": "CAD/Technical Drawings/Gas flow/BlowerOutlet.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-021-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   },
+   {
+    "image": "pages/D-021-2.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-022": {
+  "subsystem": "Gas Flow",
+  "upstream_path": "CAD/Technical Drawings/Gas flow/InletBox.pdf",
+  "degraded": true,
+  "degradation": "skewed-scan-v1",
+  "sheets": [
+   {
+    "image": "pages/D-022-1.jpeg",
+    "width": 1182.4,
+    "height": 834.4
+   }
+  ]
+ },
+ "D-023": {
+  "subsystem": "Z-axis",
+  "upstream_path": "CAD/Technical Drawings/Z-axis/BuildCylinder_v2.pdf",
+  "degraded": true,
+  "degradation": "occluded-scan-v1",
+  "sheets": [
+   {
+    "image": "pages/D-023-1.jpeg",
+    "width": 1190.4,
+    "height": 842.4
+   }
+  ]
+ },
+ "D-024": {
+  "subsystem": "Z-axis",
+  "upstream_path": "CAD/Technical Drawings/Z-axis/ByggeBase.PDF",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-024-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-025": {
+  "subsystem": "Z-axis",
+  "upstream_path": "CAD/Technical Drawings/Z-axis/ByggeBaseRing_Version2.PDF",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-025-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-026": {
+  "subsystem": "Z-axis",
+  "upstream_path": "CAD/Technical Drawings/Z-axis/ByggePlade.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-026-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-027": {
+  "subsystem": "Z-axis",
+  "upstream_path": "CAD/Technical Drawings/Z-axis/CylinderSpændRing.PDF",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-027-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-028": {
+  "subsystem": "Z-axis",
+  "upstream_path": "CAD/Technical Drawings/Z-axis/VarmeElementPlade.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-028-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-029": {
+  "subsystem": "Z-axis",
+  "upstream_path": "CAD/Technical Drawings/Z-axis/Z-axis_BottomPlate.pdf",
+  "degraded": false,
+  "degradation": "",
+  "sheets": [
+   {
+    "image": "pages/D-029-1.png",
+    "width": 1190.55,
+    "height": 841.89
+   }
+  ]
+ },
+ "D-030": {
+  "subsystem": "Z-axis",
+  "upstream_path": "CAD/Technical Drawings/Z-axis/Z-axis_MotorPlate.pdf",
+  "degraded": true,
+  "degradation": "jpeg-scan-v1",
+  "sheets": [
+   {
+    "image": "pages/D-030-1.jpeg",
+    "width": 1190.4,
+    "height": 842.4
+   }
+  ]
+ }
+}

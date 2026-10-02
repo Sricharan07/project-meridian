@@ -1,0 +1,86 @@
+{"drawing": "D-001", "row": 11, "score": 2.5, "reasons": ["shared words: door", "material agrees"]}
+{"drawing": "D-001", "row": 17, "score": 2.5, "reasons": ["shared words: door", "material agrees"]}
+{"drawing": "D-001", "row": 13, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-002", "row": 10, "score": 2.0, "reasons": ["shared words: left", "material agrees"]}
+{"drawing": "D-002", "row": 12, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-002", "row": 14, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-003", "row": 13, "score": 2.5, "reasons": ["shared words: platform", "material agrees"]}
+{"drawing": "D-003", "row": 11, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-003", "row": 16, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-004", "row": 14, "score": 2.5, "reasons": ["shared words: top", "material agrees"]}
+{"drawing": "D-004", "row": 19, "score": 2.0, "reasons": ["shared words: top", "material agrees"]}
+{"drawing": "D-004", "row": 20, "score": 1.75, "reasons": ["shared words: top", "material agrees"]}
+{"drawing": "D-005", "row": 16, "score": 4.0, "reasons": ["shared words: frame, window", "material agrees"]}
+{"drawing": "D-005", "row": 11, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-005", "row": 13, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-006", "row": 89, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-006", "row": 91, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-006", "row": 93, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-007", "row": 100, "score": 2.0, "reasons": ["shared words: dispenser", "material agrees"]}
+{"drawing": "D-007", "row": 90, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-007", "row": 92, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-008", "row": 93, "score": 3.0, "reasons": ["shared words: bracket, powder", "material agrees"]}
+{"drawing": "D-008", "row": 89, "score": 2.5, "reasons": ["shared words: powder", "material agrees"]}
+{"drawing": "D-008", "row": 91, "score": 2.5, "reasons": ["shared words: bracket, powder", "material agrees"]}
+{"drawing": "D-009", "row": 89, "score": 2.5, "reasons": ["shared words: powder", "material agrees"]}
+{"drawing": "D-009", "row": 93, "score": 2.0, "reasons": ["shared words: powder", "material agrees"]}
+{"drawing": "D-009", "row": 91, "score": 1.75, "reasons": ["shared words: powder", "material agrees"]}
+{"drawing": "D-010", "row": 89, "score": 2.5, "reasons": ["shared words: powder", "material agrees"]}
+{"drawing": "D-010", "row": 93, "score": 2.0, "reasons": ["shared words: powder", "material agrees"]}
+{"drawing": "D-010", "row": 91, "score": 1.75, "reasons": ["shared words: powder", "material agrees"]}
+{"drawing": "D-011", "row": 30, "score": 9.0, "reasons": ["BOM datasheet is RecoaterArm", "shared words: arm, recoater", "material agrees"]}
+{"drawing": "D-011", "row": 28, "score": 2.5, "reasons": ["shared words: recoater", "material agrees"]}
+{"drawing": "D-011", "row": 29, "score": 2.5, "reasons": ["shared words: recoater", "material agrees"]}
+{"drawing": "D-012", "row": 32, "score": 9.0, "reasons": ["BOM datasheet is RecoaterMountBlock", "shared words: block, mount, recoater", "material agrees"]}
+{"drawing": "D-012", "row": 28, "score": 2.5, "reasons": ["shared words: recoater", "material agrees"]}
+{"drawing": "D-012", "row": 29, "score": 2.5, "reasons": ["shared words: recoater", "material agrees"]}
+{"drawing": "D-013", "row": 31, "score": 8.0, "reasons": ["BOM datasheet is RecoaterPlate", "shared words: plate, recoater", "material agrees"]}
+{"drawing": "D-013", "row": 28, "score": 7.5, "reasons": ["BOM datasheet is RecoaterPlate", "shared words: recoater", "material agrees"]}
+{"drawing": "D-013", "row": 29, "score": 2.5, "reasons": ["shared words: recoater", "material agrees"]}
+{"drawing": "D-014", "row": 31, "score": 4.0, "reasons": ["shared words: plate, recoater, stage", "material agrees"]}
+{"drawing": "D-014", "row": 28, "score": 2.5, "reasons": ["shared words: recoater", "material agrees"]}
+{"drawing": "D-014", "row": 29, "score": 2.5, "reasons": ["shared words: recoater", "material agrees"]}
+{"drawing": "D-015", "row": 27, "score": 6.5, "reasons": ["BOM datasheet is Silicone270mm_1mm_x2", "material agrees", "quantity 2 on both"]}
+{"drawing": "D-016", "row": 79, "score": 2.5, "reasons": ["shared words: galvo, plate", "material agrees"]}
+{"drawing": "D-016", "row": 81, "score": 2.0, "reasons": ["shared words: galvo", "material agrees"]}
+{"drawing": "D-016", "row": 86, "score": 1.5, "reasons": ["shared words: galvo"]}
+{"drawing": "D-017", "row": 85, "score": 3.0, "reasons": ["shared words: collimator"]}
+{"drawing": "D-017", "row": 79, "score": 2.5, "reasons": ["shared words: galvo, plate", "material agrees"]}
+{"drawing": "D-017", "row": 81, "score": 2.0, "reasons": ["shared words: galvo", "material agrees"]}
+{"drawing": "D-018", "row": 81, "score": 2.0, "reasons": ["shared words: galvo", "material agrees"]}
+{"drawing": "D-018", "row": 79, "score": 1.75, "reasons": ["shared words: galvo", "material agrees"]}
+{"drawing": "D-018", "row": 86, "score": 1.5, "reasons": ["shared words: galvo"]}
+{"drawing": "D-019", "row": 83, "score": 3.25, "reasons": ["shared words: gasket, silicone, theta", "material agrees"]}
+{"drawing": "D-019", "row": 87, "score": 3.0, "reasons": ["shared words: theta"]}
+{"drawing": "D-020", "row": 80, "score": 4.0, "reasons": ["shared words: ring, seal, theta", "material agrees"]}
+{"drawing": "D-020", "row": 87, "score": 3.0, "reasons": ["shared words: theta"]}
+{"drawing": "D-020", "row": 79, "score": 1.0, "reasons": ["material agrees"]}
+{"drawing": "D-021", "row": 78, "score": 1.5, "reasons": ["shared words: blower"]}
+{"drawing": "D-021", "row": 73, "score": 0.75, "reasons": ["shared words: blower"]}
+{"drawing": "D-021", "row": 64, "score": 0.5, "reasons": ["shared words: blower", "material differs"]}
+{"drawing": "D-022", "row": 62, "score": 0.75, "reasons": ["shared words: inlet"]}
+{"drawing": "D-022", "row": 70, "score": 0.75, "reasons": ["shared words: inlet"]}
+{"drawing": "D-023", "row": 46, "score": 4.0, "reasons": ["shared words: build, cylinder", "material agrees"]}
+{"drawing": "D-023", "row": 47, "score": 2.5, "reasons": ["shared words: build", "material agrees"]}
+{"drawing": "D-023", "row": 50, "score": 2.5, "reasons": ["shared words: build, cylinder", "material agrees"]}
+{"drawing": "D-024", "row": 47, "score": 4.0, "reasons": ["shared words: base, build", "material agrees"]}
+{"drawing": "D-024", "row": 46, "score": 2.5, "reasons": ["shared words: build", "material agrees"]}
+{"drawing": "D-024", "row": 50, "score": 1.75, "reasons": ["shared words: build", "material agrees"]}
+{"drawing": "D-025", "row": 47, "score": 4.0, "reasons": ["shared words: base, build", "material agrees"]}
+{"drawing": "D-025", "row": 46, "score": 2.5, "reasons": ["shared words: build", "material agrees"]}
+{"drawing": "D-025", "row": 50, "score": 2.5, "reasons": ["shared words: build, ring", "material agrees"]}
+{"drawing": "D-026", "row": 48, "score": 4.0, "reasons": ["shared words: build, plate", "material agrees"]}
+{"drawing": "D-026", "row": 46, "score": 2.5, "reasons": ["shared words: build", "material agrees"]}
+{"drawing": "D-026", "row": 47, "score": 2.5, "reasons": ["shared words: build", "material agrees"]}
+{"drawing": "D-027", "row": 50, "score": 3.25, "reasons": ["shared words: clamp, cylinder, ring", "material agrees"]}
+{"drawing": "D-027", "row": 46, "score": 2.5, "reasons": ["shared words: cylinder", "material agrees"]}
+{"drawing": "D-027", "row": 53, "score": 2.0, "reasons": ["shared words: clamp", "material agrees"]}
+{"drawing": "D-028", "row": 51, "score": 4.5, "reasons": ["shared words: element, heating, plate", "material agrees", "quantity 3 on both"]}
+{"drawing": "D-028", "row": 58, "score": 3.5, "reasons": ["shared words: element, heating", "quantity 3 on both"]}
+{"drawing": "D-028", "row": 49, "score": 2.5, "reasons": ["shared words: plate", "material agrees"]}
+{"drawing": "D-029", "row": 49, "score": 2.5, "reasons": ["shared words: plate", "material agrees"]}
+{"drawing": "D-029", "row": 52, "score": 2.5, "reasons": ["shared words: plate", "material agrees"]}
+{"drawing": "D-029", "row": 51, "score": 2.0, "reasons": ["shared words: plate", "material agrees"]}
+{"drawing": "D-030", "row": 49, "score": 4.0, "reasons": ["shared words: motor, plate", "material agrees"]}
+{"drawing": "D-030", "row": 52, "score": 2.5, "reasons": ["shared words: plate", "material agrees"]}
+{"drawing": "D-030", "row": 51, "score": 2.0, "reasons": ["shared words: plate", "material agrees"]}

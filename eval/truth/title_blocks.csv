@@ -1,0 +1,91 @@
+drawing,page,title,note,material,weight,date,scale,sheet
+D-001,1,,"Door - x2
+3mm aluminium",,,21/12/2023,1:5,1 OF 1
+D-002,1,,"Left Wall
+2mm non-magnetic stainless
+M5 weld nuts on inside of flanges",,,21/12/2023,1:5,1 OF 1
+D-003,1,,"Note: All threaded holes are blind.
+20mm thick aluminium plate.",,,26/10/2023,1:10,1 OF 3
+D-003,2,,Threaded holes bottom side,,,26/10/2023,1:5,2 OF 3
+D-003,3,,Threaded holes top side,,,26/10/2023,1:5,3 OF 3
+D-004,1,,"Top Plate
+3 mm non-magnetic stainless
+M5 weld nuts on inside of flanges",,,21/12/2023,1:5,1 OF 1
+D-005,1,Window Clamp Frame,"Laser Window frame with
+2 o-ring grooves and 20 M4
+threaded holes
+Aluminium",6061 Alloy,315.0,17/11/2022,1:3,1 OF 1
+D-006,1,,"Canister Wall
+Left and right side, one of each.
+Non-magnetic stainless
+3mm (or thicker)",,,23/12/2023,1:5,1 OF 1
+D-007,1,Dispenser Shaft v6,"Aluminium.
+3 identiske spor er formet som en
+""konstant trekant"" langs en
+kontinuær bue. Dimensionerne
+af disse er vigtige. 120 grader
+imellem spor",,,10/04/2024,1:2,1 OF 1
+D-008,1,Powder Bracket,"Powder bracket.
+2-3mm non-magnetic stainless.
+6x M5 weld nuts - all on inside
+faces.
+Surfaces [A] should be in same
+plane, and parallel to [B].",,,20/12/2023,1:5,1 OF 1
+D-009,1,,"Powder canister.
+Non-magnetic stainless.
+Wall thickness as thin as possible.
+Must be powder tight.",,,20/12/2023,1:5,1 OF 1
+D-010,1,,"Motor Plate
+2mm non-magnetic stainless",,,20/12/2023,1:1,1 OF 1
+D-011,1,Recoater Arm,"Alu.
+Arm til linær føring","7075-T6, Plate (SS)",415.3,24/11/2021,1:2,1 OF 1
+D-012,1,Recoater Mount Block,"Alu.
+Montage klods til linæer føring",3.3315 (EN-AW 5005),117.3,24/11/2021,1:1,1 OF 1
+D-013,1,Recoater Plate,"Alu.
+Justeringsplade til recoater.",3.3315 (EN-AW 5005),87.5,24/11/2021,1:1,1 OF 1
+D-014,1,Recoater Linear Plate,"Alu.
+Plade til linæer føring",3.3315 (EN-AW 5005),331.8,24/11/2021,1:2,1 OF 1
+D-015,1,Silikone Wiper,"2 styk.
+Silikone Wiper af 1mm
+silikone plade",Silicon Rubber,4.6,24/11/2021,1:1,1 OF 1
+D-016,1,Galvo Bundplade,Aluminium,"7075-T6, Plate (SS)",1118.1,06/09/2022,1:2,1 OF 1
+D-017,1,Galvo Montage Plade,"Galvo Collimator Plade
+Alu","7075-T6, Plate (SS)",508.9,06/09/2022,1:2,1 OF 1
+D-018,1,Galvo Mount Side x2,"2 stk.
+Alu.","7075-T6, Plate (SS)",200.5,06/09/2022,1:1,1 OF 1
+D-019,1,Description,1mm silicone pakning,Silicon Rubber,5.7,06/01/2022,1:2,1 OF 1
+D-020,1,SealRing,"Ring with o-ring groove
+Aluminium",6061 Alloy,107.4,06/01/2022,1:2,1 OF 1
+D-021,1,,"Blower Outlet
+Non-magnetic stainless
+Sheet thickness is free, as thin
+as practical
+All joints should be welded",,,21-12-2023,1:3,1 OF 2
+D-021,2,,"Gas outlet box
+Please adjust design if necessary/
+benificial",,,21-12-2023,1:3,2 OF 2
+D-022,1,,"Inlet Box
+Four corner joints should be
+welded.
+Stainless
+Free choice of thickness
+(as thin as possible)",,,20/12/2023,1:2,1 OF 1
+D-023,1,ByggeCylinder,"Baseret på Ø280mm, t=15mm
+EN AW-6082 T6 rør fra Alumeco.
+Indre flade [B] skal slutte tæt med
+en dynamisk keramisk pakning.
+55 mm længere ift. version 1",EN AW-6082,3195.5,13-09-2023,1:5,1 OF 1
+D-024,1,ByggeBase,"Aluminium.
+A Hul til varmeelement
+B Hul til spændelement",3.3315 (EN-AW 5005),5756.7,01/12/2021,1:3,1 OF 1
+D-025,1,Bygge Base Ring,Aluminium,3.3315 (EN-AW 5005),77.3,22/02/2022,1:2,1 OF 1
+D-026,1,Build Plate,"Byggeplade, rustfri og alu.
+1-3 stk af hver.",AISI 316 Stainless Steel Sheet (SS),7822.5,13-09-2023,1:3,1 OF 1
+D-027,1,Cylinder Spænd Ring,"Brug gerne EN AW-6000, AW-2000
+eller AW-7000 serie aluminium.",6063-T6,1204.1,15/11/2021,1:5,1 OF 1
+D-028,1,Varmeelement Plade,"Aluminium.
+3 styk.",3.3315 (EN-AW 5005),1.2,22/11/2021,5:1,1 OF 1
+D-029,1,,"Z-axis BottomPlate
+Aluminium",,,24-01-2024,1:3,1 OF 1
+D-030,1,,"Z-axis MotorPlate
+Aluminium",,,24-01-2024,1:3,1 OF 1
