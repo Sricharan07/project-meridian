@@ -20,6 +20,15 @@ app = FastAPI(title="Meridian", docs_url="/api/docs", redoc_url=None)
 WEB = config.ROOT / "web"
 
 
+@app.middleware("http")
+async def revalidate(request, call_next):
+    # The UI and kb/ change when either is edited or rebuilt; without this a browser keeps an old
+    # module next to a new one. Revalidating costs a 304.
+    response = await call_next(request)
+    response.headers.setdefault("Cache-Control", "no-cache")
+    return response
+
+
 @cache
 def kb() -> KnowledgeBase:
     return KnowledgeBase.load()
