@@ -1,9 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Meridian</title>
+  <script>
+    // Before first paint, so a light-theme reader never sees a dark flash.
+    try { document.documentElement.dataset.theme = localStorage.getItem("meridian.theme") || "dark"; } catch {}
+  </script>
   <link rel="stylesheet" href="/static/style.css">
   <script type="importmap">
     {"imports": {"three": "/static/vendor/three/three.module.min.js", "three/addons/": "/static/vendor/three/addons/"}}
@@ -11,14 +15,24 @@
 </head>
 <body>
   <header class="bar">
-    <a class="brand" href="/" data-link>Meridian</a>
-    <nav>
+    <a class="brand" href="/" data-link aria-label="Meridian">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+        <rect x="0.75" y="0.75" width="20.5" height="20.5" rx="6" fill="var(--accent)"/>
+        <circle cx="11" cy="11" r="5" fill="none" stroke="var(--on-accent)" stroke-width="1.6"/>
+        <path d="M11 3.5v15M3.5 11h15" stroke="var(--on-accent)" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
+      </svg>
+      <span>Meridian</span>
+    </a>
+    <nav class="nav">
       <a href="/" data-link data-view="chat">Chat</a>
-      <a href="/parts" data-link data-view="parts">Parts</a>
-      <a href="/review" data-link data-view="review">Review</a>
+      <a href="/drawings" data-link data-view="drawings">Drawings</a>
+      <a href="/review" data-link data-view="review">Review<span class="count" id="review-count" hidden></span></a>
+      <span class="nav-indicator"></span>
     </nav>
-    <button type="button" class="jump-open" id="jump-open">Find a part <kbd></kbd></button>
-    <span class="bar-meta" id="bar-meta"></span>
+    <div class="tools">
+      <button type="button" class="search" id="jump-open"><span>Search drawings and BOM</span><kbd></kbd></button>
+      <button type="button" class="icon-button" id="theme" aria-label="Switch theme"></button>
+    </div>
   </header>
   <main class="layout" id="layout">
     <section class="left" id="left"></section>

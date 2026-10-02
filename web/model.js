@@ -8,11 +8,19 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
 import { html, raw, mount } from "./dom.js";
 import { chip } from "./render.js";
+import { icon, mark } from "./icons.js";
 
 const FINISH = { "EN AW-5005": 0xc4c8cc, "AISI 316": 0xa7aaad, "silicone rubber": 0xb8644a };
 const HOW = { measured: "measured off the sheet", "as drawn": "as drawn, not dimensioned", limit: "chosen within a limit" };
-const BACKGROUND = 0xeceae8;
-const INK = { normal: 0x6b645e, lit: 0x0f766e };
+
+// The scene takes its colours from the theme, read when the model is drawn.
+function theme() {
+  const css = getComputedStyle(document.documentElement);
+  const color = (name) => new THREE.Color(css.getPropertyValue(name).trim());
+  const light = document.documentElement.dataset.theme === "light";
+  return { background: color("--canvas"), grid: color("--model-grid"), grid2: color("--model-grid-2"),
+           ink: color("--model-ink"), lit: color(light ? "--accent-ink" : "--accent") };
+}
 
 export class ModelViewer {
   constructor(root, { onHover = () => {}, onPick = () => {} } = {}) {
@@ -23,20 +31,21 @@ export class ModelViewer {
   }
 
   async show(model) {
+    this.colors = theme();
     mount(this.root, html`
       <div class="dims"></div>
-      <div class="viewer-tools">
+      <div class="viewer-badge warn">${raw(icon("cube", 14))}<span>Reconstruction from the 2D drawing, not CAD</span></div>
+      <div class="capsule">
         <label class="section-range" hidden><input type="range" step="0.1" aria-label="Section position"></label>
-        <button type="button" data-act="section" aria-pressed="false">Section</button>
-        <button type="button" data-act="dims" aria-pressed="true">Dimensions</button>
-        <button type="button" data-act="fit">Fit</button>
-      </div>
-      <div class="viewer-caption model-label">Reconstruction from the 2D drawing, not native CAD.
-        Mass ${fmt(model.mass.computed_g, 1)} g against ${fmt(model.mass.sheet_g, 1)} g on the sheet.</div>`);
+        <button type="button" data-act="section" aria-pressed="false">${raw(icon("section", 14))}Section</button>
+        <button type="button" data-act="dims" aria-pressed="true">${raw(icon("ruler", 14))}Dimensions</button>
+        <span class="divider"></span>
+        <button type="button" data-act="fit" aria-label="Fit the model">${raw(icon("fit", 14))}</button>
+      </div>`);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, stencil: true });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(BACKGROUND);
+    renderer.setClearColor(this.colors.background);
     renderer.localClippingEnabled = true;
     this.root.prepend(renderer.domElement);
     this.renderer = renderer;
@@ -76,7 +85,7 @@ export class ModelViewer {
     this.cap.onAfterRender = (r) => r.clearStencil();
     scene.add(part, edges, this.stencil, this.cap);
 
-    const grid = new THREE.GridHelper(Math.ceil(radius * 2.4 / 10) * 10, Math.ceil(radius * 2.4 / 10), 0xc9c4bf, 0xdcd8d4);
+    const grid = new THREE.GridHelper(Math.ceil(radius * 2.4 / 10) * 10, Math.ceil(radius * 2.4 / 10), this.colors.grid, this.colors.grid2);
     grid.position.y = box.min.y - 0.01;
     scene.add(grid);
 
@@ -175,7 +184,7 @@ export class ModelViewer {
       const at = d.at.label ?? 0.5;
       const mid = a2.clone().lerp(b2, at);
       // Drawn over the part, as dimensions are on a sheet, so a line behind a face stays readable.
-      const ink = { color: INK.normal, transparent: true, depthTest: false };
+      const ink = { color: this.colors.ink, transparent: true, depthTest: false };
       const materials = [new THREE.LineBasicMaterial(ink), new THREE.MeshBasicMaterial(ink)];
       const points = off.lengthSq() > 0 ? [a, a2, b, b2, a2, b2] : [a2, b2];
       if (at > 1) points.push(b2, mid);
@@ -203,7 +212,7 @@ export class ModelViewer {
     for (const d of this.dims) {
       const lit = indices.has(d.index);
       for (const m of d.materials) {
-        m.color.setHex(lit ? INK.lit : INK.normal);
+        m.color.copy(lit ? this.colors.lit : this.colors.ink);
         m.opacity = any && !lit ? 0.3 : 1;
       }
       d.label.classList.toggle("lit", lit);
@@ -270,29 +279,37 @@ export class ModelViewer {
   }
 }
 
-// What a model was built from, as a table the panel links to the sheet and the model.
+// What a model was built from, as inspector groups the panel links to the sheet and the model.
 export function modelNotes(model) {
   const m = model.mass;
   const sign = m.difference_percent > 0 ? "+" : "";
   return html`
-    <h3>Built from</h3>
-    <table class="facts dims-table">${model.dimensions.map((d, i) => html`<tr data-dim="${i}" class="${d.at || d.region ? "clickable" : ""}">
-      <th>${d.name}</th><td class="mono">${size(d)}</td>
-      <td>${d.cite ? raw(chip(d.cite)) : ""}<span class="muted">${d.cite ? (d.note ? ` ${d.note}` : "") : d.note || HOW[d.how]}</span></td></tr>`)}</table>
-    <h3 style="margin-top:16px">Mass check</h3>
-    <p style="margin:0 0 4px">Volume ${fmt(m.volume_mm3 / 1000, 2)} cm³ × ${fmt(model.density, 2)} g/cm³ = <strong>${fmt(m.computed_g, 1)} g</strong>.
-      The title block says ${fmt(m.sheet_g, 1)} g ${raw(chip(m.sheet_cite))}, a difference of ${sign}${fmt(m.difference_percent, 2)} %.</p>
-    <p class="muted" style="margin:0">Density: ${model.material}, ${model.density_basis}.</p>
-    ${model.assumptions.length ? html`<h3 style="margin-top:16px">Assumptions</h3><ul>${model.assumptions.map((a) => html`<li>${a}</li>`)}</ul>` : ""}
-    <h3 style="margin-top:16px">Not modelled</h3><ul>${["threads, chamfers and tolerances", ...model.omitted].map((a) => html`<li>${a}</li>`)}</ul>
-    <p style="margin:16px 0 0"><a href="/kb/${model.file}" download>Download the mesh (GLB, millimetres)</a></p>`;
+    <section class="group">
+      <h3 class="group-title">Mass check</h3>
+      <div class="rows"><div class="row wide"><span class="v">
+        <span class="mass"><strong>${fmt(m.computed_g, 1)} g</strong><span class="muted">computed</span></span>
+        <small>The title block says ${fmt(m.sheet_g, 1)} g, a difference of ${sign}${fmt(m.difference_percent, 2)} % ${raw(chip(m.sheet_cite))}</small>
+        <small>${fmt(m.volume_mm3 / 1000, 2)} cm³ × ${fmt(model.density, 2)} g/cm³, ${model.material}: ${model.density_basis}</small>
+      </span><span>${raw(mark("agree"))}</span></div></div>
+    </section>
+    <section class="group">
+      <h3 class="group-title">Built from <span class="muted" style="font-weight:400">${model.dimensions.length} dimensions</span></h3>
+      <div class="rows dims-table">${model.dimensions.map((d, i) => html`<button type="button" class="row" data-dim="${i}">
+        <span>${d.name}</span><span class="size">${size(d)}</span>
+        ${d.cite ? (d.note ? html`<small>${d.note}</small>` : "") : html`<small>${d.note || HOW[d.how]}</small>`}</button>`)}</div>
+    </section>
+    ${model.assumptions.length ? html`<section class="group"><h3 class="group-title">Assumed</h3>
+      <div class="rows">${model.assumptions.map((a) => html`<div class="issue">${raw(mark("info"))}<span>${a}</span></div>`)}</div></section>` : ""}
+    <section class="group"><h3 class="group-title">Not modelled</h3>
+      <div class="rows">${["Threads, chamfers and tolerances", ...model.omitted.map(capital)].map((a) => html`<div class="issue">${raw(mark("blank"))}<span>${a}</span></div>`)}</div></section>
+    <a class="link-row" href="/kb/${model.file}" download><span>Download the mesh</span><span>GLB, millimetres${raw(icon("download", 14))}</span></a>`;
 }
 
 // --- drawing helpers --------------------------------------------------------------
 
 function arrow(tip, from, radius, material) {
-  const length = Math.min(radius * 0.02, tip.distanceTo(from) * 0.2);
-  const cone = new THREE.Mesh(new THREE.ConeGeometry(length * 0.3, length, 12), material);
+  const length = Math.min(radius * 0.018, tip.distanceTo(from) * 0.12);
+  const cone = new THREE.Mesh(new THREE.ConeGeometry(length * 0.26, length, 12), material);
   const direction = tip.clone().sub(from).normalize();
   cone.position.copy(tip).addScaledVector(direction, -length / 2);
   cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction);
@@ -340,6 +357,7 @@ function hatchMaterial(radius) {
   });
 }
 
+const capital = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const overlaps = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
 const fmt = (n, digits) => n.toLocaleString("da-DK", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 // The sheet's own style: a decimal comma, one decimal unless the value needs two.

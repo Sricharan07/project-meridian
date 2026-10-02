@@ -1,13 +1,16 @@
-// The right-hand panel: whatever an answer rests on, shown at its source.
+// The right-hand side: whatever an answer rests on, shown at its source. A header names the part,
+// the stage shows the sheet (or the sheet beside its 3D model), and the inspector lists what was read
+// off it and what needs a second look.
 
 import { api } from "./api.js";
 import { citeTarget } from "./cite.js";
-import { chip } from "./render.js";
-import { html, raw, mount, $, $$ } from "./dom.js";
+import { chip, isRed } from "./render.js";
+import { icon, mark } from "./icons.js";
+import { html, raw, mount, slide, $, $$ } from "./dom.js";
 import { SheetViewer } from "./sheet.js";
 import { ModelViewer, modelNotes } from "./model.js";
 
-const FIELD_LABELS = { title: "Title", note: "Note", material: "Material", weight: "Weight [g]", date: "Date", scale: "Scale", sheet: "Sheet" };
+const FIELD_LABELS = { title: "Title", note: "Note", material: "Material", weight: "Weight", date: "Date", scale: "Scale", sheet: "Sheet" };
 // BOM columns are shown as the CSV writes them, typos included, so a reader can find them in the file.
 const BOM_COLUMNS = {
   name: "Name", family: "Part family", type: "Type", material: "Material", amount: "Amount",
@@ -17,58 +20,77 @@ const BOM_COLUMNS = {
 };
 const KIND_TITLES = { stated: "Stated in the BOM", diagram: "From the system diagrams", inferred: "Inferred from matching fits" };
 const DIAGRAM_TITLES = { Zaxis_legend: "Z-axis diagram", RecoaterLegend: "Recoater diagram", PowderLegend: "Powder diagram" };
-const EMPTY_VALUE = { blank: "blank on the sheet", disputed: "readers disagree", illegible: "unreadable" };
+const TABS = [["sheet", "Sheet", "sheet"], ["model", "3D", "cube"], ["bom", "BOM", null], ["relations", "Relations", null]];
 
 export class EvidencePanel {
   constructor(root, { navigate }) {
     this.root = root;
     this.navigate = navigate;
-    this.state = { part: null, tab: "sheet", sheet: 1, marks: [], focus: null, rows: [], cites: new Set() };
+    this.state = { part: null, tab: "sheet", sheet: 1, marks: [], focus: null, refs: new Map() };
     root.addEventListener("click", (e) => this.click(e));
-    this.empty();
+    root.addEventListener("change", (e) => {
+      if (!e.target.matches("[data-sheet]")) return;
+      this.state.sheet = Number(e.target.value);
+      this.render();
+    });
   }
 
   empty() {
     this.state.part = null;
-    mount(this.root, html`<div class="panel-empty">
-      <p>Ask about a part and its drawing opens here, with the regions the answer cites marked on the sheet.</p>
-      <p>Click a citation to jump to it. Scroll to zoom, drag to pan, double-click to fit.</p></div>`);
+    this.viewer = null;
+    this.root.dataset.showing = "";
+    mount(this.root, html`<div class="empty-wrap"><div class="empty-stage"><p>
+      <strong>Drawings open here</strong>Ask about a part and its sheet opens with every cited value marked.
+      Press ${raw("<kbd>⌘K</kbd>")} to open any drawing directly.</p></div></div>`);
   }
 
-  // --- opening things ---------------------------------------------------------
+  refresh() {
+    if (this.state.part) this.render();
+  }
 
-  async openAttachment(attachment, cites = []) {
-    this.state.cites = new Set(cites);
+  // --- opening things ----------------------------------------------------------------------
+
+  // `refs` are an answer's numbered references, so the sheet can carry the same numbers.
+  async openAttachment(attachment, refs = []) {
+    this.state.refs = new Map(refs.filter((r) => r.evidence).map((r) => [r.id, { n: r.n, red: isRed(r.evidence) }]));
     if (attachment.type === "drawing") {
-      return this.openPart(attachment.ref, { sheet: attachment.sheet, marks: attachment.highlights, focus: attachment.highlights[0]?.cite });
+      return this.openPart(attachment.ref, { sheet: attachment.sheet, marks: attachment.highlights, focus: attachment.highlights[0]?.cite, keepRefs: true });
     }
-    if (attachment.type === "bom_row") return this.openPart(`BOM.${attachment.row}`, { tab: "bom" });
+    if (attachment.type === "bom_row") return this.openPart(`BOM.${attachment.row}`, { tab: "bom", keepRefs: true });
   }
 
-  async openCite(id) {
+  async openCite(id, refs) {
+    if (refs) this.state.refs = new Map(refs.filter((r) => r.evidence).map((r) => [r.id, { n: r.n, red: isRed(r.evidence) }]));
     const target = citeTarget(id);
     const evidence = await api.evidence(id).catch(() => null);
     if (!evidence) return;
     if (target.kind === "diagram") return this.openDiagram(target.name, id, evidence);
     if (target.kind === "drawing") {
-      const mark = evidence.source.bbox ? { cite: id, sheet: evidence.source.page, bbox: evidence.source.bbox } : null;
+      const mark = evidence.source.bbox ? { cite: id, sheet: evidence.source.page, bbox: evidence.source.bbox, red: isRed(evidence) } : null;
       const marks = this.state.part?.ref === target.ref ? [...this.state.marks] : [];
       if (mark && !marks.some((m) => m.cite === id)) marks.push(mark);
       const tab = evidence.field === "bom_link" ? "bom" : "sheet";
-      return this.openPart(target.ref, { tab, sheet: evidence.source.page || 1, marks, focus: id });
+      const page = evidence.source.page || 1;
+      if (this.viewer && tab === "sheet" && this.state.tab === "sheet" && this.state.part?.ref === target.ref && this.state.sheet === page) {
+        // Already on this sheet: add the mark and travel to it, keeping the inspector where it is.
+        Object.assign(this.state, { marks, focus: id });
+        this.viewer.setMarks(this.sheetMarks(), id);
+        $$(".inspector [data-focus]", this.root).forEach((row) => row.classList.toggle("lit", row.dataset.focus === id));
+        if (!this.viewer.focus(id)) $(`.inspector [data-focus="${CSS.escape(id)}"]`, this.root)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        return;
+      }
+      return this.openPart(target.ref, { tab, sheet: evidence.source.page || 1, marks, focus: id, keepRefs: true });
     }
-    if (target.kind === "bom") {
-      this.state.cites = new Set([...this.state.cites, id]);
-      return this.openPart(`BOM.${target.row}`, { tab: "bom", focus: id });
-    }
+    if (target.kind === "bom") return this.openPart(`BOM.${target.row}`, { tab: "bom", focus: id, keepRefs: true });
   }
 
-  async openPart(ref, { tab = "sheet", sheet = 1, marks = [], focus = null } = {}) {
+  async openPart(ref, { tab = "sheet", sheet = 1, marks = [], focus = null, keepRefs = false } = {}) {
     const part = await api.part(ref);
-    const sameView = this.state.part?.ref === part.ref && this.state.part !== null;
+    const same = this.state.part?.ref === part.ref;
+    if (!keepRefs && !same) this.state.refs = new Map();
     Object.assign(this.state, { part, tab: part.drawing ? tab : "bom", sheet, marks, focus });
     this.root.classList.add("open");
-    if (!sameView) this.navigate(`/part/${part.ref}`, { replace: true });
+    if (!same) this.navigate(`/part/${part.ref}`, { replace: true });
     this.render();
   }
 
@@ -76,102 +98,135 @@ export class EvidencePanel {
     const src = `/diagrams/${name}.png`;
     const size = await imageSize(src);
     this.state.part = null;
+    this.root.dataset.showing = "";
     mount(this.root, html`
       <div class="panel-head">
-        <div class="title"><span class="id">${name}.png</span><h2>${DIAGRAM_TITLES[name] || name}</h2><button class="close" data-close>Close</button></div>
-        <div class="facts">System diagram from the upstream repository. Relations read off it were transcribed by a person.</div>
-        <div class="tabs"><button class="current">Diagram</button></div>
+        <div><div class="part-title"><span class="id">${name}.png</span><h2>${DIAGRAM_TITLES[name] || name}</h2></div>
+          <div class="part-facts">System diagram from the upstream repository · relations transcribed by a person</div></div>
+        <div class="tabs"><button class="current">Diagram</button><span class="tab-indicator"></span></div>
       </div>
-      <div class="panel-body"><div class="viewer"></div>
-        <div class="panel-section"><table class="facts"><tr><th>Label</th><td>${evidence.value}</td></tr><tr><th>Source</th><td>${raw(chip(id, evidence))}</td></tr></table></div>
-      </div>`);
-    const viewer = new SheetViewer($(".viewer", this.root));
-    viewer.show({ src, ...size, marks: [{ cite: id, bbox: evidence.source.bbox }], focus: id, caption: "Diagram image, pixel coordinates" });
+      <div class="panel-body"><div class="stage"><div class="viewer"></div></div>
+        <aside class="inspector"><div class="group"><h3 class="group-title">Label</h3>
+          <div class="rows"><div class="row wide"><span class="v">${evidence.value}</span><span>${raw(mark("info"))}</span></div></div></div>
+          <p class="note">${raw(chip(id, evidence))}</p></aside></div>`);
+    slide($(".tab-indicator", this.root), $(".tabs .current", this.root));
+    this.viewer = new SheetViewer($(".viewer", this.root));
+    this.viewer.show({ src, ...size, marks: [{ cite: id, bbox: evidence.source.bbox }], focus: id });
   }
 
-  // --- rendering --------------------------------------------------------------
+  // Point at a reference in the chat: light its mark, and after a moment bring it into view.
+  preview(id) {
+    clearTimeout(this.previewing);
+    if (!this.viewer || this.state.tab !== "sheet") return;
+    this.viewer.highlight(new Set(id ? [id] : []));
+    $$(".inspector [data-focus]", this.root).forEach((row) => row.classList.toggle("lit", Boolean(id) && row.dataset.focus === id));
+    if (id && this.viewer.has(id)) this.previewing = setTimeout(() => this.viewer.focus(id), 160);
+  }
+
+  // --- rendering ---------------------------------------------------------------------------
 
   render() {
     const { part, tab } = this.state;
-    const drawing = part.drawing;
-    const rows = (part.bom || []).map((r) => r.row);
-    const facts = drawing
-      ? [drawing.subsystem, drawing.scan ? `scanned sheet (${drawing.degradation})` : "clean sheet",
-         rows.length ? `BOM row${rows.length > 1 ? "s" : ""} ${rows.join(", ")} (${part.bom_link.status})` : "no BOM row"]
-      : [`BOM row ${rows[0]}`, "no supplied drawing"];
-    const tabs = [["sheet", "Sheet", !drawing], ["model", "Sheet + 3D", !part.model_3d], ["bom", "BOM", !rows.length], ["relations", "Relations", false]];
-
-    mount(this.root, html`
-      <div class="panel-head">
-        <div class="title"><span class="id">${part.ref}</span><h2>${part.name}</h2><button class="close" data-close>Close</button></div>
-        <div class="facts">${facts.join(" · ")}</div>
-        <div class="tabs">${tabs.map(([key, label, disabled]) =>
-          html`<button data-tab="${key}" class="${key === tab ? "current" : ""}" ${disabled ? raw("disabled") : ""}>${label}</button>`)}</div>
-      </div>
-      <div class="panel-body"></div>`);
+    if (this.root.dataset.showing !== part.ref || !$(".panel-head", this.root)) this.renderHead();
+    for (const button of $$(".tabs [data-tab]", this.root)) button.classList.toggle("current", button.dataset.tab === tab);
+    slide($(".tab-indicator", this.root), $(".tabs .current", this.root));
 
     const body = $(".panel-body", this.root);
+    body.className = `panel-body${tab === "bom" || tab === "relations" ? " doc" : ""}`;
+    body.style.animation = "none";
+    void body.offsetWidth;  // restart the fade, so switching tabs reads as a change of view
+    body.style.animation = "";
+    this.viewer = null;
     if (tab === "sheet") this.renderSheet(body);
     if (tab === "model") this.renderModel(body);
     if (tab === "bom") this.renderBom(body);
     if (tab === "relations") this.renderRelations(body);
   }
 
+  renderHead() {
+    const { part } = this.state;
+    const drawing = part.drawing;
+    const rows = (part.bom || []).map((r) => r.row);
+    const link = part.bom_link?.status;
+    const facts = drawing
+      ? [drawing.subsystem, drawing.scan ? "Scanned sheet" : "Clean sheet",
+         rows.length ? `BOM row${rows.length > 1 ? "s" : ""} ${rows.join(", ")}` : "No BOM row"]
+      : [`BOM row ${rows[0]}`, "No supplied drawing"];
+    const available = { sheet: Boolean(drawing), model: Boolean(part.model_3d), bom: rows.length > 0, relations: true };
+    this.root.dataset.showing = part.ref;
+    mount(this.root, html`
+      <div class="panel-head">
+        <div style="min-width:0">
+          <div class="part-title"><span class="id">${part.ref}</span><h2>${part.name}</h2></div>
+          <div class="part-facts">${facts.join(" · ")}${link && link !== "linked" ? html` · <span class="warn">${link} link</span>` : ""}</div>
+        </div>
+        <div class="tabs">${TABS.map(([key, label, glyph]) => html`<button type="button" data-tab="${key}" ${available[key] ? "" : raw("disabled")}>${
+          glyph && key === "model" ? raw(icon(glyph, 14)) : ""}${label}</button>`)}<span class="tab-indicator"></span></div>
+        <button type="button" class="icon-button panel-close" data-close aria-label="Close">${raw(icon("close"))}</button>
+      </div>
+      <div class="panel-body"></div>`);
+  }
+
   renderSheet(body) {
-    const { part, sheet, marks, focus } = this.state;
+    const { part, sheet, focus } = this.state;
     const drawing = part.drawing;
     const page = drawing.sheets[sheet - 1];
-    const meta = this.sheetMeta(part.ref, sheet);
+    const meta = this.drawings?.[part.ref]?.sheets[sheet - 1];
+    const issues = part.attention || [];
+    const serious = issues.filter((a) => a.cites.length);
 
     mount(body, html`
-      <div class="viewer"></div>
-      ${part.attention?.length ? html`<div class="panel-section"><h3>Conflicts and caveats</h3><ul class="attention">${part.attention.map((a) =>
-        html`<li>${a.text} ${raw(a.cites.map((c) => chip(c)).join(""))}</li>`)}</ul></div>` : ""}
-      <div class="panel-section"><h3>Title block${drawing.sheets.length > 1 ? `, sheet ${sheet} of ${drawing.sheets.length}` : ""}</h3>
-        <table class="facts">${Object.entries(page.title_block).map(([field, f]) => html`
-          <tr class="${f.cite ? "clickable" : ""} ${f.cite && f.cite === focus ? "hit" : ""}" data-focus="${f.cite || ""}">
-            <th>${FIELD_LABELS[field]}</th>
-            <td class="value">${f.value || html`<span class="muted">${EMPTY_VALUE[f.status] || "not read"}</span>`}${f.placeholder ? html` <span class="muted">(template placeholder)</span>` : ""}</td>
-            <td><span class="status ${statusClass(f.status)}">${reading(f)}</span></td>
-          </tr>`)}</table></div>
-      <div class="panel-section"><h3>Callouts</h3>
-        <table class="facts">${page.callouts.map((c) => html`
-          <tr class="clickable ${c.cite === focus ? "hit" : ""}" data-focus="${c.cite}">
-            <td class="mono">${c.text}</td>
-            <td class="muted">${c.fit && c.tolerance?.upper !== undefined ? html`${c.fit} ${raw(band(c.tolerance))}` : c.kind}${c.fit_check ? html` <span class="status conflict">failed ISO 286 check</span>` : ""}${
-              c.corrected ? html` <span class="status corrected">corrected, ${c.corrected.by}, was ${c.corrected.was}</span>` : ""}</td>
-            <td class="muted">${c.read_by === "pdf-text" ? "" : c.read_by}${c.confirmed_by_ocr ? " + ocr" : ""}</td>
-          </tr>`)}</table></div>`);
+      <div class="stage"><div class="viewer"></div></div>
+      <aside class="inspector">
+        ${issues.length ? html`<section class="group">
+          <h3 class="group-title">${serious.length ? "Needs review" : "Notes"}${serious.length ? html`<span class="count">${serious.length}</span>` : ""}</h3>
+          <div class="rows">${issues.map((a) => html`<div class="issue">${raw(mark(a.cites.length ? "warn" : "info"))}
+            <span>${a.text}${a.cites.length ? html`<span class="cites">${raw(a.cites.map((c) => chip(c)).join(""))}</span>` : ""}</span></div>`)}</div>
+        </section>` : ""}
+        <section class="group">
+          <h3 class="group-title">Title block${drawing.sheets.length > 1 ? html`<select data-sheet aria-label="Sheet">${drawing.sheets.map((_, i) =>
+            html`<option value="${i + 1}" ${i + 1 === sheet ? raw("selected") : ""}>Sheet ${i + 1} of ${drawing.sheets.length}</option>`)}</select>` : ""}</h3>
+          <div class="rows">${Object.entries(page.title_block).map(([field, f]) => titleRow(field, f, focus))}</div>
+        </section>
+        ${page.callouts.length ? html`<section class="group">
+          <h3 class="group-title">Callouts <span class="muted" style="font-weight:400">${page.callouts.length}</span></h3>
+          <div class="rows">${page.callouts.map((c) => calloutRow(c, focus))}</div>
+        </section>` : ""}
+        ${part.bom?.length ? html`<section class="group">
+          <h3 class="group-title">Bill of materials</h3>
+          ${part.bom.map((row) => html`<button type="button" class="link-row" data-tab="bom"><span>Row ${row.row} · ${row.cells.name?.value || ""}</span>
+            <span>${part.bom_link?.status || ""}${raw(icon("chevron", 14))}</span></button>`)}
+        </section>` : ""}
+      </aside>`);
 
-    if (drawing.sheets.length > 1) {
-      const tools = $(".viewer", body);
-      this.viewer = new SheetViewer(tools, { onMark: (cite) => this.openCite(cite) });
-      const select = document.createElement("select");
-      select.innerHTML = drawing.sheets.map((_, i) => `<option value="${i + 1}" ${i + 1 === sheet ? "selected" : ""}>Sheet ${i + 1}</option>`).join("");
-      select.addEventListener("change", () => { this.state.sheet = Number(select.value); this.render(); });
-      $(".viewer-tools", tools).prepend(select);
-    } else {
-      this.viewer = new SheetViewer($(".viewer", body), { onMark: (cite) => this.openCite(cite) });
-    }
+    this.viewer = new SheetViewer($(".viewer", body), {
+      onMark: (cite) => this.openCite(cite),
+      onHover: (cite) => $$(".inspector [data-focus]", body).forEach((row) => row.classList.toggle("lit", Boolean(cite) && row.dataset.focus === cite)),
+    });
     this.viewer.show({
       src: `/kb/${meta.image}`,
       width: meta.width,
       height: meta.height,
-      marks: marks.filter((m) => (m.sheet || 1) === sheet),
+      marks: this.sheetMarks(),
       focus,
-      caption: drawing.scan ? "Scan as supplied. Regions are positions found by OCR, approximate" : "",
+      badge: drawing.scan ? `${icon("scan", 14)}<span>Scanned sheet · marks are where OCR found the text</span>` : "",
     });
   }
 
+  // The current sheet's marks, carrying the numbers the answer gave them.
+  sheetMarks() {
+    const { marks, sheet, refs } = this.state;
+    return marks.filter((m) => (m.sheet || 1) === sheet).map((m) => ({ ...m, ...(refs.get(m.cite) || {}), red: m.red || refs.get(m.cite)?.red }));
+  }
+
   // The sheet and the model side by side. Every dimension the model was built from is marked on
-  // the sheet where it was read; pointing at either side, or at the table, lights up the other two.
+  // the sheet where it was read; pointing at either side, or at the list, lights up the other two.
   async renderModel(body) {
     const model = (await api.models())[this.state.part.ref];
-    const meta = this.sheetMeta(this.state.part.ref, 1);
-    body.classList.add("linked-body");  // the viewers stay in view; only the notes below them scroll
+    const meta = this.drawings?.[this.state.part.ref]?.sheets[0];
     mount(body, html`
-      <div class="linked"><div class="viewer"></div><div class="viewer model"></div></div>
-      <div class="panel-section model-notes">${modelNotes(model)}</div>`);
+      <div class="stage"><div class="linked"><div class="viewer"></div><div class="viewer model"></div></div></div>
+      <aside class="inspector model-notes">${modelNotes(model)}</aside>`);
 
     // A sheet region can hold several dimensions (one hole callout gives a diameter, a counterbore and its depth).
     const regionOf = model.dimensions.map((d) => (d.region ? d.cite || "measured" : null));
@@ -184,12 +239,11 @@ export class EvidencePanel {
     });
 
     let pinned = new Set();
-    const rows = [...body.querySelectorAll(".dims-table tr[data-dim]")];
+    const rows = $$(".dims-table [data-dim]", body);
     const light = (dims) => {
-      const keys = new Set([...dims].map((i) => regionOf[i]).filter(Boolean));
-      sheet.highlight(keys);
+      sheet.highlight(new Set([...dims].map((i) => regionOf[i]).filter(Boolean)));
       viewer.highlight(dims);
-      rows.forEach((r) => r.classList.toggle("hit", dims.has(Number(r.dataset.dim))));
+      rows.forEach((r) => r.classList.toggle("lit", dims.has(Number(r.dataset.dim))));
     };
     const hover = (dims) => light(dims ?? pinned);
     const pin = (dims, { zoom = false } = {}) => {
@@ -202,7 +256,7 @@ export class EvidencePanel {
     };
     const inRegion = (key) => new Set(regionOf.flatMap((k, i) => (k === key ? [i] : [])));
 
-    const [left, right] = body.querySelectorAll(".linked .viewer");
+    const [left, right] = $$(".linked .viewer", body);
     const sheet = new SheetViewer(left, {
       onHover: (key) => hover(key ? inRegion(key) : null),
       onMark: (key) => pin(inRegion(key)),
@@ -225,7 +279,6 @@ export class EvidencePanel {
       if (e.key === "Escape" && pinned.size && !document.querySelector("dialog[open]")) pin(pinned);
     };
     document.addEventListener("keydown", unpin);
-
     for (const row of rows) {
       const dims = new Set([Number(row.dataset.dim)]);
       row.addEventListener("pointerenter", () => hover(dims));
@@ -235,49 +288,80 @@ export class EvidencePanel {
   }
 
   renderBom(body) {
-    const { part, focus, cites } = this.state;
-    mount(body, html`${part.bom.map((row) => html`
-      <div class="panel-section">
-        <h3>BOM row ${row.row} · ${row.cells.name?.value || ""}</h3>
-        ${part.bom_link ? html`<p class="muted" style="margin:0 0 10px">Link ${part.bom_link.status}: ${part.bom_link.basis} ${raw(chip(part.bom_link.cite, { label: "curation/links.csv", value: part.bom_link.status }))}</p>` : ""}
-        <table class="facts">${Object.entries(BOM_COLUMNS).filter(([f]) => row.cells[f]).map(([f, column]) => {
+    const { part, focus, refs } = this.state;
+    mount(body, html`<div class="doc-inner">${part.bom.map((row) => html`
+      <section class="group">
+        <h3 class="group-title">Row ${row.row} · ${row.cells.name?.value || ""}</h3>
+        ${part.bom_link ? html`<p class="note" style="margin:-2px 0 10px">${part.bom_link.status === "linked" ? "Linked" : `${capitalise(part.bom_link.status)} link`}: ${part.bom_link.basis} ${raw(chip(part.bom_link.cite, { label: "curation/links.csv", value: part.bom_link.status }))}</p>` : ""}
+        <div class="rows">${Object.entries(BOM_COLUMNS).filter(([f]) => row.cells[f]).map(([f, column]) => {
           const cell = row.cells[f];
-          return html`<tr class="${cell.cite === focus || cites.has(cell.cite) ? "hit" : ""}">
-            <th>${column}</th><td class="value">${cellText(f, cell)}${cell.corrected ? html` <span class="status corrected">corrected, was ${cell.corrected.was}</span>` : ""}</td><td>${raw(chip(cell.cite, { label: column, value: cell.value }))}</td></tr>`;
-        })}</table>
-        ${row.drawings.length > 1 ? html`<p class="muted">Also documented by ${row.drawings.filter((d) => d !== part.ref).join(", ")}.</p>` : ""}
-      </div>`)}
-      <div class="panel-section muted">Supplier, price and order data are a BOM snapshot, not current availability.</div>`);
+          return html`<div class="row${cell.cite === focus || refs.has(cell.cite) ? " hit" : ""}">
+            <span class="k">${column}</span><span class="v">${cellText(f, cell)}${cell.corrected ? html`<small>Corrected, was ${cell.corrected.was}</small>` : ""}</span>
+            <span>${raw(chip(cell.cite, { label: column, value: cell.value }))}</span></div>`;
+        })}</div>
+        ${row.drawings.length > 1 ? html`<p class="note" style="margin-top:8px">Also documented by ${row.drawings.filter((d) => d !== part.ref).join(", ")}.</p>` : ""}
+      </section>`)}
+      <p class="note">Supplier, price and order data are a BOM snapshot, not current availability.</p></div>`);
   }
 
   renderRelations(body) {
     const groups = {};
     for (const r of this.state.part.relations || []) (groups[r.kind] ||= []).push(r);
-    if (!Object.keys(groups).length) return mount(body, html`<div class="panel-section muted">No relations recorded for this part.</div>`);
-    mount(body, html`<div class="panel-section">${Object.entries(groups).map(([kind, items]) => html`
-      <div class="relation-kind"><h3>${KIND_TITLES[kind]}</h3><ul class="relations">${items.map((r) => html`
-        <li>${r.relation} <a href="/part/${r.other}" data-part="${r.other}">${r.other_name}</a> <span class="mono muted">${r.other}</span>
-          ${raw(r.cites.map((c) => chip(c)).join(""))}
-          ${r.note && r.note !== "Label text." ? html`<div class="muted">${r.note}</div>` : ""}</li>`)}</ul></div>`)}</div>`);
+    if (!Object.keys(groups).length) {
+      return mount(body, html`<div class="doc-inner"><div class="empty-page"><strong>No recorded relations</strong>Neither the BOM, the system diagrams nor a matching fit connects this part to another.</div></div>`);
+    }
+    mount(body, html`<div class="doc-inner">${Object.entries(groups).map(([kind, items]) => html`
+      <section class="group"><h3 class="group-title">${KIND_TITLES[kind]}</h3>
+        <div class="rows">${items.map((r) => html`<div class="relation">
+          <span>${r.relation} <a href="/part/${r.other}" data-part="${r.other}">${r.other_name}</a> <span class="mono muted">${r.other}</span></span>
+          <span>${raw(r.cites.map((c) => chip(c)).join(" "))}</span>
+          ${r.note && r.note !== "Label text." ? html`<span class="muted">${r.note}</span>` : ""}</div>`)}</div>
+      </section>`)}</div>`);
   }
 
-  sheetMeta(ref, sheet) {
-    return this.drawings?.[ref]?.sheets[sheet - 1];
-  }
-
-  // --- events -----------------------------------------------------------------
+  // --- events ------------------------------------------------------------------------------
 
   click(e) {
     const tab = e.target.closest("[data-tab]");
     if (tab && !tab.disabled) { this.state.tab = tab.dataset.tab; return this.render(); }
     const cite = e.target.closest("[data-cite]");
     if (cite && !cite.closest(".viewer")) return this.openCite(cite.dataset.cite);  // a viewer handles its own marks
-    const row = e.target.closest("tr[data-focus]");
+    const row = e.target.closest("[data-focus]");
     if (row?.dataset.focus) return this.openCite(row.dataset.focus);
     const link = e.target.closest("[data-part]");
     if (link) { e.preventDefault(); return this.openPart(link.dataset.part); }
     if (e.target.closest("[data-close]")) this.root.classList.remove("open");
   }
+}
+
+// One title-block field: what it says, and how sure the reading is. Text-layer values need no mark.
+function titleRow(field, f, focus) {
+  const by = (method) => f.readings?.find((r) => r.method === method);
+  const states = {
+    exact: [null, ""],
+    confirmed: ["agree", "Both readers agree"],
+    "single reader": ["single", `${f.readings?.find((r) => r.cite === f.cite)?.method === "ocr" ? "OCR" : "Vision model"} only`],
+    disputed: ["warn", "The readers disagree"],
+    corrected: ["agree", `Corrected by ${f.corrected?.by}, was “${f.corrected?.was}”`],
+    blank: ["blank", "Blank on the sheet"],
+  };
+  const [glyph, note] = states[f.status] || ["blank", "Unreadable"];
+  const value = f.status === "disputed"
+    ? html`<span class="reading">${oneLine(by("ocr")?.value) || "—"}<i>OCR</i></span><span class="reading">${oneLine(by("vision")?.value) || "—"}<i>Vision</i></span>`
+    : html`${f.value || html`<span class="muted">—</span>`}${f.placeholder ? html`<small>Template placeholder</small>` : ""}`;
+  const cite = f.cite || f.readings?.[0]?.cite || "";
+  return html`<button type="button" class="row${cite && cite === focus ? " lit" : ""}" data-focus="${cite}">
+    <span class="k">${FIELD_LABELS[field]}</span><span class="v">${value}${note && f.status !== "disputed" ? html`<small>${note}</small>` : ""}</span>
+    <span>${glyph ? raw(mark(glyph)) : ""}</span></button>`;
+}
+
+function calloutRow(c, focus) {
+  const reader = c.read_by === "pdf-text" ? "" : `${c.read_by === "ocr" ? "OCR" : "Vision"}${c.confirmed_by_ocr ? " and OCR" : ""}`;
+  return html`<button type="button" class="row wide${c.cite === focus ? " lit" : ""}" data-focus="${c.cite}">
+    <span class="v"><span class="mono">${c.text}</span>
+      <span class="callout-kind">${c.fit && c.tolerance?.upper !== undefined ? html`${c.fit} ${raw(band(c.tolerance))}` : c.kind}${reader ? ` · ${reader}` : ""}${
+        c.fit_check ? html` · <span class="status-text red">failed ISO 286 check</span>` : ""}${c.corrected ? html` · corrected by ${c.corrected.by}, was ${c.corrected.was}` : ""}</span></span>
+    <span>${c.fit_check ? raw(mark("warn")) : ""}</span></button>`;
 }
 
 // A fit's tolerance zone against the nominal size, drawn as ISO 286 draws it: a hole's H zone sits on
@@ -291,29 +375,15 @@ function band({ upper, lower }) {
     <rect x="9" y="${y(upper)}" width="12" height="${Math.max(y(lower) - y(upper), 1)}"/><line x1="1" x2="29" y1="9" y2="9"/></svg>`;
 }
 
-function statusClass(status) {
-  return { "single reader": "single" }[status] || status;
-}
-
-function reading(f) {
-  const by = (method) => f.readings?.find((r) => r.method === method);
-  switch (f.status) {
-    case "exact": return "text layer";
-    case "confirmed": return "OCR and vision agree";
-    case "single reader": return `${f.readings?.find((r) => r.cite === f.cite)?.method || "one reader"} only`;
-    case "disputed": return `OCR “${by("ocr")?.value || ""}”, vision “${by("vision")?.value || ""}”`;
-    case "corrected": return `${f.corrected.by}, was “${f.corrected.was}”`;
-    case "blank": return "blank";
-    default: return "unreadable";
-  }
-}
-
 function cellText(field, cell) {
   if (field === "datasheet" && cell.parsed?.files) {
     return `${cell.parsed.files.join(", ")} (attachment link expired ${cell.parsed.url_expired_on.join(", ")})`;
   }
   return cell.value;
 }
+
+const oneLine = (s) => (s || "").replace(/\s*\n\s*/g, " ");
+const capitalise = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
 function imageSize(src) {
   return new Promise((resolve, reject) => {

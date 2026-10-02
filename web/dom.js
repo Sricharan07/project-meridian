@@ -32,3 +32,10 @@ export function mount(element, template) {
 
 export const $ = (selector, root = document) => root.querySelector(selector);
 export const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+// An underline that travels to the current item, so a change of place reads as movement.
+export function slide(indicator, target, inset = 12) {
+  if (!indicator || !target) return;
+  indicator.style.width = `${Math.max(target.offsetWidth - 2 * inset, 0)}px`;
+  indicator.style.transform = `translateX(${target.offsetLeft + inset}px)`;
+}
