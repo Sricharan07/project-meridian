@@ -16,6 +16,7 @@ import re
 import threading
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
+from pathlib import Path
 
 from meridian import bom, config, iso286, materials
 from meridian.evidence import Method, Observation, Source
@@ -55,12 +56,12 @@ class Correction:
     decision_note: str | None = None
 
 
-def load() -> list[Correction]:
+def load(log: Path = LOG) -> list[Correction]:
     """Fold the event log into the current state of every correction."""
-    if not LOG.exists():
+    if not log.exists():
         return []
     corrections: dict[str, Correction] = {}
-    for line in LOG.read_text().splitlines():
+    for line in log.read_text().splitlines():
         event = json.loads(line)
         if event["event"] == "proposed":
             corrections[event["correction"]["id"]] = Correction(**event["correction"])
@@ -99,7 +100,7 @@ def reparse(original: Observation, value: str) -> dict | None:
     return parse_field(original.field, value)
 
 
-def propose(kb, target: str, value: str, reason: str, question: str) -> Correction:
+def propose(kb, target: str, value: str, reason: str, question: str, log: Path = LOG) -> Correction:
     """File a correction against one observation. `kb` is the KnowledgeBase it is checked against."""
     original = kb.obs.get(target)
     if original is None:
@@ -107,7 +108,7 @@ def propose(kb, target: str, value: str, reason: str, question: str) -> Correcti
     if original.method == Method.REVIEW:  # correcting a correction targets the original again
         target, original = original.parsed["supersedes"], kb.obs[original.parsed["supersedes"]]
     c = Correction(
-        id=f"C-{len(load()) + 1:03d}",
+        id=f"C-{len(load(log)) + 1:03d}",
         target=target,
         subject=original.subject,
         current_value=kb.superseded_by.get(original.id, original).value,
@@ -118,21 +119,21 @@ def propose(kb, target: str, value: str, reason: str, question: str) -> Correcti
     )
     c.checks = [asdict(x) for x in _checks(kb, original, c)]
     c.impact = _impact(kb, kb.with_correction(as_observation(c, original)), original.subject)
-    _append({"event": "proposed", "at": c.proposed_at, "correction": asdict(c)})
+    _append(log, {"event": "proposed", "at": c.proposed_at, "correction": asdict(c)})
     return c
 
 
-def decide(correction_id: str, accept: bool, by: str, note: str) -> Correction:
+def decide(correction_id: str, accept: bool, by: str, note: str, log: Path = LOG) -> Correction:
     if not by.strip():
         raise ValueError("A decision needs the reviewer's name.")
-    current = {c.id: c for c in load()}
+    current = {c.id: c for c in load(log)}
     c = current.get(correction_id)
     if c is None:
         raise ValueError(f"No correction {correction_id}")
     if c.status != "pending":
         raise ValueError(f"{correction_id} was already {c.status} by {c.decided_by} on {c.decided_at}")
-    _append({"event": "decided", "id": correction_id, "accept": accept, "by": by.strip(), "note": note.strip(), "at": _now()})
-    return {c.id: c for c in load()}[correction_id]
+    _append(log, {"event": "decided", "id": correction_id, "accept": accept, "by": by.strip(), "note": note.strip(), "at": _now()})
+    return {c.id: c for c in load(log)}[correction_id]
 
 
 # --- checks -----------------------------------------------------------------------
@@ -255,10 +256,10 @@ def _numbers(text: str) -> list[str]:
     return re.findall(r"\d+(?:[.,]\d+)?", text)
 
 
-def _append(event: dict) -> None:
+def _append(log: Path, event: dict) -> None:
     with _lock:
-        LOG.parent.mkdir(parents=True, exist_ok=True)
-        with LOG.open("a") as f:
+        log.parent.mkdir(parents=True, exist_ok=True)
+        with log.open("a") as f:
             f.write(json.dumps(event, ensure_ascii=False) + "\n")
 
 

@@ -14,6 +14,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass
 from functools import cached_property
+from pathlib import Path
 
 from meridian import config, corrections, evidence, materials
 from meridian.evidence import Method, Observation
@@ -40,7 +41,9 @@ class Entity:
 
 class KnowledgeBase:
     def __init__(self, observations: list[Observation], relations: list[Relation], sheets: dict,
-                 accepted: list[Observation] = (), proposals: list[corrections.Correction] = ()):
+                 accepted: list[Observation] = (), proposals: list[corrections.Correction] = (),
+                 corrections_log: Path = corrections.LOG):
+        self.corrections_log = corrections_log  # where proposals made against this knowledge are filed
         self.base_observations = observations
         self.base_relations = [r for r in relations if r.kind != "inferred"]
         self.sheets = sheets
@@ -55,20 +58,22 @@ class KnowledgeBase:
         self.relations = self.base_relations + inferred_fits(self.current_observations())
 
     @classmethod
-    def load(cls) -> "KnowledgeBase":
+    def load(cls, corrections_log: Path = corrections.LOG) -> "KnowledgeBase":
         observations = list(evidence.read_jsonl(config.KB / "observations.jsonl"))
-        proposals = corrections.load()
+        proposals = corrections.load(corrections_log)
         return cls(
             observations,
             read_relations(config.KB / "relations.jsonl"),
             json.loads((config.KB / "drawings.json").read_text()),
             corrections.accepted_observations(proposals, {o.id: o for o in observations}),
             proposals,
+            corrections_log,
         )
 
     def with_correction(self, candidate: Observation) -> "KnowledgeBase":
         """The knowledge as it would be if one more correction were accepted; used to preview its impact."""
-        return KnowledgeBase(self.base_observations, self.base_relations, self.sheets, [*self.accepted, candidate], self.proposals)
+        return KnowledgeBase(self.base_observations, self.base_relations, self.sheets,
+                             [*self.accepted, candidate], self.proposals, self.corrections_log)
 
     def current_observations(self) -> list[Observation]:
         return [o for o in self.obs.values() if o.id not in self.superseded_by]

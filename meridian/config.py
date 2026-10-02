@@ -13,7 +13,8 @@ MANIFEST = DATASET / "manifest.json"
 
 CURATION = ROOT / "curation"  # human decisions the build consumes
 KB = ROOT / "kb"              # build output, committed so the app runs without rebuilding
-VAR = ROOT / "var"            # runtime state, never committed
+# Runtime state, never committed. MERIDIAN_VAR points it elsewhere for a throwaway demo.
+VAR = Path(os.environ.get("MERIDIAN_VAR", ROOT / "var"))
 
 # The BOM is a snapshot of the upstream Airtable export at this commit.
 SOURCE_REVISION = "98f76dad7b11d6f8fc7d59945d7fcf689df87ee7"

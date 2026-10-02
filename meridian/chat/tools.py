@@ -80,7 +80,7 @@ def handlers(kb: KnowledgeBase, turn: dict) -> dict[str, Callable[..., object]]:
 
 
 def _propose(kb: KnowledgeBase, turn: dict, target: str, value: str, reason: str) -> dict:
-    c = corrections.propose(kb, target, value, reason, turn.get("question", ""))
+    c = corrections.propose(kb, target, value, reason, turn.get("question", ""), kb.corrections_log)
     return {"correction": c.id, "status": "waiting for review", "review_page": "/review", "target": c.target,
             "current_value": c.current_value, "proposed_value": c.proposed_value, "checks": c.checks, "impact": c.impact}
 
