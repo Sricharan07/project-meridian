@@ -15,6 +15,7 @@ from dataclasses import dataclass
 from meridian import config
 from meridian.corpus import Drawing
 from meridian.evidence import Method, Observation, Source
+from meridian.names import words
 
 # The manifest groups sheets by subsystem; the BOM groups rows by part family.
 # All Z-axis sheets (cylinder, build base, clamp ring, motor plate) sit under
@@ -27,16 +28,6 @@ SUBSYSTEM_FAMILY = {
     "Gas Flow": "Gas flow",
     "Z-axis": "Build-plate",
 }
-
-# Translation only. Deciding that a canister is a hopper is a judgement and
-# belongs in curation, not in a synonym list.
-GLOSSARY = {
-    "bygge": "build", "plade": "plate", "spænd": "clamp", "bund": "bottom",
-    "montage": "mount", "klods": "block", "silikone": "silicone", "pakning": "gasket",
-    "varmeelement": "heating element", "justeringsplade": "adjustment plate",
-    "føring": "guide", "linæer": "linear", "lineær": "linear", "rustfri": "stainless",
-}
-_IGNORED = {"the", "of", "for", "to", "and", "with", "til", "af", "x2", "v2", "v6", "loop2", "version2", "alu", "description"}
 
 
 @dataclass(frozen=True, slots=True)
@@ -52,7 +43,7 @@ def propose(drawings: dict[str, Drawing], observations: list[Observation], top: 
     sheets = _sheet_readings(observations)
     out = []
     for drawing in drawings.values():
-        names = _words(" ".join([drawing.upstream_name, *sheets.get(drawing.id, {}).get("names", [])]))
+        names = words(" ".join([drawing.upstream_name, *sheets.get(drawing.id, {}).get("names", [])]))
         materials = sheets.get(drawing.id, {}).get("materials", set())
         quantity = sheets.get(drawing.id, {}).get("quantity")
         scored = []
@@ -114,7 +105,7 @@ def _bom_rows(observations: list[Observation]) -> dict[int, dict]:
             case "family":
                 cells["family"] = o.value
             case "name":
-                cells["words"] = _words(o.value)
+                cells["words"] = words(o.value)
             case "datasheet":
                 cells["datasheets"] = (o.parsed or {}).get("files", [])
             case "material":
@@ -143,10 +134,3 @@ def _sheet_readings(observations: list[Observation]) -> dict[str, dict]:
             sheet["quantity"] = int(digits[-1]) if digits and "-" not in q else None
     return out
 
-
-def _words(text: str) -> set[str]:
-    spaced = re.sub(r"(?<=[a-zæøå])(?=[A-Z])", " ", text)
-    words = []
-    for w in re.split(r"[^A-Za-zÆØÅæøå0-9]+", spaced.lower()):
-        words += GLOSSARY.get(w, w).split()
-    return {w for w in words if len(w) > 1 and w not in _IGNORED and not w.isdigit()}
