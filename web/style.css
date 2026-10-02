@@ -147,6 +147,7 @@ table.facts tr:last-child td { border-bottom: 0; }
 table.facts td.value { white-space: pre-line; }
 table.facts tr.hit td { background: var(--accent-tint); }
 table.facts tr.hit td:first-child { box-shadow: inset 2px 0 0 var(--accent); padding-left: 8px; }
+table.facts tr.hit th { background: var(--accent-tint); box-shadow: inset 2px 0 0 var(--accent); padding-left: 8px; }
 table.facts tr.clickable { cursor: pointer; }
 table.facts tr.clickable:hover td { background: var(--sunken); }
 
