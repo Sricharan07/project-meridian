@@ -108,6 +108,7 @@ def read_sheet(drawing_id: str, page: int, scan: ScanPage, reg: Registration) ->
         ]}],
         text={"format": {"type": "json_schema", "name": "sheet_transcription", "schema": SCHEMA, "strict": True}},
         reasoning={"effort": "low"},
+        store=False,
     )
     reading = json.loads(response.output_text)
     CACHE.mkdir(parents=True, exist_ok=True)
