@@ -300,3 +300,114 @@ all. Motion is used where it explains a change of place (the sheet gliding to
 a reference, an indicator sliding to the current tab) and is off for readers
 who ask for reduced motion. Dark is the default because the white sheets read
 best on it; light is one click away and remembered.
+
+## 2026-10-02
+
+### The graph is derived, never stored
+
+Parts, drawings, subsystems, materials and recorded suppliers become one graph
+each time the knowledge loads, built from the same observations and relations
+the answers use. Storing it would give two copies to keep in step; deriving it
+costs 4 ms here and about a second at a hundred times the corpus
+(`eval/scale.py`). Every edge carries the cite ids it rests on, and an edge
+without one is refused when it is added.
+
+Paths are weighted, not counted. An interface from the BOM or a diagram is
+cheap, a drawing-to-row link is free, and passing through a shared subsystem is
+expensive and flagged, because two recoater parts belonging to the same
+subsystem says nothing about whether they touch. Shared materials and shared
+suppliers are in the graph for browsing but never on a path: everything
+aluminium is "connected" in a way no engineer means.
+
+### Review takes more than value corrections
+
+The first loop corrected one value at a time. Most of what a reviewer knows is
+not a misread number: that a drawing documents a different row, that two parts
+connect, that a connection read off a diagram is wrong, which of two disputed
+readings is right, that a new drawing exists. Each is now a kind of correction
+with its own checks (the linker's ranking for a link, whether a path already
+exists for a connection, the other reader for a dispute) and goes through the
+same propose, check, accept or reject steps. Nothing is overwritten: an
+accepted link sits beside the curated one it replaces, a withdrawn connection
+leaves answers and keeps its evidence.
+
+"Is it learning" is answered by replaying accepted corrections in the order
+they were decided and measuring after each one: scanned fields that match the
+truth set, fields still disputed, corrected values that are wrong, fit-check
+failures, link certainty and connections. Corrected-but-wrong is counted
+separately so a bad correction shows up as a cost. The truth set and the
+reviewer read the same sheets, so this shows what each correction moved, not
+an independent accuracy figure, and the Review page says so.
+
+### Adding a drawing uses the build's readers
+
+A PDF added in the app is read by the code that read the supplied ones: the
+text layer for a clean sheet, OCR and the vision model for a scan. It lands in
+`var/ingest/`, never in `dataset/` or `kb/`, and joins the knowledge only when a
+reviewer accepts it and says which BOM rows it documents, with the linker's
+suggestions beside the field. `MERIDIAN_HOLD_OUT=D-028` leaves a supplied
+drawing out so it can be added back through the app; a test checks that both
+paths produce the same observations.
+
+### Suppliers: search once, keep the evidence, say how strong each match is
+
+Suggestions need the web, and answers must not depend on a live search: the
+same question would give different answers on different days, and nothing
+could be checked afterwards. `python -m meridian suppliers` searches once and
+keeps every response with the pages the search returned; the app reads that
+snapshot and shows its date.
+
+Only bought parts where a second source matters are searched: a Standard row
+with a product name or order number and a recorded unit cost of at least DKK
+200. That is 36 of the 122 bought rows (the laser, the F-theta lens, the
+safety PLC). Of the rest, 56 cost less than the time it takes to compare
+sellers, 24 give nothing to search for and 6 have no cost; each says which
+when asked. A search costs about 15,000 input tokens, so the threshold is also
+what keeps the run at 42 searches.
+
+A model asked for "other sellers" will name plausible companies. So a
+suggestion is kept only if its site is one the search actually returned, and
+never if it is the recorded supplier again. What is left says how much was
+checked: "part number confirmed" when the manufacturer part number is in the
+page address, "found by the search" when it is not, "equivalent" for a
+different part to the same specification (the only honest answer for a
+distributor's own brand, such as an RS PRO hose or a STEPPERONLINE driver). In
+the run on 2026-10-02 nothing had to be dropped, which says the filter is a
+backstop, not that it is unnecessary.
+
+Custom parts are not sold, they are made, so the question is who could make
+one. The requirement profile is computed from cited facts whenever the
+knowledge loads: material from the BOM and the sheet, process from plain rules
+(at most 3 mm thick is sheet metal, silicone and ceramic are cut, a "weld" note
+means welding, everything else machined), size from the reconstruction's
+bounding box or the largest printed dimension, the tightest tolerance band on
+the sheet, the quantity from the BOM. Makers come from one search per process
+in Denmark, with what their own sites state; a maker that lists materials and
+not this one is left out, and every other requirement is shown as met,
+unstated or failed. A part with no material recorded gets no process and no
+makers, rather than a guess.
+
+Prices and stock are never shown as current, and every answer says once that a
+suggestion is not an endorsement.
+
+### Search spells out abbreviations and forgives typos
+
+"Where else can I buy the 24 V power supply?" found nothing, because the BOM
+calls it "24VDC PSU 20A". Names are now searched with their abbreviations
+spelled out (PSU, VFD, PLC, PID, E-stop) and voltages written one way, and a
+query word that names nothing is read as the closest word that does, at 80%
+similarity ("recoter" as "recoater"). Both apply to search only; how a part is
+named in answers is unchanged. The Danish glossary is still translation only:
+deciding that a canister is a hopper is a judgement for curation.
+
+### Every instruction costs the others something
+
+Adding five tools and four instructions for the bonus work made the model pass
+on a caveat it was handed less often: link-1's datasheet conflict went from 8
+of 8 answers to as low as 2 of 6, with the tool result unchanged byte for byte.
+Asking ten times under each combination of old and new instructions and tools
+showed both additions contributing (EVALUATION.md, section 5). The fix was not
+to cut features but to make the one rule that mattered explicit: every item in
+a result's `attention` list is relayed, whatever the question. The original 28
+questions are now a gate for any change to the prompt or the tools, run twice,
+because a single run would not have shown this.

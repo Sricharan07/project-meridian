@@ -5,6 +5,11 @@ metal laser powder-bed-fusion machine. Every fact in an answer links to where it
 BOM cell, a diagram label, or a correction someone accepted. Asking about a part opens its drawing, and the 3D view
 when the part has one. When the sources disagree, or a scan cannot be read, the answer says so.
 
+Beyond the brief's required bar it also does the three bonus items: a graph of how parts, drawings, subsystems,
+materials and suppliers connect, with cited paths between any two; a review loop that takes link, connection,
+dispute and new-drawing corrections and measures what each one changed; and dated supplier suggestions, other sellers
+for bought parts and Danish makers for custom ones, each with the basis for the match.
+
 The assignment brief is in [docs/brief.md](docs/brief.md).
 
 ![An answer with numbered references beside the scanned sheet it cites. Pointing at reference 1 has brought the disputed material field into view, boxed in red, with the same numbers pinned on the drawing and the inspector listing what each reader saw](docs/screenshots/scan-disputed.png)
@@ -104,8 +109,8 @@ On Windows, use `py -3.12 -m venv .venv`, then `.venv\Scripts\pip` and `.venv\Sc
 4. **See it on the drawing.** The same numbers are pinned where each value is printed: yellow where the readers
    agree, red where they don't. Scroll to zoom, drag to pan, double-click to fit.
 5. **The inspector** lists what needs a second look first, then every title-block field and how sure its reading is.
-6. **Switch views** between the sheet, the 3D reconstruction where there is one, the BOM row and the part's
-   relations.
+6. **Switch views** between the sheet, the 3D reconstruction where there is one, the BOM row, suppliers and the
+   part's relations.
 7. **Find any part** with ⌘K (Ctrl K on Windows and Linux). The sun in the corner switches to the light theme.
 
 ### Explore a part in 3D
@@ -149,6 +154,62 @@ On Windows, use `py -3.12 -m venv .venv`, then `.venv\Scripts\pip` and `.venv\Sc
 2. **Open a sheet** by clicking it. Its tags say whether it is a scan, whether it has a 3D model, and when its link
    to a BOM row is uncertain.
 
+### Follow how parts connect
+
+![The Graph page showing the path from the cylinder clamp ring to the build cylinder](docs/guide/7-graph.png)
+
+1. **Focus on anything** from the Graph tab: a part, drawing, subsystem, material or supplier. The graph shows what
+   it connects to, grouped by how. With nothing focused it shows the subsystems and the interfaces between them.
+2. **Connect to** a second one to see the shortest chain of evidence between them. The chat does the same when asked
+   how two parts relate, with a Graph button under the answer.
+3. **Every step is cited.** A step through a shared subsystem is flagged: the parts belong together, which is not the
+   same as touching.
+4. **Line styles** say where each connection comes from: the BOM, a diagram, matching fits, or a drawing of a BOM row.
+
+### Find another supplier, or someone to make it
+
+![Asking who could make the recoater mount block, with the Suppliers tab](docs/guide/8-make.png)
+
+1. **Ask who could make a custom part.** The answer and the Suppliers tab keep the supplier the BOM records apart
+   from suggestions.
+2. **What making it takes** is worked out from cited evidence: material, process and the rule that chose it, size
+   from the 3D reconstruction or the sheet, the tightest tolerance, the quantity.
+3. **Makers** come from a dated web search for Danish shops, checked against what their own sites state. A tick is
+   a requirement their site confirms, a dashed circle one it does not mention.
+
+![Asking where else to buy the 24 V power supply](docs/guide/9-buy.png)
+
+1. **Ask where else to buy a bought part.** Parts over DKK 200 with something to search for were looked up once;
+   for the rest, the answer says why they were not.
+2. **What the BOM recorded**, unchanged.
+3. **How strong each match is:** the same manufacturer part number in the seller's page address, found by the
+   search but not checked further, or an equivalent part to compare against the datasheet.
+
+### Review does more than fix values
+
+![The Review page with the measures review has changed and a link change waiting](docs/guide/10-review-loop.png)
+
+1. **What review has changed:** each measure before any correction and now, replayed in the order corrections were
+   decided.
+2. **More kinds of correction:** a value, which of two disputed scan readings is right, a drawing's BOM link, a
+   connection between parts, a new drawing. Ask in chat ("D-016 documents row 81"), or use Change link on the BOM
+   tab and Add a connection on the Relations tab.
+3. **Checks for each kind**, such as where the automatic linker ranks a proposed row.
+
+### Add a drawing
+
+![The Add a drawing dialog](docs/guide/11-add-drawing.png)
+
+**Add drawing** on the Drawings page takes a PDF, its subsystem and where it comes from. It is read the way the
+supplied sheets were and filed for review:
+
+![The new drawing waiting for review](docs/guide/12-new-drawing.png)
+
+1. **The sheet as read**, from its text layer here; a scan goes through OCR and the vision model.
+2. **What was read:** the title block, whether it repeats a known sheet, ISO 286, and the linker's best rows.
+3. **Say what it documents:** the BOM rows and how sure the link is, with the linker's picks one click away.
+4. **Accept** to add it to answers, search and the graph. Until then nothing else sees it.
+
 ### Keyboard
 
 | Key | What it does |
@@ -170,6 +231,10 @@ On Windows, use `py -3.12 -m venv .venv`, then `.venv\Scripts\pip` and `.venv\Sc
 | What does the recoater arm weigh? | A scanned sheet: shows what each reader saw and which ones agree |
 | Is the BOM's motor plate drawing D-029 or D-030? | Says the evidence cannot tell, and why |
 | What did the Box subsystem cost, and what is missing from that figure? | A total from a dated snapshot, with the rows that have no cost |
+| How does the cylinder clamp ring relate to the build cylinder? | A two-step path through the print platform, both steps from the Z-axis diagram |
+| Who could make the recoater mount block for us? | Requirements from the drawing, and two Danish shops checked against them |
+| Is there a second source for the laser source? | Raycus and Everfoton, named as equivalents to compare against the datasheet, not the same part |
+| whats the weigth of the recoter arm | Typos are fine: it still opens D-011 and gives both readings |
 
 ### All five reconstructions
 
@@ -190,8 +255,12 @@ flowchart LR
   R1 & R2 & R3 & R4 --> O[(kb/observations.jsonl)]
   O --> K[KnowledgeBase]
   V[(var/corrections.jsonl)] --> K
+  W[(kb/suppliers.jsonl)] --> K
+  K --> G[graph, derived on load]
   K --> T[typed tools] --> M[gpt-6-luna] --> X[verifier] --> U[chat + evidence panel]
+  G --> T
   K --> RV[review page] --> V
+  S["python -m meridian suppliers (once)"] --> W
 ```
 
 **Observations, not fields.** The unit of knowledge is one source saying one thing in one place: "BOM row 30,
@@ -210,7 +279,7 @@ against ISO 286.
 column, from the system diagrams (transcribed, citing the label regions), and from matching fit sizes across sheets.
 Each says which of the three it is.
 
-**Chat.** The model sees nine tools over the knowledge base, never the documents. Caveats such as conflicting sources,
+**Chat.** The model sees fourteen tools over the knowledge base, never the documents. Caveats such as conflicting sources,
 uncertain links and failed checks are computed and put first in every tool result, so the model relays them rather
 than having to notice them. Before an answer is shown, a check rejects any citation that does not exist and any
 number that is in no tool result. Which sheet and 3D view to open is decided on the server from the tools that were
@@ -226,6 +295,20 @@ SolidWorks printed in the title block. All five are within 0.75 %. The view says
 keeps its id and its place on the sheet. Inferred relations are recomputed on load, so an accepted correction can
 create or remove one, and the review page shows that impact before anyone decides.
 
+**Graph.** Parts, drawings, subsystems, materials and recorded suppliers become one graph each time the knowledge
+loads (`meridian/graph.py`); it is never stored. Every edge carries the cite ids it rests on. Paths prefer interfaces
+from the BOM and diagrams, and only pass through a shared subsystem when nothing better exists, saying so when they do.
+
+**Review loop.** Corrections have kinds: a value, a disputed reading settled, a BOM link, a connection added or
+withdrawn, a new drawing (`meridian/corrections.py`, `meridian/ingest.py`). Each runs its own checks before anyone
+decides. `meridian/learning.py` replays accepted corrections in decision order and measures the knowledge after each:
+scan fields against the truth set, disputes left, wrong corrections, ISO 286 failures, link certainty, connections.
+
+**Suppliers.** `python -m meridian suppliers` searches the web once, through OpenAI's web search, and keeps every
+response with the pages it returned (`kb/suppliers/`). A suggestion is kept only if its site is one the search
+returned and it is not the recorded supplier again. Custom parts are matched against makers by plain, visible rules
+(`meridian/suppliers.py`). The app reads the snapshot and never searches.
+
 The reasoning behind each choice, including the ones that did not work, is in [DECISIONS.md](DECISIONS.md).
 
 ## How well it works
@@ -240,11 +323,13 @@ output are in [EVALUATION.md](EVALUATION.md).
 | Scan fields shown as confirmed while wrong | 0 |
 | Automatic linker against curation | 18 / 26 |
 | 3D mass check, largest difference | 0.74 % |
-| Chat questions passing every check, two runs | 26 / 28 and 27 / 28 |
-| Same verdict in both runs | 27 / 28 |
-| Content checks, this vs. pasting all documents into the prompt | 26 vs. 12 of 28 |
-| Latency, median / 90th percentile | 4.3 s / 7.1 s |
-| Cost per answer, median | $0.0009 |
+| Chat questions passing every check, two runs | 39 / 40 and 40 / 40 |
+| The original 28 of them | 27 / 28 and 28 / 28 |
+| Same verdict in both runs | 39 / 40 |
+| Content checks, this vs. pasting all documents into the prompt | 39 vs. 17 of 40 |
+| Latency, median / 90th percentile | 4.9 s / 8.4 s, of which looking things up is about 1 ms |
+| Cost per answer, median | $0.0012 |
+| Supplier search: parts identified, suggestions kept, invented sites dropped | 34 of 36, 60, 0 |
 
 ## Limitations
 
@@ -255,8 +340,11 @@ output are in [EVALUATION.md](EVALUATION.md).
 - Single-reader scan values are shown with a caveat rather than hidden. One of them, D-003 sheet 2's scale, is wrong.
 - The links, diagram relations and title-block truth set were curated by one person, me. Four links are left
   ambiguous and five are marked probable.
-- Supplier, price and order number answers come from a BOM snapshot (retrieved 2 September 2026), and say so. Nothing is
-  checked against current availability. The brief's bonus items (finding new suppliers, a graph view) were not built.
+- Supplier, price and order number answers come from a BOM snapshot (retrieved 2 September 2026), and say so. Supplier
+  suggestions come from one web search on 2 October 2026; prices and stock were not checked, a "found by the search"
+  seller's page was not read, and makers are matched only on what their sites state.
+- Custom parts get a process from plain rules (thickness, material, wording). They are shown with each part, and can be
+  wrong: a box panel with no thickness on record is assumed to be milled.
 - Without an API key, recorded answers do not change after a correction is accepted. The drawings and review pages
   do.
 - One user, one process: the review log has no locking.
@@ -270,6 +358,10 @@ output are in [EVALUATION.md](EVALUATION.md).
   - In chat, the question, the last few messages and the tool results are sent: extracted text from the BOM and
     drawings, never the PDFs or images.
   - `meridian eval` also sends the BOM and every sheet's extracted text, for the baseline.
+  - `meridian suppliers` sends, for 36 bought parts, the part name, recorded supplier, product name or order number
+    and recorded link, and for six manufacturing processes their names, to OpenAI's web search. Never drawings,
+    prices or anything else from the sheets. It ran once; the responses are in `kb/suppliers/`.
+  - Adding a scanned drawing in the app sends its sheet images to the vision model, as the build does.
 - **Tesseract** runs locally, at build time only.
 - No other services. Fonts (IBM Plex, OFL) and three.js (MIT) are vendored under `web/vendor/` with their licences.
 - The upstream originals of the eight degraded sheets and the upstream CAD files were not used.
@@ -300,8 +392,19 @@ A rebuild with the vision responses cached takes about 7 seconds and makes no AP
 .venv/bin/python -m meridian eval
 ```
 
-`eval` needs a key, takes about two minutes and costs about $0.13. It writes a new folder in `eval/runs/` and refreshes
-the recorded answers.
+`eval` needs a key, takes about three minutes and costs about $0.22. It writes a new folder in `eval/runs/` and refreshes
+the recorded answers. After a grader fix, `eval --rescore eval/runs/<run>` scores the same answers again without asking.
+
+```bash
+.venv/bin/python -m meridian suppliers
+```
+
+Rebuilds `kb/suppliers.jsonl` from the cached searches; with `--refresh`, or for parts not searched yet, it needs a key
+(the full run took 83 seconds and 650,000 input tokens). To see how lookups scale with a larger corpus:
+
+```bash
+.venv/bin/python eval/scale.py
+```
 
 ## Layout
 
@@ -315,7 +418,11 @@ meridian/            the Python package
   linking.py         sheet-to-row candidates, and the curated decisions
   relations.py       stated, diagram and inferred relations
   knowledge.py       the KnowledgeBase every answer goes through
-  corrections.py     proposals, checks, impact and decisions
+  graph.py           the graph derived from it, and paths through it
+  corrections.py     proposals of every kind, checks, impact and decisions
+  learning.py        what each accepted correction changed
+  ingest.py          reading a drawing added in the app
+  suppliers.py       supplier search, its snapshot, and matching custom parts to makers
   geometry.py        the five 3D reconstructions
   chat/              tools, instructions, the answer check and the agent loop
   server.py          the API and static files
@@ -323,8 +430,8 @@ meridian/            the Python package
   evaluation.py      the chat evaluation
 web/                 the UI: plain ES modules, no build step
 curation/            human decisions the build reads, with reasons
-kb/                  build output: observations, relations, page images, 3D models
-eval/                truth set, questions, every run, recorded answers
+kb/                  build output: observations, relations, page images, 3D models, supplier searches
+eval/                truth set, questions, every run, recorded answers, the scaling benchmark
 tests/               parsing, settling, checking and correction rules
 dataset/             the supplied drawings, BOM and diagrams, unchanged
 docs/                the assignment brief, the annotated guide and screenshots

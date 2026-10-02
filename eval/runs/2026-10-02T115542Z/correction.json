@@ -1,0 +1,560 @@
+{
+ "question": "What does the build cylinder fit into?",
+ "before": {
+  "answer": "The build cylinder **registers on the Print Platform**: the system diagram says the cylinder’s top edge carries the platform’s registration surfaces [Zaxis_legend.l03] [Zaxis_legend.l04].\n\nThe drawing also says its inner surface should seal against a dynamic ceramic seal [D-023.p1.note.vision]. Two apparent bore-fit callouts on the cylinder failed the ISO 286 consistency check, so they don’t establish another fit [D-023.p1.vision.c06] [D-023.p1.vision.c07].",
+  "citations": {
+   "Zaxis_legend.l03": {
+    "id": "Zaxis_legend.l03",
+    "subject": "diagram:Zaxis_legend",
+    "field": "label",
+    "value": "Powder bed cylinder",
+    "method": "transcribed",
+    "source": {
+     "doc": "diagram:Zaxis_legend",
+     "bbox": [
+      86.0,
+      63.0,
+      340.0,
+      93.0
+     ]
+    },
+    "label": "diagram:Zaxis_legend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "Zaxis_legend.l04": {
+    "id": "Zaxis_legend.l04",
+    "subject": "diagram:Zaxis_legend",
+    "field": "label",
+    "value": "Main platform registration surfaces",
+    "method": "transcribed",
+    "source": {
+     "doc": "diagram:Zaxis_legend",
+     "bbox": [
+      713.0,
+      0.0,
+      1156.0,
+      30.0
+     ]
+    },
+    "label": "diagram:Zaxis_legend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "D-023.p1.note.vision": {
+    "id": "D-023.p1.note.vision",
+    "subject": "D-023",
+    "field": "note",
+    "value": "Baseret på Ø280mm, t=15mm\nEN AW-6082 T6 rør fra Alumeco.\nIndre flade [B] skal slutte tæt med\nen dynamisk keramisk pakning.\n\n55 mm længere ift. version 1",
+    "method": "vision",
+    "source": {
+     "doc": "D-023",
+     "page": 1,
+     "bbox": [
+      739.2,
+      662.0,
+      971.2,
+      764.0
+     ]
+    },
+    "label": "D-023 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "materials": {
+      "families": [
+       "aluminium",
+       "ceramic"
+      ],
+      "grades": [
+       "EN AW-6082"
+      ]
+     },
+     "legibility": "clear"
+    },
+    "note": "",
+    "status": "confirmed"
+   },
+   "D-023.p1.vision.c06": {
+    "id": "D-023.p1.vision.c06",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø262,0 H7 +0,026 / -0,026",
+    "method": "vision",
+    "source": {
+     "doc": "D-023",
+     "page": 1
+    },
+    "label": "D-023 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "fit": "H7",
+     "tolerance": {
+      "upper": 0.026,
+      "lower": -0.026
+     },
+     "diameter": 262.0,
+     "fit_check": "an H7 bore has a lower deviation of 0, but this reads -0.026; the reading, or the feature it was grouped with, is probably wrong",
+     "kind": "fit",
+     "legibility": "clear"
+    },
+    "note": ""
+   },
+   "D-023.p1.vision.c07": {
+    "id": "D-023.p1.vision.c07",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø264,0 H7 +0,026 / -0,026",
+    "method": "vision",
+    "source": {
+     "doc": "D-023",
+     "page": 1
+    },
+    "label": "D-023 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "fit": "H7",
+     "tolerance": {
+      "upper": 0.026,
+      "lower": -0.026
+     },
+     "diameter": 264.0,
+     "fit_check": "an H7 bore has a lower deviation of 0, but this reads -0.026; the reading, or the feature it was grouped with, is probably wrong",
+     "kind": "fit",
+     "legibility": "clear"
+    },
+    "note": ""
+   }
+  },
+  "attachments": [
+   {
+    "type": "drawing",
+    "ref": "D-023",
+    "name": "ByggeCylinder",
+    "sheet": 1,
+    "highlights": [
+     {
+      "cite": "D-023.p1.note.vision",
+      "sheet": 1,
+      "bbox": [
+       739.2,
+       662.0,
+       971.2,
+       764.0
+      ]
+     }
+    ],
+    "model_3d": null
+   },
+   {
+    "type": "graph",
+    "focus": "D-023"
+   }
+  ],
+  "steps": [
+   {
+    "tool": "find_parts",
+    "arguments": {
+     "query": "build cylinder"
+    },
+    "ms": 5
+   },
+   {
+    "tool": "get_part",
+    "arguments": {
+     "ref": "D-023"
+    },
+    "ms": 6
+   },
+   {
+    "tool": "get_interfaces",
+    "arguments": {
+     "ref": "D-023"
+    },
+    "ms": 2
+   }
+  ],
+  "check": {
+   "ok": true,
+   "rewritten": false,
+   "unknown_citations": [],
+   "untraced_numbers": []
+  },
+  "usage": {
+   "input_tokens": 18087,
+   "output_tokens": 239,
+   "calls": 4,
+   "usd": 0.00193
+  },
+  "seconds": 6.3,
+  "model": "gpt-6-luna",
+  "note": ""
+ },
+ "correction": {
+  "id": "C-001",
+  "target": "D-023.p1.vision.c06",
+  "subject": "D-023",
+  "current_value": "Ø262,0 H7 +0,026 / -0,026",
+  "proposed_value": "Ø262,0 j7 +0,026 / -0,026",
+  "reason": "The sheet prints j7; the vision model read it as H7.",
+  "question": "What does the build cylinder fit into?",
+  "proposed_at": "2026-10-02T11:57:22+00:00",
+  "checks": [
+   {
+    "name": "What would change",
+    "result": "note",
+    "detail": "D-023 sheet 1 currently reads \"Ø262,0 H7 +0,026 / -0,026\". The value was read by the vision model from a scan.",
+    "cites": [
+     "D-023.p1.vision.c06"
+    ]
+   },
+   {
+    "name": "ISO 286",
+    "result": "pass",
+    "detail": "j7 at Ø262: band 52 µm, IT7 at Ø262 is 52 µm; the band straddles zero, as j and js classes do.",
+    "cites": []
+   }
+  ],
+  "impact": [
+   {
+    "change": "adds",
+    "what": "inferred relation: D-003 Ø262 H8/j7 transition fit D-023",
+    "cites": [
+     "D-003.p1.vision.c15"
+    ]
+   },
+   {
+    "change": "clears",
+    "what": "Callout \"Ø262,0 H7 +0,026 / -0,026\" failed the ISO 286 check: an H7 bore has a lower deviation of 0, but this reads -0.026; the reading, or the feature it was grouped with, is probably wrong. No fit relation is inferred from it.",
+    "cites": []
+   }
+  ],
+  "status": "accepted",
+  "decided_at": "2026-10-02T11:57:22+00:00",
+  "decided_by": "evaluation run",
+  "decision_note": "Scripted scenario; the sheet shows j7 at 200 dpi.",
+  "kind": "value",
+  "payload": {}
+ },
+ "after": {
+  "answer": "The build cylinder appears to fit into the **Main Platform**: the cylinder drawing gives a corrected Ø262,0 j7 diameter, and the Main Platform drawing gives a Ø262 H8 bore. That suggests a transition fit, but it is an inferred match—not a stated connection. [D-023.p1.vision.c06.C-001] [D-003.p1.vision.c15]\n\nThe Z-axis diagram also says the cylinder registers on the **Print Platform**; its top edge carries the platform registration surfaces. [Zaxis_legend.l03] [Zaxis_legend.l04]\n\nCaution: another cylinder callout, “Ø264,0 H7 +0,026 / -0,026,” failed the ISO 286 check because an H7 bore should have a lower deviation of 0; the reading or feature grouping is probably wrong, so it is not used to infer a fit. [D-023.p1.vision.c07]",
+  "citations": {
+   "D-023.p1.vision.c06.C-001": {
+    "id": "D-023.p1.vision.c06.C-001",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø262,0 j7 +0,026 / -0,026",
+    "method": "review",
+    "source": {
+     "doc": "C-001",
+     "page": 1
+    },
+    "label": "C-001 sheet 1",
+    "confidence": null,
+    "parsed": {
+     "fit": "j7",
+     "tolerance": {
+      "upper": 0.026,
+      "lower": -0.026
+     },
+     "diameter": 262.0,
+     "kind": "fit",
+     "supersedes": "D-023.p1.vision.c06",
+     "correction": "C-001",
+     "decided_by": "evaluation run",
+     "decided_at": "2026-10-02T11:57:22+00:00"
+    },
+    "note": "The sheet prints j7; the vision model read it as H7.",
+    "correction": {
+     "by": "C-001",
+     "was": "Ø262,0 H7 +0,026 / -0,026",
+     "was_cite": "D-023.p1.vision.c06",
+     "decided_by": "evaluation run",
+     "decided_at": "2026-10-02T11:57:22+00:00",
+     "reason": "The sheet prints j7; the vision model read it as H7."
+    }
+   },
+   "D-003.p1.vision.c15": {
+    "id": "D-003.p1.vision.c15",
+    "subject": "D-003",
+    "field": "callout",
+    "value": "Ø262,0 H8 +0,081 / 0,000",
+    "method": "vision",
+    "source": {
+     "doc": "D-003",
+     "page": 1,
+     "bbox": [
+      892.0,
+      364.8,
+      951.6,
+      388.4
+     ]
+    },
+    "label": "D-003 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "fit": "H8",
+     "tolerance": {
+      "upper": 0.081,
+      "lower": 0.0
+     },
+     "diameter": 262.0,
+     "kind": "fit",
+     "legibility": "clear",
+     "ocr_match": "D-003.p1.ocr.a06",
+     "ocr_similarity": 0.82
+    },
+    "note": ""
+   },
+   "Zaxis_legend.l03": {
+    "id": "Zaxis_legend.l03",
+    "subject": "diagram:Zaxis_legend",
+    "field": "label",
+    "value": "Powder bed cylinder",
+    "method": "transcribed",
+    "source": {
+     "doc": "diagram:Zaxis_legend",
+     "bbox": [
+      86.0,
+      63.0,
+      340.0,
+      93.0
+     ]
+    },
+    "label": "diagram:Zaxis_legend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "Zaxis_legend.l04": {
+    "id": "Zaxis_legend.l04",
+    "subject": "diagram:Zaxis_legend",
+    "field": "label",
+    "value": "Main platform registration surfaces",
+    "method": "transcribed",
+    "source": {
+     "doc": "diagram:Zaxis_legend",
+     "bbox": [
+      713.0,
+      0.0,
+      1156.0,
+      30.0
+     ]
+    },
+    "label": "diagram:Zaxis_legend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "D-023.p1.vision.c07": {
+    "id": "D-023.p1.vision.c07",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø264,0 H7 +0,026 / -0,026",
+    "method": "vision",
+    "source": {
+     "doc": "D-023",
+     "page": 1
+    },
+    "label": "D-023 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "fit": "H7",
+     "tolerance": {
+      "upper": 0.026,
+      "lower": -0.026
+     },
+     "diameter": 264.0,
+     "fit_check": "an H7 bore has a lower deviation of 0, but this reads -0.026; the reading, or the feature it was grouped with, is probably wrong",
+     "kind": "fit",
+     "legibility": "clear"
+    },
+    "note": ""
+   }
+  },
+  "attachments": [
+   {
+    "type": "drawing",
+    "ref": "D-023",
+    "name": "ByggeCylinder",
+    "sheet": 1,
+    "highlights": [],
+    "model_3d": null
+   },
+   {
+    "type": "drawing",
+    "ref": "D-003",
+    "name": "Main Platform",
+    "sheet": 1,
+    "highlights": [
+     {
+      "cite": "D-003.p1.vision.c15",
+      "sheet": 1,
+      "bbox": [
+       892.0,
+       364.8,
+       951.6,
+       388.4
+      ]
+     }
+    ],
+    "model_3d": null
+   },
+   {
+    "type": "graph",
+    "focus": "D-023"
+   }
+  ],
+  "steps": [
+   {
+    "tool": "find_parts",
+    "arguments": {
+     "query": "build cylinder"
+    },
+    "ms": 4
+   },
+   {
+    "tool": "get_part",
+    "arguments": {
+     "ref": "D-023"
+    },
+    "ms": 6
+   },
+   {
+    "tool": "get_interfaces",
+    "arguments": {
+     "ref": "D-023"
+    },
+    "ms": 2
+   }
+  ],
+  "check": {
+   "ok": true,
+   "rewritten": false,
+   "unknown_citations": [],
+   "untraced_numbers": []
+  },
+  "usage": {
+   "input_tokens": 18972,
+   "output_tokens": 442,
+   "calls": 4,
+   "usd": 0.00212
+  },
+  "seconds": 7.76,
+  "model": "gpt-6-luna",
+  "note": ""
+ },
+ "fit_relations_before": [],
+ "fit_relations_after": [
+  "Ø262 H8/j7 transition fit"
+ ],
+ "answer_changed": true,
+ "after_mentions_correction": true,
+ "original_still_citable": true,
+ "learning": {
+  "measures": [
+   {
+    "key": "scan_right",
+    "label": "Scanned title-block fields that match the sheet"
+   },
+   {
+    "key": "scan_disputed",
+    "label": "Scanned fields the readers still dispute"
+   },
+   {
+    "key": "corrected_wrong",
+    "label": "Corrected values that don't match the sheet"
+   },
+   {
+    "key": "fit_failures",
+    "label": "Callouts failing the ISO 286 check"
+   },
+   {
+    "key": "links_linked",
+    "label": "Drawings linked to their BOM rows"
+   },
+   {
+    "key": "links_uncertain",
+    "label": "Links still probable or ambiguous"
+   },
+   {
+    "key": "connections",
+    "label": "Connections between parts"
+   }
+  ],
+  "before": {
+   "scan_right": 58,
+   "scan_total": 70,
+   "scan_disputed": 11,
+   "corrected_wrong": 0,
+   "fit_failures": 3,
+   "links_linked": 21,
+   "links_uncertain": 9,
+   "connections": 43,
+   "connections_by_kind": {
+    "stated": 24,
+    "diagram": 19
+   }
+  },
+  "now": {
+   "scan_right": 59,
+   "scan_total": 70,
+   "scan_disputed": 10,
+   "corrected_wrong": 0,
+   "fit_failures": 2,
+   "links_linked": 21,
+   "links_uncertain": 9,
+   "connections": 44,
+   "connections_by_kind": {
+    "stated": 24,
+    "diagram": 19,
+    "inferred": 1
+   }
+  },
+  "steps": [
+   {
+    "id": "C-001",
+    "kind": "value",
+    "subject": "D-023",
+    "decided_at": "2026-10-02T11:57:22+00:00",
+    "decided_by": "evaluation run",
+    "changes": [
+     {
+      "measure": "fit_failures",
+      "label": "Callouts failing the ISO 286 check",
+      "before": 3,
+      "after": 2
+     },
+     {
+      "measure": "connections",
+      "label": "Connections between parts",
+      "before": 43,
+      "after": 44
+     }
+    ]
+   },
+   {
+    "id": "C-002",
+    "kind": "dispute",
+    "subject": "D-011",
+    "decided_at": "2026-10-02T11:57:30+00:00",
+    "decided_by": "evaluation run",
+    "changes": [
+     {
+      "measure": "scan_right",
+      "label": "Scanned title-block fields that match the sheet",
+      "before": 58,
+      "after": 59
+     },
+     {
+      "measure": "scan_disputed",
+      "label": "Scanned fields the readers still dispute",
+      "before": 11,
+      "after": 10
+     }
+    ]
+   }
+  ]
+ }
+}

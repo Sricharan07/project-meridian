@@ -1,0 +1,186 @@
+{
+ "model": "gpt-6-luna",
+ "questions": 40,
+ "pass_rate_per_run": [
+  0.975,
+  0.9
+ ],
+ "by_category": {
+  "organisation": "2/3",
+  "drawing to BOM": "4/4",
+  "interfaces": "4/4",
+  "materials": "3/3",
+  "procurement": "5/5",
+  "noisy sheets": "5/5",
+  "3D": "3/3",
+  "corrections": "1/1",
+  "suppliers": "4/4",
+  "graph": "3/3",
+  "review loop": "3/3",
+  "robustness": "2/2"
+ },
+ "failures_run_1": {
+  "org-2": [
+   "mentions Build-plate"
+  ]
+ },
+ "repeatability": {
+  "same_verdict": "37/40",
+  "citation_overlap_median": 1.0
+ },
+ "latency_seconds": {
+  "median": 5.33,
+  "p90": 9.52,
+  "in_tools_median": 0.001,
+  "per_lookup_ms": {
+   "median": 0,
+   "p90": 1,
+   "max": 10,
+   "lookups": 175
+  }
+ },
+ "cost_usd": {
+  "per_answer_median": 0.00115,
+  "all_runs": 0.0949
+ },
+ "rewritten_after_failed_check": 3,
+ "still_failing_check": 0,
+ "baseline": {
+  "content_pass_rate": 0.475,
+  "system_content_pass_rate": 0.975,
+  "failures": {
+   "org-1": [
+    "mentions Optical"
+   ],
+   "link-1": [
+    "mentions RecoaterPlate.pdf"
+   ],
+   "link-3": [
+    "mentions ambiguous"
+   ],
+   "int-2": [
+    "mentions clamp ring"
+   ],
+   "buy-1": [
+    "mentions snapshot"
+   ],
+   "buy-5": [
+    "mentions snapshot"
+   ],
+   "scan-2": [
+    "mentions 4153"
+   ],
+   "scan-3": [
+    "mentions single"
+   ],
+   "scan-5": [
+    "mentions not"
+   ],
+   "3d-1": [
+    "mentions reconstruction"
+   ],
+   "3d-3": [
+    "mentions not CAD"
+   ],
+   "fix-1": [
+    "mentions review"
+   ],
+   "sup-1": [
+    "mentions DigiKey",
+    "mentions not checked"
+   ],
+   "sup-2": [
+    "mentions Raycus",
+    "mentions equivalent"
+   ],
+   "sup-3": [
+    "mentions Prototech",
+    "mentions tolerance"
+   ],
+   "sup-4": [
+    "mentions not searched",
+    "mentions 154"
+   ],
+   "graph-1": [
+    "mentions Print Platform",
+    "mentions diagram"
+   ],
+   "graph-2": [
+    "mentions Print Platform"
+   ],
+   "learn-1": [
+    "mentions review"
+   ],
+   "learn-2": [
+    "mentions review"
+   ],
+   "learn-3": [
+    "mentions review"
+   ]
+  },
+  "input_tokens_per_question": 26743.5,
+  "cost_usd": 0.1132
+ },
+ "correction": {
+  "fit_relations_before": [],
+  "fit_relations_after": [
+   "Ø262 H8/j7 transition fit"
+  ],
+  "answer_changed": true,
+  "after_mentions_correction": true,
+  "original_still_citable": true
+ },
+ "learning": {
+  "before": {
+   "scan_right": 58,
+   "scan_total": 70,
+   "scan_disputed": 11,
+   "corrected_wrong": 0,
+   "fit_failures": 3,
+   "links_linked": 21,
+   "links_uncertain": 9,
+   "connections": 43,
+   "connections_by_kind": {
+    "stated": 24,
+    "diagram": 19
+   }
+  },
+  "after": {
+   "scan_right": 59,
+   "scan_total": 70,
+   "scan_disputed": 10,
+   "corrected_wrong": 0,
+   "fit_failures": 2,
+   "links_linked": 21,
+   "links_uncertain": 9,
+   "connections": 44,
+   "connections_by_kind": {
+    "stated": 24,
+    "diagram": 19,
+    "inferred": 1
+   }
+  },
+  "steps": [
+   [
+    "Callouts failing the ISO 286 check",
+    3,
+    2
+   ],
+   [
+    "Connections between parts",
+    43,
+    44
+   ],
+   [
+    "Scanned title-block fields that match the sheet",
+    58,
+    59
+   ],
+   [
+    "Scanned fields the readers still dispute",
+    11,
+    10
+   ]
+  ]
+ }
+}
