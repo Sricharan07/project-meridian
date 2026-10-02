@@ -9,33 +9,161 @@ The assignment brief is in [docs/brief.md](docs/brief.md).
 
 ![An answer with numbered references beside the scanned sheet it cites. Pointing at reference 1 has brought the disputed material field into view, boxed in red, with the same numbers pinned on the drawing and the inspector listing what each reader saw](docs/screenshots/scan-disputed.png)
 
-## Running it
+## Getting started
+
+### What you need
+
+- macOS or Linux. On Windows, use WSL, or follow [Without the script](#without-the-script) below.
+- Python 3.11 or newer. Check with `python3 --version`. To install it: `brew install python@3.12` on macOS, or
+  `sudo apt install python3.12 python3.12-venv` on Ubuntu.
+- An internet connection the first time, to install three Python packages.
+- Optional: an OpenAI API key, for live answers. Everything else works without one.
+
+### 1. Start it
+
+From the project folder:
 
 ```bash
 ./start.sh
 ```
 
-Then open http://localhost:8000. It needs Python 3.11 or newer. The first run creates `.venv` and installs three
-packages (FastAPI, uvicorn, the OpenAI client). The knowledge base in `kb/` is built and committed, so nothing is
-extracted at startup and no system packages are needed.
+The first run creates a virtual environment in `.venv`, installs FastAPI, uvicorn and the OpenAI client into it, and
+prints `Meridian on http://localhost:8000`. Later runs start in about a second. The knowledge base in `kb/` is
+already built and committed, so nothing is extracted at startup and no system packages are needed.
 
-For live chat, put an OpenAI key in `.env` (created from `.env.example` on first run):
+### 2. Open it
+
+Go to **http://localhost:8000**. A laptop-sized window or larger shows the full layout; narrower windows stack the
+panels.
+
+### 3. Add an API key (optional)
+
+The first run creates `.env` from `.env.example`. Open it, set the key, then stop the server with Ctrl+C and run
+`./start.sh` again:
 
 ```
 OPENAI_API_KEY=sk-...
 ```
 
-Without a key everything except written answers still works: drawings, 3D views, the drawings page and the review
-page. Chat replays the recorded answers from the last evaluation run for the example questions, labelled as
-recordings, and for any other question shows the evidence for the part it names.
+With a key, each answer is written live and shows its time and cost underneath. Without one, the example questions
+replay their recorded answers from the last evaluation run, labelled as recordings, and any other question shows
+the evidence for the part it names. Drawings, 3D views and the review page work the same either way.
 
-## Things to try
+### Stopping, ports and starting over
 
-The example questions on the chat page are a good start. Some that show particular behaviour:
+- Stop the server with Ctrl+C in its terminal.
+- Use another port with `PORT=8001 ./start.sh`.
+- Clear the review history by deleting `var/corrections.jsonl`. It is append-only and never committed.
+
+### Without the script
+
+The same steps by hand, for Windows or anywhere `start.sh` cannot run. If `python3 --version` is older than 3.11,
+use the newer one by name in the first command, for example `python3.12`.
+
+```bash
+python3 -m venv .venv
+```
+
+```bash
+.venv/bin/pip install -r requirements.txt
+```
+
+```bash
+cp .env.example .env
+```
+
+```bash
+.venv/bin/python -m meridian serve --port 8000
+```
+
+On Windows, use `py -3.12 -m venv .venv`, then `.venv\Scripts\pip` and `.venv\Scripts\python` in place of the
+`.venv/bin` paths, and `copy` in place of `cp`.
+
+### If something goes wrong
+
+| What you see | What to do |
+|---|---|
+| `Meridian needs Python 3.11 or newer` | Install a newer Python (above), then run `./start.sh` again |
+| `permission denied: ./start.sh` | Run `bash start.sh`, or make it executable once with `chmod +x start.sh` |
+| `address already in use` | Something else has port 8000: `PORT=8001 ./start.sh` |
+| Chat says no API key is configured | Put the key in `.env` and restart the server |
+| The page looks out of date after an update | Reload it |
+
+## How to use it
+
+### Ask, and see where the answer comes from
+
+![The chat, a cited sheet and the inspector, with seven numbered callouts](docs/guide/1-ask.png)
+
+1. **Ask a question** about any part, material, cost or interface, and press Enter. An empty chat suggests
+   questions to start with.
+2. **Read the answer.** Every fact carries a numbered reference. Point at a number and the drawing travels to it.
+   Red numbers are readings the evidence disputes.
+3. **Check the sources.** Under each answer, each number says what it is, which reader read it and what it says.
+   Click one to open it on the sheet.
+4. **See it on the drawing.** The same numbers are pinned where each value is printed: yellow where the readers
+   agree, red where they don't. Scroll to zoom, drag to pan, double-click to fit.
+5. **The inspector** lists what needs a second look first, then every title-block field and how sure its reading is.
+6. **Switch views** between the sheet, the 3D reconstruction where there is one, the BOM row and the part's
+   relations.
+7. **Find any part** with ⌘K (Ctrl K on Windows and Linux). The sun in the corner switches to the light theme.
+
+### Explore a part in 3D
+
+![The 3D tab: the sheet beside the reconstruction, with linked dimensions](docs/guide/2-model.png)
+
+1. **Open the 3D view** from the 3D button under an answer, or the 3D tab above the sheet. Five parts have one.
+2. **It is a reconstruction, not CAD:** built only from the numbers on the drawing. Drag to orbit, scroll to zoom;
+   the corner button refits.
+3. **Sheet, model and list are linked.** Each dimension is boxed on the sheet where it was read and drawn on the
+   model. Point at any one and the other two light up; click to zoom both to it, and press Esc to let go.
+4. **Section** cuts the part like the sheet's section views, hatched, and a slider moves the cut. **Dimensions**
+   shows or hides the labels.
+5. **The mass check** compares volume times density with the weight printed on the sheet. All five agree within
+   0.75 %.
+
+### Correct a value
+
+![Telling the chat a value is wrong, and the correction it files](docs/guide/3-correct.png)
+
+1. **Say what's wrong.** Tell the chat which value is wrong and what it should be. For example, ask "What does the
+   build cylinder fit into?", then: "That Ø262 callout on the build cylinder drawing is wrong. The sheet prints a
+   lowercase j7, not H7. It should read Ø262,0 j7 +0,026 / -0,026."
+2. **A correction is filed** instead of the chat simply agreeing, with what the automatic checks found and what
+   accepting it would change.
+3. **It waits for review.** Pending corrections are counted on the Review tab.
+
+![The Review page with the change, its checks and the decision](docs/guide/4-review.png)
+
+1. **The change:** the current reading struck through and the proposed one, with only what differs marked.
+2. **Automatic checks:** ISO 286, the other reader and the other sources.
+3. **If accepted:** what accepting adds or clears, worked out before anyone decides.
+4. **Decide.** Enter your name and a note, then accept or reject. Ask the first question again: the answer now
+   gives the H8/j7 fit with the main platform, names the correction, and still cites the original "H7" reading.
+
+### Browse every drawing
+
+![The Drawings page, every sheet grouped by subsystem](docs/guide/5-drawings.png)
+
+1. **Filter** to every sheet, only the degraded scans, or only the parts with a 3D reconstruction.
+2. **Open a sheet** by clicking it. Its tags say whether it is a scan, whether it has a 3D model, and when its link
+   to a BOM row is uncertain.
+
+### Keyboard
+
+| Key | What it does |
+|---|---|
+| ⌘K, or Ctrl K | Find a drawing or BOM row by name |
+| `/` | Jump to the question box |
+| Enter, Shift+Enter | Send the question, or start a new line |
+| Esc | Close the finder, or let go of a pinned dimension in the 3D view |
+| Double-click a sheet | Fit it to the view |
+
+### Things to try
 
 | Ask | What to look for |
 |---|---|
-| Show me the recoater mount block. | Opens the drawing, with a link to the sheet and the 3D reconstruction side by side |
+| Show me the recoater mount block. | Opens the drawing, with a 3D button for the sheet and the model side by side |
 | How thick is the heating element plate? | The sheet prints a limit, 3,0 over 2,0; the model was built at 2,0, the value the title-block weight matches |
 | Which drawing documents the recoater stage plate? | Names D-014 and raises that its BOM row lists D-013's file |
 | Is the recoater arm made of stainless steel? | Aluminium by the BOM and the sheet's note; the scanned material field is disputed, and both readings are quoted |
@@ -43,31 +171,11 @@ The example questions on the chat page are a good start. Some that show particul
 | Is the BOM's motor plate drawing D-029 or D-030? | Says the evidence cannot tell, and why |
 | What did the Box subsystem cost, and what is missing from that figure? | A total from a dated snapshot, with the rows that have no cost |
 
-Each fact in an answer carries a numbered reference, and the same number is pinned on the sheet where the value was
-read. Point at a reference and the sheet travels to it; references in red are readings the evidence disputes. The
-inspector beside the sheet lists every title-block field with how sure its reading is. ⌘K (Ctrl K) opens any drawing
-or BOM row by name, and the sun or moon in the top bar switches between the dark and light themes.
+### All five reconstructions
 
-### The sheet and the model
+Each sheet with the dimensions its model was built from boxed in yellow, beside the model:
 
-Five parts have a **3D** tab, which puts the sheet beside the model. Every dimension the model was built from is
-boxed on the sheet where it was read and drawn on the model the way the sheet gives it. Point at either, or at a row
-in the inspector, and the other two light up; click to zoom the sheet to the callout and bring the model in to the
-dimension. **Section** cuts the part like the sheet's section views, hatched, through the hole worth looking at; the
-slider moves the cut.
-
-### A correction, end to end
-
-1. Ask "What does the build cylinder fit into?" The vision model read two of D-023's fits as H7. The sheet says j7,
-   and the answer reports that those readings fail an ISO 286 check.
-2. Tell it so: "The Ø262 callout on the build cylinder drawing should read Ø262,0 j7 +0,026 / -0,026." The chat files
-   a correction instead of agreeing, and reports what the automatic checks found.
-3. Open **Review**. The correction shows the original reading on the sheet, the checks, and what accepting it would
-   change: a new inferred H8/j7 transition fit with the main platform.
-4. Enter your name and accept it. Ask the first question again. The answer now gives the fit, names the
-   correction, and still cites the original "H7" reading.
-
-The review log is `var/corrections.jsonl`. It is append-only and not committed; delete it to start over.
+![The five reconstructed parts, each sheet beside its model](docs/guide/6-all-models.png)
 
 ## How it works
 
@@ -219,37 +327,25 @@ kb/                  build output: observations, relations, page images, 3D mode
 eval/                truth set, questions, every run, recorded answers
 tests/               parsing, settling, checking and correction rules
 dataset/             the supplied drawings, BOM and diagrams, unchanged
+docs/                the assignment brief, the annotated guide and screenshots
 ```
 
-## Screenshots
+## More screenshots
 
-The sheet and the model side by side: the sheet's 30,0 callout is under the pointer, and the same dimension is lit
-on the model and in the inspector:
-
-![Recoater mount block, sheet and reconstruction linked](docs/screenshots/model-3d.png)
-
-The build plate in section, after clicking the counterbore depth in the table: the sheet has zoomed to the hole
-callout and the model to the counterbore, cut and hatched:
+The build plate in section, after clicking the counterbore depth: the sheet has zoomed to the hole callout and the
+model to the counterbore, cut and hatched:
 
 ![Build plate reconstruction in section](docs/screenshots/model-3d-build-plate.png)
 
-An answer that raises a datasheet conflict, with the drawing opened beside it:
-
-![Datasheet conflict](docs/screenshots/chat-conflict.png)
-
-A correction proposed in chat, pending in review, accepted, and the answer afterwards:
-
-![Correction proposed in chat](docs/screenshots/correction-proposed.png)
-
-![Correction pending review](docs/screenshots/review-pending.png)
+The correction accepted, and the same question asked again afterwards:
 
 ![Correction accepted](docs/screenshots/review-accepted.png)
 
 ![The same question after the correction](docs/screenshots/correction-after.png)
 
-All 30 drawings by subsystem, with how each was read and how sure its BOM link is:
+An answer that raises a datasheet conflict, with the drawing opened beside it:
 
-![Drawings](docs/screenshots/drawings.png)
+![Datasheet conflict](docs/screenshots/chat-conflict.png)
 
 The light theme, on a scanned weight the two readers disagree about:
 
