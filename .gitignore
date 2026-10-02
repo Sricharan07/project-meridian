@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.DS_Store
+
+# Runtime state: the correction log and anything the server writes.
+var/
+
+# Reference screenshots supplied with the brief. Not ours to redistribute.
+refrence_ui/
