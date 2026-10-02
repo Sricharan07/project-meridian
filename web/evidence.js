@@ -5,7 +5,7 @@ import { citeTarget } from "./cite.js";
 import { chip } from "./render.js";
 import { html, raw, mount, $, $$ } from "./dom.js";
 import { SheetViewer } from "./sheet.js";
-import { ModelViewer } from "./model.js";
+import { ModelViewer, modelNotes } from "./model.js";
 
 const FIELD_LABELS = { title: "Title", note: "Note", material: "Material", weight: "Weight [g]", date: "Date", scale: "Scale", sheet: "Sheet" };
 // BOM columns are shown as the CSV writes them, typos included, so a reader can find them in the file.
@@ -99,7 +99,7 @@ export class EvidencePanel {
       ? [drawing.subsystem, drawing.scan ? `scanned sheet (${drawing.degradation})` : "clean sheet",
          rows.length ? `BOM row${rows.length > 1 ? "s" : ""} ${rows.join(", ")} (${part.bom_link.status})` : "no BOM row"]
       : [`BOM row ${rows[0]}`, "no supplied drawing"];
-    const tabs = [["sheet", "Sheet", !drawing], ["model", "3D", !part.model_3d], ["bom", "BOM", !rows.length], ["relations", "Relations", false]];
+    const tabs = [["sheet", "Sheet", !drawing], ["model", "Sheet + 3D", !part.model_3d], ["bom", "BOM", !rows.length], ["relations", "Relations", false]];
 
     mount(this.root, html`
       <div class="panel-head">
@@ -163,10 +163,75 @@ export class EvidencePanel {
     });
   }
 
+  // The sheet and the model side by side. Every dimension the model was built from is marked on
+  // the sheet where it was read; pointing at either side, or at the table, lights up the other two.
   async renderModel(body) {
-    mount(body, html`<div class="viewer model"></div><div class="panel-section model-notes"></div>`);
-    const record = (await api.models())[this.state.part.ref];
-    new ModelViewer($(".viewer", body), $(".model-notes", body)).show(record);
+    const model = (await api.models())[this.state.part.ref];
+    const meta = this.sheetMeta(this.state.part.ref, 1);
+    body.classList.add("linked-body");  // the viewers stay in view; only the notes below them scroll
+    mount(body, html`
+      <div class="linked"><div class="viewer"></div><div class="viewer model"></div></div>
+      <div class="panel-section model-notes">${modelNotes(model)}</div>`);
+
+    // A sheet region can hold several dimensions (one hole callout gives a diameter, a counterbore and its depth).
+    const regionOf = model.dimensions.map((d) => (d.region ? d.cite || "measured" : null));
+    const marks = [];
+    model.dimensions.forEach((d, i) => {
+      const key = regionOf[i];
+      if (!key || marks.some((m) => m.cite === key)) return;
+      const names = model.dimensions.filter((_, j) => regionOf[j] === key).map((x) => x.name);
+      marks.push({ cite: key, bbox: d.region, title: `${d.how === "measured" ? "Measured here: " : ""}${names.join(", ")}` });
+    });
+
+    let pinned = new Set();
+    const rows = [...body.querySelectorAll(".dims-table tr[data-dim]")];
+    const light = (dims) => {
+      const keys = new Set([...dims].map((i) => regionOf[i]).filter(Boolean));
+      sheet.highlight(keys);
+      viewer.highlight(dims);
+      rows.forEach((r) => r.classList.toggle("hit", dims.has(Number(r.dataset.dim))));
+    };
+    const hover = (dims) => light(dims ?? pinned);
+    const pin = (dims, { zoom = false } = {}) => {
+      const same = dims.size === pinned.size && [...dims].every((i) => pinned.has(i));
+      pinned = same ? new Set() : dims;
+      light(pinned);
+      const region = [...pinned].map((i) => model.dimensions[i].region).find(Boolean);
+      if (zoom && region) sheet.zoomTo(region);
+      if (pinned.size) viewer.focus(pinned);
+    };
+    const inRegion = (key) => new Set(regionOf.flatMap((k, i) => (k === key ? [i] : [])));
+
+    const [left, right] = body.querySelectorAll(".linked .viewer");
+    const sheet = new SheetViewer(left, {
+      onHover: (key) => hover(key ? inRegion(key) : null),
+      onMark: (key) => pin(inRegion(key)),
+    });
+    const viewer = new ModelViewer(right, {
+      onHover: (i) => hover(i === null ? null : new Set([i])),
+      onPick: (i) => pin(new Set([i]), { zoom: true }),
+    });
+    // Open on the views the dimensions were read from: their callouts, with room for the geometry around them.
+    const all = marks.map((m) => m.bbox), room = meta.width * 0.1;
+    sheet.show({
+      src: `/kb/${meta.image}`, width: meta.width, height: meta.height, marks,
+      frame: [Math.min(...all.map((b) => b[0])) - room, Math.min(...all.map((b) => b[1])) - room,
+              Math.max(...all.map((b) => b[2])) + room, Math.max(...all.map((b) => b[3])) + room],
+    });
+    await viewer.show(model);
+
+    const unpin = (e) => {
+      if (!body.isConnected) return document.removeEventListener("keydown", unpin);
+      if (e.key === "Escape" && pinned.size && !document.querySelector("dialog[open]")) pin(pinned);
+    };
+    document.addEventListener("keydown", unpin);
+
+    for (const row of rows) {
+      const dims = new Set([Number(row.dataset.dim)]);
+      row.addEventListener("pointerenter", () => hover(dims));
+      row.addEventListener("pointerleave", () => hover(null));
+      row.addEventListener("click", (e) => { if (!e.target.closest("[data-cite]")) pin(dims, { zoom: true }); });
+    }
   }
 
   renderBom(body) {
@@ -206,7 +271,7 @@ export class EvidencePanel {
     const tab = e.target.closest("[data-tab]");
     if (tab && !tab.disabled) { this.state.tab = tab.dataset.tab; return this.render(); }
     const cite = e.target.closest("[data-cite]");
-    if (cite) return this.openCite(cite.dataset.cite);
+    if (cite && !cite.closest(".viewer")) return this.openCite(cite.dataset.cite);  // a viewer handles its own marks
     const row = e.target.closest("tr[data-focus]");
     if (row?.dataset.focus) return this.openCite(row.dataset.focus);
     const link = e.target.closest("[data-part]");
