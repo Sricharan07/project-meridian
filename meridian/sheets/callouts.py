@@ -209,6 +209,8 @@ def parse(text: str, stacked_pair: bool = False) -> dict:
     text = " / ".join(line for line in lines if line not in views and line not in prose)
 
     out: dict = _read_numbers(text, stacked_pair) if text else {}
+    if problem := _fit_problem(out):
+        out["fit_check"] = problem
     out["kind"] = _kind(out) if out else ("note" if prose else "view" if views else "unread")
     if prose:
         out["remark"] = " / ".join(prose)
@@ -292,6 +294,17 @@ def _read_numbers(text: str, stacked_pair: bool) -> dict:
     elif numbers:
         out["values"] = numbers
     return out
+
+
+def _fit_problem(p: dict) -> str | None:
+    """ISO 286 fixes one deviation of H holes and h shafts at zero. A reading that breaks that has a misread letter
+    or number. The vision model read D-023's "j7 +0,026/-0,026" as "H7 +0,026/-0,026"; this is what catches it."""
+    fit, tolerance = p.get("fit"), p.get("tolerance") or {}
+    if fit and fit.startswith("H") and tolerance.get("lower", 0) != 0:
+        return f"an {fit} bore has a lower deviation of 0, but this reads {tolerance['lower']:+g}; the class letter may be misread"
+    if fit and fit.startswith("h") and tolerance.get("upper", 0) != 0:
+        return f"an {fit} shaft has an upper deviation of 0, but this reads {tolerance['upper']:+g}; the class letter may be misread"
+    return None
 
 
 def _kind(p: dict) -> str:

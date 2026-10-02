@@ -1,0 +1,76 @@
+{
+ "key": "98400506c8d1ee443c129dd275046c901e427ad931be25643abb26426303a5db",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:30:19+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 635
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "SealRing",
+    "legibility": "clear"
+   },
+   "note": {
+    "text": "Ring with o-ring groove\nAluminium",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "6061 Alloy",
+    "legibility": "clear"
+   },
+   "weight": {
+    "text": "107.4",
+    "legibility": "clear"
+   },
+   "date": {
+    "text": "06/01/2022",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:2",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "1 OF 1",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "10,2 / 9,8",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø41.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø118.6",
+    "legibility": "clear"
+   },
+   {
+    "text": "R65.5",
+    "legibility": "clear"
+   },
+   {
+    "text": "6 x Ø 3,3 ↧ 8.0 / M4 - 6H ↧ 6.0 / Blinde huller",
+    "legibility": "clear"
+   },
+   {
+    "text": "5.2 +0,2 / 0,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "3.2 +0,1",
+    "legibility": "clear"
+   },
+   {
+    "text": "Radius op til 1mm",
+    "legibility": "clear"
+   }
+  ]
+ }
+}

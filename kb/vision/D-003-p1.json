@@ -1,0 +1,116 @@
+{
+ "key": "87cc80a11a0dc32a93c7d61b8a931240534ed0cc411a5ffed002a360fcb3c1ba",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:29:41+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 992
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "note": {
+    "text": "Note: All threaded holes are blind. / 20mm thick aluminium plate.",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "weight": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "date": {
+    "text": "26/10/2023",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:10",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "1 OF 3",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "Ø297.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "270.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "775.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "R3.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "40.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "255.5",
+    "legibility": "clear"
+   },
+   {
+    "text": "250.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "40.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "60°",
+    "legibility": "clear"
+   },
+   {
+    "text": "270,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "600,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "20,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø252,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "10,0 +0,05 / 0,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø262,0 H8 +0,081 / 0,000",
+    "legibility": "clear"
+   },
+   {
+    "text": "3,0 x 45°",
+    "legibility": "clear"
+   },
+   {
+    "text": "DETAIL C / SCALE 1 : 5",
+    "legibility": "clear"
+   },
+   {
+    "text": "SECTION A-A",
+    "legibility": "clear"
+   }
+  ]
+ }
+}

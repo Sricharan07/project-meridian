@@ -23,6 +23,7 @@ from PIL import Image
 from meridian import config
 from meridian.evidence import Method, Observation, Source
 from meridian.reading import similarity
+from meridian.sheets import template
 from meridian.sheets.callouts import parse
 from meridian.sheets.fields import parse_field
 from meridian.sheets.scan import Registration, ScanPage
@@ -127,6 +128,8 @@ def observations(drawing_id: str, page: int, reading: dict, reg: Registration, o
     for field in FIELDS:
         entry = reading["title_block"][field]
         text = entry["text"].strip()
+        if (prefix := template.VALUE_PREFIX.get(field)) and text.upper().startswith(prefix):
+            text = text[len(prefix):].strip()  # the model sometimes copies the printed label: "SHEET 3 OF 3"
         out.append(Observation(
             id=f"{drawing_id}.p{page}.{field}.vision",
             subject=drawing_id,

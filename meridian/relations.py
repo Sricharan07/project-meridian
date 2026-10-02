@@ -106,8 +106,8 @@ def inferred_fits(observations: Iterable[Observation]) -> list[Relation]:
     for o in observations:
         p = o.parsed or {}
         fit, size = p.get("fit"), p.get("diameter", p.get("value"))
-        if o.field != "callout" or not fit or size is None:
-            continue
+        if o.field != "callout" or not fit or size is None or p.get("fit_check"):
+            continue  # a reading that fails its own ISO 286 check is not evidence of a mating part
         (holes if fit[0].isupper() else shafts).append((size, fit, o))
     out, seen = [], set()
     for size, hole_fit, hole in holes:

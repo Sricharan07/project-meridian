@@ -1,0 +1,100 @@
+{
+ "key": "c1368da6b9c4c8a69ab1ff5fdc79cfc19e19d85630ef373560e163c68f09de4f",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:30:11+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 655
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "Recoater Arm",
+    "legibility": "clear"
+   },
+   "note": {
+    "text": "Alu.\nArm til linær føring",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "7075-T6, Plate (SS)",
+    "legibility": "clear"
+   },
+   "weight": {
+    "text": "415.3",
+    "legibility": "clear"
+   },
+   "date": {
+    "text": "24/11/2021",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:2",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "1 OF 1",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "15.0 / 12.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "20.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "25.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "2 x Ø 6,6 THRU ALL",
+    "legibility": "clear"
+   },
+   {
+    "text": "80.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "195.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "R35.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "R60.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "82,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "4 x Ø 4,2 THRU ALL / M5 - 6H THRU ALL",
+    "legibility": "clear"
+   },
+   {
+    "text": "10.5",
+    "legibility": "clear"
+   },
+   {
+    "text": "8.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "25.0",
+    "legibility": "clear"
+   },
+   {
+    "text": "348,0",
+    "legibility": "clear"
+   }
+  ]
+ }
+}

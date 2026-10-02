@@ -1,0 +1,92 @@
+{
+ "key": "2937d9eb6fac99ac915193cb6aeef0a7fb10348131845f66b284600a2ea58c4b",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:30:04+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 865
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "note": {
+    "text": "Powder canister.\nNon-magnetic stainless.\n\nWall thickness as thin as possible.\nMust be powder tight.",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "weight": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "date": {
+    "text": "20/12/2023",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:5",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "1 OF 1",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "8 x Ø 5,80 THRU ALL",
+    "legibility": "clear"
+   },
+   {
+    "text": "Has to fit between two wall",
+    "legibility": "clear"
+   },
+   {
+    "text": "4 x Ø 10,50 / for M8 weld nut inside",
+    "legibility": "clear"
+   },
+   {
+    "text": "322,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "5,00 / 3,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "270,00 max.",
+    "legibility": "clear"
+   },
+   {
+    "text": "230,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "395,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø 14,80 THRU / For M12 weld nut / outside",
+    "legibility": "clear"
+   },
+   {
+    "text": "8 x Ø 7,00 / for M5 weld nut inside",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø 25,00 THRU",
+    "legibility": "clear"
+   },
+   {
+    "text": "Distance between [A] and [B] is the most critical dimensions. The canister mounts to the holes at [A], and should seal with an o-ring at [B]. Should stay below +/- 1mm",
+    "legibility": "clear"
+   }
+  ]
+ }
+}

@@ -1,0 +1,92 @@
+{
+ "key": "63334ac090e45364260ff3307fe527815fb5136ef153af5b5d87bd23d6335885",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:30:26+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 514
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "note": {
+    "text": "Inlet Box\nFour corner joints should be\nwelded.\nStainless\nFree choice of thickness\n(as thin as possible)",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "weight": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "date": {
+    "text": "20/12/2023",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:2",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "1 OF 1",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "162,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø3,00 THRU",
+    "legibility": "clear"
+   },
+   {
+    "text": "200,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "105",
+    "legibility": "clear"
+   },
+   {
+    "text": "120",
+    "legibility": "clear"
+   },
+   {
+    "text": "184,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "100°",
+    "legibility": "clear"
+   },
+   {
+    "text": "62,50",
+    "legibility": "clear"
+   },
+   {
+    "text": "Weld nuts",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø3,00 THRU",
+    "legibility": "clear"
+   },
+   {
+    "text": "Four corners to be welded",
+    "legibility": "clear"
+   },
+   {
+    "text": "10 x Ø7,00 THRU ALL / for M5 weld nut on side shown",
+    "legibility": "clear"
+   }
+  ]
+ }
+}

@@ -1,0 +1,104 @@
+{
+ "key": "fb322953b50ed9f7e013984b7733aae9b8cd98aa72893491f6383fd28276b32a",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:30:37+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 1102
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "ByggeCylinder",
+    "legibility": "clear"
+   },
+   "note": {
+    "text": "Baseret på Ø280mm, t=15mm\nEN AW-6082 T6 rør fra Alumeco.\nIndre flade [B] skal slutte tæt med\nen dynamisk keramisk pakning.\n\n55 mm længere ift. version 1",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "EN AW-6082",
+    "legibility": "clear"
+   },
+   "weight": {
+    "text": "3195.5",
+    "legibility": "clear"
+   },
+   "date": {
+    "text": "13-09-2023",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:5",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "1 OF 1",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "36,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "21,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "12,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "280,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø280,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø262,0 H7 +0,026 / -0,026",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø264,0 H7 +0,026 / -0,026",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø262,0 -0,0 / -0,2",
+    "legibility": "clear"
+   },
+   {
+    "text": "10° ±2,0°",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø252,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "N8 -0,005 / -0,086",
+    "legibility": "clear"
+   },
+   {
+    "text": "20,0 ±1,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "14,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ikke funktionelle overflader",
+    "legibility": "clear"
+   },
+   {
+    "text": "Glat indre flade.\nRa 0.8-0.4",
+    "legibility": "clear"
+   }
+  ]
+ }
+}

@@ -1,0 +1,80 @@
+{
+ "key": "adf5edb88803e5b99b1f584f3d1d50ec41b0775be14f22476e62fedde87e0745",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:29:30+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 494
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "note": {
+    "text": "Door - x2\n3mm aluminium",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "weight": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "date": {
+    "text": "21/12/2023",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:5",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "1 OF 1",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "3,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "492,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "515",
+    "legibility": "clear"
+   },
+   {
+    "text": "2 x Ø 4,50 THRU ALL",
+    "legibility": "clear"
+   },
+   {
+    "text": "3 x Ø 6,60 THRU ALL",
+    "legibility": "clear"
+   },
+   {
+    "text": "200,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "287,00",
+    "legibility": "clear"
+   },
+   {
+    "text": "20 x Ø 4,50 THRU ALL",
+    "legibility": "clear"
+   },
+   {
+    "text": "6 x Ø 6,60 THRU ALL",
+    "legibility": "clear"
+   }
+  ]
+ }
+}

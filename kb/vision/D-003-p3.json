@@ -1,0 +1,60 @@
+{
+ "key": "170b7e6d526403536731713b0523e55e1b055166867fb0e671335046b05eabff",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:29:55+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 756
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "note": {
+    "text": "Threaded holes top side",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "weight": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "date": {
+    "text": "26/10/2023",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:5",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "SHEET 3 OF 3",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "A / Ø 4,2 ↧ 12,4 / M5 - 6H ↧ 10,0 / 8",
+    "legibility": "clear"
+   },
+   {
+    "text": "B / Ø 10,5 ↧ 19,0 / TAP FOR M10x1.5 HELICOIL Insert = 1.0 * Dia. / 4",
+    "legibility": "clear"
+   },
+   {
+    "text": "C / Ø 8,3 ↧ 19,5 / TAP FOR M8x1.25 HELICOIL Insert = 1.0 * Dia. / 3",
+    "legibility": "clear"
+   },
+   {
+    "text": "G / Ø 8,3 ↧ 13,0 / TAP FOR M8x1.25 HELICOIL Insert = 1.0 * Dia. / 5",
+    "legibility": "clear"
+   }
+  ]
+ }
+}

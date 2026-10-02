@@ -1,0 +1,60 @@
+{
+ "key": "c230794310cff1aa9de4d407853bb2a1dd0e3ad7e193e6a3a37c45cb10ca8172",
+ "model": "gpt-6-luna",
+ "prompt_version": 1,
+ "read_at": "2026-10-02T05:29:48+00:00",
+ "usage": {
+  "input_tokens": 3080,
+  "output_tokens": 645
+ },
+ "reading": {
+  "title_block": {
+   "title": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "note": {
+    "text": "Threaded holes bottom side",
+    "legibility": "clear"
+   },
+   "material": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "weight": {
+    "text": "",
+    "legibility": "blank"
+   },
+   "date": {
+    "text": "26/10/2023",
+    "legibility": "clear"
+   },
+   "scale": {
+    "text": "1:15",
+    "legibility": "clear"
+   },
+   "sheet": {
+    "text": "2 OF 3",
+    "legibility": "clear"
+   }
+  },
+  "callouts": [
+   {
+    "text": "Ø 6,8 ↧ 15,0 / M8 - 6H ↧ 12,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø 5,0 ↧ 15,0 / M6 - 6H ↧ 12,0",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø 8,3 ↧ 17,2 / TAP FOR M8x1.25 HELICOIL Insert = 1.5 * Dia.",
+    "legibility": "clear"
+   },
+   {
+    "text": "Ø 4,2 ↧ 12,4 / M5 - 6H ↧ 10,0",
+    "legibility": "clear"
+   }
+  ]
+ }
+}
