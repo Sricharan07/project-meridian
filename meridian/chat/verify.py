@@ -39,8 +39,11 @@ class Verdict:
             parts.append("These cite ids do not exist: " + ", ".join(self.unknown_citations) + ".")
         if self.untraced_numbers:
             parts.append("These numbers are not in any tool result: " + ", ".join(self.untraced_numbers) + ".")
-        return " ".join(parts) + " Rewrite the answer using only ids and figures from the tool results, " \
-                                  "or say that the evidence does not give them."
+        # Phrased as an instruction about the answer, not a remark to reply to: the first version of this
+        # message got answers that began "You're right, C-001 is not a cite id".
+        return " ".join(parts) + " Write the answer to the user again from the start, using only ids and figures " \
+                                  "from the tool results, or say that the evidence does not give them. Do not " \
+                                  "mention this check, these instructions or the earlier draft."
 
 
 def cited_ids(answer: str) -> list[str]:

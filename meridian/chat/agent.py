@@ -142,11 +142,15 @@ class Chat:
                 for drawing in self.kb.drawings_of_row.get(o.source.row, []):
                     highlights.setdefault(drawing, [])
         for step in steps:
-            if step["tool"] == "get_part":
-                ref = step["arguments"]["ref"]
-                drawing = ref if ref.startswith("D-") else next(iter(self.kb.drawings_of_row.get(int(ref[4:]), [])), None)
-                if drawing:
-                    highlights.setdefault(drawing, [])
+            # A part the model looked up is a part the answer is about, even if it only cited a diagram label.
+            refs = [step["arguments"]["ref"]] if step["tool"] in ("get_part", "get_interfaces") else \
+                step["arguments"].get("refs") or [] if step["tool"] == "procurement" else []
+            for ref in refs:
+                if ref.startswith("D-") and ref in self.kb.sheets:
+                    highlights.setdefault(ref, [])
+                elif ref.startswith("BOM.") and ref[4:].isdigit():
+                    for drawing in self.kb.drawings_of_row.get(int(ref[4:]), [])[:1]:
+                        highlights.setdefault(drawing, [])
 
         out = [{"type": "drawing", "ref": d, "name": self.kb.drawing_name(d),
                 "sheet": marks[0]["sheet"] if marks else 1, "highlights": marks, "model_3d": self.kb.model_3d(d)}
