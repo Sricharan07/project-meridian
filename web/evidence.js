@@ -138,7 +138,7 @@ export class EvidencePanel {
         <table class="facts">${page.callouts.map((c) => html`
           <tr class="clickable ${c.cite === focus ? "hit" : ""}" data-focus="${c.cite}">
             <td class="mono">${c.text}</td>
-            <td class="muted">${c.kind}${c.fit_check ? html` <span class="status conflict">failed ISO 286 check</span>` : ""}${
+            <td class="muted">${c.fit && c.tolerance?.upper !== undefined ? html`${c.fit} ${raw(band(c.tolerance))}` : c.kind}${c.fit_check ? html` <span class="status conflict">failed ISO 286 check</span>` : ""}${
               c.corrected ? html` <span class="status corrected">corrected, ${c.corrected.by}, was ${c.corrected.was}</span>` : ""}</td>
             <td class="muted">${c.read_by === "pdf-text" ? "" : c.read_by}${c.confirmed_by_ocr ? " + ocr" : ""}</td>
           </tr>`)}</table></div>`);
@@ -278,6 +278,17 @@ export class EvidencePanel {
     if (link) { e.preventDefault(); return this.openPart(link.dataset.part); }
     if (e.target.closest("[data-close]")) this.root.classList.remove("open");
   }
+}
+
+// A fit's tolerance zone against the nominal size, drawn as ISO 286 draws it: a hole's H zone sits on
+// the zero line, a g shaft's below it with a gap, a j zone straddles it. A misread fit shows at a glance.
+function band({ upper, lower }) {
+  const reach = Math.max(Math.abs(upper), Math.abs(lower)) || 1;
+  const y = (v) => 9 - (v / reach) * 7;
+  const um = (v) => `${v > 0 ? "+" : ""}${Math.round(v * 1000)} µm`;
+  return `<svg class="band" width="30" height="18" viewBox="0 0 30 18" role="img" aria-label="tolerance zone ${um(lower)} to ${um(upper)}">
+    <title>${um(lower)} to ${um(upper)} from the nominal size</title>
+    <rect x="9" y="${y(upper)}" width="12" height="${Math.max(y(lower) - y(upper), 1)}"/><line x1="1" x2="29" y1="9" y2="9"/></svg>`;
 }
 
 function statusClass(status) {
