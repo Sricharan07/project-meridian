@@ -165,3 +165,11 @@ table.facts tr.clickable:hover td { background: var(--sunken); }
   .panel-head .close { display: inline-block; }
 }
 .panel-head .close { display: none; margin-left: auto; background: none; border: 0; color: var(--text-2); cursor: pointer; }
+
+/* 3D view */
+
+.viewer.model { cursor: default; }
+.viewer.model canvas { display: block; width: 100%; height: 100%; }
+.model-label { position: absolute; left: 12px; top: 12px; right: 12px; max-width: 560px; padding: 6px 10px; font-size: 12.5px; color: var(--warn); background: rgba(255, 255, 255, 0.94); border-left: 2px solid var(--warn); border-radius: 4px; }
+.model-notes ul { margin: 0; padding-left: 18px; }
+.model-notes li { margin: 2px 0; }

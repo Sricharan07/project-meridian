@@ -91,7 +91,8 @@ export class ChatView {
     return html`<div class="message">
       <div class="body">${raw(answerHtml(t.answer, t.citations))}</div>
       ${t.check.ok === false ? html`<div class="check">${problems(t.check)}</div>` : ""}
-      ${drawings.length ? html`<div class="opened">Sheets: ${drawings.map((a, i) => html`${i ? ", " : ""}<button type="button" data-open="${a.ref}">${a.ref} ${a.name}</button>`)}</div>` : ""}
+      ${drawings.length ? html`<div class="opened">Sheets: ${drawings.map((a, i) => html`${i ? ", " : ""}<button type="button" data-open="${a.ref}">${a.ref} ${a.name}</button>${
+        a.model_3d ? html` (<button type="button" data-model="${a.ref}">3D reconstruction</button>)` : ""}`)}</div>` : ""}
       ${trace(t)}
     </div>`;
   }
@@ -103,6 +104,8 @@ export class ChatView {
     if (more) return more.outerHTML = more.dataset.more.split(",").map((id) => chip(id)).join("");
     const cite = e.target.closest("[data-cite]");
     if (cite) return this.evidence.openCite(cite.dataset.cite);
+    const model = e.target.closest("[data-model]");
+    if (model) return this.evidence.openPart(model.dataset.model, { tab: "model" });
     const open = e.target.closest("[data-open]");
     if (open) {
       const turn = this.messages.find((m) => m.turn?.attachments.some((a) => a.ref === open.dataset.open))?.turn;

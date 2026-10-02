@@ -33,7 +33,8 @@ async function route() {
 
   if (!left.querySelector(".composer")) chat.mount(left);
   const part = path.match(/^\/part\/([\w.-]+)$/);
-  if (part && evidence.state.part?.ref !== part[1]) evidence.openPart(part[1]).catch(() => evidence.empty());
+  const tab = { "3d": "model", bom: "bom", relations: "relations" }[new URLSearchParams(location.search).get("view")] || "sheet";
+  if (part && evidence.state.part?.ref !== part[1]) evidence.openPart(part[1], { tab }).catch(() => evidence.empty());
 }
 
 document.addEventListener("click", (e) => {

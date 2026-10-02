@@ -86,6 +86,15 @@ class KnowledgeBase:
         return json.loads(path.read_text()) if path.exists() else {}
 
     def model_3d(self, drawing: str) -> dict | None:
+        """What the chat needs to know about a reconstruction; the full record is served to the 3D view."""
+        model = self.models.get(drawing)
+        if model is None:
+            return None
+        judged = [{k: d[k] for k in ("name", "value", "how", "note", "cite")} for d in model["dimensions"] if d["how"] != "callout"]
+        return {"is": "reconstruction from the 2D drawing, not CAD", "mass_check": model["mass"],
+                "choices_and_measurements": judged, "assumptions": model["assumptions"], "not_modelled": model["omitted"]}
+
+    def model_record(self, drawing: str) -> dict | None:
         return self.models.get(drawing)
 
     @cached_property

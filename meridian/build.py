@@ -11,7 +11,7 @@ import time
 
 import pymupdf
 
-from meridian import bom, config, corpus, evidence, linking, relations
+from meridian import bom, config, corpus, evidence, geometry, linking, relations
 from meridian.corpus import Drawing
 from meridian.sheets import scan, vector, vision
 
@@ -47,6 +47,8 @@ def build() -> dict:
     candidates = linking.propose(drawings, observations)
 
     config.KB.mkdir(exist_ok=True)
+    titles = {o.subject: o.value for o in observations if o.field == "title" and o.method.value == "pdf-text"}
+    models = geometry.build_all(observations, titles)
     summary = {
         "source_revision": config.SOURCE_REVISION,
         "model": config.MODEL,
@@ -54,6 +56,7 @@ def build() -> dict:
         "relations": relations.write_jsonl(config.KB / "relations.jsonl", edges),
         "link_candidates": _write_candidates(candidates),
         "sheets": _render_sheets(drawings),
+        "reconstructions": {d: m["mass"]["difference_percent"] for d, m in models.items()},
         "unread_by_vision": unread_by_vision,
         "seconds": round(time.monotonic() - started, 1),
     }

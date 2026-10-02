@@ -5,6 +5,13 @@
  "relations": 43,
  "link_candidates": 86,
  "sheets": 33,
+ "reconstructions": {
+  "D-012": -0.03,
+  "D-015": 0.74,
+  "D-025": 0.04,
+  "D-026": -0.01,
+  "D-028": -0.12
+ },
  "unread_by_vision": [],
- "seconds": 6.9
+ "seconds": 7.0
 }

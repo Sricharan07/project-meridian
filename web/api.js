@@ -21,6 +21,7 @@ export const api = {
   drawings: () => once("drawings", () => get("/api/drawings")),
   part: (ref) => once(`part:${ref}`, () => get(`/api/parts/${encodeURIComponent(ref)}`)),
   evidence: (id) => once(`evidence:${id}`, () => get(`/api/evidence/${encodeURIComponent(id)}`)),
+  models: () => once("models", () => get("/kb/models/index.json")),
   ask: (question, history) => post("/api/chat", { question, history }),
   forget: (prefix) => [...cache.keys()].filter((k) => k.startsWith(prefix)).forEach((k) => cache.delete(k)),
 };

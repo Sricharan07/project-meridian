@@ -162,10 +162,10 @@ export class EvidencePanel {
     });
   }
 
-  renderModel(body) {
-    const model = this.state.part.model_3d;
+  async renderModel(body) {
     mount(body, html`<div class="viewer model"></div><div class="panel-section model-notes"></div>`);
-    new ModelViewer($(".viewer", body), $(".model-notes", body)).show(model);
+    const record = (await api.models())[this.state.part.ref];
+    new ModelViewer($(".viewer", body), $(".model-notes", body)).show(record);
   }
 
   renderBom(body) {

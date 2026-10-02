@@ -1,0 +1,348 @@
+{
+ "D-012": {
+  "drawing": "D-012",
+  "name": "Recoater Mount Block",
+  "material": "EN AW-5005",
+  "density": 2.7,
+  "density_basis": "handbook value for EN AW-5005",
+  "dimensions": [
+   {
+    "name": "length",
+    "value": 120.0,
+    "cite": "D-012.p1.a07",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "width",
+    "value": 25.0,
+    "cite": "D-012.p1.a01",
+    "how": "callout",
+    "note": "+0,1 / -0,5; nominal used"
+   },
+   {
+    "name": "thickness",
+    "value": 15.0,
+    "cite": "D-012.p1.a02",
+    "how": "callout",
+    "note": "±1,0; nominal used"
+   },
+   {
+    "name": "tap drill, M6 holes",
+    "value": 5.0,
+    "cite": "D-012.p1.a03",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "face holes from centre",
+    "value": 40.0,
+    "cite": "D-012.p1.a05",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "side holes from centre",
+    "value": 30.0,
+    "cite": "D-012.p1.a06",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "face holes from the long edge",
+    "value": 12.5,
+    "cite": "D-012.p1.a04",
+    "how": "callout",
+    "note": "±0,1; half the width, so on the centre line"
+   }
+  ],
+  "assumptions": [
+   "The side holes sit on the centre line of the 15 mm face, as drawn; the sheet does not dimension it."
+  ],
+  "omitted": [
+   "M6 threads (modelled at the Ø5,0 tap drill)",
+   "edge breaks"
+  ],
+  "mass": {
+   "volume_mm3": 43429.4,
+   "computed_g": 117.3,
+   "sheet_g": 117.3,
+   "sheet_cite": "D-012.p1.weight",
+   "difference_percent": -0.03
+  },
+  "file": "models/D-012.glb"
+ },
+ "D-015": {
+  "drawing": "D-015",
+  "name": "Silikone Wiper",
+  "material": "silicone rubber",
+  "density": 1.25,
+  "density_basis": "typical for silicone rubber; the compound is not specified",
+  "dimensions": [
+   {
+    "name": "length",
+    "value": 270.0,
+    "cite": "D-015.p1.a02",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "width",
+    "value": 14.0,
+    "cite": "D-015.p1.a03",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "thickness",
+    "value": 1.0,
+    "cite": "D-015.p1.a01",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "hole diameter",
+    "value": 3.4,
+    "cite": "D-015.p1.a04",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "first hole from the end",
+    "value": 9.98,
+    "cite": null,
+    "how": "measured",
+    "note": "measured on the sheet's vector geometry at 1:1"
+   },
+   {
+    "name": "hole pitch",
+    "value": 35.71,
+    "cite": null,
+    "how": "measured",
+    "note": "measured; matches the 35,7 pitch between D-013's eight M3 holes, where the wiper is clamped"
+   },
+   {
+    "name": "holes off the centre line",
+    "value": -2.01,
+    "cite": null,
+    "how": "measured",
+    "note": "measured; the row sits 5 mm from one long edge"
+   }
+  ],
+  "assumptions": [],
+  "omitted": [
+   "the cut edge finish of the waterjet-cut sheet"
+  ],
+  "mass": {
+   "volume_mm3": 3707.4,
+   "computed_g": 4.6,
+   "sheet_g": 4.6,
+   "sheet_cite": "D-015.p1.weight",
+   "difference_percent": 0.74
+  },
+  "file": "models/D-015.glb"
+ },
+ "D-025": {
+  "drawing": "D-025",
+  "name": "Bygge Base Ring",
+  "material": "EN AW-5005",
+  "density": 2.7,
+  "density_basis": "handbook value for EN AW-5005",
+  "dimensions": [
+   {
+    "name": "outer diameter",
+    "value": 250.0,
+    "cite": "D-025.p1.a02",
+    "how": "callout",
+    "note": "±0,2"
+   },
+   {
+    "name": "inner diameter",
+    "value": 224.0,
+    "cite": "D-025.p1.a03",
+    "how": "callout",
+    "note": "+0,3 / 0,0"
+   },
+   {
+    "name": "thickness",
+    "value": 3.0,
+    "cite": "D-025.p1.a01",
+    "how": "limit",
+    "note": "the sheet allows 2,0 to 3,0; the title-block weight matches 3,0"
+   },
+   {
+    "name": "hole diameter",
+    "value": 3.4,
+    "cite": "D-025.p1.a05",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "countersink diameter",
+    "value": 6.9,
+    "cite": "D-025.p1.a05",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "hole circle radius",
+    "value": 115.5,
+    "cite": "D-025.p1.a04",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "hole spacing",
+    "value": 45.0,
+    "cite": null,
+    "how": "as drawn",
+    "note": "eight holes evenly spaced, as drawn; the angle is not dimensioned"
+   }
+  ],
+  "assumptions": [],
+  "omitted": [],
+  "mass": {
+   "volume_mm3": 28641.2,
+   "computed_g": 77.3,
+   "sheet_g": 77.3,
+   "sheet_cite": "D-025.p1.weight",
+   "difference_percent": 0.04
+  },
+  "file": "models/D-025.glb"
+ },
+ "D-026": {
+  "drawing": "D-026",
+  "name": "Build Plate",
+  "material": "AISI 316",
+  "density": 8.0,
+  "density_basis": "handbook value for AISI 316",
+  "dimensions": [
+   {
+    "name": "diameter",
+    "value": 250.0,
+    "cite": "D-026.p1.a02",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "thickness",
+    "value": 20.0,
+    "cite": "D-026.p1.a01",
+    "how": "limit",
+    "note": "the sheet gives a range, 15 to 25; the title-block weight matches its midpoint, 20"
+   },
+   {
+    "name": "through hole",
+    "value": 5.3,
+    "cite": "D-026.p1.a04",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "counterbore diameter",
+    "value": 10.0,
+    "cite": "D-026.p1.a04",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "counterbore depth",
+    "value": 15.4,
+    "cite": "D-026.p1.a04",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "hole circle radius",
+    "value": 105.0,
+    "cite": "D-026.p1.a03",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "hole spacing",
+    "value": 120.0,
+    "cite": null,
+    "how": "as drawn",
+    "note": "three holes 120° apart, as drawn"
+   }
+  ],
+  "assumptions": [
+   "Counterbores open on the top face, which the view shows; the sheet does not name a side."
+  ],
+  "omitted": [
+   "the parallelism tolerance to datum A"
+  ],
+  "mass": {
+   "volume_mm3": 977716.7,
+   "computed_g": 7821.7,
+   "sheet_g": 7822.5,
+   "sheet_cite": "D-026.p1.weight",
+   "difference_percent": -0.01
+  },
+  "file": "models/D-026.glb"
+ },
+ "D-028": {
+  "drawing": "D-028",
+  "name": "Varmeelement Plade",
+  "material": "EN AW-5005",
+  "density": 2.7,
+  "density_basis": "handbook value for EN AW-5005",
+  "dimensions": [
+   {
+    "name": "distance between end centres",
+    "value": 19.0,
+    "cite": "D-028.p1.a03",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "end radius",
+    "value": 5.5,
+    "cite": "D-028.p1.a02",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "width",
+    "value": 11.0,
+    "cite": "D-028.p1.a04",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "thickness",
+    "value": 2.0,
+    "cite": "D-028.p1.a01",
+    "how": "limit",
+    "note": "the sheet allows 2,0 to 3,0; the title-block weight matches 2,0"
+   },
+   {
+    "name": "end holes",
+    "value": 4.5,
+    "cite": "D-028.p1.a05",
+    "how": "callout",
+    "note": ""
+   },
+   {
+    "name": "centre hole",
+    "value": 8.0,
+    "cite": "D-028.p1.a06",
+    "how": "callout",
+    "note": "±0,15"
+   }
+  ],
+  "assumptions": [
+   "The end holes are concentric with the end radii and the Ø8 hole is central, as drawn."
+  ],
+  "omitted": [],
+  "mass": {
+   "volume_mm3": 443.9,
+   "computed_g": 1.2,
+   "sheet_g": 1.2,
+   "sheet_cite": "D-028.p1.weight",
+   "difference_percent": -0.12
+  },
+  "file": "models/D-028.glb"
+ }
+}
