@@ -13,6 +13,10 @@ thicknesses, which are the things most easily misread.
 
 Threads, chamfers, edge breaks and tolerances are not modelled. Tapped holes
 are modelled at their tap-drill size, which is what removes material.
+
+Each dimension also says where to draw it on the model (`show`) and where it
+sits on the sheet (`region`), so the app can point from one to the other.
+Coordinates are the solid's own: millimetres, Z along the thickness, centred.
 """
 
 import json
@@ -47,6 +51,8 @@ class Dimension:
     cite: str | None
     how: str          # "callout", "limit", "measured" or "as drawn"
     note: str = ""
+    at: dict | None = None        # a dimension line on the model: from a to b, drawn at an offset
+    region: list | None = None    # where it is on the sheet, PDF points; the cited callout's box unless measured
 
 
 @dataclass
@@ -61,6 +67,7 @@ class Reconstruction:
     omitted: list[str] = field(default_factory=list)
     mass: dict = field(default_factory=dict)
     file: str = ""
+    section: float = 0.0  # default position of the section cut, along Y: through the holes worth seeing
 
 
 class Sheet:
@@ -81,13 +88,22 @@ class Sheet:
         self.record.dimensions.append(Dimension(name, float(value), cite, how, note))
         return float(value)
 
-    def measured(self, name: str, value: float, note: str) -> float:
-        self.record.dimensions.append(Dimension(name, round(value, 2), None, "measured", note))
+    def measured(self, name: str, value: float, note: str, region: list | None = None) -> float:
+        self.record.dimensions.append(Dimension(name, round(value, 2), None, "measured", note, region=region))
         return value
 
     def as_drawn(self, name: str, value: float, note: str) -> float:
         self.record.dimensions.append(Dimension(name, value, None, "as drawn", note))
         return value
+
+    def show(self, name: str, a, b, offset=(0, 0, 0), symbol: str = "", label: float = 0.5) -> None:
+        """Where a dimension is drawn on the model, as a drafter would: extension lines from a and b out to
+        the offset, and the dimension line between them. `symbol` is printed before the value (Ø, R).
+        `label` is where the value sits along the line, 0 at a and 1 at b; beyond either end, the line
+        is carried out to it, as a drafter does for a feature too small to write inside."""
+        dim = next(d for d in self.record.dimensions if d.name == name)
+        dim.at = {"a": [round(v, 3) for v in a], "b": [round(v, 3) for v in b],
+                  "offset": [round(v, 3) for v in offset], "symbol": symbol, "label": label}
 
     def assume(self, text: str) -> None:
         self.record.assumptions.append(text)
@@ -125,6 +141,12 @@ def polar(radius: float, angles: list[float]) -> list[tuple[float, float]]:
     return [(radius * math.cos(math.radians(a)), radius * math.sin(math.radians(a))) for a in angles]
 
 
+def across(x: float, y: float, z: float, diameter: float, angle: float = 0.0) -> tuple[tuple, tuple]:
+    """The two ends of a diameter through (x, y) at height z, at `angle` degrees from X."""
+    dx, dy = diameter / 2 * math.cos(math.radians(angle)), diameter / 2 * math.sin(math.radians(angle))
+    return (x - dx, y - dy, z), (x + dx, y + dy, z)
+
+
 # --- the five parts -------------------------------------------------------------
 
 def recoater_mount_block(s: Sheet) -> mf.Manifold:
@@ -137,6 +159,15 @@ def recoater_mount_block(s: Sheet) -> mf.Manifold:
     from_edge = s.dim("face holes from the long edge", "D-012.p1.a04", note="±0,1; half the width, so on the centre line")
     s.omit("M6 threads (modelled at the Ø5,0 tap drill)", "edge breaks")
     s.assume("The side holes sit on the centre line of the 15 mm face, as drawn; the sheet does not dimension it.")
+
+    x0, y0, z0 = length / 2, width / 2, thickness / 2
+    s.show("length", (-x0, -y0, -z0), (x0, -y0, -z0), (0, -16, 0))
+    s.show("width", (x0, -y0, z0), (x0, y0, z0), (8, 0, 0))
+    s.show("thickness", (x0, -y0, -z0), (x0, -y0, z0), (0, -8, 0))
+    s.show("tap drill, M6 holes", *across(face_offset, from_edge - y0, z0, drill, 90), symbol="Ø")
+    s.show("face holes from centre", (0, 0, z0), (face_offset, 0, z0))
+    s.show("side holes from centre", (0, -y0, 0), (-side_offset, -y0, 0))
+    s.show("face holes from the long edge", (-face_offset, -y0, z0), (-face_offset, from_edge - y0, z0))
 
     solid = box(length, width, thickness)
     for x in (-face_offset, face_offset):
@@ -152,12 +183,24 @@ def silicone_wiper(s: Sheet) -> mf.Manifold:
     width = s.dim("width", "D-015.p1.a03")
     thickness = s.dim("thickness", "D-015.p1.a01")
     hole = s.dim("hole diameter", "D-015.p1.a04", key="diameter")
-    centres = _hole_centres("D-015", length, width)
-    s.measured("first hole from the end", centres[0][0], "measured on the sheet's vector geometry at 1:1")
+    centres, view = _hole_centres("D-015", length, width)
+    s.measured("first hole from the end", centres[0][0], "measured on the sheet's vector geometry at 1:1", view)
     pitch = s.measured("hole pitch", (centres[-1][0] - centres[0][0]) / (len(centres) - 1),
-                       "measured; matches the 35,7 pitch between D-013's eight M3 holes, where the wiper is clamped")
-    s.measured("holes off the centre line", centres[0][1], "measured; the row sits 5 mm from one long edge")
+                       "measured; matches the 35,7 pitch between D-013's eight M3 holes, where the wiper is clamped", view)
+    s.measured("holes off the centre line", abs(centres[0][1]), "measured; the row sits 5 mm from one long edge", view)
     s.omit("the cut edge finish of the waterjet-cut sheet")
+
+    x0, y0, z0 = length / 2, width / 2, thickness / 2
+    first, row = centres[0]
+    chain = (0, -y0 - 3 - row, 0)  # the hole positions, chained along a line just off the front edge
+    s.show("length", (-x0, -y0, z0), (x0, -y0, z0), (0, -12, 0))
+    s.show("width", (x0, -y0, z0), (x0, y0, z0), (6, 0, 0))
+    s.show("thickness", (x0, -y0, -z0), (x0, -y0, z0), (0, -6, 0))
+    s.show("hole diameter", *across(first - x0, row, z0, hole, 90), symbol="Ø", label=2.6)
+    s.show("first hole from the end", (-x0, row, z0), (first - x0, row, z0), chain)
+    s.show("hole pitch", (first - x0, row, z0), (first + pitch - x0, row, z0), chain)
+    s.show("holes off the centre line", (centres[2][0] - x0, 0, z0), (centres[2][0] - x0, row, z0))
+    s.record.section = row
 
     solid = box(length, width, thickness)
     for x, y in centres:
@@ -174,6 +217,17 @@ def build_base_ring(s: Sheet) -> mf.Manifold:
     sink = s.dim("countersink diameter", "D-025.p1.a05", key="countersink", pick=lambda c: c["size"])
     pitch_radius = s.dim("hole circle radius", "D-025.p1.a04", key="radius")
     s.as_drawn("hole spacing", 45.0, "eight holes evenly spaced, as drawn; the angle is not dimensioned")
+
+    z0 = thickness / 2
+    sink_depth = (sink - hole) / 2  # a 90° countersink is as deep as it is wide at the rim, per side
+    hx, hy = polar(pitch_radius, [-90.0])[0]  # the hole nearest the default view, which the default section cuts
+    s.show("outer diameter", *across(0, 0, z0, outer, 70), symbol="Ø", label=0.82)  # between holes, not across one
+    s.show("inner diameter", *across(0, 0, z0, inner), symbol="Ø")
+    s.show("thickness", (outer / 2, 0, -z0), (outer / 2, 0, z0), (12, 0, 0))
+    s.show("hole circle radius", (0, 0, z0), (*polar(pitch_radius, [-45.0])[0], z0), symbol="R")
+    s.show("countersink diameter", *across(hx, hy, z0, sink, 90), symbol="Ø", label=-1.2)
+    s.show("hole diameter", *across(hx, hy, z0 - sink_depth, hole), symbol="Ø", label=4.5)
+    s.record.section = round(hy, 2)
 
     solid = disc(outer, thickness) - disc(inner, thickness + 2)
     for x, y in polar(pitch_radius, [i * 45.0 for i in range(8)]):
@@ -195,6 +249,16 @@ def build_plate(s: Sheet) -> mf.Manifold:
     s.assume("Counterbores open on the top face, which the view shows; the sheet does not name a side.")
     s.omit("the parallelism tolerance to datum A")
 
+    z0 = thickness / 2
+    hx, hy = polar(pitch_radius, [300.0])[0]  # the hole nearest the default view, which the default section cuts
+    s.show("diameter", *across(0, 0, z0, diameter, 90), symbol="Ø")
+    s.show("thickness", (diameter / 2, 0, -z0), (diameter / 2, 0, z0), (14, 0, 0))
+    s.show("hole circle radius", (0, 0, z0), (-pitch_radius, 0, z0), symbol="R")
+    s.show("counterbore diameter", *across(hx, hy, z0, bore), symbol="Ø")
+    s.show("counterbore depth", (hx - bore / 2, hy, z0), (hx - bore / 2, hy, z0 - bore_depth))
+    s.show("through hole", *across(hx, hy, -z0, hole), symbol="Ø")
+    s.record.section = round(hy, 2)
+
     solid = disc(diameter, thickness)
     for x, y in polar(pitch_radius, [60.0, 180.0, 300.0]):
         solid -= hole_z(hole, x, y)
@@ -213,6 +277,15 @@ def heating_element_plate(s: Sheet) -> mf.Manifold:
     if abs(2 * radius - width) > 0.01:
         raise ValueError("D-028: the end radius and the width disagree")
     s.assume("The end holes are concentric with the end radii and the Ø8 hole is central, as drawn.")
+
+    x0, z0 = centres / 2, thickness / 2
+    s.show("distance between end centres", (-x0, 0, z0), (x0, 0, z0), (0, -radius - 3, 0))
+    s.show("end radius", (x0, 0, z0), (x0 + radius * math.cos(math.radians(-45)), radius * math.sin(math.radians(-45)), z0), symbol="R")
+    between = (-x0 + small / 2 - middle / 2) / 2  # clear of both holes
+    s.show("width", (between, -radius, z0), (between, radius, z0))
+    s.show("thickness", (x0 + radius, 0, -z0), (x0 + radius, 0, z0), (3, 0, 0))
+    s.show("end holes", *across(-x0, 0, z0, small), symbol="Ø")
+    s.show("centre hole", *across(0, 0, z0, middle, 45), symbol="Ø")
 
     end = mf.Manifold.cylinder(thickness, radius, -1, SEGMENTS, center=True)
     solid = box(centres, width, thickness) + end.translate([-centres / 2, 0, 0]) + end.translate([centres / 2, 0, 0])
@@ -241,6 +314,9 @@ def build_all(observations: list[Observation], names: dict[str, str]) -> dict[st
         density, basis = DENSITY[material]
         record = Reconstruction(drawing, names[drawing], material, density, basis)
         solid = make(Sheet(drawing, by_id, record))
+        for d in record.dimensions:
+            if d.cite and d.region is None:
+                d.region = by_id[d.cite].source.bbox
         record.mass = _mass_check(drawing, solid, density, by_id)
         record.file = f"models/{drawing}.glb"
         _export(solid, out_dir / f"{drawing}.glb")
@@ -268,8 +344,9 @@ def _export(solid: mf.Manifold, path) -> None:
     path.write_bytes(tm.export(file_type="glb"))
 
 
-def _hole_centres(drawing: str, length: float, width: float) -> list[tuple[float, float]]:
-    """Hole centres in mm, measured off the view whose outline is length x width at the sheet's scale.
+def _hole_centres(drawing: str, length: float, width: float) -> tuple[list[tuple[float, float]], list[float]]:
+    """Hole centres in mm, measured off the view whose outline is length x width at the sheet's scale,
+    and that view's box on the sheet.
 
     SolidWorks writes a view's outline and its holes as one path; the holes are the small
     closed loops inside it. Positions are taken from the left end and the centre line.
@@ -286,7 +363,8 @@ def _hole_centres(drawing: str, length: float, width: float) -> list[tuple[float
                     ys = [p.y for p in loop]
                     if len(loop) > 8 and max(xs) - min(xs) < 10 * MM:
                         centres.append((((max(xs) + min(xs)) / 2 - r.x0) / MM, ((max(ys) + min(ys)) / 2 - (r.y0 + r.y1) / 2) / MM))
-                return sorted((round(x, 2), round(y, 2)) for x, y in centres)
+                view = [round(v, 1) for v in (r.x0, r.y0, r.x1, r.y1)]
+                return sorted((round(x, 2), round(y, 2)) for x, y in centres), view
     raise ValueError(f"no {length} x {width} view found on {drawing}")
 
 

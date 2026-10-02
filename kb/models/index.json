@@ -11,49 +11,224 @@
     "value": 120.0,
     "cite": "D-012.p1.a07",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      -60.0,
+      -12.5,
+      -7.5
+     ],
+     "b": [
+      60.0,
+      -12.5,
+      -7.5
+     ],
+     "offset": [
+      0,
+      -16,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     410.6,
+     347.0,
+     428.7,
+     387.3
+    ]
    },
    {
     "name": "width",
     "value": 25.0,
     "cite": "D-012.p1.a01",
     "how": "callout",
-    "note": "+0,1 / -0,5; nominal used"
+    "note": "+0,1 / -0,5; nominal used",
+    "at": {
+     "a": [
+      60.0,
+      -12.5,
+      7.5
+     ],
+     "b": [
+      60.0,
+      12.5,
+      7.5
+     ],
+     "offset": [
+      8,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     527.0,
+     136.3,
+     586.4,
+     167.2
+    ]
    },
    {
     "name": "thickness",
     "value": 15.0,
     "cite": "D-012.p1.a02",
     "how": "callout",
-    "note": "±1,0; nominal used"
+    "note": "±1,0; nominal used",
+    "at": {
+     "a": [
+      60.0,
+      -12.5,
+      -7.5
+     ],
+     "b": [
+      60.0,
+      -12.5,
+      7.5
+     ],
+     "offset": [
+      0,
+      -8,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     244.5,
+     166.1,
+     306.8,
+     184.2
+    ]
    },
    {
     "name": "tap drill, M6 holes",
     "value": 5.0,
     "cite": "D-012.p1.a03",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      40.0,
+      -2.5,
+      7.5
+     ],
+     "b": [
+      40.0,
+      2.5,
+      7.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 0.5
+    },
+    "region": [
+     689.8,
+     201.5,
+     808.5,
+     235.5
+    ]
    },
    {
     "name": "face holes from centre",
     "value": 40.0,
     "cite": "D-012.p1.a05",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      0,
+      0,
+      7.5
+     ],
+     "b": [
+      40.0,
+      0,
+      7.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     606.2,
+     308.2,
+     624.2,
+     341.2
+    ]
    },
    {
     "name": "side holes from centre",
     "value": 30.0,
     "cite": "D-012.p1.a06",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      0,
+      -12.5,
+      0
+     ],
+     "b": [
+      -30.0,
+      -12.5,
+      0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     308.4,
+     322.4,
+     326.5,
+     355.4
+    ]
    },
    {
     "name": "face holes from the long edge",
     "value": 12.5,
     "cite": "D-012.p1.a04",
     "how": "callout",
-    "note": "±0,1; half the width, so on the centre line"
+    "note": "±0,1; half the width, so on the centre line",
+    "at": {
+     "a": [
+      -40.0,
+      -12.5,
+      7.5
+     ],
+     "b": [
+      -40.0,
+      0.0,
+      7.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     447.4,
+     250.6,
+     509.6,
+     268.7
+    ]
    }
   ],
   "assumptions": [
@@ -70,7 +245,8 @@
    "sheet_cite": "D-012.p1.weight",
    "difference_percent": -0.03
   },
-  "file": "models/D-012.glb"
+  "file": "models/D-012.glb",
+  "section": 0.0
  },
  "D-015": {
   "drawing": "D-015",
@@ -84,49 +260,224 @@
     "value": 270.0,
     "cite": "D-015.p1.a02",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      -135.0,
+      -7.0,
+      0.5
+     ],
+     "b": [
+      135.0,
+      -7.0,
+      0.5
+     ],
+     "offset": [
+      0,
+      -12,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     655.0,
+     290.0,
+     695.3,
+     308.1
+    ]
    },
    {
     "name": "width",
     "value": 14.0,
     "cite": "D-015.p1.a03",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      135.0,
+      -7.0,
+      0.5
+     ],
+     "b": [
+      135.0,
+      7.0,
+      0.5
+     ],
+     "offset": [
+      6,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     1069.3,
+     338.6,
+     1087.4,
+     371.6
+    ]
    },
    {
     "name": "thickness",
     "value": 1.0,
     "cite": "D-015.p1.a01",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      135.0,
+      -7.0,
+      -0.5
+     ],
+     "b": [
+      135.0,
+      -7.0,
+      0.5
+     ],
+     "offset": [
+      0,
+      -6,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     148.9,
+     290.0,
+     174.6,
+     308.1
+    ]
    },
    {
     "name": "hole diameter",
     "value": 3.4,
     "cite": "D-015.p1.a04",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      -125.02,
+      -3.71,
+      0.5
+     ],
+     "b": [
+      -125.02,
+      -0.31,
+      0.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 2.6
+    },
+    "region": [
+     376.1,
+     420.4,
+     494.8,
+     438.4
+    ]
    },
    {
     "name": "first hole from the end",
     "value": 9.98,
     "cite": null,
     "how": "measured",
-    "note": "measured on the sheet's vector geometry at 1:1"
+    "note": "measured on the sheet's vector geometry at 1:1",
+    "at": {
+     "a": [
+      -135.0,
+      -2.01,
+      0.5
+     ],
+     "b": [
+      -125.02,
+      -2.01,
+      0.5
+     ],
+     "offset": [
+      0,
+      -7.99,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     292.5,
+     335.3,
+     1057.8,
+     375.0
+    ]
    },
    {
     "name": "hole pitch",
     "value": 35.71,
     "cite": null,
     "how": "measured",
-    "note": "measured; matches the 35,7 pitch between D-013's eight M3 holes, where the wiper is clamped"
+    "note": "measured; matches the 35,7 pitch between D-013's eight M3 holes, where the wiper is clamped",
+    "at": {
+     "a": [
+      -125.02,
+      -2.01,
+      0.5
+     ],
+     "b": [
+      -89.306,
+      -2.01,
+      0.5
+     ],
+     "offset": [
+      0,
+      -7.99,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     292.5,
+     335.3,
+     1057.8,
+     375.0
+    ]
    },
    {
     "name": "holes off the centre line",
-    "value": -2.01,
+    "value": 2.01,
     "cite": null,
     "how": "measured",
-    "note": "measured; the row sits 5 mm from one long edge"
+    "note": "measured; the row sits 5 mm from one long edge",
+    "at": {
+     "a": [
+      -53.58,
+      0,
+      0.5
+     ],
+     "b": [
+      -53.58,
+      -2.01,
+      0.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     292.5,
+     335.3,
+     1057.8,
+     375.0
+    ]
    }
   ],
   "assumptions": [],
@@ -140,7 +491,8 @@
    "sheet_cite": "D-015.p1.weight",
    "difference_percent": 0.74
   },
-  "file": "models/D-015.glb"
+  "file": "models/D-015.glb",
+  "section": -2.01
  },
  "D-025": {
   "drawing": "D-025",
@@ -154,49 +506,201 @@
     "value": 250.0,
     "cite": "D-025.p1.a02",
     "how": "callout",
-    "note": "±0,2"
+    "note": "±0,2",
+    "at": {
+     "a": [
+      -42.753,
+      -117.462,
+      1.5
+     ],
+     "b": [
+      42.753,
+      117.462,
+      1.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 0.82
+    },
+    "region": [
+     503.4,
+     167.6,
+     566.1,
+     230.0
+    ]
    },
    {
     "name": "inner diameter",
     "value": 224.0,
     "cite": "D-025.p1.a03",
     "how": "callout",
-    "note": "+0,3 / 0,0"
+    "note": "+0,3 / 0,0",
+    "at": {
+     "a": [
+      -112.0,
+      0.0,
+      1.5
+     ],
+     "b": [
+      112.0,
+      0.0,
+      1.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 0.5
+    },
+    "region": [
+     460.3,
+     198.0,
+     535.0,
+     251.8
+    ]
    },
    {
     "name": "thickness",
     "value": 3.0,
     "cite": "D-025.p1.a01",
     "how": "limit",
-    "note": "the sheet allows 2,0 to 3,0; the title-block weight matches 3,0"
+    "note": "the sheet allows 2,0 to 3,0; the title-block weight matches 3,0",
+    "at": {
+     "a": [
+      125.0,
+      0,
+      -1.5
+     ],
+     "b": [
+      125.0,
+      0,
+      1.5
+     ],
+     "offset": [
+      12,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     332.8,
+     139.5,
+     351.1,
+     170.4
+    ]
    },
    {
     "name": "hole diameter",
     "value": 3.4,
     "cite": "D-025.p1.a05",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      -1.7,
+      -115.5,
+      -0.25
+     ],
+     "b": [
+      1.7,
+      -115.5,
+      -0.25
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 4.5
+    },
+    "region": [
+     519.1,
+     627.6,
+     637.8,
+     661.6
+    ]
    },
    {
     "name": "countersink diameter",
     "value": 6.9,
     "cite": "D-025.p1.a05",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      0.0,
+      -118.95,
+      1.5
+     ],
+     "b": [
+      0.0,
+      -112.05,
+      1.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": -1.2
+    },
+    "region": [
+     519.1,
+     627.6,
+     637.8,
+     661.6
+    ]
    },
    {
     "name": "hole circle radius",
     "value": 115.5,
     "cite": "D-025.p1.a04",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      0,
+      0,
+      1.5
+     ],
+     "b": [
+      81.671,
+      -81.671,
+      1.5
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "R",
+     "label": 0.5
+    },
+    "region": [
+     593.6,
+     423.5,
+     640.5,
+     470.6
+    ]
    },
    {
     "name": "hole spacing",
     "value": 45.0,
     "cite": null,
     "how": "as drawn",
-    "note": "eight holes evenly spaced, as drawn; the angle is not dimensioned"
+    "note": "eight holes evenly spaced, as drawn; the angle is not dimensioned",
+    "at": null,
+    "region": null
    }
   ],
   "assumptions": [],
@@ -208,7 +712,8 @@
    "sheet_cite": "D-025.p1.weight",
    "difference_percent": 0.04
   },
-  "file": "models/D-025.glb"
+  "file": "models/D-025.glb",
+  "section": -115.5
  },
  "D-026": {
   "drawing": "D-026",
@@ -222,49 +727,201 @@
     "value": 250.0,
     "cite": "D-026.p1.a02",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      -0.0,
+      -125.0,
+      10.0
+     ],
+     "b": [
+      0.0,
+      125.0,
+      10.0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 0.5
+    },
+    "region": [
+     455.0,
+     214.4,
+     497.0,
+     256.1
+    ]
    },
    {
     "name": "thickness",
     "value": 20.0,
     "cite": "D-026.p1.a01",
     "how": "limit",
-    "note": "the sheet gives a range, 15 to 25; the title-block weight matches its midpoint, 20"
+    "note": "the sheet gives a range, 15 to 25; the title-block weight matches its midpoint, 20",
+    "at": {
+     "a": [
+      125.0,
+      0,
+      -10.0
+     ],
+     "b": [
+      125.0,
+      0,
+      10.0
+     ],
+     "offset": [
+      14,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     224.6,
+     206.0,
+     250.3,
+     236.9
+    ]
    },
    {
     "name": "through hole",
     "value": 5.3,
     "cite": "D-026.p1.a04",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      49.85,
+      -90.933,
+      -10.0
+     ],
+     "b": [
+      55.15,
+      -90.933,
+      -10.0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 0.5
+    },
+    "region": [
+     472.2,
+     549.5,
+     590.9,
+     583.5
+    ]
    },
    {
     "name": "counterbore diameter",
     "value": 10.0,
     "cite": "D-026.p1.a04",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      47.5,
+      -90.933,
+      10.0
+     ],
+     "b": [
+      57.5,
+      -90.933,
+      10.0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 0.5
+    },
+    "region": [
+     472.2,
+     549.5,
+     590.9,
+     583.5
+    ]
    },
    {
     "name": "counterbore depth",
     "value": 15.4,
     "cite": "D-026.p1.a04",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      47.5,
+      -90.933,
+      10.0
+     ],
+     "b": [
+      47.5,
+      -90.933,
+      -5.4
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     472.2,
+     549.5,
+     590.9,
+     583.5
+    ]
    },
    {
     "name": "hole circle radius",
     "value": 105.0,
     "cite": "D-026.p1.a03",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      0,
+      0,
+      10.0
+     ],
+     "b": [
+      -105.0,
+      0,
+      10.0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "R",
+     "label": 0.5
+    },
+    "region": [
+     443.9,
+     271.0,
+     494.8,
+     310.8
+    ]
    },
    {
     "name": "hole spacing",
     "value": 120.0,
     "cite": null,
     "how": "as drawn",
-    "note": "three holes 120° apart, as drawn"
+    "note": "three holes 120° apart, as drawn",
+    "at": null,
+    "region": null
    }
   ],
   "assumptions": [
@@ -280,7 +937,8 @@
    "sheet_cite": "D-026.p1.weight",
    "difference_percent": -0.01
   },
-  "file": "models/D-026.glb"
+  "file": "models/D-026.glb",
+  "section": -90.93
  },
  "D-028": {
   "drawing": "D-028",
@@ -294,42 +952,192 @@
     "value": 19.0,
     "cite": "D-028.p1.a03",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      -9.5,
+      0,
+      1.0
+     ],
+     "b": [
+      9.5,
+      0,
+      1.0
+     ],
+     "offset": [
+      0,
+      -8.5,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     592.9,
+     322.1,
+     625.9,
+     340.2
+    ]
    },
    {
     "name": "end radius",
     "value": 5.5,
     "cite": "D-028.p1.a02",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      9.5,
+      0,
+      1.0
+     ],
+     "b": [
+      13.389,
+      -3.889,
+      1.0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "R",
+     "label": 0.5
+    },
+    "region": [
+     355.9,
+     315.3,
+     392.5,
+     351.9
+    ]
    },
    {
     "name": "width",
     "value": 11.0,
     "cite": "D-028.p1.a04",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      -5.625,
+      -5.5,
+      1.0
+     ],
+     "b": [
+      -5.625,
+      5.5,
+      1.0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     833.5,
+     428.8,
+     851.6,
+     461.8
+    ]
    },
    {
     "name": "thickness",
     "value": 2.0,
     "cite": "D-028.p1.a01",
     "how": "limit",
-    "note": "the sheet allows 2,0 to 3,0; the title-block weight matches 2,0"
+    "note": "the sheet allows 2,0 to 3,0; the title-block weight matches 2,0",
+    "at": {
+     "a": [
+      15.0,
+      0,
+      -1.0
+     ],
+     "b": [
+      15.0,
+      0,
+      1.0
+     ],
+     "offset": [
+      3,
+      0,
+      0
+     ],
+     "symbol": "",
+     "label": 0.5
+    },
+    "region": [
+     234.8,
+     309.3,
+     253.1,
+     340.2
+    ]
    },
    {
     "name": "end holes",
     "value": 4.5,
     "cite": "D-028.p1.a05",
     "how": "callout",
-    "note": ""
+    "note": "",
+    "at": {
+     "a": [
+      -11.75,
+      0.0,
+      1.0
+     ],
+     "b": [
+      -7.25,
+      0.0,
+      1.0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 0.5
+    },
+    "region": [
+     271.7,
+     566.8,
+     390.3,
+     584.8
+    ]
    },
    {
     "name": "centre hole",
     "value": 8.0,
     "cite": "D-028.p1.a06",
     "how": "callout",
-    "note": "±0,15"
+    "note": "±0,15",
+    "at": {
+     "a": [
+      -2.828,
+      -2.828,
+      1.0
+     ],
+     "b": [
+      2.828,
+      2.828,
+      1.0
+     ],
+     "offset": [
+      0,
+      0,
+      0
+     ],
+     "symbol": "Ø",
+     "label": 0.5
+    },
+    "region": [
+     441.6,
+     566.8,
+     543.3,
+     584.8
+    ]
    }
   ],
   "assumptions": [
@@ -343,6 +1151,7 @@
    "sheet_cite": "D-028.p1.weight",
    "difference_percent": -0.12
   },
-  "file": "models/D-028.glb"
+  "file": "models/D-028.glb",
+  "section": 0.0
  }
 }
