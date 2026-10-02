@@ -1,0 +1,4 @@
+# Runtime: serving the app from the committed knowledge base.
+fastapi==0.142.2
+uvicorn==0.54.0
+openai==3.23.0
