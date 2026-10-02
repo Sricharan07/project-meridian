@@ -1,0 +1,61 @@
+{
+ "query": "Part: Rubber seal for doors. Recorded supplier: Misumi. Their product name or order number: TRSAT3.2-X-L6. Recorded link: https://uk.misumi-ec.com/vona2/detail/110300286760/?HissuCode=TRSAT3.2-X-L6.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "MISUMI",
+  "part_number": "TRSAT3.2-X-L6",
+  "own_brand": true,
+  "description": "MISUMI TPE edge-trim seal with 3.2 mm nominal thickness, X-position rubber, and 6 m length.",
+  "alternatives": [
+   {
+    "company": "Iwata Mfg.",
+    "url": "https://www.iwata-fa.jp/products/trim-and-trim-seal/detail?ids=140402-1",
+    "same_part": false,
+    "note": "Alternative TPE trim seal for a nominal 3.2 mm panel, compatible with 2.3–4.0 mm panel thickness; confirm profile and length before ordering."
+   }
+  ]
+ },
+ "sources": [
+  "https://bibus-pim-production-storage.sos-ch-dk-2.exoscale-cdn.com/media/filer_public/e2/25/e225b25c-54bc-44ed-b6c8-825136d11abd/item_aluminium_profile_fasteners_bibus_india.pdf",
+  "https://es.misumi-ec.com/pdf/fa/2014/P2_0483-0484_F39_EN_002.pdf",
+  "https://jp.misumi-ec.com/vona2/detail/110300286760/",
+  "https://jp.misumi-ec.com/vona2/detail/110300286760/?Page=4",
+  "https://jp.misumi-ec.com/vona2/detail/110300286760/?optPageSCate=salesRankingRecommend&rid=rank_c_M1303010000_110300286760_4&srid=rank_c_M1303010000_110300286760_4",
+  "https://jp.misumi-ec.com/vona2/detail/221006353248/?rid=c14_detail_1_221006353248",
+  "https://mx.misumi-ec.com/es/pdf/fa/2012/p2_0463_002.pdf",
+  "https://mx.misumi-ec.com/es/pdf/fa/2019/2019_US_2654.pdf",
+  "https://my.misumi-ec.com/pdf/fa/2014/p2_481.pdf",
+  "https://sg.misumi-ec.com/pr/recommend_category/economy_series2022/economyseries092024.pdf",
+  "https://sg.misumi-ec.com/vona2/detail/110300286760/?HissuCode=TRSCT6.4-X-L4",
+  "https://th.misumi-ec.com/en/vona2/detail/110300286760/?HissuCode=TRSAT3.2-X-L52",
+  "https://uk.misumi-ec.com/?lang=DE",
+  "https://uk.misumi-ec.com/?lang=en",
+  "https://uk.misumi-ec.com/en/applications/know-how/our-most-popular-products-directly-ready-for-shipment/",
+  "https://uk.misumi-ec.com/en/services/configurable-components-make-to-order/",
+  "https://uk.misumi-ec.com/en/services/faq/",
+  "https://uk.misumi-ec.com/files/docs/recommended-products/Bestseller-Linear-units.pdf",
+  "https://uk.misumi-ec.com/files/docs/recommended-products/Bestseller-Timing-pulleys.pdf",
+  "https://uk.misumi-ec.com/files/docs/supplier-self-declaration/en.pdf",
+  "https://uk.misumi-ec.com/files/images/products/docs/actuators.pdf",
+  "https://uk.misumi-ec.com/files/images/products/docs/singleaxisrobots.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/p0591.pdf",
+  "https://uk.misumi-ec.com/vona2/detail/110300286420/?HissuCode=TRCT3.2-W-5-L1",
+  "https://uk.misumi-ec.com/vona2/detail/110300286760/?HissuCode=TRSAT1.6-X-L15",
+  "https://uk.misumi-ec.com/vona2/detail/110302395070/?Page=4",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/fs_machining/T0104000000/T0104120000/",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech/M0300000000/",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech/M1000000000/M1008000000/M1008060000/?CategorySpec=00000242269%3A%3Ah",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech/M1700000000/",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/press/P0100000000/P0115000000/P0115070000/?CategorySpec=00000251526%3A%3Az",
+  "https://uk.misumi-ec.com/vona2/mech/M1300000000/M1303000000/M1303010000/",
+  "https://us.misumi-ec.com/vona2/detail/110300286760/?HissuCode=TRSASG3.2-L35",
+  "https://vn.misumi-ec.com/vona2/detail/110300286760/?HissuCode=TRSAT3.2-Y-L93",
+  "https://www.iwata-fa.jp/products/trim-and-trim-seal/detail?ids=140402-1"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14762,
+  "output_tokens": 614
+ }
+}

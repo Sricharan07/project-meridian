@@ -1,0 +1,58 @@
+{
+ "query": "Part: Timing pulley Ø6.35 T5. Recorded supplier: Misumi. Their product name or order number: TTPA18T5200-B-P6.35. Recorded link: https://uk.misumi-ec.com/vona2/detail/110300406820/?HissuCode=TTPA18T5200-B-P6.35.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "MISUMI",
+  "part_number": "TTPA18T5200-B-P6.35",
+  "own_brand": true,
+  "description": "MISUMI aluminium flanged T5 timing pulley with 18 teeth, 20 mm belt width and a 6.35 mm bore.",
+  "alternatives": [
+   {
+    "company": "HomeDIYer",
+    "url": "https://homediyer.com/products/timing-pulley-t5-10t-28t-for-20mm-belt-aluminum-af-shape-timing-pulley-id-5-20mm?country=DE&currency=EUR&variant=52444221997330",
+    "same_part": false,
+    "note": "The listing offers an 18-tooth T5 pulley for a 20 mm belt with a 6.35 mm bore, though its AF body style may differ from the MISUMI pulley."
+   }
+  ]
+ },
+ "sources": [
+  "https://datasheets.globalspec.com/ds/designatronics/a-6m35m018sf1006/66f7e387-ee08-4a77-999d-9d50dce019bb",
+  "https://homediyer.com/products/timing-pulley-t5-10t-28t-for-20mm-belt-aluminum-af-shape-timing-pulley-id-5-20mm?country=DE&currency=EUR&variant=52444221997330",
+  "https://keratinology.com.tr/vona2/detail/110310928349/?HissuCode=E-TTPA14T5100-A-P6.35",
+  "https://my.misumi-ec.com/pdf/fa/2015/p1_1451_001.pdf",
+  "https://my.misumi-ec.com/pdf/fa/2015/p1_1451_002.pdf",
+  "https://my.misumi-ec.com/vona2/detail/110310928349/?HissuCode=E-TTPA14T5100-A-P6.35",
+  "https://sg.misumi-ec.com/pdf/fa/2013/p829_831.pdf",
+  "https://simplybearings.co.uk/shop/p20375106/Aluminium-Pilot-Bore-T5-Timing-Pulley-with-Flanges-5mm-Pitch-18-Tooth-for-16mm-Wide-Belts/product_info.html",
+  "https://th.misumi-ec.com/en/vona2/detail/110310405179/?HissuCode=C-TTPA14T5100-A-P6.35",
+  "https://uk.misumi-ec.com/",
+  "https://uk.misumi-ec.com/?lang=en",
+  "https://uk.misumi-ec.com/en/services/catalog-request/",
+  "https://uk.misumi-ec.com/en/services/catalog-request/view-webindex/",
+  "https://uk.misumi-ec.com/en/services/faq-and-tutorials/details/where-can-i-find-technical-product-information/",
+  "https://uk.misumi-ec.com/files/docs/recommended-products/Bestseller-Timing-pulleys.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2014/P1_1417-1418_F19_EN_001.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2014/P1_1417-1418_F19_EN_002.pdf",
+  "https://uk.misumi-ec.com/vona2/detail/110300406640/",
+  "https://uk.misumi-ec.com/vona2/detail/110300406820/?HissuCode=TTPA40T5100-B-F41",
+  "https://uk.misumi-ec.com/vona2/detail/110300406820/?HissuCode=TTPK25T5150-A-C16",
+  "https://uk.misumi-ec.com/vona2/detail/110300406820/?HissuCode=TTPM24T5250-A-C16",
+  "https://uk.misumi-ec.com/vona2/detail/110300406820/?HissuCode=TTPS16T5100-A-NK10",
+  "https://uk.misumi-ec.com/vona2/detail/110300406820/?Page=23&Tab=codeList",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech/M3400000000/M3409000000/M3409010000/?CategorySpec=00000241664%3A%3Ah",
+  "https://www.cnc4you.co.uk/T5-Timing-Pulley-20mm-wide-tapped-with-grubscrews",
+  "https://www.ebay.co.uk/itm/366674553833",
+  "https://www.motiontek.ca/pulleyT5.html",
+  "https://www.reddit.com/r/robotics/comments/pox1qy",
+  "https://www.scribd.com/document/849404745/2019-US-1380-001",
+  "https://www.sdp-si.com/D265/PDF/D265P3069.pdf",
+  "https://www.technobotsonline.com/18-tooth-6.35mm-bore-2mm-pitch-gt2-pulley-with-for-6mm-belts.html",
+  "https://www.technobotsonline.com/timing-pulley-t5x10mm-18t.html?currency=USD"
+ ],
+ "searches": 3,
+ "usage": {
+  "input_tokens": 21863,
+  "output_tokens": 976
+ }
+}

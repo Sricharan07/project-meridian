@@ -1,0 +1,64 @@
+{
+ "query": "Part: Powder dispense stepper. Recorded supplier: OMC. Their product name or order number: 11HS20-0674S-PG5. Recorded link: https://www.omc-stepperonline.com/economy-planetary-gearbox/nema-11-stepper-motor-bipolar-l51mm-w-gear-raio-51-planetary-gearbox-11hs20-0674s-pg5.html?mfp=184-frame-size-mm%5BNema%2011%20%2828%20x%2028%29%5D%2C286-holding-torque-w-o-gearbox-n-m%5B0.14%2C0.22%2C0.25%2C0.32%2C0.36%2C0.4%2C0.52%2C0.65%2C1.25%2C1.89%2C26.85%5D.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "STEPPERONLINE",
+  "part_number": "11HS20-0674S-PG5",
+  "own_brand": true,
+  "description": "A bipolar NEMA 11 stepper motor with a 51 mm body, 0.67 A rated current and an integrated planetary gearbox with a 5.18:1 ratio.",
+  "alternatives": [
+   {
+    "company": "Frankhu Motor",
+    "url": "https://www.frankhumotor.com/nema-11-stepper-motor-bipolar-l-51mm-0-67a-with-gear-ratio-5-1-economy-planetary-gearbox",
+    "same_part": false,
+    "note": "The listing matches the NEMA 11 frame, 51 mm motor body, 0.67 A current and approximately 5:1 planetary gearbox ratio."
+   },
+   {
+    "company": "Automation Technologies Inc.",
+    "url": "https://www.automationtechnologiesinc.com/products-page/nema11/51-planetary-gearbox-nema-11-stepper-motor-diy-robot",
+    "same_part": false,
+    "note": "The listing matches the NEMA 11 frame, 0.67 A current and 5.18:1 planetary gearbox ratio, though the motor body length is not specified in the search result."
+   }
+  ]
+ },
+ "sources": [
+  "https://downloads.onworks.net/downloadapp/SOFTWARE/myRotator-User-Guide-24-10.pdf?service=service01",
+  "https://spmi.ru/sites/default/files/imci_images/sciens/nirs/Sbornik_tezisov_Aktualnye_problemy_nedropolzovaniia_2020_Tom_2.pdf?jCkVKirSrJW=pjK6cp",
+  "https://www.alibaba.com/product-detail/11HS20-0674S-PG5-Nema-11-Stepper_1600091158551.html",
+  "https://www.alldatasheet.com/datasheet-pdf/pdf/1141483/STEPPERONLINE/11HS20-0674S.html",
+  "https://www.automationtechnologiesinc.com/products-page/nema11/51-planetary-gearbox-nema-11-stepper-motor-diy-robot",
+  "https://www.frankhumotor.com/nema-11-stepper-motor-bipolar-l-51mm-0-67a-with-gear-ratio-5-1-economy-planetary-gearbox",
+  "https://www.jvl.dk/files/images-1/ck/mst11x_28mm_steppermotor_with_planetary_gear.pdf",
+  "https://www.nanotec.com/fileadmin/files/Baureihenuebersichten/Schrittmotoren/Product_Overview_ST2818.pdf",
+  "https://www.nanotec.com/fileadmin/files/Katalog/nanotec-catalog.pdf",
+  "https://www.omc-stepperonline.com/de/nema-11-bipolar-1-8deg-12ncm-17oz-in-0-67a-6-2v-28x28x51mm-4-draehte-11hs20-0674s",
+  "https://www.omc-stepperonline.com/de/nema-11-schrittmotore-bipolar-l-51mm-w-getriebeuebersetzung-5-1-planetengetriebe-11hs20-0674s-pg5",
+  "https://www.omc-stepperonline.com/download/11HS12-0674S-PG5_Torque_Curve.pdf",
+  "https://www.omc-stepperonline.com/download/11HS20-0674S-PG100_Torque_Curve.pdf",
+  "https://www.omc-stepperonline.com/download/11HS20-0674S-PG14-E300.pdf",
+  "https://www.omc-stepperonline.com/download/11HS20-0674S-PG51_Torque_Curve.pdf",
+  "https://www.omc-stepperonline.com/download/11HS20-0714S-PG14.pdf",
+  "https://www.omc-stepperonline.com/fr/nema-11-moteur-pas-a-pas-bipolaire-l-51mm-w-rapport-d-engrenage-5-1-boite-de-vitesses-planetaire-11hs20-0674s-pg5",
+  "https://www.omc-stepperonline.com/nema-11-bipolar-1-8deg-9-5ncm-13-5oz-in-0-67a-4-6v-28x28x45mm-4-wires-11hs18-0674s",
+  "https://www.omc-stepperonline.com/nema-11-economy-planetary-geared-stepper-motor",
+  "https://www.omc-stepperonline.com/nema-11-stepper-l-31mm-w-rear-shaft-gear-ratio-5-1-planetary-gearbox-11hs12-0674d-pg5",
+  "https://www.omc-stepperonline.com/nema-11-stepper-motor-bipolar-l-51mm-w-gear-ratio-100-1-planetary-gearbox-11hs20-0674s-pg100",
+  "https://www.osmtec.com/stepper-motors/geared-stepper-motors/economy-planetary-geared-stepper-motors",
+  "https://www.osmtec.com/stepper-motors/nema-11-stepper-motor-bipolar-l-31mm-w-gear-ratio-5-1-planetary-gearbox-11hs12-0674s-pg5",
+  "https://www.skysmotor.co.uk/goods-1929-Nema-11-Geared-Stepper-Motor-11HS20-0674S-PG5-with-5-1-Planetary-Gearbox.html",
+  "https://www.skysmotor.com/goods-279-Nema-11-%E3%82%B9%E3%83%86%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%83%A2%E3%83%BC%E3%82%BF%E3%83%BC%E3%83%90%E3%82%A4%E3%83%9D%E3%83%BC%E3%83%A9-L%3D51mm%E3%81%A8%E3%82%AE%E3%83%A4%E6%AF%945-1%E9%81%8A%E6%98%9F%E3%82%AE%E3%82%A2%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9.html",
+  "https://www.stepperonline.ca/nema-11-stepper-l-51mm-w-rear-shaft-screw-hole-gear-ratio-5-1-gearbox-11hs20-0674d-pg5.html",
+  "https://www.stepperonline.ca/nema-11-stepper-motor-bipolar-l-31mm-w-gear-ratio-5-1-planetary-gearbox-11hs12-0674s-pg5.html",
+  "https://www.stepperonline.ca/nema-11-stepper-motor-bipolar-l-51mm-w-gear-ratio-5-1-planetary-gearbox-11hs20-0674s-pg5.html",
+  "https://www.stepperonline.es/motor-paso-a-paso-nema-11-bipolar-l-51-mm-con-relacion-de-engranaje-5-1-caja-de-engranajes-planetarios-11hs20-0674s-pg5",
+  "https://www.stepperonline.jp/nema11%E3%82%B9%E3%83%86%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%83%A2%E3%83%BC%E3%82%BF%E3%83%BC%E3%83%90%E3%82%A4%E3%83%9D%E3%83%BC%E3%83%A9l-51mm-%E3%82%AE%E3%82%A2%E6%AF%945-1%E9%81%8A%E6%98%9F%E3%82%AE%E3%82%A2%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%E4%BB%98%E3%81%8D-11hs20-0674s-pg5",
+  "https://www.stepperonline.nl/nema-11-stappenmotor-bipolair-l-51mm-w-versnelling-5-1-planetaire-tandwielkast-11hs20-0674s-pg5",
+  "https://www.stepperonline.pl/silnik-krokowy-nema-11-bipolarny-l-51mm-z-przelozeniem-5-1-przekladnia-planetarna-11hs20-0674s-pg5"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 15240,
+  "output_tokens": 697
+ }
+}

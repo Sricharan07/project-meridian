@@ -1,0 +1,73 @@
+{
+ "query": "Part: Adam DYN-Info M12-5. Recorded supplier: RS components. Their product name or order number: 2TLA020051R5100. Recorded link: none.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ABB Jokab",
+  "part_number": "2TLA020051R5100",
+  "own_brand": false,
+  "description": "Adam DYN-Info M12-5 is an ABB Jokab non-contact safety sensor with a 5-pin M12 connector, DYNlink signal, and information output.",
+  "alternatives": [
+   {
+    "company": "Mouser",
+    "url": "https://www.mouser.fr/en/ProductDetail/ABB/2TLA020051R5100?qs=iLKYxzqNS74W%252BSklz8SHqQ%3D%3D",
+    "same_part": true,
+    "note": "Lists ABB part number 2TLA020051R5100."
+   },
+   {
+    "company": "Enrgtech",
+    "url": "https://enrgtech.co.uk/product/non-contact-safety-switches/ET21477386/2TLA020051R5100--Adam-DYN-Info-M12-5",
+    "same_part": true,
+    "note": "Lists ABB Jokab part number 2TLA020051R5100."
+   },
+   {
+    "company": "Conrad Electronic",
+    "url": "https://www.conrad.pl/pl/p/abb-przekaznik-bezpieczenstwa-adam-dyn-info-m12-5-2tla020051r5100-d-x-s-x-w-12-x-30-x-75-2-mm-2320401.html",
+    "same_part": true,
+    "note": "Lists ABB part number 2TLA020051R5100."
+   }
+  ]
+ },
+ "sources": [
+  "https://at.rs-online.com/web/p/beruhrungslose-sicherheitsschalter/1760019",
+  "https://au.mouser.com/en/ProductDetail/ABB/2TLA020051R5100?qs=iLKYxzqNS74W%252BSklz8SHqQ%3D%3D",
+  "https://cdn.lsicloud.net/echoginc/Resources/ABBInstallationProducts_00084_1_2_SPEC.pdf",
+  "https://ch.rs-online.com/web/p/beruhrungslose-sicherheitsschalter/1760019",
+  "https://de.rs-online.com/web/p/beruhrungslose-sicherheitsschalter/1760019",
+  "https://dk.rs-online.com/web/p/beroringsfrie-sikkerhedsafbrydere/1760019",
+  "https://docs.rs-online.com/0a14/A700000008883313.pdf",
+  "https://docs.rs-online.com/5dad/0900766b8165d5db.pdf",
+  "https://empower.abb.com/ecatalog/ec/EN_NA/p/2TLA020051R5100",
+  "https://enrgtech.co.uk/product/non-contact-safety-switches/ET21477386/2TLA020051R5100--Adam-DYN-Info-M12-5",
+  "https://files.kempstoncontrols.com/files/89d74bf19c323ce28497dac545dac684/2TLA020051R5100.pdf",
+  "https://hken.rs-online.com/web/p/non-contact-safety-switches/1760019",
+  "https://ie.rs-online.com/web/p/non-contact-safety-switches/1760019",
+  "https://in.rsdelivers.com/product/abb-jokab/2tla020051r5100-adam-dyn-info-m12-5/abb-jokab-dyn-series-electronic-detection-non-24v/1760019",
+  "https://industry-electronics.com/abb-automation/2tla020051r5100-abb-adam-dyn-info-m12-lieske_1328206.htm",
+  "https://industry-electronics.com/abb/2tla020051r5100-adam-dyn-info-m12-lieske_1328206.htm",
+  "https://kr.rs-online.com/web/p/non-contact-safety-switches/1760019",
+  "https://library.e.abb.com/public/0fbb54b0e6634a168c964d7d59f1000f/Eden%20from%20Old%20to%20New_2TLC010027L0201_revC.pdf?x-sign=ZKVkQ8%2BaoBKCKoHqY0nXHDJQmRaHi5Q%2FkWcclPj73IQvQpNuKTI6X%2FjYqnIM7eRM",
+  "https://library.e.abb.com/public/25f97a2822bc442a9f47928b6f0b72b3/Eden_DYN_2TLC172009L0201_B.pdf?x-sign=6oizqMNKuCjFmIdWF11DDCpeSvz6ALNjSxAzJAWN%2F%2BRH3yX5Ef7uoMnu%2F%2Fkm6UQ6",
+  "https://library.e.abb.com/public/f49fd11c13644efe853a80529bd9149b/Eden%20from%20Old%20to%20New%20%28EN%29_RevB_2TLC010027L0201.pdf?x-sign=9E6YQYSvpviCXZp%2BLgRsQ%2BTmaYrYfDIeZ0y0xzoOqIcEubW60ETvKW9%2FgyXIe2k%2B",
+  "https://manuals.plus/m/20ac762f34cc7eeac34d51a82f6e6f0249437736333c7ef89db3028e3c60889c.pdf",
+  "https://my.rs-online.com/web/p/non-contact-safety-switches/1760019",
+  "https://new.abb.com/docs/librariesprovider15/default-document-library/jokab-easy-reference-oct-2019.pdf?sfvrsn=a3287616_2",
+  "https://new.abb.com/docs/librariesprovider22/default-document-library/abb-safety-products-catalog_revh2_2tlc010001c0202.pdf?sfvrsn=62c6c60a_0",
+  "https://no.rs-online.com/web/p/non-contact-safety-switches/1760019",
+  "https://proax.ca/en/product/6434/ABB2TLA020051R5100",
+  "https://th.rs-online.com/web/p/non-contact-safety-switches/1760019",
+  "https://uk.rs-online.com/web/p/non-contact-safety-switches/1760019",
+  "https://www.conrad.pl/pl/p/abb-przekaznik-bezpieczenstwa-adam-dyn-info-m12-5-2tla020051r5100-d-x-s-x-w-12-x-30-x-75-2-mm-2320401.html",
+  "https://www.mouser.ca/fr/ProductDetail/ABB/2TLA020051R5100?qs=iLKYxzqNS74W%252BSklz8SHqQ%3D%3D",
+  "https://www.mouser.co.za/en/ProductDetail/ABB/2TLA020051R5100?qs=iLKYxzqNS74W%252BSklz8SHqQ%3D%3D",
+  "https://www.mouser.fr/en/ProductDetail/ABB/2TLA020051R5100?qs=iLKYxzqNS74W%252BSklz8SHqQ%3D%3D",
+  "https://www.mouser.it/it/ProductDetail/ABB/2TLA020051R5100?qs=sGAEpiMZZMttpa6d10LXWOS%2F708h8ttFiuFR9hvNwrtzL1lkB4gJVA%3D%3D",
+  "https://www.netcomponents.com/sitemap/2TLA020051R5100.html",
+  "https://www.nexinstrument.com/assets/images/pdf/2TLA020051R5100_ADAM%20DYN-INFO%20M12-5.pdf"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14899,
+  "output_tokens": 659
+ }
+}

@@ -13,7 +13,7 @@ const CITATION = /\[([A-Za-z][\w.:~\-]*(?:\s*[,;]\s*[A-Za-z][\w.:~\-]*)*)\]/g;
 const SLOT = /\u0000(\d+)\u0000/g;
 const FIELDS = { title: "Title", note: "Note", material: "Material", weight: "Weight", date: "Date", scale: "Scale",
   sheet: "Sheet", callout: "Callout", bom_link: "Link to BOM", subsystem: "Subsystem", upstream_file: "Upstream file", label: "Label" };
-const READERS = { ocr: "OCR", vision: "vision", review: "corrected" };
+const READERS = { ocr: "OCR", vision: "vision", review: "corrected", web: "web search" };
 const DIAGRAMS = { Zaxis_legend: "Z-axis diagram", RecoaterLegend: "Recoater diagram", PowderLegend: "Powder diagram" };
 
 export function answer(text, citations = {}) {
@@ -47,6 +47,7 @@ export function sourceLabel(id, e) {
   if (!e) return citeLabel(id);
   if (e.source?.doc === "BOM") return e.label;
   if (e.source?.doc?.startsWith("diagram:")) return DIAGRAMS[e.source.doc.slice(8)] || "System diagram";
+  if (e.method === "web") return `${e.value || "Not identified"} · web search, ${e.parsed.retrieved}`;
   const parts = [e.subject, FIELDS[e.field] || e.field];
   if (READERS[e.method]) parts.push(READERS[e.method]);
   if (e.field === "subsystem") parts.push("manifest");

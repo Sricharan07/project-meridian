@@ -1,0 +1,46 @@
+{
+ "query": "Part: Timing belt idler Ø8 T5. Recorded supplier: Misumi. Their product name or order number: AHTFW18-T5200-8. Recorded link: https://uk.misumi-ec.com/vona2/detail/110300411970/?PNSearch=AHTFW18-T5200-8&HissuCode=AHTFW18-T5200-8.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "MISUMI",
+  "part_number": "AHTFW18-T5200-8",
+  "own_brand": true,
+  "description": "MISUMI flanged toothed idler for a T5 timing belt, with 18 teeth, a 20 mm belt width, and an 8 mm bore.",
+  "alternatives": []
+ },
+ "sources": [
+  "https://api.sg.misumi-ec.com/pr/recommend_category/rotarymotion_powertransmission2024/economyseries022024.pdf",
+  "https://eezee.sg/product/misumi-c-ahtfw18-t5200-8-idlers-t5-width-20-mm-17cd9f8c7f",
+  "https://files.minibearings.au/pdf/xrefs/Cross%20Reference%20Misumi.pdf",
+  "https://in.misumi-ec.com/pdf/fa/2014/p1_1439_002.pdf",
+  "https://in.misumi-ec.com/pdf/fa/2014/p1_2277_2279_2283.pdf",
+  "https://in.misumi-ec.com/vona2/detail/110310405539/",
+  "https://in.misumi-ec.com/vona2/detail/110310928349/?HissuCode=E-TTPA18T5100-A-P8%5C",
+  "https://sg.misumi-ec.com/pdf/fa/2010/p1_1185.pdf",
+  "https://sg.misumi-ec.com/vona2/detail/110310405179/?HissuCode=C-TTPA18T5100-A-N8",
+  "https://th.misumi-ec.com/en/vona2/detail/110311174409/?HissuCode=E-AHTFW20-T5150-8",
+  "https://uk.c.misumi-ec.com/book/EPE1_ENG_09_10_24/pdf/0594.pdf",
+  "https://uk.misumi-ec.com/files/images/products/docs/conveyertimingbelts.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2014/P1_1417-1418_F19_EN_001.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2014/P1_1417-1418_F19_EN_002.pdf",
+  "https://uk.misumi-ec.com/vona2/detail/110300454850/?HissuCode=HBLUDW8-45-SEU",
+  "https://uk.misumi-ec.com/vona2/detail/110302615930/?HissuCode=PACK-HNTA8-8",
+  "https://uk.misumi-ec.com/vona2/detail/221000192827/?HissuCode=MST-32C-8-8",
+  "https://uk.misumi-ec.com/vona2/detail/221303566468/?HissuCode=PHS+10B-1BH18",
+  "https://uk.misumi-ec.com/vona2/detail/221303567098/?HissuCode=19248-8-8",
+  "https://uk.misumi-ec.com/vona2/detail/221303751374/?HissuCode=SA+8+C",
+  "https://uk.misumi-ec.com/vona2/detail/221303751802/",
+  "https://uk.misumi-ec.com/vona2/mech/M1002030000/?CategorySpec=00000005784%3A%3Ai",
+  "https://vn.misumi-ec.com/vona2/detail/110310405539/?HissuCode=C-AHTFW20-T5200-8",
+  "https://www.enapart.bg/%D0%BC%D0%B0%D1%80%D0%BA%D0%B8/misumi/8623/pdf/misumi_catalog",
+  "https://www.enapart.com.mx/marcas/misumi/8623/pdf/misumi_catalog",
+  "https://www.pricy.ro/ProductUrlId/roata-curea-cu-rulment-ahtfw18-t5200-8-140C1A3148C371F691B6E81593DAAD01",
+  "https://www.scribd.com/document/808000101/Timing-Belt-Drives-Indexed"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 15197,
+  "output_tokens": 600
+ }
+}

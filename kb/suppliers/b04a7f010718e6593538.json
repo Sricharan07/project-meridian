@@ -1,0 +1,64 @@
+{
+ "query": "Part: Digital stepper driver. Recorded supplier: OMC. Their product name or order number: DM320T. Recorded link: https://www.omc-stepperonline.com/digital-stepper-driver-03-22a-18-30vdc-for-nema-8-11-14-16-17-stepper-motor-dm320t.html?search=DM320T.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "STEPPERONLINE",
+  "part_number": "DM320T",
+  "own_brand": true,
+  "description": "Digital stepper driver for two- or four-phase NEMA 8–17 motors, rated 0.3–2.2 A with an 18–30 VDC supply.",
+  "alternatives": [
+   {
+    "company": "Oz Robotics",
+    "url": "https://ozrobotics.com/shop/digital-stepper-driver-0-3-2-2a-18-30vdc-for-nema-8-11-14-16-17-stepper-motor/",
+    "same_part": false,
+    "note": "This listing matches the 0.3–2.2 A current range, 18–30 VDC supply, and support for two- and four-phase NEMA 8–17 motors."
+   }
+  ]
+ },
+ "sources": [
+  "https://en.wikipedia.org/wiki/Stepper_motor",
+  "https://help.omc-stepperonline.com/hc/s/articles/comment-choisir-le-bon-pilote-de-moteur-pas-pas-fr-77",
+  "https://help.omc-stepperonline.com/hc/s/articles/como-selecionar-o-driver-de-motor-de-passo-adequado-pt-77",
+  "https://help.omc-stepperonline.com/hc/s/articles/do-ru-step-motor-s-r-c-s-n-nas-l-se-ersiniz-tr-77",
+  "https://help.omc-stepperonline.com/hc/s/articles/hoe-kies-je-de-juiste-stappenmotor-driver-nl-77",
+  "https://help.omc-stepperonline.com/hc/s/articles/how-to-choose-a-suitable-stepper-motor-driver-for-the-motor",
+  "https://help.omc-stepperonline.com/hc/s/articles/how-to-download-products-drawings-and-maunals",
+  "https://help.omc-stepperonline.com/hc/s/articles/jak-dobra-odpowiedni-sterownik-silnika-krokowego-pl-77",
+  "https://ozrobotics.com/shop/digital-stepper-driver-0-3-2-2a-18-30vdc-for-nema-8-11-14-16-17-stepper-motor/",
+  "https://www.omc-stepperonline.com/arduino-stepper-driver",
+  "https://www.omc-stepperonline.com/de/digitaler-schrittmotortreiber-0-3-2-2a-10-30vdc-fuer-nema-8-11-14-16-17-schrittmotore-dm320t",
+  "https://www.omc-stepperonline.com/digital-stepper-driver",
+  "https://www.omc-stepperonline.com/digital-stepper-driver-0-3-2-2a-10-30vdc-for-nema-8-11-14-16-17-stepper-motor-dm320t",
+  "https://www.omc-stepperonline.com/download/DM320T.pdf",
+  "https://www.omc-stepperonline.com/download/DM320T_user_manual.pdf",
+  "https://www.omc-stepperonline.com/file",
+  "https://www.omc-stepperonline.com/fr/pilote-numerique-pas-a-pas-0-3-2-2a-10-30vdc-pour-nema-8-11-14-16-17-moteur-pas-a-pas-dm320t",
+  "https://www.omc-stepperonline.com/it/azionamento-motore-passo-passo-digitale-0-3-2-2a-10-30vdc-per-nema-8-11-14-16-17-motore-passo-passo-dm320t",
+  "https://www.omc-stepperonline.com/nema-17-stepper-motor-driver",
+  "https://www.omc-stepperonline.com/stepper-driver-with-controller",
+  "https://www.omc-stepperonline.com/stepper-motor-controller-circuit",
+  "https://www.reddit.com/r/3018CNC/comments/18wen63",
+  "https://www.reddit.com/r/AskEngineers/comments/g4bjeg",
+  "https://www.reddit.com/r/EngineeringStudents/comments/pvkt1a",
+  "https://www.reddit.com/r/Motors/comments/187kddx",
+  "https://www.reddit.com/r/Motors/comments/jp45ut",
+  "https://www.reddit.com/r/arduino/comments/g3d9n8",
+  "https://www.reddit.com/r/ender3v2/comments/11lyowp",
+  "https://www.reddit.com/r/hobbycnc/comments/1dcsoqj",
+  "https://www.reddit.com/r/robotics/comments/10zt4cq",
+  "https://www.reddit.com/r/robotics/comments/13yudvw",
+  "https://www.reddit.com/r/robotics/comments/d8nsvo",
+  "https://www.reddit.com/r/u_samsrmotor_com/comments/13ksqol",
+  "https://www.stepperonline.co.kr/nema-8-11-14-16-17-%EC%8A%A4%ED%85%8C%ED%8D%BC-%EB%AA%A8%ED%84%B0%EC%9A%A9-%EB%94%94%EC%A7%80%ED%84%B8-%EC%8A%A4%ED%85%8C%ED%8D%BC-%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84-0-3-2-2a-10-30vdc-dm320t",
+  "https://www.stepperonline.co.uk/digital-stepper-driver-0-3-2-2a-10-30vdc-for-nema-8-11-14-16-17-stepper-motor-dm320t.html",
+  "https://www.stepperonline.com.tr/nema-8-11-14-16-17-step-motorlar-icin-0-3-2-2a-10-30vdc-dijital-step-motor-surucusu-dm320t",
+  "https://www.stepperonline.es/controlador-paso-a-paso-digital-0-3-2-2a-10-30vdc-para-motor-paso-a-paso-nema-8-11-14-16-17-dm320t",
+  "https://www.stepperonline.nl/digitale-stappenmotor-bestuurder-0-3-2-2a-10-30vdc-voor-nema-8-11-14-16-17-stappenmotor-dm320t"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14877,
+  "output_tokens": 1038
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "query": "Part: Pluto D20 Safety PLC. Recorded supplier: RS components. Their product name or order number: 2TLA020070R6400. Recorded link: none.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ABB",
+  "part_number": "2TLA020070R6400",
+  "own_brand": false,
+  "description": "The Pluto D20 is an ABB safety PLC with a Pluto safety bus, analog inputs, and 20 I/O.",
+  "alternatives": [
+   {
+    "company": "ABB eMart",
+    "url": "https://shop.in.abb.com/2tla020070r6400/pluto-d20.html",
+    "same_part": true,
+    "note": "ABB lists the Pluto D20 under the exact part number 2TLA020070R6400."
+   },
+   {
+    "company": "WATTOO",
+    "url": "https://www.wattoo.dk/plc-m-bus-20-i-o-4-sik-udg-4-sik-indg-2124781574",
+    "same_part": true,
+    "note": "The listing identifies the ABB Pluto D20 with part number 2TLA020070R6400."
+   }
+  ]
+ },
+ "sources": [
+  "https://abb-control-products.partcommunity.com/3d-cad-models/pluto-d20-safety-plc-abb-low-voltage-systems?info=abb_ww%2Flow_voltage%2Fcontrol%2Fsafety_products%2Fprog_safety_controllers%2Fpluto%2Fpluto_d20.prj&languageIso=tr",
+  "https://africa.rsdelivers.com/product/abb/2tla020070r6400-pluto-d20/abb-2tla-series-safety-controller/2371450",
+  "https://arxiv.org/abs/0708.2382",
+  "https://at.rs-online.com/web/p/sps-zubehor/2371450",
+  "https://au.rs-online.com/web/p/plc-accessories/2371450",
+  "https://catalogo-generale.abb.com/safety-e-dispositivi-di-sicurezza/safety/2TLA020070R6400",
+  "https://d196y7k34zcp8f.cloudfront.net/userfiles/ad/documents/abb_2tla050220r1020_catalog.pdf",
+  "https://docs.rs-online.com/f46c/A700000008485560.pdf",
+  "https://electricalconnects.com/price/download/13-ABB%20Switchgear%20Pricelist%20Jan%202022.pdf.pdf",
+  "https://empower.abb.com/ecatalog/ec/EN_NA/p/2TLA020070R6400",
+  "https://es.rs-online.com/web/p/accesorios-para-controladores-y-automatas/2371450",
+  "https://fr.rs-online.com/web/p/accessoires-pour-automates/2371450",
+  "https://in.rsdelivers.com/product/abb/2tla020070r6400-pluto-d20/abb-2tla-series-safety-controller/2371450",
+  "https://it.rs-online.com/web/p/accessori-per-plc/2371450",
+  "https://library.e.abb.com/public/31510c35090148dab244733f8ea7af43/ABB_EP_Pricelist%20eff%2010.02.2026%20%28LR%29.pdf?x-sign=0WYnBv9wNNAwDUknvya03t8xgrf8dOIGpK2%2FUf5Ew3E2GTgc2DeXHam5w92H%2F9gI",
+  "https://loja.br.abb.com/clp-de-seguranca-d20-linha-pluto-abb.html",
+  "https://new.abb.com/docs/librariesprovider15/default-document-library/jokab-easy-reference-oct-2019.pdf?sfvrsn=a3287616_2",
+  "https://pl.rs-online.com/web/p/akcesoria-do-sterownikow-programowalnych-plc/2371450",
+  "https://rutamsoft.com/pricelist/abb_switchgear_pricelist.pdf",
+  "https://shop.in.abb.com/2tla020070r6400/pluto-d20.html",
+  "https://uk.rs-online.com/web/p/safety-automation-controllers/2371450",
+  "https://us.rs-online.com/m/d/6d1fe2bd4f6b2d79f15adbcf1be38693.pdf?srsltid=AfmBOoq5p83Yy3jWQVtRBGVymCf4E63rvlxVFWbWNJlJp19ntOch94z7",
+  "https://us.rs-online.com/product/abb-jokab-safety/2tla020070r6400/71022829/",
+  "https://www.abbconnect.nl/Details/Index.aspx/7320500410578?ShowBorder=True&country=nl&languageCode=nl",
+  "https://www.purvisindustries.com/ASSETS/DOCUMENTS/ITEMS/EN/ABB_2TLA010028R2000_Catalog_1.pdf",
+  "https://www.switchgearandautomation.com/abb-pricelist/ABB-Price-List-2025-min.pdf",
+  "https://www.voltagelectricals.com/images/abb_pricelist%20feb-2024.pdf",
+  "https://www.wattoo.dk/plc-m-bus-20-i-o-4-sik-udg-4-sik-indg-2124781574"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14749,
+  "output_tokens": 664
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "query": "Part: F-Theta. Recorded supplier: Digikey. Their product name or order number: 4401-508-000-26. Recorded link: https://www.digikey.dk/product-detail/da/4401-508-000-26/1601-4401-508-000-26-ND/11698211?utm_medium=email&utm_source=oce&utm_campaign=3309_OCE21RT&utm_content=productdetail_DK&utm_cid=1959404&so=71081600&mkt_tok=MDI4LVNYSy01MDcAAAF-tKwAJu23wA7EMGcGE9E85mQzt3nm7cxZgZwiMBxdyCga84JSMgc3ERNhdmtx8QnKbnlYsbjqmDIbnyKrFp4KzD3G0fJHrpor6LH7NP8G.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Excelitas Technologies",
+  "part_number": "4401-508-000-26",
+  "own_brand": false,
+  "description": "This is a LINOS F-Theta-Ronar lens made of fused silica for 1030–1080 nm, with a 420 mm focal length and 20 mm beam diameter.",
+  "alternatives": []
+ },
+ "sources": [
+  "https://linosoptics.excelitas.com/out/Graphics/en/00123729_0.pdf",
+  "https://linosoptics.excelitas.com/out/Graphics/en/00130364_0.pdf",
+  "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6210/4401-508-000-26_2024.03-V2.2.pdf",
+  "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8437/O-LM_DS-4401-508-000-26_2025.09-V3.pdf",
+  "https://www.digikey.be/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.ca/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.co.th/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.co.uk/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.com.br/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.com/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.es/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.kr/ko/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.lv/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.nl/nl/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.pl/en/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.digikey.pl/pl/products/detail/excelitas-technologies/4401-508-000-26/11698211",
+  "https://www.rxelectronics.com/datasheet/ad/4401-508-000-26.pdf"
+ ],
+ "searches": 4,
+ "usage": {
+  "input_tokens": 22363,
+  "output_tokens": 566
+ }
+}

@@ -1,0 +1,64 @@
+{
+ "query": "Part: Front door latch. Recorded supplier: Misumi. Their product name or order number: FA-624-2-L. Recorded link: https://uk.misumi-ec.com/vona2/detail/221004913013/?HissuCode=FA-624-2-L.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "TAKIGEN",
+  "part_number": "FA-624-2-L",
+  "own_brand": false,
+  "description": "Left-opening sealed door handle made of zinc alloy with satin nickel plating, supplied with a strike plate and measuring 142 × 80 × 44 mm.",
+  "alternatives": [
+   {
+    "company": "TAKIGEN",
+    "url": "https://www.takigen.co.jp/products/detail/FA-624/FA-624-2-L",
+    "same_part": true,
+    "note": "TAKIGEN lists the exact FA-624-2-L part number."
+   },
+   {
+    "company": "Shanghai Moritani International Trading Co., Ltd.",
+    "url": "https://takigen.moritani-sh.com/product/detail/FA-624",
+    "same_part": true,
+    "note": "The product page lists TAKIGEN part FA-624-2-L, code 60845."
+   }
+  ]
+ },
+ "sources": [
+  "https://cad.takigen.co.jp/pdf/catalog/27003650100.pdf",
+  "https://id.misumi-ec.com/vona2/detail/221004913013/?HissuCode=FA-624-2-L",
+  "https://in.misumi-ec.com/vona2/detail/221004913013/?HissuCode=FA-624-2-R",
+  "https://jp.misumi-ec.com/news/topics/231122_im_v.pdf",
+  "https://jp.misumi-ec.com/vona2/detail/221004913013/",
+  "https://jp.misumi-ec.com/vona2/detail/221004913013/?rid=dj_sub212_detail_1_221004913013_e01_221004910188",
+  "https://jp.misumi-ec.com/vona2/detail/221004913013/?srid=rank_p_221004910043_221004913013",
+  "https://my.misumi-ec.com/pr/vona/takigen_201906/",
+  "https://takigen.moritani-sh.com/product/detail/FA-624",
+  "https://th.misumi-ec.com/en/vona2/detail/221004913013/?HissuCode=FA-624-2-R",
+  "https://th.misumi-ec.com/th/vona2/detail/221004913013/",
+  "https://uk.misumi-ec.com/",
+  "https://uk.misumi-ec.com/?lang=en",
+  "https://uk.misumi-ec.com/en/services/contact/",
+  "https://uk.misumi-ec.com/files/docs/recommended-products/Bestseller-Linear-units.pdf",
+  "https://uk.misumi-ec.com/files/docs/supplier-self-declaration/en.pdf",
+  "https://uk.misumi-ec.com/pdf/ds/FAG1/FAG1_F4033240549_EN.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2009/E_FA_09_0711_0712.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/p0709.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/p0713.pdf",
+  "https://uk.misumi-ec.com/vona2/detail/221004913013/?HissuCode=FA-624-2-L",
+  "https://uk.misumi-ec.com/vona2/maker/fuji-electric/",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech/M0300000000/",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech/M0300000000/M0315000000/",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech/M0400000000/M0405000000",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech/M1700000000/M1712000000/",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/mech_screw/M3310000000/",
+  "https://uk.misumi-ec.com/vona2/maker/misumi/press/P0300000000/P0302000000/",
+  "https://uk.misumi-ec.com/vona2/mech/M0810080000/",
+  "https://uk.misumi-ec.com/vona2/mech/M1700000000/M1712000000/",
+  "https://www.takigen.co.jp/products/detail/FA-624/FA-624-2-L",
+  "https://www.takigen.co.kr/kr/contents/eyesearch/detail.do?id=26002420100"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14398,
+  "output_tokens": 569
+ }
+}

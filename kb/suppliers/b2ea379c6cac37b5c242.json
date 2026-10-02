@@ -1,0 +1,79 @@
+{
+ "query": "Part: 400V power cable. Recorded supplier: Harald Nyborg. Their product name or order number: 3696. Recorded link: https://www.harald-nyborg.dk/produkt/cee-forlaengerkabel-5x1-5-10m.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Harald Nyborg (no separate manufacturer is identified in the listing)",
+  "part_number": "3696 (Harald Nyborg item number; no manufacturer part number is stated)",
+  "own_brand": true,
+  "description": "The listing describes a grounded 10 m CEE extension cable with 5G1.5 mm² cable and a 16 A rating.",
+  "alternatives": [
+   {
+    "company": "Brennenstuhl",
+    "url": "https://www.brennenstuhl.dk/dk-DK/produkter/extension-cables/professional-cee-extension-cable-ip44-10m-black-h07rn-f-5g1-5-5-pin-400v-16a",
+    "same_part": false,
+    "note": "Matches the 10 m length, H07RN-F 5G1.5 cable, five-pin 400 V CEE connectors, and 16 A rating."
+   },
+   {
+    "company": "Wexim (sold by Wattoo)",
+    "url": "https://www.wattoo.dk/kabelsaet-10m-5g1-5mm-cee-16a-5p-400v-8728890015-1",
+    "same_part": false,
+    "note": "Matches the 10 m length, 5G1.5 mm² cable, and 16 A five-pole 400 V CEE connectors."
+   },
+   {
+    "company": "E-line (sold by Wattoo)",
+    "url": "https://www.wattoo.dk/forlaengerkabel-10m-5g1-5-ceefv-16a-8728890015",
+    "same_part": false,
+    "note": "Matches the 10 m length, H07RN-F 5G1.5 cable, and five-pole 400 V/16 A CEE connectors."
+   }
+  ]
+ },
+ "sources": [
+  "https://abcdocz.com/doc/3397890/ajour-2013-magasinet",
+  "https://abcdocz.com/doc/3397929/wwwwwwwwwwwwww-andwwww-wwwwww-wwww-andww",
+  "https://billigventilation.dk/vare/cee-kabelsaet-16a-h07rn-f-5g15-10m/",
+  "https://discosupport.dk/540-stromkabel",
+  "https://discosupport.dk/gummikabel/248-multikabel-18x15mm2-gra-pvc-18x15mm-pris-pr-meter.html",
+  "https://elmaterial.dk/shop/190-forlaengerkabler/",
+  "https://en.wikipedia.org/wiki/AC_power_plugs_and_sockets",
+  "https://media.distrelec.com/Web/Downloads/_t/ds/1182720_eng_tds.pdf",
+  "https://onlineparts.dk/verl-cable-400v-16a-10m-2102853",
+  "https://shop.scheppach.com/Verlaengerungskabel-400V-10m-16A-5-polig-1-5mm2/7909000701",
+  "https://vvsplaneten.dk/produkt/e-line-forlaengerkabel-5g1-5-h07rn-f-cee-5-pol-400v-16a-m-fasevender-sort-neopren-10m",
+  "https://wexim.dk/img/cms/Byggestr%C3%B8m_2016.pdf",
+  "https://wexim.dk/img/cms/katalog_2013-jan-24web.pdf",
+  "https://www.brennenstuhl.dk/da-DK/produkter/extension-cables/professional-cee-extension-cable-ip44-10m-h07rn-f-5g16.0-400v-63a",
+  "https://www.brennenstuhl.dk/dk-DK/produkter/extension-cables/professional-cee-extension-cable-ip44-10m-black-h07rn-f-5g1-5-5-pin-400v-16a",
+  "https://www.dkmtools.nl/datasheets/98166200110.pdf",
+  "https://www.dorchdanola.dk/arbejdspladsen/kabeltromler-forlaengere-byggestrom/forlaengerledninger-kabelsaet-forgrenere.html",
+  "https://www.harald-nyborg.dk/cee-forlaengerkabel-5g15-10-meter",
+  "https://www.klibo.com/product-display/cee-extension-cable-16a-h07rn-f-5g15-40048011?cHash=e9ce56f6a0d01950b4c42a2d2b191a5d&tx_web2pdf_pi1%5Baction%5D=generatePdfLink&tx_web2pdf_pi1%5Bargument%5D=printPage&tx_web2pdf_pi1%5Bcontroller%5D=Pdf",
+  "https://www.lavprisvaerktoej.dk/vaerkstedsinventar-udstyr/el-artikler/forlaengerledninger",
+  "https://www.nst-dk.dk/produkter/359-forlaenger-kabel-16a-5g15-mmsup2/2893-forlaenger-kabel-5g15-mmsup2--10m---5p16a400v-ip44/",
+  "https://www.reddit.com/r/dkbiler/comments/1ppplqo/mormorlader_der_kan_b%C3%A5de_400v16a_og_220v6a/",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1350eff",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/17rgc60",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/17srg7b",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1bt3ls7",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1dmr5th",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1g3nc00",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1i48i5y",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1iuz5vd",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1j0yxn8",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1p0bt7n/underligt_vaskemaskine_stik_i_k%C3%A6lder/",
+  "https://www.reddit.com/r/selvgjortvelgjort/comments/1p0zhxo/kan_kraftstik_i_garage_bruges_til_billader/",
+  "https://www.sbnet.dk/thorkild-larsen",
+  "https://www.silvan.dk/produkt/cee-forlaengerkabel-m-fasevender-2680-2075245",
+  "https://www.teslaforum.dk/forum/topic/1465?page=1",
+  "https://www.thansen.dk/elektronik/elartikler/cee-materiale/neopren-cee-kabelsaet-5g1-5mm2-10-m-16a-400v-forstaerket-cee-stik-med-fasevender/n-233467213/pn-234003331",
+  "https://www.wattoo.dk/forlaengerkabel-10m-5g1-5-ceefv-16a-8728890015",
+  "https://www.wattoo.dk/kabelsaet-10m-5g1-5mm-cee-16a-5p-400v-8728890015-1",
+  "https://www.wattoo.dk/kabelsaet-m-stik-5x1-5-10mtr-881521700",
+  "https://zoneoffer.dk/da/produkt/hus-have-byg/eludstyr/forlaengerledning-og-tilbehoer/cee-forlaengerkabel-m-fasevender-16a-ip44-5x15mm-10-meter/5708421003925"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 15047,
+  "output_tokens": 1052
+ }
+}

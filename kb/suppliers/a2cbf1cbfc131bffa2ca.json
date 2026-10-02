@@ -1,0 +1,75 @@
+{
+ "query": "Part: Gas blower. Recorded supplier: EuroVacuumProducts.com. Their product name or order number: Single stage side channel blower fitted with 1.5kw 3Ph 400V motor.  Sealed construction. Recorded link: https://eurovacuumproducts.com/.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Eurovacuum Products (apparent own brand; OEM not identified)",
+  "part_number": "SC501MF (likely 1.5 kW model)",
+  "own_brand": true,
+  "description": "Eurovacuum Products lists the SC501MF as a single-stage side-channel blower in a 1.5 kW configuration, but its product page does not confirm sealed construction.",
+  "alternatives": [
+   {
+    "company": "Metzger-Technik-Shop",
+    "url": "https://www.metzger-technik-shop.de/en/p/side-channel-2bh14-or-single-stage-or-3-phase-or-ie1-or-50-60-hz-1",
+    "same_part": false,
+    "note": "The 2BH14007AH26 is single-stage and three-phase, rated 1.3 kW at 50 Hz and 1.5 kW at 60 Hz, with 345–415 V listed for 50 Hz; sealed construction is not specified."
+   },
+   {
+    "company": "Vacuum Pumps UK",
+    "url": "https://vacuumpumpsuk.com/product/becker-sv-130-1-1-50kw-side-channel-blower/",
+    "same_part": false,
+    "note": "The Becker SV 130/1 matches the single-stage side-channel type and 1.5 kW rating; the cited listing does not confirm 400 V three-phase power or sealed construction."
+   }
+  ]
+ },
+ "sources": [
+  "https://1206.vacuumshop.atlascopco.com/Catalog/Pumps/Side-Channel-Blowers/DBS/DBS-150/p/8055810008",
+  "https://almeco.eu/en/system/files/files/downloads/catalog_fpz-_gor_gvr.pdf",
+  "https://arxiv.org/abs/2003.10405",
+  "https://assets.fipa.com/assets/catalogs/pdfs/e-catalogs/Vacuum_components/Vakuumpomponenten_EN__2024-02-26.pdf",
+  "https://blowers.africa/wp-content/uploads/2025/05/Blowers-for-Africa-Side-Channel-Blowers-Technical-Data-%E2%80%93-400V-3Ph-Single-Stage-Models-REV01.pdf",
+  "https://cdn.thomasnet.com/ccp/30984029/397538.pdf",
+  "https://device.report/m/4d20b091cf4b3519af9d9e8eca1af955863915c824cf2c381ade80d13e7cd7ed.pdf",
+  "https://ehrler-beck.com/en/products/sv-201-1/sv-201-1-42089285601000ta",
+  "https://eurovacuum.eu/app/uploads/2016/01/Eurovacuum-EVSC-catalog-EN.pdf",
+  "https://eurovacuum.eu/products/vacuum-pumps/evsc-d91b3/",
+  "https://eurovacuum.eu/vacuum-pumps/evsc-series/",
+  "https://eurovacuum.it/en/soffianti-canali-laterali-monostadio/",
+  "https://eurovacuumproducts.com/product/",
+  "https://eurovacuumproducts.com/product/single-stage-side-channel-blower/",
+  "https://klee.dk/en/products/motors-pumps-blowers/side-channel-blowers/kleeblower",
+  "https://m.gys.cn/qtgongkongxitongjizb/5327782050.html",
+  "https://onlinestore.lowener.se/en/vacuum-pumps/side-channel-blowers/three-phase/",
+  "https://vacuumpumpsuk.com/product/becker-sv-130-1-1-50kw-side-channel-blower/",
+  "https://www.accio.com/plp/blower-3-phase",
+  "https://www.cfpco.com/core/media/media.nl?c=1118049&h=wzYQBGYyVnJxGSKabtnACIbPKQcJ4gQf4vJvMQMlpCiCaLga&id=3230177",
+  "https://www.chanleemachinery.com/new_timeline.php?last_id=729301",
+  "https://www.compact-ms.rs/_files/ugd/59762d_ecb9d7b1894b41bfbd507316c0897104.pdf",
+  "https://www.dutair.com/pdf/DB415_1PHASE_Side_Channel_Blower.pdf",
+  "https://www.euroblower.eu/download/datasheet-eb3-4215.pdf/88ed608d127e94674fca089ab0923ece",
+  "https://www.induvac.com/en/vacuum-pumps/side-channel-blowers",
+  "https://www.klee.dk/Files/Product%20assets/Produktkataloger/KLEEblower%20brochure_ENG.pdf",
+  "https://www.metzger-technik-shop.de/Side-channel-2BH15-single-stage-3-phase-IE1-50/60-Hz",
+  "https://www.metzger-technik-shop.de/en/p/side-channel-2bh14-or-single-stage-or-3-phase-or-ie1-or-50-60-hz-1",
+  "https://www.radwell.ca/Brand/ELEKTROR",
+  "https://www.radwell.co.uk/Brand/ELEKTROR?Page=2",
+  "https://www.radwell.com/fr-FR/Brand/ELEKTROR",
+  "https://www.seko.com/global/product/view/side-channel-blowers-triple-impeller",
+  "https://www.shenovacengineers.com/single-stage-side-channel-blower.php",
+  "https://www.skv-tec.de/en/ring-blower/single-stage-high-pressure-ring-blower/348/ring-blower-with-120-m3/h",
+  "https://www.sorotec.de/shop/Side-channel-blower-1-5-kW.html",
+  "https://www.stepcraft.dk/vare/side-channel-blower-1-5-kw-280-mbar-double-stage/?lang=en",
+  "https://www.trade-flow.eu/seko-bl42000201600-blower-vacuum-2-impellers-150-m3-h-280-mbar-1-1-2-1-6-kw-p4137/",
+  "https://www.volza.com/p/side-channel-blower-or-turbo-blower/import-data/origin-china/",
+  "https://www.volza.com/p/side-channel-blower/hsn-code-8414/import-data/",
+  "https://www.volza.com/p/side-channel-blower/hsn-code-8414/import-data/origin-china/",
+  "https://www.volza.com/p/side-channel-blower/hsn-code-84145930/export-data/",
+  "https://www.volza.com/p/side-channel-blower/import-data/",
+  "https://www.yashblowers.com/solutions/side-channel-blower-for-vacuum-conveying-europe"
+ ],
+ "searches": 3,
+ "usage": {
+  "input_tokens": 20938,
+  "output_tokens": 1723
+ }
+}

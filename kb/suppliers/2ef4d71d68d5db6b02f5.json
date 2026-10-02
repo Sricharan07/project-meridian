@@ -1,0 +1,66 @@
+{
+ "query": "Part: Filter housing 2\" (with one filter). Recorded supplier: SKV-tec. Their product name or order number: Inline filter G 2\". Recorded link: https://www.skv-tec.nl/en/options/side-channel-blowers/filters/in-line-filters/inline-filter-g-2?number=140220-2&c=73.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "SKV-tec",
+  "part_number": "140220-2",
+  "own_brand": true,
+  "description": "SKV-tec’s G 2-inch inline filter housing is rated for up to 300 m³/h and is supplied with one filter.",
+  "alternatives": [
+   {
+    "company": "BZT",
+    "url": "https://www.bzt-shop.de/en/products/durchgangsfilter-g-2-bis-300-m-h-papier",
+    "same_part": false,
+    "note": "This equivalent has a G 2-inch connection and a 300 m³/h airflow rating."
+   },
+   {
+    "company": "Oxfil (PVR-Rotant)",
+    "url": "https://oxfil.com/da/eu/product/vacuum-filter-housing/pvr-rotant-f300",
+    "same_part": false,
+    "note": "This equivalent has BSP 2-inch connections, a 300 m³/h flow rating, and includes a filter cartridge."
+   },
+   {
+    "company": "FIPA",
+    "url": "https://fipa.com/en-US/variant/fb-60",
+    "same_part": false,
+    "note": "This vacuum filter has a G2 female connection and a maximum capacity of 300 m³/h."
+   }
+  ]
+ },
+ "sources": [
+  "https://en.wikipedia.org/wiki/Pfeiffer_Vacuum",
+  "https://eurovacuum.eu/app/uploads/2016/11/Inlet-dust-filters-with-BSP-connection.pdf",
+  "https://fipa.com/en-US/variant/fb-60",
+  "https://hnldfilter.en.made-in-china.com/product/NGSrKaVykXpF/China-Vacuum-Pump-Inlet-Filter-with-Replaceable-Filter-Element-F002-F003-F004.html",
+  "https://low2high.se/wp-content/uploads/2020/08/3611031902_Catalog_FoodPackaging_36_10119002.pdf",
+  "https://oxfil.com/da/eu/product/vacuum-filter-housing/pvr-rotant-f300",
+  "https://oxydent.nl/en/air-filters/air-inlet-filters-with-plastic-housing/",
+  "https://oxydent.nl/en/air-filters/vacuum-filters/",
+  "https://www.aci-controls.com/customer/docs/skudocs/s3-2-111b-compressed-air-treatment.pdf",
+  "https://www.bannerindustries.com/cobetter-filter-housing/",
+  "https://www.bzt-shop.de/en/products/durchgangsfilter-g-2-bis-300-m-h-papier",
+  "https://www.bzt-shop.de/products/haubenansaugfilter-g-2-bis-300-m-h-papier",
+  "https://www.interlandtechniek.nl/files/Brochures/bijlagecleanroomroosters2020.pdf",
+  "https://www.lindab.hu/globalassets/commerce/lindabwebproductsdoc/assets/production/njjlnjk0njatzgqzyi00yzlklthiy2qtmtk1zjdjotu0y2zl/5249947220413751883/air_filtration_units_2023_en.pdf?v=1774742196",
+  "https://www.pneuparts.com/en/item/F20VUE",
+  "https://www.sf-filter.com/en/products/industrial-filters/vacuum-pumps/air-filter-housing",
+  "https://www.skv-tec.de/en/Inline-filter-G-2/140220",
+  "https://www.skv-tec.nl/In-line-filter-G-2/140220",
+  "https://www.skv-tec.nl/accessoires/zijkanaalventilator/filter/in-line-filter/in-line-filter-g-2",
+  "https://www.skv-tec.nl/downloads/Catalog-RVP_EN.pdf",
+  "https://www.skv-tec.nl/downloads/Catalog-SKV_EN.pdf",
+  "https://www.skv-tec.nl/downloads/Catalogue-RVP_FR.pdf",
+  "https://www.skv-tec.nl/downloads/Katalog-SKV_DE.pdf",
+  "https://www.skv-tec.nl/en/Inline-filter-G-2/140220",
+  "https://www.skv-tec.nl/fr/accessoire/soufflantes-a-canal-lateral/filtre/filtres-d-ecoulement/filtre-d-ecoulement-de-g-2",
+  "https://www.skv-tec.nl/media/6b/92/3b/1737638096/Catalogue-SKV_FR.pdf",
+  "https://www.skv-tec.nl/media/b5/cc/e0/1737638096/Catalog-SKV_EN.pdf",
+  "https://www.vacumex.dk/CustomerData/Files/Folders/31-pdf-e/206_vacumex-priskatalog-2015-web-pdf-19.pdf"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 17124,
+  "output_tokens": 751
+ }
+}

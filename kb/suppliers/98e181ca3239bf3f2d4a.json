@@ -1,0 +1,52 @@
+{
+ "query": "Part: Gas bottle input. Recorded supplier: RS components. Their product name or order number: AR20-F02G-B. Recorded link: https://dk.rs-online.com/web/p/trykluftregulatorer/8903156.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "SMC",
+  "part_number": "AR20-F02G-B",
+  "own_brand": false,
+  "description": "SMC pneumatic regulator with a G 1/4 connection and pressure gauge.",
+  "alternatives": [
+   {
+    "company": "Gruppo Gesa",
+    "url": "https://shop.gruppogesa.it/smc-riduttore-ar20-f02g-b-d-1-4-manometro-uscita-0-5-8-5-bar.html",
+    "same_part": true,
+    "note": "The product page lists the exact SMC part number AR20-F02G-B."
+   }
+  ]
+ },
+ "sources": [
+  "https://air-com.pl/ajax/store/product/printPdf/1/pl/63451/2018100",
+  "https://air-com.pl/ajax/store/product/printPdf/1/pl/63451/2018542",
+  "https://at.rs-online.com/web/p/pneumatik-regler/8903156",
+  "https://befr.rs-online.com/web/p/pneumatic-regulators/8903156",
+  "https://de.rs-online.com/web/p/pneumatik-regler/8903156",
+  "https://dk.rs-online.com/euro/img/site/campaigns/K27_index/DK_alpha.pdf",
+  "https://dk.rs-online.com/euro/img/task-requests/220668/a866_ppe_brochure_v7_dk_00.pdf?intcmp=DK-WEB-_-CP-C1-_-MCC_205_0723_NE-_-security-all-arround",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/trykluftbehandling/",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/trykluftbehandling/?pn=114",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/trykluftbehandling/?pn=115",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/trykluftbehandling/?pn=122",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/trykluftbehandling/filterelementer-trykluft-og-vakuum-erstatningselementer/",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/trykluftbehandling/trykluftbehandlingskomponenter-service-reparations-og-taetningssaet/",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/trykluftbehandling/trykluftregulatorer/",
+  "https://docs.rs-online.com/5187/0900766b81431873.pdf",
+  "https://es.rs-online.com/web/p/reguladores-de-presion/8903156",
+  "https://fr.rs-online.com/web/p/regulateurs-de-pression/8903156",
+  "https://hu.rs-online.com/web/p/pneumatikus-szabalyozok/8903156",
+  "https://kr.rs-online.com/web/p/pneumatic-regulators/8903156",
+  "https://my.rs-online.com/web/p/pneumatic-regulators/8903156",
+  "https://se.rs-online.com/web/p/pneumatic-regulators/8903156",
+  "https://shop.gruppogesa.it/smc-riduttore-ar20-f02g-b-d-1-4-manometro-uscita-0-5-8-5-bar.html",
+  "https://tr.rsdelivers.com/product/smc/ar20-f02g-b/smc-hava-regulatoru-20l/dk-005-085mpa-g-1/4/8903156",
+  "https://uk.rs-online.com/web/p/pneumatic-regulators/8903156",
+  "https://www.jnf.dk/document/cc0bde94-fcb1-4270-8e15-2c8b2a6551f4/89972.pdf/download",
+  "https://www.traceparts.com/en/product/rs-group-smc-air-regulator-g-14?CatalogPath=TRACEPARTS%3ATP06005015&Product=10-29022016-092506"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14911,
+  "output_tokens": 379
+ }
+}

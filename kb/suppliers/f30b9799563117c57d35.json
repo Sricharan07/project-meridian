@@ -1,0 +1,54 @@
+{
+ "query": "Part: Electrical cabinet. Recorded supplier: RS components. Their product name or order number: NSYS3D8625P. Recorded link: https://dk.rs-online.com/web/p/vaegbokse/7018449.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Schneider Electric",
+  "part_number": "NSYS3D8625P",
+  "own_brand": false,
+  "description": "Steel wall-mounted electrical enclosure with a plain door and mounting plate, measuring 800 × 600 × 250 mm and rated IP66 and IK10.",
+  "alternatives": [
+   {
+    "company": "Proshop",
+    "url": "https://www.proshop.dk/Tavler-og-kasser/Schneider-Electric-Vaegskab-med-grundplade-800x600x250/2952737",
+    "same_part": true,
+    "note": "Lists the exact Schneider Electric part number NSYS3D8625P."
+   },
+   {
+    "company": "DigiKey",
+    "url": "https://www.digikey.com/en/products/detail/schneider-electric/NSYS3D8625P/17148715",
+    "same_part": true,
+    "note": "Lists the exact Schneider Electric part number NSYS3D8625P."
+   },
+   {
+    "company": "TME",
+    "url": "https://www.tme.eu/dk/en/details/nsys3d8625p/wall-mounting-enclosures/schneider-electric/",
+    "same_part": true,
+    "note": "Lists the exact Schneider Electric part number NSYS3D8625P."
+   }
+  ]
+ },
+ "sources": [
+  "https://assets.rs-online.com/image/upload/v1752851417/MKT/LP/Suppliers/schneider/motor-control-solutions/Catalog%3A%20Automation%20and%20control%20essentials.pdf",
+  "https://cdn.lsicloud.net/interelecl/productdocs/Schneider_Electric_NSYS3D8625P_Specification_Sheet.pdf",
+  "https://dk.rs-online.com/web/",
+  "https://dk.rs-online.com/web/c/computere-og-enheder/?pn=272",
+  "https://dk.rs-online.com/web/c/kabinetter-og-serverracks/kabinetter/kabinetter-til-computere-og-periferienheder/",
+  "https://dk.rs-online.com/web/ob/s/",
+  "https://dk.rs-online.com/web/p/vaegbokse/7018389",
+  "https://dk.rs-online.com/web/p/vaegbokse/7018421",
+  "https://doc.r-s-group.com/NSYS3D8625P-SCH.pdf",
+  "https://download.schneider-electric.com/files?p_Doc_Ref=NSYS3D8625P_REACH_DECLARATION&p_FileName=NSYS3D8625P_REACH_DECLARATION_WI_en_US.pdf",
+  "https://uk.rs-online.com/web/p/wall-boxes/7018449?gb=s",
+  "https://us.rs-online.com/product/schneider-electric/nsys3d8625p/74689740/",
+  "https://www.digikey.com/en/products/detail/schneider-electric/NSYS3D8625P/17148715",
+  "https://www.proshop.dk/Tavler-og-kasser/Schneider-Electric-Vaegskab-med-grundplade-800x600x250/2952737",
+  "https://www.se.com/dk/da/product/NSYS3D8625P/v%C3%A6gskab-m-grpl-800x600x250/",
+  "https://www.tme.eu/dk/en/details/nsys3d8625p/wall-mounting-enclosures/schneider-electric/"
+ ],
+ "searches": 1,
+ "usage": {
+  "input_tokens": 12992,
+  "output_tokens": 452
+ }
+}

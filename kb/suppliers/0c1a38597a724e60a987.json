@@ -1,0 +1,65 @@
+{
+ "query": "Part: Oxygen sensor. Recorded supplier: Angst+Pfister. Their product name or order number: FCX-TR0005. Recorded link: https://sensorsandpower.angst-pfister.com/de/produkte/gas/produkt/fcx-tr0025-amperometric-oxygen-o2-gas-transmitter/.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Pewatron AG",
+  "part_number": "FCX-TR0005",
+  "own_brand": true,
+  "description": "FCX-TR0005 is Pewatron’s stationary zirconia oxygen transmitter with a 0–5% measuring range and 4–20 mA output; the supplied recorded link points to FCX-TR0025, which has a 0–25% range.",
+  "alternatives": [
+   {
+    "company": "Process Sensing Technologies (Ntron)",
+    "url": "https://www.processsensing.com/docs/datasheet/SenzTx-Oxygen-Transmitter-PST-DS-200-EN.pdf",
+    "same_part": false,
+    "note": "The SenzTx offers zirconia oxygen sensing and a 4–20 mA output, but its listed ranges do not exactly match 0–5%."
+   },
+   {
+    "company": "SST Sensing",
+    "url": "https://sstsensing.com/in/product/oxy-proxt-oxygen-transmitter/",
+    "same_part": false,
+    "note": "The OXY-ProXT offers zirconia oxygen sensing and a 4–20 mA output, but its listed 0–1.25% range does not match 0–5%."
+   }
+  ]
+ },
+ "sources": [
+  "https://de.wikipedia.org/wiki/Messumformer",
+  "https://en.wikipedia.org/wiki/Oxygen_sensor",
+  "https://sensore-electronic.com/product/oxypro-xt-oxygen-transmitter/",
+  "https://sensore-electronic.com/wp-content/uploads/2025/09/OXY-ProXT-Datasheet-1.pdf",
+  "https://sensorsandpower.angst-pfister.com/de/produkte/gassensoren/",
+  "https://sensorsandpower.angst-pfister.com/de/produkte/gassensoren/produkt/fcx-ul-ch-amperometric-oxygen-o2-sensor/",
+  "https://sensorsandpower.angst-pfister.com/de/produkte/gassensoren/produkt/pza-mc25-p-potentiometric-zirconia-oxygen-o2-gas-sensor-module/",
+  "https://sensorsandpower.angst-pfister.com/de/produkte/gassensoren/sauerstoff-gassensoren-gassensormodule/dl/b7120f6514e5b14a3e1d6a3c70d00a823a1c1536/",
+  "https://sensorsandpower.angst-pfister.com/de/produkte/gassensoren/sauerstoff-gassensoren-gassensormodule/pdf/download/",
+  "https://sensorsandpower.angst-pfister.com/de/produkte/gassensoren/sauerstoff-gassensoren-gassensormodule/pdf/download/dl/8b0948d36bff596984a63bba4c8cc3ff56e7e633/",
+  "https://sensorsandpower.angst-pfister.com/de/suche/?c%5B%5D=products&s=amperome",
+  "https://sensorsandpower.angst-pfister.com/en/downloads/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/oxygen-gas-sensors-gas-sensor-modules/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/oxygen-gas-sensors-gas-sensor-modules/dl/b7120f6514e5b14a3e1d6a3c70d00a823a1c1536/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/oxygen-gas-sensors-gas-sensor-modules/pdf/download/dl/b6b1a869c37bfcdab5476a2c90e22dcf14fe0458/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/oxygen-gas-sensors-gas-sensor-modules/pdf/download/dl/b7120f6514e5b14a3e1d6a3c70d00a823a1c1536/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/oxygen-sensores/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/product/fcx-tr0005-amperometric-oxygen-o2-gas-transmitter/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/product/fcx-tr1000-amperometric-oxygen-o2-gas-transmitter/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/product/pza-mc25-n-potentiometric-zirconia-oxygen-o2-gas-sensor-module/",
+  "https://sensorsandpower.angst-pfister.com/en/products/gas/product/pza-mc25-p-potentiometric-zirconia-oxygen-o2-gas-sensor-module/",
+  "https://sensorsandpower.angst-pfister.com/en/search/?c%5B0%5D=products&c%5B1%5D=news&c%5B2%5D=datasheets&s=fcx",
+  "https://sensorsandpower.angst-pfister.com/fileadmin/products/datasheets/272/FCX-TR_1620-21914-0029-E-0821.pdf",
+  "https://sensorsandpower.angst-pfister.com/fr/produits/gas/capteurs-doxygene-modules-de-capteurs-de-gaz/",
+  "https://sensorsandpower.angst-pfister.com/fr/produits/gas/produit/pza-mc25-p-potentiometric-zirconia-oxygen-o2-gas-sensor-module/",
+  "https://sensorsandtransmitters.com/product/angst-and-pfister-fcx-mlxx-and-fcx-mlxx-ext-sensor-series-flow-and-diffusion/",
+  "https://sstsensing.com/in/product/oxy-proxt-oxygen-transmitter/",
+  "https://web-material3.yokogawa.com/IM11M13A01-04E_070.pdf",
+  "https://www.directindustry.com/prod/angst-pfister-sensors-power-ag/product-68695-2349394.html",
+  "https://www.medicalexpo.com/prod/pewatron-ag/product-120972-943062.html",
+  "https://www.processsensing.com/docs/datasheet/STX01_V1_EN_0720%20Datasheet.pdf",
+  "https://www.processsensing.com/docs/datasheet/SenzTx-Oxygen-Transmitter-PST-DS-200-EN.pdf"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14841,
+  "output_tokens": 1284
+ }
+}

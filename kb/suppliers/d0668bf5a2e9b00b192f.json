@@ -1,0 +1,62 @@
+{
+ "query": "Part: Laser source. Recorded supplier: Max Photonics. Their product name or order number: MFSC-300W. Recorded link: http://en.maxphotonics.com/product/18.html.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Maxphotonics",
+  "part_number": "MFSC-300W",
+  "own_brand": true,
+  "description": "The MFSC-300W is a 300 W continuous-wave fiber laser source operating at approximately 1080 nm.",
+  "alternatives": [
+   {
+    "company": "Raycus",
+    "url": "https://raycusfiber.com/produto/300w-single-module-cw-fiber-laser/",
+    "same_part": false,
+    "note": "This 300 W CW fiber laser matches the nominal power, 1080 nm wavelength, water cooling, and QBH output options."
+   },
+   {
+    "company": "Everfoton",
+    "url": "https://en.everfoton.com/view/137.html",
+    "same_part": false,
+    "note": "This CW fiber laser range includes 300 W models and matches the approximately 1080 nm wavelength, random polarization, water cooling, and QBH output option."
+   }
+  ]
+ },
+ "sources": [
+  "https://cncmetalmachine.com/wp-content/uploads/2025/01/300W-SINGLE-MODULE-CW-FIBER-LASER3D-PRINTING.pdf",
+  "https://device.report/m/df3508ff99c1fff54a08c5aceb31ee263190d51afe99996e99ec10eb1069245d.pdf",
+  "https://en.everfoton.com/view/137.html",
+  "https://en.everfoton.com/view/147.html",
+  "https://erp.maxphotonics.com/",
+  "https://hslaser2021.en.made-in-china.com/product/dRtrxnqVVEWc/China-Max-300W-Single-Module-Cw-Fiber-Laser-Source.html",
+  "https://laserwelding.maxphotonics.com/privacy-policy",
+  "https://maxphotonics.com/product/15.html",
+  "https://maxphotonics.en.made-in-china.com/product/zSJnZphVblce/China-Single-Mode-300W-Cw-Fiber-Laser-for-Laser-Cutting.html",
+  "https://raycusfiber.com/produto/300w-qcw-fiber-laser/",
+  "https://raycusfiber.com/produto/300w-single-module-cw-fiber-laser/",
+  "https://rpmclasers.com/wp-content/uploads/products/BFL-CW3000.pdf",
+  "https://telebrook.com/pdf/Products/Fiber%20Lasers/Quasi-CW%20Fiber%20Lasers/YLP-QCW-300-3000-W.pdf",
+  "https://www.coractivechina.com/wp-content/uploads/2020/09/cfls-3000_r2.pdf",
+  "https://www.dplasers.com/300W-QCW-Laser-Welding-Machine-for-Mold-Repair-pd503968248.html",
+  "https://www.findlight.net/lasers/fiber-lasers/cw-fiber-lasers/high-stability-cw-fiber-laser-ffrc-300-h",
+  "https://www.imaginjewelry.com/300w-qcw-fiber-laser-welding-machine-china-suppliers-and-factory-with-flexible-fiber-core-selection-product/",
+  "https://www.imaginjewelry.com/300w-qcw-fiber-laser-welding-machine-china-suppliers-factory-for-customized-fiber-core-solutions-product/",
+  "https://www.instrumentstrade.com/cwfl-300-single-mode-continuous-fiber-laser_p8778.html",
+  "https://www.maxphotonics.com/vancheerfile/files/2020/4/20200427100944058.pdf",
+  "https://www.reddit.com/r/ChineseLaserCutters/comments/lyljev",
+  "https://www.reddit.com/r/LaserCleaningBusiness/comments/1taw7e0/any_on_hers_can_help_with_desicion/",
+  "https://www.reddit.com/r/LaserCleaningBusiness/comments/1u3pewj/amazon_findings/",
+  "https://www.reddit.com/r/LaserCleaningPorn/comments/1jjq8zn/anyone_source_from_china/",
+  "https://www.reddit.com/r/lasercutting/comments/1fnyu1i",
+  "https://www.reddit.com/r/lasers/comments/1gfewze",
+  "https://www.reddit.com/r/lasers/comments/1rn5ivz/kw_fiber_laser_repair/",
+  "https://www.reddit.com/r/u_Daniel_Young2019/comments/14d7noz",
+  "https://www.riselasers.com/Content/upload/pdf/202019900/300W-Maxphotonics-CW-Fiber-Laser-Source.pdf?rnd=595",
+  "https://www.riselasers.com/laser-machine-parts/laser-source/300w-maxphotonics-single-module-cw-fiber.html"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 15027,
+  "output_tokens": 569
+ }
+}

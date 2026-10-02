@@ -1,0 +1,62 @@
+{
+ "query": "Part: Y axis linear guide. Recorded supplier: Misumi. Their product name or order number: SSEBMZ20-520. Recorded link: https://uk.misumi-ec.com/vona2/detail/110300043860/?HissuCode=SSEBMZ20-520&PNSearch=SSEBMZ20-520&KWSearch=SSEBMZ20-520&searchFlow=results2type.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "MISUMI",
+  "part_number": "SSEBMZ20-520",
+  "own_brand": true,
+  "description": "A MISUMI stainless-steel miniature linear guide with a wide, interchangeable standard block, small clearance, and a 520 mm rail.",
+  "alternatives": [
+   {
+    "company": "THK",
+    "url": "https://uk.rs-online.com/web/p/linear-guide-rails/0619742",
+    "same_part": false,
+    "note": "The HSR20 rail matches the 20 mm width and 520 mm length, but it is a different guide series and the listing is for the rail."
+   },
+   {
+    "company": "THK",
+    "url": "https://uk.rs-online.com/web/p/linear-guide-rails/0619867",
+    "same_part": false,
+    "note": "The SHS20 rail matches the 20 mm width and 520 mm length, but it is a different guide series and the listing is for the rail."
+   }
+  ]
+ },
+ "sources": [
+  "https://accu-components.com/us/linear-bearing-carriages/599938-ML9C1T1PS2",
+  "https://de.misumi-ec.com/files/images/products/docs/linearguides.pdf",
+  "https://misumi.partcommunity.com/3d-cad-models/ssebmz-ssebmz-mx-sse2bmz-sse2bmz-mx-miniature-slide-guides-wide-standard-interchangeable-small-clearance-standard-l-selectable-type-misumi?info=misumi%2Fmetric%2F06_linear_guides%2Fse2bmz_asmtab.prj",
+  "https://my.misumi-ec.com/pdf/fa/2014/p1_551_001.pdf",
+  "https://sg.misumi-ec.com/pdf/fa/2015/p1_555_001.pdf",
+  "https://th.misumi-ec.com/en/pdf/fa/2013/p373.pdf",
+  "https://uk.misumi-ec.com/contents/info/linearguide201911/pdf/list_of_the_products.pdf",
+  "https://uk.misumi-ec.com/eu/incadlibrary/detail/000031.html",
+  "https://uk.misumi-ec.com/files/images/products/docs/ballscrews.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2014/P1_0533-0534_F08_EN_003.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2014/P1_0537-0538_F08_EN.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2014/P1_0551-0552_F08_EN_001.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/2014/P1_0591-0592_F08_EN.pdf",
+  "https://uk.misumi-ec.com/pdf/fa/p1_0517.pdf",
+  "https://uk.misumi-ec.com/vona2/detail/110300039660/?rid=c24-alluser_detail_21_110300039660",
+  "https://uk.misumi-ec.com/vona2/detail/110311225889/?Page=2",
+  "https://uk.misumi-ec.com/vona2/detail/221005687089/",
+  "https://uk.misumi-ec.com/vona2/detail/221005687090/",
+  "https://uk.misumi-ec.com/vona2/detail/221006480182/?Page=4",
+  "https://uk.misumi-ec.com/vona2/detail/221300290548/?HissuCode=5001039",
+  "https://uk.misumi-ec.com/vona2/detail/221303384006/",
+  "https://uk.misumi-ec.com/vona2/detail/221303725612/",
+  "https://uk.misumi-ec.com/vona2/detail/221303846953/",
+  "https://uk.misumi-ec.com/vona2/detail/221304260392/",
+  "https://uk.misumi-ec.com/vona2/detail/223004928831/",
+  "https://uk.misumi-ec.com/vona2/detail/223004928831/?CategorySpec=jp000101306%3A%3Amig00000001251157",
+  "https://uk.rs-online.com/web/p/linear-guide-rails/0619742",
+  "https://uk.rs-online.com/web/p/linear-guide-rails/0619867",
+  "https://us.misumi-ec.com/contents/info/linearguide-discontinuation-2021/",
+  "https://www.grainger.com/product/NB-Guide-Rail-20-801GC6"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 11770,
+  "output_tokens": 1120
+ }
+}

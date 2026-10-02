@@ -1,0 +1,64 @@
+{
+ "query": "Part: DIN Relay. Recorded supplier: RS components. Their product name or order number: 1SNA645034R2300 RB121P-5VDC. Recorded link: https://dk.rs-online.com/web/p/interfacerelae-moduler/6699974/.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ABB",
+  "part_number": "1SNA645034R2300",
+  "own_brand": false,
+  "description": "ABB R600 DIN-rail interface relay with a 5 V DC coil and one SPDT contact.",
+  "alternatives": [
+   {
+    "company": "Lemvigh-Müller",
+    "url": "https://www.lemu.dk/en/product/rb121p-5vdc-interface-relay-r600-1c-oa1-a25vdc250v-10ma-6a-id-4013614507977",
+    "same_part": true,
+    "note": "Lists ABB part RB121P-5VDC, manufacturer number 1SNA645034R2300."
+   },
+   {
+    "company": "RSPSupply",
+    "url": "https://rspsupply.com/p-126933-abb-1sna645034r2300-rb121p-5vdc.aspx",
+    "same_part": true,
+    "note": "Lists ABB part number 1SNA645034R2300 RB121P-5VDC."
+   },
+   {
+    "company": "Santa Clara Systems",
+    "url": "https://www.santaclarasystems.com/abb/rb121p-5vdc",
+    "same_part": true,
+    "note": "Lists the ABB RB121P-5VDC interface relay."
+   }
+  ]
+ },
+ "sources": [
+  "https://de.rs-online.com/web/p/elektromechanisches-interfacerelais/6699974",
+  "https://dk.rs-online.com/web/b/abb/?pn=539",
+  "https://dk.rs-online.com/web/c/relaeer-og-signalbehandling/relaeer/?intcmp=DK-WEB-_-HP-BS12-_-0326-_-rel%C3%A6er&pn=23",
+  "https://dk.rs-online.com/web/p/elektromekaniske-interfacerelaeer/6699974",
+  "https://do1jvmih5t6vs.cloudfront.net/userfiles/ad/documents/abb_1svr405611r7100_catalog.pdf",
+  "https://docs.rs-online.com/2657/A700000009542577.pdf",
+  "https://docs.rs-online.com/4775/A700000011228369.pdf",
+  "https://empower.abb.com/ecatalog/ec/EN_NA/p/1SNA645034R2300",
+  "https://es.rs-online.com/web/p/modulos-de-reles-electromecanicos/6699974",
+  "https://ie.rs-online.com/web/c/relays-signal-conditioning/relays/?if=5v-dc-relays",
+  "https://int.rsdelivers.com/product/abb/1sna645034r2300-rb121p-5vdc/abb-r600-series-interface-relay-din-rail-5v-dc/6699974",
+  "https://it.rs-online.com/web/p/rele-elettromeccanici-di-interfaccia/6699974",
+  "https://library.e.abb.com/public/5328e73f0c05496280f6455b3cc63da9/Product%20list%20-%20ABB%20ERC2%20-%202020%20Q4.pdf?x-sign=XNR90EhoQ95ssHuUWDffKn8iRntiZs5HSoxaSDL%2BkNSz9QjNbAf3QI5UbbWk5QYq",
+  "https://library.e.abb.com/public/be50e202fe31477a8c0c0c0eb27f8cab/2CDC110083C0201_F_eBrochure_Selection%20tables.pdf?x-sign=%2FLHgaHw3oUrdTY82x6jCYILo1ZcP4p8ol4dEDwsawZg7cEIV6rxzEBOH7iBdPIcz",
+  "https://library.e.abb.com/public/d33535ba391d4b94b0312c28b8b84c64/ABB_Teil1_Kap05_Elektronische_Industrieprodukte_Stand_10-2024_72dpi.pdf?x-sign=2WGrj964LRh6wbSdCPHvFSEDvxFtVzMhZXix1RS9wyjzqS0b1zYPt7aSdEWhSytw",
+  "https://new.abb.com/docs/librariesprovider54/publikationer/quick-guides/katalog-elektroniske-produkter-og-rel%C3%A6er.pdf?sfvrsn=6668e213_2",
+  "https://nor-sonnor.mo.cloudinary.net/PRODUCT/DOCUMENT/pictureserver/default.aspx/153228/produktblad_4185876_3.pdf?817a8777846f8ca4c2b4b8babdab92a0b1a9b379836f656c877bb37880a7949a=&ts=1738316090824",
+  "https://pl.rs-online.com/web/p/przekazniki-interfejsowe-elektromechaniczne/6699974",
+  "https://rspsupply.com/p-126933-abb-1sna645034r2300-rb121p-5vdc.aspx",
+  "https://se.rs-online.com/web/b/abb/?intcmp=SE-WEB-_-CP-BR9-_-Oct-24-_-Edu_PS&pn=776",
+  "https://se.rs-online.com/web/p/relaer-med-elektromekaniskt-granssnitt/6699974",
+  "https://uk.rs-online.com/web/p/electromechanical-interface-relays/6699974?gb=s",
+  "https://www.farnell.com/datasheets/2222664.pdf",
+  "https://www.lemu.dk/en/product/rb121p-5vdc-interface-relay-r600-1c-oa1-a25vdc250v-10ma-6a-id-4013614507977",
+  "https://www.rs-online.id/p/interface-relay-5vdc-6a/6699974/",
+  "https://www.santaclarasystems.com/abb/rb121p-5vdc"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14480,
+  "output_tokens": 651
+ }
+}

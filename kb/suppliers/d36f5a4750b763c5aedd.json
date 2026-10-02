@@ -1,0 +1,63 @@
+{
+ "query": "Part: 19\" rack shelves. Recorded supplier: lightpartner. Their product name or order number: Digitus DN-19 GS-SRV. Recorded link: https://www.conradelektronik.dk/da/p/digitus-dn-19-gs-srv-19-tommer-netvaerksskab-skinner-1-u-staal-1456108.html.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "DIGITUS (Assmann Electronic GmbH)",
+  "part_number": "DN-19 GS-SRV",
+  "own_brand": false,
+  "description": "L-support sliding rails for 19-inch network or server racks, adjustable from 500 to 750 mm deep, with a 100 kg load capacity.",
+  "alternatives": [
+   {
+    "company": "Dustin",
+    "url": "https://www.dustin.dk/product/5011259443/l-support-sliding-rails-80-100cm-19",
+    "same_part": true,
+    "note": "Lists the exact DIGITUS part number DN-19 GS-SRV, with 1U capacity and a 100 kg load rating."
+   },
+   {
+    "company": "Proshop",
+    "url": "https://www.proshop.dk/Rack-skabe/DIGITUS-DN-19-GS-SRV-19-1U-Rack-Cabinet-Rails/2513720",
+    "same_part": true,
+    "note": "Lists the exact DIGITUS model DN-19 GS-SRV for 19-inch racks, made of galvanized steel and rated for 100 kg."
+   },
+   {
+    "company": "Alternate",
+    "url": "https://www.alternate.dk/Digitus/DN-19-GS-SRV-tilbeh%C3%B8r-til-rack-Skinner/html/product/1215673",
+    "same_part": true,
+    "note": "Lists the exact manufacturer part number DN-19 GS-SRV, with 1U capacity and a 100 kg load rating."
+   }
+  ]
+ },
+ "sources": [
+  "https://asset.conrad.com/media10/add/160267/c1/-/de/001456108DS01/datenblatt-1456108-digitus-dn-19-gs-srv-19-zoll-netzwerkschrank-schienen-1-he-stahl.pdf",
+  "https://asset.conrad.com/media10/add/160267/c1/-/en/001456108DS02/podatkovna-tablica-1456108-digitus-dn-19-gs-srv-19-palac-sine-za-mrezni-ormar-1-u-celik.pdf",
+  "https://asset.conrad.com/media10/add/160267/c1/-/en/001456108DS02/tehnicni-podatki-1456108-profilne-letve-za-omrezno-omarico-digitus-dn-19-gs-srv-jeklo.pdf",
+  "https://cdon.dk/produkt/digitus-glideskinner-til-4826-mm-19-netvaerks-og-serverskabe-62bcda683e515ed2/",
+  "https://cdon.dk/produkt/digitus-l-support-udtraeksskinner-til-19-serverskabe-dn-19-gs-srv-1u-8d542a8fdc4550e8/",
+  "https://industry-electronics.de/digitus/dn-19-gs-srv-gleitschiene-support-fr-483-serverschrnke-lieske_937612.htm",
+  "https://kesko-onninen-pim-resources-production.s3-eu-west-1.amazonaws.com/pimdocuments/26113547.pdf",
+  "https://webshop.unielektro.de/dasd/pd/media/aa718c63b418dc025b6eebe63ce33e5c/QM8T7KKF0A7BEAET2OV6FDD4TC/76UI7TUERS7RLV51AK7KMIPS6C/pdb_DN19GSSRV_4016032366461_de_Datasheet.pdf",
+  "https://www.alternate.dk/Digitus/DN-19-GS-SRV-tilbeh%C3%B8r-til-rack-Skinner/html/product/1215673",
+  "https://www.assmann.com/product-pdf/4016032366461?PL=en",
+  "https://www.buerklin.com/en/p/digitus/connection-modules-patch-distributors/dn-19-gs-srv/98F9351/",
+  "https://www.conrad.de/scripts/wgate/zcop_bilder/%21?show_artnum=1456108",
+  "https://www.conrad.nl/nl/p/digitus-dn-19-gs-srv-19-inch-1-he-staal-1456108.html",
+  "https://www.conrad.pl/pl/p/br-digitus-br-dn-19-gs-srv-br-19-cal-br-br-szyna-do-szafy-serwerowej-br-br-1-u-br-br-br-br-s-1456108.html",
+  "https://www.conrad.se/sv/p/digitus-dn-19-gs-srv-19-tum-natverksskap-skena-1-u-stal-1456108.html",
+  "https://www.cyclotron.de/shop/dn-19-gs-srv-digitus-gleitschienen-fur-482-6-mm-19-netzwerk-und-serverschranke-209242",
+  "https://www.distrelec.ch/en/support-sliding-rails-for-19-cabinets-digitus-dn-19-gs-srv/p/30245748",
+  "https://www.dustin.dk/product/5011259443/l-support-sliding-rails-80-100cm-19",
+  "https://www.elgiganten.dk/product/computer-kontor/netvark/netvarkskort-og-adaptere/digitus-dn-19-gs-srv/505788",
+  "https://www.fcomputer.dk/digitus-dn-19-gs-srv-tilbehoer-lys-graa-dn-19gs-srv",
+  "https://www.markit.eu/si/sl/dn-19-gs-srv/v2p10608045",
+  "https://www.merlin.dk/Rack-skabe/DIGITUS-DN-19-GS-SRV-1U-L-Support-Sliding-Rails/2513720",
+  "https://www.proshop.dk/Rack-skabe/DIGITUS-DN-19-GS-SRV-19-1U-Rack-Cabinet-Rails/2513720",
+  "https://www.senetic.de/product/DN-19GS-SRV",
+  "https://www.theracon.eu/media/a2/1b/d8/1745614003/digitus_l_support_gleitschienen_fur_483_mm_19_serverschranke_3897834000.pdf?1745614003="
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14582,
+  "output_tokens": 672
+ }
+}

@@ -1,0 +1,61 @@
+{
+ "query": "Part: Smile 41 EWWWP Estop Box. Recorded supplier: RS components. Their product name or order number: 2TLA030057R0100. Recorded link: none.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ABB",
+  "part_number": "2TLA030057R0100",
+  "own_brand": false,
+  "description": "ABB Smile 41 EWWWP push-button box with four buttons, including one emergency stop, for Pluto IQ connection via an 8-pin M12 male connector.",
+  "alternatives": [
+   {
+    "company": "WATTOO",
+    "url": "https://www.wattoo.dk/trykknap-smile-41-ewwwp-7805050987",
+    "same_part": true,
+    "note": "Lists ABB Smile 41 EWWWP, part number 2TLA030057R0100."
+   },
+   {
+    "company": "Automation Distribution",
+    "url": "https://automationdistribution.com/abb-2tla030057r0100-smile-estop-push-button-box-41-ewwwp/",
+    "same_part": true,
+    "note": "Lists ABB Smile 41 EWWWP, part number 2TLA030057R0100."
+   }
+  ]
+ },
+ "sources": [
+  "https://abb-control-products.partcommunity.com/3d-cad-models/smile-41-push-button-boxes-abb-low-voltage-systems?info=abb_ww%2Flow_voltage%2Fcontrol%2Fsafety_products%2Femergency_s_and_pilot_d%2Femergency_s_and_reset_d%2Fsmile_41.prj",
+  "https://arxiv.org/abs/2208.03757",
+  "https://au.rs-online.com/web/p/control-stations/9176412",
+  "https://automationdistribution.com/abb-2tla030057r0100-smile-estop-push-button-box-41-ewwwp/",
+  "https://catalogo-generale.abb.com/safety-e-dispositivi-di-sicurezza/safety/2TLA030057R0100",
+  "https://cl.rsdelivers.com/product/abb/2tla030057r0100-smile-41-ewwwp/abb-maintained-momentary-push-button-control/9176412",
+  "https://dk.rs-online.com/web/b/abb/?pn=869",
+  "https://docs.rs-online.com/55df/A700000008774725.pdf",
+  "https://docs.rs-online.com/5c3d/A700000010204961.pdf",
+  "https://empower.abb.com/ecatalog/ec/EN_NA/p/2TLA030057R0100",
+  "https://hannomat.com/wp-content/uploads/2021/01/Hannomat-Trd-ABB_2021.pdf",
+  "https://hu.rs-online.com/web/p/vezerloallomasok/9176412",
+  "https://jokabsafety.dk/wp-content/uploads/wpallimport/files/datablade/Produktblad-Smile41.pdf",
+  "https://library.e.abb.com/public/3db3db8487a8434ea9c26aeb93320ef3/Safety_products_catalog_2TLC010001C0201_revB.pdf?x-sign=dV7aJnPQ9M4V0i%2BfS0YRPF5GjwqdEPLHvva6JPrLb%2B7nxvfQj3vq%2FMqYOPG4sNqZ",
+  "https://library.e.abb.com/public/5ec3ca01175343a99e71c9a074a3dcb7/ABB%20Safety%20Products%20catalog_revG3_2TLC010001C0202.pdf?x-sign=w6jA2J22qIXOXQmmaEHxd1CEZjGfhmqYBYyOO6F20jIcOGv57FlKTBEVJldjk4Su",
+  "https://library.e.abb.com/public/9153882562b6464aaaadfe53ba597176/Smile_41_Product_Manual_%28EN%29_revC_2TLC172280M0201.pdf?x-sign=dwKyzSc3VQzWbEBkXnGtzjk5ngDBOGi%2F7rmFL0CFJM0whVpJ7OCajTUL11gaSE1S",
+  "https://library.e.abb.com/public/9153882562b6464aaaadfe53ba597176/Smile_41_Product_Manual_%28EN%29_revC_2TLC172280M0201.pdf?x-sign=g4Y7OtysU5gxI5qA5xeloIRm47YzjVTu2doSzTy7rBfQYHUEJpVJ0ZBS%2FwLG29CL",
+  "https://library.e.abb.com/public/e7adc093989c4d369a0f07c7137434c1/1SXU172076N0201_en_J_Jokab%20Safety%20Easy%20Reference%20%28US%29.pdf?x-sign=N1VFFFEWXz5%2FXtAgfIgARK14BirqV5NGENJefde00St%2FAv4W7rNts%2B74rldD%2Fic%2F",
+  "https://my.rs-online.com/web/c/switches/push-button-switches-components/control-stations/?pn=8",
+  "https://new.abb.com/docs/librariesprovider15/default-document-library/jokab-easy-reference-oct-2019.pdf?sfvrsn=a3287616_2",
+  "https://new.abb.com/docs/librariesprovider22/default-document-library/abb-safety-products-catalog_revh2_2tlc010001c0202.pdf?sfvrsn=62c6c60a_0",
+  "https://nl.rs-online.com/web/c/switches/push-button-switches-components/control-stations/?pn=3",
+  "https://no.rs-online.com/web/b/abb/?intcmp=NL-WEB-_-CP-BR5-_-MCC_268_0624_CE-_-ABB&pn=81",
+  "https://pl.rs-online.com/web/p/kasety-sterownicze/9176412",
+  "https://sa.rsdelivers.com/product/abb/2tla030057r0100-smile-41-ewwwp/abb-push-button-control-station-3-no/1-nc-3-cutouts-white-blue-red-yellow-green-ip65/9176412",
+  "https://uk.rs-online.com/web/c/switches/push-button-switches-components/control-stations/?if=push-button-control-stations-abb",
+  "https://uk.rs-online.com/web/p/control-stations/9176412",
+  "https://us.rs-online.com/product/abb-jokab-safety/2tla030057r0100/71022893/",
+  "https://www.wattoo.dk/trykknap-smile-41-ewwwp-7805050987"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14921,
+  "output_tokens": 504
+ }
+}

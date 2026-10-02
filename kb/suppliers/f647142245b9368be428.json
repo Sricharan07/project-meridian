@@ -1,0 +1,61 @@
+{
+ "query": "Part: M12-C63, 6m cable. Recorded supplier: RS components. Their product name or order number: 2TLA020056R3000. Recorded link: none.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ABB Jokab",
+  "part_number": "2TLA020056R3000",
+  "own_brand": false,
+  "description": "This is ABB’s 6 m M12-C63 cable with an 8-pole M12 female connector and 8 × 0.34 mm² conductors.",
+  "alternatives": [
+   {
+    "company": "WATTOO.dk",
+    "url": "https://www.wattoo.dk/kabel-6m-m12-c63-8p-0422605232",
+    "same_part": true,
+    "note": "Lists ABB part 2TLA020056R3000 as a 6 m cable with an 8-pole M12 female connector."
+   },
+   {
+    "company": "Transfer Multisort Elektronik (TME)",
+    "url": "https://www.tme.eu/dk/en/details/2tla020056r3000/sensors-cables/abb/m12-c63-6m/",
+    "same_part": true,
+    "note": "Lists ABB part 2TLA020056R3000 as a 6 m cable with an 8-pin straight M12 female connector."
+   }
+  ]
+ },
+ "sources": [
+  "https://assets.rs-online.com/image/upload/v1699300918/Datasheets/5c8b7b064039db63c722ef3382454fad.pdf",
+  "https://assets.rs-online.com/v1699885216/Datasheets/3b01f80b74149c720cafea4d3fe22b8e.pdf",
+  "https://au.rs-online.com/web/p/sensor-actuator-cables/1760062",
+  "https://de.rs-online.com/web/p/sensor-und-aktor-kabel/1760062",
+  "https://docs.rs-online.com/1b71/0900766b814a4761.pdf",
+  "https://docs.rs-online.com/1c4f/0900766b8145fa49.pdf",
+  "https://docs.rs-online.com/5c3d/A700000010204961.pdf",
+  "https://empower.abb.com/ecatalog/ec/EN_NA/p/2TLA020056R3000",
+  "https://es.rs-online.com/web/p/cables-para-sensores/1760062",
+  "https://int.rsdelivers.com/product/abb-jokab/2tla020056r3000-m12-c63/abb-jokab-female-8-way-m12-female-to-unterminated/1760062",
+  "https://jokabsafety.dk/wp-content/uploads/wpallimport/files/manualer/Manual-EdenOSSDoriginalinstructions_Rev_B.pdf",
+  "https://kr.rs-online.com/web/p/sensor-actuator-cables/1760062",
+  "https://library.e.abb.com/public/41f268041fb7499fa6b65e9763fe6aaf/volumen6_2020.pdf?x-sign=Njw%2FJAsWoiZ7C5PieeI4nMx2Bt38pFKp3%2FSRALVIG7pdH7cFXKM9%2B5YDwDwNVVKJ",
+  "https://library.e.abb.com/public/8ef7bbe678b94aef8e79e2d6c2a34112/Product_sheet_-_M12-C63_2TLC010076L0201.pdf",
+  "https://my.rs-online.com/web/p/sensor-actuator-cables/1760062",
+  "https://new.abb.com/products/de/2TLA020056R3000/m12-c63",
+  "https://nl.rs-online.com/web/p/sensor-actuator-cables/1760062",
+  "https://no.rs-online.com/web/p/sensor-actuator-cables/1760062",
+  "https://scciclient.blob.core.windows.net/ecdcontrolscom/uploads/documents/manufacturers-pdf/abb-jokab-safety-catalog-part-2-06-12-15-93.pdf",
+  "https://twcn.rs-online.com/web/p/sensor-actuator-cables/1760062",
+  "https://twen.rs-online.com/web/p/sensor-actuator-cables/1760062",
+  "https://uk.rs-online.com/web/p/sensor-actuator-cables/1760062",
+  "https://us.rs-online.com/m/d/6d1fe2bd4f6b2d79f15adbcf1be38693.pdf?srsltid=AfmBOopRzRYRtwBXWaSugeuveXHSdKQEoQhGJKCNc0iizwnA1AxWqVci",
+  "https://us.rs-online.com/product/abb-jokab-safety/2tla020056r3000/70369553/",
+  "https://visio-tim.hr/uploads/preuzimanja/abb/Sigurnosni%20proizvodi.pdf",
+  "https://www.electronic-mag.ro/index.php?controller=attachment&id_attachment=31991",
+  "https://www.tme.eu/dk/en/details/2tla020056r3000/sensors-cables/abb/m12-c63-6m/",
+  "https://www.wattoo.dk/kabel-6m-m12-c63-8p-0422605232",
+  "https://za.rs-online.com/web/p/sensor-actuator-cables/1760062"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 15129,
+  "output_tokens": 516
+ }
+}

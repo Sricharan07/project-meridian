@@ -1,0 +1,176 @@
+{
+ "query": "Process: waterjet cutting of rubber and gaskets.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "companies": [
+   {
+    "company": "STEFFCA A/S",
+    "url": "https://steffca.dk/en/about-steffca/our-production/",
+    "city": "Nyborg",
+    "processes": [
+     "Waterjet cutting of gaskets and components"
+    ],
+    "materials": [
+     "NBR",
+     "SBR",
+     "EPDM",
+     "CR",
+     "Rubber cork",
+     "High-pressure sheets",
+     "Graphite sheets",
+     "Cellular rubber",
+     "Silicone",
+     "Viton",
+     "Polyurethane",
+     "Vulkollan",
+     "Polyethylene",
+     "Nylon",
+     "Glass cloth",
+     "Ceramic paper",
+     "Glass needle felt",
+     "PTFE"
+    ],
+    "max_size_mm": 3000,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "DAFA Industry",
+    "url": "https://dafa-industry.com/en/what-we-do/competences/waterjet/",
+    "city": "",
+    "processes": [
+     "2D and 3D waterjet cutting"
+    ],
+    "materials": [
+     "Rubber",
+     "Foam"
+    ],
+    "max_size_mm": 6000,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "MARSØ PLAST A/S",
+    "url": "https://marso-plast.dk/vandskaering/",
+    "city": "Fredericia",
+    "processes": [
+     "Waterjet cutting"
+    ],
+    "materials": [
+     "Rubber",
+     "Plastic",
+     "Steel",
+     "Aluminium",
+     "Stainless steel",
+     "Bullet-resistant glass",
+     "Titanium",
+     "Granite",
+     "Ceramic"
+    ],
+    "max_size_mm": 4000,
+    "tolerance_mm": 0.1
+   },
+   {
+    "company": "Aalborg Gummivarefabrik (AAG)",
+    "url": "https://aag-gummi.dk/en/produkter/fladpakninger-i-fast-gummi/",
+    "city": "Nørresundby",
+    "processes": [
+     "Waterjet cutting of gaskets"
+    ],
+    "materials": [
+     "Solid rubber",
+     "EPDM",
+     "Nitrile rubber (NBR)"
+    ],
+    "max_size_mm": 0,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "B6 Nordic A/S",
+    "url": "https://b6nordic.com/kompetencer/waterjet-cutting/",
+    "city": "Sæby",
+    "processes": [
+     "CNC waterjet cutting"
+    ],
+    "materials": [
+     "Foam",
+     "Rubber",
+     "Plastic",
+     "EPS",
+     "Felt",
+     "Textiles",
+     "Sound films",
+     "Polymer materials"
+    ],
+    "max_size_mm": 0,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "AquaCut",
+    "url": "https://aquacut.dk/vandstraaleskaering/",
+    "city": "Randers",
+    "processes": [
+     "Waterjet cutting"
+    ],
+    "materials": [
+     "Rubber",
+     "Foam",
+     "Aluminium",
+     "Steel",
+     "Stainless steel",
+     "Copper",
+     "Brass",
+     "Titanium",
+     "Stone",
+     "Granite",
+     "Marble",
+     "Ceramic",
+     "Glass",
+     "Plastic",
+     "Composite"
+    ],
+    "max_size_mm": 0,
+    "tolerance_mm": 0.16
+   }
+  ]
+ },
+ "sources": [
+  "https://aag-gummi.dk/en/produkter/fladpakninger-i-fast-gummi/",
+  "https://aag.world/images/content/pdf/AAG%20Byggeri%20Pr%C3%A6sentation%202021%20-%20DK.pdf",
+  "https://abvand.dk/poroese-materialer/",
+  "https://aquacut.dk/vandstraaleskaering/",
+  "https://b6nordic.com/kompetencer/waterjet-cutting/",
+  "https://betechseals.com/",
+  "https://conquestseal.com/gaskets",
+  "https://dafa-industry.com/dk/what-we-do/kompetencer/waterjet/",
+  "https://dafa-industry.com/en/what-we-do/competences/waterjet/",
+  "https://danskgummi.dk/gummi-plader-og-udstansning/",
+  "https://en.wikipedia.org/wiki/Water_jet_cutter",
+  "https://kapema.dk/wp-content/uploads/2021/05/UK-catalogue-2022-3.pdf",
+  "https://marso-plast.dk/vandskaering/",
+  "https://ntkd.ch/wp-content/uploads/2022/03/EN_Prospekt_Konstruktionsrichtlinien-23-03-2022.pdf",
+  "https://o-ring.info/en/brochures/eriks%20-%20innovation%20technical%20rubber.pdf",
+  "https://oringsupplyco.com/products/rubber-gaskets/custom/",
+  "https://static1.squarespace.com/static/5c1d59eab27e393bb329f86c/t/5d7806a05cf8764696dc2311/1568147109850/RAGCO%2BCATALOG%2Bof%2BCAPABILITIES%2Bdigital.pdf",
+  "https://steffca.dk/en/about-steffca/our-production/",
+  "https://steffca.dk/en/product-range/",
+  "https://www.atlanticgasket.com/waterjet-cutting/quick-turnaround-gaskets.html",
+  "https://www.avkgummi.dk/media/aogf4vba/avk-gummi-company-brochure.pdf",
+  "https://www.etra.se/en/vattenskarning",
+  "https://www.goodyearbelting.com/pdf/2019_LD_and_HD_BELT_CATALOG/pdf/2019_LD_and_HD_BELT_CATALOG.pdf",
+  "https://www.in-service.dk/kompetencer/vandskaering",
+  "https://www.klhindustries.com/services/waterjet-cutting",
+  "https://www.klinger.co.za/wp-content/uploads/2021/05/KLINGER-Yearbook-2020.pdf",
+  "https://www.lutze-group.com/dk/slidbeskyttelse/vandskaering",
+  "https://www.nedc.com/waterjet-cutting/",
+  "https://www.skdk.dk/produkter/gummi-hoejtryksmateriale-og-pakninger/",
+  "https://www.skdk.dk/wp-content/uploads/2018/09/A4-6-sider.pdf",
+  "https://www.stockwell.com/data-sheets/die-cut-and-waterjet-cut-sponge-tolerances.pdf",
+  "https://www.stockwell.com/pressreleases/sr90r_waterjet_cutting_gaskets_fast_turn.pdf",
+  "https://www.stockwell.com/waterjet-cut-gaskets/"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 21316,
+  "output_tokens": 1544
+ }
+}

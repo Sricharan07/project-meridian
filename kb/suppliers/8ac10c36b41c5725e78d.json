@@ -1,0 +1,51 @@
+{
+ "query": "Part: Safety contactor. Recorded supplier: RS components. Their product name or order number: AFS16-30-22-11. Recorded link: none.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ABB",
+  "part_number": "AFS16-30-22-11",
+  "own_brand": false,
+  "description": "A three-pole safety contactor with fixed 2 NO and 2 NC auxiliary contacts and a 24–60 V AC or 20–60 V DC control supply.",
+  "alternatives": []
+ },
+ "sources": [
+  "https://cataloghi.it.abb.com/view/616528088/198/",
+  "https://catalogo-generale.abb.com/avviamento-motori/accessori-e-ricambi-contattori-e-minicontattori/AFS16-30-22-11",
+  "https://de.rs-online.com/web/p/schutze/1753209",
+  "https://device.report/m/c5ad556b7fa5f40deda630282c4f5b515a840ab73eabffbdda09e1085f625a67.pdf",
+  "https://dk.rs-online.com/web/p/kontaktorer/2589494",
+  "https://docs.rs-online.com/a1da/0900766b816726cc.pdf",
+  "https://docs.rs-online.com/df7a/A700000014064685.pdf",
+  "https://es.rs-online.com/web/p/contactores/1753209",
+  "https://fr.rs-online.com/web/p/contacteurs/1753209",
+  "https://ie.rs-online.com/web/p/contactors/1753209",
+  "https://in.rsdelivers.com/product/abb-jokab/1sbl177082r1122-afs16-30-22-11/abb-jokab-afs-contactor-24v-ac-60-v-ac-coil-3-pole/1753209",
+  "https://in.rsdelivers.com/product/abb-jokab/1sbl177082r1122-afs16-30-22-11/abb-jokab-afs16-30-22-11-afs-contactor-24-60-v-ac/1753209",
+  "https://it.rs-online.com/web/p/contattori/1753209",
+  "https://kr.rs-online.com/web/p/contactors/1753209",
+  "https://library.e.abb.com/public/152894e9ceb24484b212e72c16bbfeb0/ABB_Katalog_Niederspannungsprodukte_Teil1_Stand_10-2024_72dpi.pdf?x-sign=hTzzRk9%2F7fBZeXd6r9pDfPxYkxPwDzjructHfAblR94FIDYD94%2FHeXGuQq3Zmezi",
+  "https://library.e.abb.com/public/2d45de99b0b5488d8355b6d32273527e/1SBC100208C0203_Catalogue%20AF%20safety%20Contactors.pdf?x-sign=SvHtxr1Lhiz2sF84QyABulfv%2F5IaY32Gh05KC3MzYI5X%2Bs6PiZ8a60CkYnPNPtGx",
+  "https://library.e.abb.com/public/2d45de99b0b5488d8355b6d32273527e/1SBC100208C0203_Catalogue%20AF%20safety%20Contactors.pdf?x-sign=XZrg0I1T6WX0bz1UpC47NvKEZV9H24gPyaa1KEFt%2BTuthJrdtgZwoziU1nPQ80%2Bs",
+  "https://library.e.abb.com/public/2d45de99b0b5488d8355b6d32273527e/1SBC100208C0203_Catalogue%20AF%20safety%20Contactors.pdf?x-sign=eIGLrwMVUqbrRDcrDXJOpBbFtHQUXEYkyWnCoHO2NWfouGWfs3lpQHUPfH5y4szZ",
+  "https://library.e.abb.com/public/2d45de99b0b5488d8355b6d32273527e/1SBC100208C0203_Catalogue%20AF%20safety%20Contactors.pdf?x-sign=qJrRjrdoa31ThTzB%2F63zLfP5TxZbxbvjQv2o4vjD9v1XFYJk37c7miBikhXQvf%2BV",
+  "https://mt.rsdelivers.com/product/abb-jokab/1sbl177082r1122-afs16-30-22-11/abb-jokab-afs-series-contactor-24-60-v-ac-coil-3-a/1753209",
+  "https://new.abb.com/products/da/1SBL177082R1122/afs16-30-22-11",
+  "https://no.rs-online.com/web/p/contactors/1753209",
+  "https://om.rsdelivers.com/product/abb-jokab/1sbl177082r1122-afs16-30-22-11/abb-jokab-afs-contactor-24v-ac-60-v-ac-coil-3-pole/1753209",
+  "https://rspsupply.com/images/downloads/ABB/A/ABB%20AFS16-30-22-11/Product%20Specification.pdf",
+  "https://sa.rsdelivers.com/product/abb-jokab/1sbl177082r1122-afs16-30-22-11/abb-jokab-afs-contactor-24v-ac-60-v-ac-coil-3-pole/1753209",
+  "https://sg.rs-online.com/web/p/contactors/1753209",
+  "https://th.rs-online.com/web/p/contactors/1753209",
+  "https://twen.rs-online.com/web/p/contactors/1753209",
+  "https://uk.rs-online.com/web/p/contactors/1753209",
+  "https://us.rs-online.com/product/abb/afs16-30-22-11/71177338/",
+  "https://www.dungannonelectrical.co.uk/dung1925a/pdf/Motor%20Control/abb-safety-contactors/abb_AFS16-30-22-11_16a_safety_contactor_datasheet.pdf",
+  "https://www.tme.eu/Document/6e087e8868c25dd2c6199d6180ca137d/AFS_EN.pdf"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14682,
+  "output_tokens": 566
+ }
+}

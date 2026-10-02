@@ -94,6 +94,14 @@ def part(ref: str) -> dict:
     raise HTTPException(404, f"No part {ref}")
 
 
+@app.get("/api/suppliers/{ref}")
+def suppliers(ref: str) -> dict:
+    found = kb().suppliers(ref)
+    if "error" in found:
+        raise HTTPException(404, found["error"])
+    return found
+
+
 @app.get("/api/evidence/{observation_id:path}")
 def evidence(observation_id: str) -> dict:
     found = kb().evidence(observation_id)

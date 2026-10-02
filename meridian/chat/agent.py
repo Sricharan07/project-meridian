@@ -159,6 +159,13 @@ class Chat:
                 "sheet": marks[0]["sheet"] if marks else 1, "highlights": marks, "model_3d": self.kb.model_3d(d)}
                for d, marks in highlights.items()]
         out += [{"type": "bom_row", "row": row, "name": self.kb.name(f"BOM.{row}"), "cites": cites} for row, cites in rows.items()]
+        # An answer about suppliers opens the part on its Suppliers tab.
+        for step in steps:
+            ref = step["arguments"].get("ref", "")
+            known = ref in self.kb.sheets or (ref.startswith("BOM.") and ref[4:].isdigit() and int(ref[4:]) in self.kb.bom_rows)
+            if step["tool"] == "suggest_suppliers" and known:
+                out.insert(0, {"type": "suppliers", "ref": ref, "name": self.kb.name(ref)})
+                break
         # An answer about how parts connect can be followed in the graph, focused where it started.
         for step in steps:
             args = step["arguments"]

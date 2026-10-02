@@ -111,6 +111,7 @@ export class ChatView {
       ${known.length ? html`<div class="sources">${known.map((r, i) => source(r, i >= SHOWN_SOURCES))}</div>
         ${known.length > SHOWN_SOURCES ? html`<button type="button" class="more" data-more>Show ${known.length - SHOWN_SOURCES} more</button>` : ""}` : ""}
       <div class="turn-foot">
+        ${t.attachments.filter((a) => a.type === "suppliers").map((a) => html`<button type="button" class="attach" data-suppliers="${a.ref}">${raw(icon("external", 14))}Suppliers</button>`)}
         ${t.attachments.filter((a) => a.type === "graph").slice(0, 1).map((a) => html`<button type="button" class="attach" data-graph="${a.focus || ""}" data-to="${a.to || ""}">${raw(icon("graph", 14))}Graph</button>`)}
         ${drawings.map((a) => html`<button type="button" class="attach" data-open="${a.ref}">${raw(icon("sheet", 14))}<span class="mono">${a.ref}</span>${a.name}</button>
           ${a.model_3d ? html`<button type="button" class="attach" data-model="${a.ref}">${raw(icon("cube", 14))}3D</button>` : ""}`)}
@@ -135,6 +136,8 @@ export class ChatView {
       const { graph: focus, to } = graphButton.dataset;
       return this.navigate(`/graph${focus ? `?focus=${encodeURIComponent(focus)}${to ? `&to=${encodeURIComponent(to)}` : ""}` : ""}`);
     }
+    const suppliers = e.target.closest("[data-suppliers]");
+    if (suppliers) return this.evidence.openPart(suppliers.dataset.suppliers, { tab: "suppliers" });
     const model = e.target.closest("[data-model]");
     if (model) return this.evidence.openPart(model.dataset.model, { tab: "model" });
     const open = e.target.closest("[data-open]");

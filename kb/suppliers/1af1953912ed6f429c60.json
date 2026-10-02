@@ -1,0 +1,81 @@
+{
+ "query": "Part: DIN solidstate relay. Recorded supplier: RS components. Their product name or order number: 121-3888. Recorded link: https://dk.rs-online.com/web/p/solid-state-relaeer/1213888.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "RS PRO",
+  "part_number": "SD06AD1Z",
+  "own_brand": true,
+  "description": "An 11 mm DIN-rail solid-state relay with 4–32 V DC control, 6 A maximum load current, and a 24–280 V AC load range.",
+  "alternatives": [
+   {
+    "company": "Transfer Multisort Elektronik (TME)",
+    "url": "https://www.tme.eu/dk/en/details/dr24d06/one-phase-solid-state-relays/sensata-crydom/",
+    "same_part": false,
+    "note": "Sensata-Crydom DR24D06 matches the 4–32 V DC control range, 6 A rating, 24–280 V AC load range, and DIN-rail mounting."
+   },
+   {
+    "company": "Mouser Electronics",
+    "url": "https://www.mouser.dk/en/ProductDetail/Schneider-Electric/SSM1A16BD?qs=sGAEpiMZZMvF1DT%2FiDLzVlGibnRu1Srxvlfrjjya2f54uxSNmzVgnA%3D%3D",
+    "same_part": false,
+    "note": "Schneider Electric SSM1A16BD matches the 4–32 V DC input, 6 A rating, 24–280 V AC output, and DIN-rail mounting."
+   }
+  ]
+ },
+ "sources": [
+  "https://ae.rsdelivers.com/product/rs-pro/rs-pro-11-solid-state-interface-relay-control32v/1213888",
+  "https://arxiv.org/abs/1009.5145",
+  "https://arxiv.org/abs/1110.4126",
+  "https://dk.rs-online.com/euro/img/site/campaigns/K27_index/DK_alpha.pdf",
+  "https://dk.rs-online.com/euro/img/task-requests/220668/a866_ppe_brochure_v7_dk_00.pdf?intcmp=DK-WEB-_-CP-C1-_-MCC_205_0723_NE-_-security-all-arround",
+  "https://dk.rs-online.com/web/c/relaeer-og-signalbehandling/relaeer/solid-state-interfacerelaeer/",
+  "https://dk.rs-online.com/web/c/relaeer-og-signalbehandling/relaeer/solid-state-relaeer/",
+  "https://dk.rs-online.com/web/c/relaeer-og-signalbehandling/relaeer/solid-state-relaeer/?intcmp=DK-WEB-_-BP-LFP-_-DTC_016_0222_NE-_-Panasonic_BP_LM&pn=158",
+  "https://dk.rs-online.com/web/c/relaeer-og-signalbehandling/relaeer/solid-state-relaeer/?pn=167",
+  "https://dk.rs-online.com/web/c/relaeer-og-signalbehandling/relaeer/solid-state-relaeer/?pn=4",
+  "https://dk.rs-online.com/web/c/relaeer-og-signalbehandling/solid-state-relaeer-og-tilbehor/solid-state-relaeer-daeksler/",
+  "https://dk.rs-online.com/web/p/solid-state-relaeer/1213892",
+  "https://dk.rs-online.com/web/p/solid-state-relaeer/1213895",
+  "https://docs.rs-online.com/477c/A700000008225455.pdf",
+  "https://docs.rs-online.com/deb6/A700000008225467.pdf",
+  "https://docs.rs-online.com/f9f6/A700000009423540.pdf",
+  "https://en.wikipedia.org/wiki/Phoenix_Contact",
+  "https://mt.rsdelivers.com/product/rs-pro/rs-pro-din-rail-solid-state-interface-relay-6-a-v/1213888",
+  "https://nl.rs-online.com/web/p/solid-state-interface-relays/1213888",
+  "https://sg.rs-online.com/euro/img/general/pdf/RS_PRO_Catalogue_APAC_2018.pdf",
+  "https://sintel.si/storage/app/media/Katalogi/GUIDUK2019.pdf",
+  "https://uk.rs-online.com/web/p/solid-state-interface-relays/1213885",
+  "https://us.rs-online.com/product/rs-pro/1213885/71079434/",
+  "https://us.rs-online.com/product/rs-pro/1213888/71079436/",
+  "https://us.rs-online.com/product/sensata-crydom/dr24d06x/70955123/",
+  "https://www.celduc-relais.com/wp-content/uploads/GUIDUS2019.pdf",
+  "https://www.controllerservice.com/images/products/weidmuller/weidmuller-relay-catalog.pdf",
+  "https://www.galco.com/dr24d06r-crdm.html",
+  "https://www.mouser.dk/en/ProductDetail/Schneider-Electric/SSM1A16BD?qs=sGAEpiMZZMvF1DT%2FiDLzVlGibnRu1Srxvlfrjjya2f54uxSNmzVgnA%3D%3D",
+  "https://www.reddit.com/r/AskElectronics/comments/10af4x7",
+  "https://www.reddit.com/r/AskElectronics/comments/1dssxo8",
+  "https://www.reddit.com/r/AskElectronics/comments/1hvyhns",
+  "https://www.reddit.com/r/AskElectronics/comments/1poofsk/looking_for_a_highpower_48v_dd_solid_state_relay/",
+  "https://www.reddit.com/r/AskElectronics/comments/1swriyt/din_mount_gpio_controlled_relay/",
+  "https://www.reddit.com/r/AskElectronics/comments/1vs0zzb/solidstate_equivalent_of_this_relay_circuit_fully/",
+  "https://www.reddit.com/r/ElectricalEngineering/comments/1hy3pjb",
+  "https://www.reddit.com/r/ElectricalEngineering/comments/1iiq4fv",
+  "https://www.reddit.com/r/PLC/comments/10vika4",
+  "https://www.reddit.com/r/arduino/comments/198lc4w",
+  "https://www.reddit.com/r/diyelectronics/comments/1p3h0jk/psa_avoid_the_solid_state_relays_all_over_amazon/",
+  "https://www.reddit.com/r/electronics/comments/iatojc/removed/",
+  "https://www.reddit.com/r/refrigeration/comments/1s64dyo/solid_state_relay/",
+  "https://www.reddit.com/r/refrigeration/comments/sytfau",
+  "https://www.se.com/ae/en/product/SSM1A16BD/solid-state-relay-din-rail-mount-input-432-v-dc-output-24280-v-ac-6a/",
+  "https://www.se.com/ae/en/product/SSM2A16BDR/solid-state-relay-din-rail-mount-input-432-v-dc-output-24280-v-ac-6a/",
+  "https://www.se.com/dk/da/product/SSM1A112BD/harmony-solid-state-rel%C3%A6-ssr-nulvoltskoblende-for-dinskinne-24280vac-udgang-p%C3%A5-12a-og-432vdc-forsyning/",
+  "https://www.se.com/eg/en/product/SSM1A16BDR/solid-state-relay-din-rail-mount-input-432-v-dc-output-24280-v-ac-6a/",
+  "https://www.tme.eu/dk/en/details/dr24d06/one-phase-solid-state-relays/sensata-crydom/",
+  "https://xn--k1afdjdg.xn--p1acf/file/weidmuller_CAT4-2_2023_EN.pdf"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 15112,
+  "output_tokens": 788
+ }
+}

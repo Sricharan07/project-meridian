@@ -1,0 +1,69 @@
+{
+ "query": "Part: 24VDC PSU 20A. Recorded supplier: RS components. Their product name or order number: S8VK-C48024. Recorded link: https://dk.rs-online.com/web/p/din-skinnemonterbare-stromforsyninger/7866462.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Omron",
+  "part_number": "S8VK-C48024",
+  "own_brand": false,
+  "description": "Omron S8VK-C48024 is a DIN-rail power supply with a 24 V DC, 20 A output and 480 W rating.",
+  "alternatives": [
+   {
+    "company": "DigiKey",
+    "url": "https://www.digikey.dk/da/products/detail/omron-automation-and-safety/S8VK-C48024/4987819",
+    "same_part": true,
+    "note": "Lists the exact Omron part number S8VK-C48024."
+   },
+   {
+    "company": "Mouser",
+    "url": "https://www.mouser.dk/en/ProductDetail/Omron-Automation-and-Safety/S8VK-C48024?qs=R%252BZOTiLH6ThBdkMi9eEFtw%3D%3D",
+    "same_part": true,
+    "note": "Lists the exact Omron part number S8VK-C48024."
+   },
+   {
+    "company": "Farnell",
+    "url": "https://si.farnell.com/omron-industrial-automation/s8vk-c48024/power-supply-ac-dc-24v-20a/dp/2726650",
+    "same_part": true,
+    "note": "Lists the exact Omron part number S8VK-C48024."
+   }
+  ]
+ },
+ "sources": [
+  "https://assets.omron.eu/downloads/datasheet/en/v6/t058_s8vk-c_switch_mode_power_supply_datasheet_en.pdf",
+  "https://de.rs-online.com/web/p/din-schienen-netzteile/7866462",
+  "https://dk.rs-online.com/euro/img/site/campaigns/K27_index/DK_alpha.pdf?srsltid=AfmBOoqpbEZSrbIuhcup4xdKMHFe7lz_viDYgerCrS37JgL38ppXu6il",
+  "https://dk.rs-online.com/euro/img/task-requests/220668/a866_ppe_brochure_v7_dk_00.pdf?intcmp=DK-WEB-_-CP-C1-_-MCC_205_0723_NE-_-security-all-arround",
+  "https://dk.rs-online.com/web/",
+  "https://dk.rs-online.com/web/c/stromforsyninger-og-transformere/stromforsyninger/?pn=6",
+  "https://dk.rs-online.com/web/c/stromforsyninger-og-transformere/stromforsyninger/din-skinnemonterbare-stromforsyninger/",
+  "https://dk.rs-online.com/web/c/stromforsyninger-og-transformere/stromforsyninger/din-skinnemonterbare-stromforsyninger/?pn=11",
+  "https://dk.rs-online.com/web/p/din-skinnemonterbare-stromforsyninger/7866462",
+  "https://docs.rs-online.com/1760/0900766b8157e64e.pdf",
+  "https://eu.mouser.com/en/ProductDetail/Omron-Automation-and-Safety/S8VK-C48024?qs=R%252BZOTiLH6ThBdkMi9eEFtw%3D%3D",
+  "https://fa-instock.lt/downloads/1079/S8VK-C48024.pdf",
+  "https://industrial.omron.no/no/products/S8VK-C48024.pdf",
+  "https://int.rsdelivers.com/product/omron/s8vk-c48024/omron-ac/dc-input-dc/7866462",
+  "https://nl.rs-online.com/web/p/din-rail-power-supplies/7866462",
+  "https://no.rs-online.com/web/p/din-rail-power-supplies/7866462",
+  "https://provvs.vek.dk/p/book-typen-stroemforsyning-lite-480-w-24vdc-20a-din-skinne-montering-s8vk-c48024-367379",
+  "https://se.rs-online.com/web/p/nataggregat-for-din-skena/7866462",
+  "https://si.farnell.com/omron-industrial-automation/s8vk-c48024/power-supply-ac-dc-24v-20a/dp/2726650",
+  "https://www.digikey.com/en/products/detail/omron-automation-and-safety/S8VK-C48024/4987819",
+  "https://www.digikey.com/en/products/detail/omron-automation-and-safety/S8VK-C48024/4987819?s=N4IgjCBcoLQCxVAYygMwIYBsDOBTANCAG4B2aWehA9lANogBsA7GAJwCsIAuoQA4AuUECAC%2BYoA",
+  "https://www.digikey.com/htmldatasheets/production/1780746/0/0/1/S8VK-C-Data-Sheet.pdf",
+  "https://www.digikey.dk/da/products/detail/omron-automation-and-safety/S8VK-C48024/4987819",
+  "https://www.digikey.no/en/products/detail/omron-automation-and-safety/S8VK-C48024/4987819?s=N4IgjCBcoLQCxVAYygMwIYBsDOBTANCAG4B2aWehA9lANogBsA7GAJwCsIAuoQA4AuUECAC%2BYoA",
+  "https://www.mouser.be/fr/ProductDetail/Omron-Automation-and-Safety/S8VK-C48024?qs=R%252BZOTiLH6ThBdkMi9eEFtw%3D%3D",
+  "https://www.mouser.com.tr/en/ProductDetail/Omron-Automation-and-Safety/S8VK-C48024?qs=R%252BZOTiLH6ThBdkMi9eEFtw%3D%3D",
+  "https://www.mouser.com/datasheet/2/307/omrn_s_a0009025568_1-2279671.pdf?srsltid=AfmBOoq0ROr5t9fKZqCls2I-YhqU2p026hwv3bO86gpc5K8ynYKEGyHg",
+  "https://www.mouser.dk/en/ProductDetail/Omron-Automation-and-Safety/S8VK-C48024?qs=R%252BZOTiLH6ThBdkMi9eEFtw%3D%3D",
+  "https://www.mouser.es/en/ProductDetail/Omron-Automation-and-Safety/S8VK-C48024?qs=R%252BZOTiLH6ThBdkMi9eEFtw%3D%3D",
+  "https://www.mouser.it/ProductDetail/Omron-Automation-and-Safety/S8VK-C48024?qs=R%252BZOTiLH6ThBdkMi9eEFtw%3D%3D",
+  "https://www.reddit.com/r/MouseReview/comments/1tw08pf/purchase_omron_opticals/"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14969,
+  "output_tokens": 536
+ }
+}

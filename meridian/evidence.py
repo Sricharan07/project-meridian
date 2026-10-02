@@ -22,6 +22,7 @@ class Method(StrEnum):
     TRANSCRIBED = "transcribed"  # typed in by a person, e.g. labels on a system diagram
     CURATED = "curated"          # a person's judgement recorded in curation/, e.g. which BOM row a sheet documents
     REVIEW = "review"            # a correction proposed in chat and accepted in review
+    WEB = "web"                  # found by a web search, dated; a suggestion, never a fact about the machine
 
 
 MACHINE_READ = {Method.OCR, Method.VISION}

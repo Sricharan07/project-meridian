@@ -19,7 +19,7 @@ from pathlib import Path
 from meridian import config, corrections, evidence, materials
 from meridian.evidence import Method, Observation
 from meridian.linking import SUBSYSTEM_FAMILY
-from meridian.names import words
+from meridian.names import spelled_out, words
 from meridian.reading import Status, settle
 from meridian.relations import Relation, inferred_fits, read_jsonl as read_relations
 
@@ -70,6 +70,8 @@ class KnowledgeBase:
             list(evidence.read_jsonl(config.KB / "observations.jsonl")),
             read_relations(config.KB / "relations.jsonl"),
             json.loads((config.KB / "drawings.json").read_text()))
+        web = config.KB / "suppliers.jsonl"  # dated supplier suggestions, written by `python -m meridian suppliers`
+        observations += list(evidence.read_jsonl(web)) if web.exists() else []
         proposals = corrections.load(corrections_log)
         added, added_sheets = ingest.load_accepted(proposals)  # drawings added in the app and accepted in review
         observations, sheets = observations + added, sheets | added_sheets
@@ -171,7 +173,7 @@ class KnowledgeBase:
             if row in self.bom_rows:
                 return [self._entity_hit(f"BOM.{row}", ["BOM row number"], 10.0)]
 
-        wanted = words(query)
+        wanted = words(spelled_out(query))
         hits = []
         for entity in self.entities:
             aliases = self._aliases(entity)
@@ -190,7 +192,7 @@ class KnowledgeBase:
             return words(f"{entity.name} {upstream}")
         row = int(entity.ref.split(".")[1])
         extra = [self.cell(row, f) for f in ("product_name", "supplier_order")]
-        return words(" ".join([entity.name, *(c.value for c in extra if c)]))
+        return words(spelled_out(" ".join([entity.name, *(c.value for c in extra if c)])))
 
     def _entity_hit(self, ref: str, matched: list[str], score: float) -> dict:
         hit = {"ref": ref, "name": self.name(ref), "matched": matched, "score": round(score, 2)}
@@ -570,6 +572,43 @@ class KnowledgeBase:
             "rows_with_unit_cost_but_no_total": [f"BOM.{r}" for r in inconsistent],
             "caveat": SNAPSHOT + " DKK0.00 on a part made at DTU means the cost was not recorded, not that it was free.",
         }
+
+    def suppliers(self, ref: str) -> dict:
+        """Who supplied each BOM row of a part, and who else could: other sellers of a bought part, found by
+        a dated web search, or for a custom part what making it takes and makers that state they can."""
+        from meridian import suppliers  # matching rules for custom parts live with the search that finds makers
+        if ref not in self.links and not (ref.startswith("BOM.") and ref[4:].isdigit() and int(ref[4:]) in self.bom_rows):
+            return {"error": f"No part {ref}. Use find_parts to get a reference."}
+        rows = sorted(int(c[4:]) for c in self._counterparts(ref) if c.startswith("BOM."))
+        out = []
+        for row in rows:
+            kind = self.cell(row, "type").value if self.cell(row, "type") else ""
+            entry = {"ref": f"BOM.{row}", "name": self.cell(row, "name").value, "type": kind,
+                     "recorded": {f: {"value": c.value, "cite": c.id} for f in ("supplier", "product_name", "supplier_order", "link", "unit_cost")
+                                  if (c := self.cell(row, f)) and c.value.strip()}}
+            if kind == "Custom":
+                need = suppliers.profile(self, row)
+                entry |= {"requirements": need, "makers": suppliers.makers_for(self, need),
+                          "made_before_by": suppliers.precedent(self, need)}
+            elif identity := self.obs.get(f"BOM.{row}.web.part"):
+                entry["identified_as"] = {"value": identity.value, "own_brand": identity.parsed["own_brand"],
+                                          "description": identity.note, "retrieved": identity.parsed["retrieved"], "cite": identity.id}
+                entry["suggested"] = [{"seller": o.value, "url": o.parsed["url"], "match": o.parsed["match"], "note": o.note,
+                                       "cite": o.id} for o in self.current(f"BOM.{row}") if o.field == "suggested_supplier"]
+            else:
+                entry["not_searched"] = self._why_not_searched(row, kind)
+            out.append(entry)
+        return {"parts": out, "caveat": "Suggestions come from a web search on the date given; prices and stock were not "
+                "checked, and a suggestion is not an endorsement. The recorded supplier is from the " + SNAPSHOT}
+
+    def _why_not_searched(self, row: int, kind: str) -> str:
+        if kind != "Standard":
+            return f"Only bought (Standard) parts were searched; this row is {kind or 'not typed'}."
+        if not any(self.cell(row, f) and self.cell(row, f).value.strip() for f in ("product_name", "supplier_order")):
+            return "The BOM gives no product name or order number to search for."
+        cost = (self.cell(row, "unit_cost").parsed or {}).get("dkk") if self.cell(row, "unit_cost") else None
+        return (f"Its unit cost, DKK {cost:g}, is under the DKK 200 threshold for a second source." if cost
+                else "No unit cost is recorded, so it was not searched.")
 
     def search(self, text: str, limit: int = 20) -> list[dict]:
         """Free-text search over notes, design intent and callout remarks: what the sources say in prose."""

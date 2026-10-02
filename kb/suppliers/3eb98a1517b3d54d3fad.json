@@ -1,0 +1,78 @@
+{
+ "query": "Part: 1\" Butterfly valve for filling. Recorded supplier: ebay. Their product name or order number: 1\" Sanitary Butterfly Valve Clamp OD 50.5MM. Recorded link: https://www.ebay.com/itm/232303793716.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Unbranded; actual manufacturer not stated",
+  "part_number": "Not stated (listing says “Does not apply”)",
+  "own_brand": false,
+  "description": "The eBay listing describes an unbranded 1-inch sanitary clamp butterfly valve with a 50.5 mm clamp OD and stainless-steel body and disc.",
+  "alternatives": [
+   {
+    "company": "AWH",
+    "url": "https://www.awh.eu/shop/en/valve-technology/butterfly-valves/butterfly-valve-clamp/butterfly-valve-clamp-manually-operated-inch.html",
+    "same_part": false,
+    "note": "Its manually operated 1-inch clamp valve matches the size and 50.5 mm connection OD, though it specifies 1.4404 stainless steel and an EPDM seal."
+   },
+   {
+    "company": "Sanfit Metal Industry Co., Ltd.",
+    "url": "https://www.sanfit.com.tw/butterfly-valve-clam-bfv-c-411p.html",
+    "same_part": false,
+    "note": "Its hygienic clamp butterfly valve is offered in 1-inch size with 50.5 mm connection OD and T304 or T316 stainless steel."
+   },
+   {
+    "company": "OakStills",
+    "url": "https://oakstills.com/en-fr/products/tri-clamp-butterfly-valve",
+    "same_part": false,
+    "note": "Its tri-clamp butterfly valve is offered in 1-inch size with 50.5 mm OD and 304 stainless steel, with 316 available by special order."
+   }
+  ]
+ },
+ "sources": [
+  "https://5.imimg.com/data5/SELLER/Doc/2023/6/315027597/LM/BB/EP/91790544/iso-pad-butterfly-valve.pdf",
+  "https://aircoproducts.co.uk/products/tri-clamp-butterfly-valve-body-ss304-3a-iso-idf-sms?variant=41992340799684",
+  "https://eaglefittings.com/products/sanitary-pneumatic-clamp-butterfly-valve",
+  "https://oakstills.com/en-fr/products/tri-clamp-butterfly-valve",
+  "https://www.aomitevalve.com/heavy-duty-double-pin-clamp.html",
+  "https://www.ato.com/1-inch-butterfly-valve",
+  "https://www.awh.eu/shop/en/valve-technology/butterfly-valves/butterfly-valve-clamp/butterfly-valve-clamp-manually-operated-inch.html",
+  "https://www.burkert.com.au/en/content/download/349619/file/HygienicProcessValves_DataSheet_2020_FA4.pdf?inLanguage=eng-AU&version=3",
+  "https://www.csmegastore.dk/i/5966749/clamp-type-s-304-%C3%B821-3-41-1-1-1-2-flange-50-5-mm",
+  "https://www.ebay.co.uk/itm/156678332052",
+  "https://www.ebay.co.uk/itm/183476251947",
+  "https://www.ebay.co.uk/itm/387200249261",
+  "https://www.ebay.com/itm/127436944412",
+  "https://www.ebay.com/itm/156678820980",
+  "https://www.ebay.com/itm/157562703658",
+  "https://www.ebay.com/itm/168333349361",
+  "https://www.ebay.com/itm/168333755376",
+  "https://www.ebay.com/itm/168572408957",
+  "https://www.ebay.com/itm/183476251947",
+  "https://www.ebay.com/itm/197925798193",
+  "https://www.pipefittingweb.com/sanitary-butterfly-valve.html",
+  "https://www.reddit.com/r/u_Anna150096953/comments/jsmy5r",
+  "https://www.reddit.com/r/u_Anna150096953/comments/jsmzar",
+  "https://www.reddit.com/r/u_Anna150096953/comments/jsn214",
+  "https://www.reddit.com/r/u_Fiona-VALTECCN/comments/1vu8k52/stainless_steel_butterfly_valve/",
+  "https://www.reddit.com/r/u_valvesonlyeurope11/comments/159dy2p",
+  "https://www.reddit.com/r/u_valvesonlyeurope11/comments/15ekt7c",
+  "https://www.reddit.com/r/u_valvesonlyeurope11/comments/16zuqw7",
+  "https://www.reddit.com/r/u_valvesonlyeurope11/comments/rxbqwx",
+  "https://www.reddit.com/r/u_valvesonlyeurope11/comments/wjzcvz",
+  "https://www.sanfit.com.tw/attach/catalog__a_1__en__1.pdf",
+  "https://www.sanfit.com.tw/butterfly-valve-clam-bfv-c-411p.html",
+  "https://www.sanitary-valves.com/uploads/2203/santiary-stainless-steel-butterfly-valve-with-pull-handle.pdf",
+  "https://www.sanitary-valves.com/uploads/2403/sanitary-butterfly-valve-5818.pdf",
+  "https://www.sanitary-valves.com/uploads/2404/manual-butterfly-valve-gripper-handle-1-5708.pdf",
+  "https://www.sanitaryvalvefittings.com/wp-content/uploads/2017/09/sanitary-butterfly-valve-wellgreen.pdf",
+  "https://www.sun-valves.com/fichas/856410.pdf",
+  "https://www.sun-valves.com/fichas/856450.pdf",
+  "https://www.valvesonline.co.uk/technical-information/hy4505-pneumatic-actuated-hygienic-jacketed-butterfly-valve.pdf",
+  "https://y25.hongcdn.com/uploads/2012/meinoux---butterfly-valve-r1.pdf"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14771,
+  "output_tokens": 931
+ }
+}

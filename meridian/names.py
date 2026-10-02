@@ -16,8 +16,22 @@ GLOSSARY = {
     "varmeelement": "heating element", "justeringsplade": "adjustment plate",
     "føring": "guide", "linæer": "linear", "lineær": "linear", "rustfri": "stainless",
 }
+# Standard abbreviations in BOM names, spelled out so "power supply" finds "24VDC PSU 20A". Only names
+# are expanded, for search; what a part is stays as the BOM writes it.
+ABBREVIATIONS = {
+    "psu": "power supply", "vfd": "variable frequency drive inverter", "plc": "programmable logic controller",
+    "pid": "temperature controller", "estop": "emergency stop", "solidstate": "solid state", "ssr": "solid state relay",
+}
+
 _IGNORED = {"the", "of", "for", "to", "and", "with", "til", "af", "x2", "v2", "v6", "loop2", "version2",
             "alu", "description", "what", "which", "is", "are", "made", "show", "me", "part", "drawing", "about"}
+
+
+def spelled_out(text: str) -> str:
+    """The text followed by what its abbreviations stand for; "24 V" and "24VDC" both become "24v"."""
+    found = [ABBREVIATIONS[w] for w in re.findall(r"[a-z]+", text.lower()) if w in ABBREVIATIONS]
+    volts = [f"{v}v" for v in re.findall(r"\b(\d+)\s*v(?:dc|ac)?\b", text, re.I)]
+    return " ".join([text, *found, *volts])
 
 
 def words(text: str) -> set[str]:

@@ -1,0 +1,138 @@
+{
+ "query": "Process: CNC milling.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "companies": [
+   {
+    "company": "Create KBH",
+    "url": "https://createkbh.dk/cncfraesning/",
+    "city": "Copenhagen",
+    "processes": [
+     "CNC milling"
+    ],
+    "materials": [
+     "Plywood",
+     "MDF",
+     "HDF",
+     "Solid wood",
+     "Veneer",
+     "Acrylic",
+     "Polycarbonate",
+     "HDPE",
+     "POM",
+     "ABS",
+     "EPS",
+     "XPS",
+     "PU",
+     "Model foam"
+    ],
+    "max_size_mm": 2500,
+    "tolerance_mm": 0.1
+   },
+   {
+    "company": "WE-MAKE",
+    "url": "https://www.we-make.dk/services/cnc-milling",
+    "city": "Copenhagen",
+    "processes": [
+     "CNC milling"
+    ],
+    "materials": [
+     "Wood",
+     "MDF",
+     "Plywood",
+     "Foam"
+    ],
+    "max_size_mm": 3000,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "Special-Teknik A/S",
+    "url": "https://special-teknik.dk/en/cnc-fraesning/",
+    "city": "Ølstykke",
+    "processes": [
+     "CNC milling"
+    ],
+    "materials": [
+     "Aluminium",
+     "Tungsten",
+     "Stainless steel",
+     "Tool steel",
+     "Mild steel",
+     "Bronze",
+     "Nylon",
+     "Other plastics",
+     "Special alloys",
+     "Brass",
+     "Copper"
+    ],
+    "max_size_mm": 1500,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "Prototech ApS",
+    "url": "https://www.prototech.dk/en/cnc",
+    "city": "Odense",
+    "processes": [
+     "CNC milling"
+    ],
+    "materials": [
+     "Aluminium",
+     "Stainless steel",
+     "Tool steel",
+     "Brass",
+     "Copper",
+     "Nylon",
+     "HDPE",
+     "POM",
+     "PET",
+     "PMMA",
+     "ABS",
+     "PC"
+    ],
+    "max_size_mm": 2000,
+    "tolerance_mm": 0
+   }
+  ]
+ },
+ "sources": [
+  "https://a73.outsource.dk/wp-content/uploads/2022/01/0726e8c302d7e2b65067f506f4f5dcb1.pdf",
+  "https://aagaardnielsen.dk/",
+  "https://ase.au.dk/fileadmin/www.ase.au.dk/Filer/Laboratorier_og_vaerksteder/xlab/Brugervejledning_til_CNC__ENG__v1.pdf",
+  "https://at-machining.com/da/cnc-machining-services/cnc-milling/",
+  "https://backend.orbit.dtu.dk/ws/files/146461395/803151_DTU_PhD_Andrijana_Bolic_Enkeltsider_final_til_orbit.pdf",
+  "https://cnc-denmark.com/cnc-milling/",
+  "https://cncproducts.dk/wp-content/uploads/2020/05/CNC-products_2020_4sider_A5_web.pdf",
+  "https://createkbh.dk/cncfraesning/",
+  "https://daxincnc.com/da/cnc-machining/cnc-milling-services/",
+  "https://en.wikipedia.org/wiki/Arbor_milling",
+  "https://en.wikipedia.org/wiki/Metalworking",
+  "https://en.wikipedia.org/wiki/Milling_%28machining%29",
+  "https://mollersmachining.com/ydelser/",
+  "https://prodan.dk/procesoversigt/spaantagning/",
+  "https://special-teknik.dk/en/cnc-fraesning/",
+  "https://special-teknik.dk/kapacitet/",
+  "https://tooldenmark.dk/wp-content/uploads/2017/12/Maskinliste.pdf",
+  "https://www.partmfg.com/wp-content/uploads/2025/07/CNC-Machining-Design-Guide-PARTMFG.pdf",
+  "https://www.prototech.dk/en/cnc",
+  "https://www.reddit.com/r/CNC/comments/1q0894p/cnc_machining_lessons_learned_when_moving_from/",
+  "https://www.reddit.com/r/CNC/comments/1wrtowo/tips_for_reducing_online_cnc_costs/",
+  "https://www.reddit.com/r/CNC/comments/iov393",
+  "https://www.reddit.com/r/FreeCAD/comments/1rrw8x6/european_companies_for_milling_my_cad_model/",
+  "https://www.reddit.com/r/Machinists/comments/16ui7gr",
+  "https://www.reddit.com/r/Machinists/comments/1cnrkch",
+  "https://www.reddit.com/r/copenhagen/comments/17iixsu",
+  "https://www.reddit.com/r/hobbycnc/comments/1o3jfoq",
+  "https://www.reddit.com/r/hobbycnc/comments/1oxmp71/help_picking_custom_cnc_service/",
+  "https://www.reddit.com/r/hobbycnc/comments/1r7v6o5/advice_on_the_right_cnc_for_small_6063_aluminium/",
+  "https://www.reddit.com/r/u_InFuturePrecision/comments/rnixtc",
+  "https://www.reddit.com/r/u_fuson-cncmachining/comments/14vskeu",
+  "https://www.teamrapidtooling.com/articles/da/cnc-milling-services-when-to-use-3-axis-4-axis-and-5-axis-milling/",
+  "https://www.we-make.dk/services/cnc-milling"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 22344,
+  "output_tokens": 1480
+ }
+}

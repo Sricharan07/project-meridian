@@ -68,6 +68,7 @@ class Reconstruction:
     mass: dict = field(default_factory=dict)
     file: str = ""
     section: float = 0.0  # default position of the section cut, along Y: through the holes worth seeing
+    extent: list[float] = field(default_factory=list)  # bounding box in mm, x y z
 
 
 class Sheet:
@@ -318,6 +319,8 @@ def build_all(observations: list[Observation], names: dict[str, str]) -> dict[st
             if d.cite and d.region is None:
                 d.region = by_id[d.cite].source.bbox
         record.mass = _mass_check(drawing, solid, density, by_id)
+        box = solid.bounding_box()
+        record.extent = [round(hi - lo, 1) for lo, hi in zip(box[:3], box[3:])]
         record.file = f"models/{drawing}.glb"
         _export(solid, out_dir / f"{drawing}.glb")
         index[drawing] = asdict(record)

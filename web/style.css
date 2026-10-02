@@ -304,6 +304,12 @@ svg.band line { stroke: var(--text-2); stroke-width: 1; }
 .doc-inner .group { margin-bottom: 26px; }
 .doc-inner .row { grid-template-columns: 130px minmax(0, 1fr) auto; }
 .doc-inner .row.hit { background: var(--accent-soft); }
+.row .k.match { display: flex; align-items: center; gap: 6px; }
+.row .v small.check { display: flex; align-items: baseline; gap: 6px; margin-top: 3px; }
+.row .v small.check svg { flex: none; position: relative; top: 2px; }
+.outbound { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; transition: text-decoration-color 0.12s; }
+.outbound:hover { text-decoration-color: currentColor; }
+.outbound .icon { display: inline-block; margin-left: 4px; color: var(--text-3); vertical-align: -1px; }
 .relation { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 10px 11px; border-top: 1px solid var(--line); }
 .relation:first-child { border-top: 0; }
 .relation a { font-weight: 500; }

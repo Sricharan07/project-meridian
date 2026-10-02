@@ -25,6 +25,7 @@ export const api = {
   propose: (body) => post("/api/corrections", body),
   path: (a, b) => get(`/api/graph/path?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`),
   part: (ref) => once(`part:${ref}`, () => get(`/api/parts/${encodeURIComponent(ref)}`)),
+  suppliers: (ref) => once(`suppliers:${ref}`, () => get(`/api/suppliers/${encodeURIComponent(ref)}`)),
   evidence: (id) => once(`evidence:${id}`, () => get(`/api/evidence/${encodeURIComponent(id)}`)),
   models: () => once("models", () => get("/kb/models/index.json")),
   ask: (question, history) => post("/api/chat", { question, history }),

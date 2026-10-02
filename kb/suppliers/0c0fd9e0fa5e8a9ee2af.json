@@ -1,0 +1,64 @@
+{
+ "query": "Part: M12-C61, 6m cable. Recorded supplier: RS components. Their product name or order number: 2TLA020056R0000. Recorded link: none.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ABB Jokab",
+  "part_number": "2TLA020056R0000",
+  "own_brand": false,
+  "description": "ABB Jokab M12-C61 is a 6 m shielded cable with a straight 5-pin M12 female connector and a free end.",
+  "alternatives": [
+   {
+    "company": "TME",
+    "url": "https://www.tme.eu/dk/en/details/2tla020056r0000/sensors-cables/abb/m12-c61-6m/",
+    "same_part": true,
+    "note": "The listing identifies ABB M12-C61 part 2TLA020056R0000, matching the exact manufacturer part number."
+   },
+   {
+    "company": "WATTOO",
+    "url": "https://www.wattoo.dk/kabel-6m-m12-c61-0422601511",
+    "same_part": true,
+    "note": "The listing gives ABB part 2TLA020056R0000 and specifies a 6 m cable with a 5-pin straight M12 female connector."
+   },
+   {
+    "company": "ABB eMart",
+    "url": "https://shop.in.abb.com/2tla020056r0000/m12-c61-cable.html",
+    "same_part": true,
+    "note": "ABB’s product page lists part 2TLA020056R0000 as the M12-C61 6 m cable, though it shows the item as out of stock."
+   }
+  ]
+ },
+ "sources": [
+  "https://ae.rsdelivers.com/bh/product/abb-jokab/2tla020056r0000-m12-c61/abb-jokab-female-5-way-threaded-to-sensor-actuator/1760015",
+  "https://catalogo-generale.abb.com/safety-e-dispositivi-di-sicurezza/safety/2TLA020056R0000",
+  "https://de.rs-online.com/web/p/sensor-und-aktor-kabel/1760015",
+  "https://dk.rs-online.com/web/p/sensorkabler-og-aktuatorkabler/1760015",
+  "https://dk.rs-online.com/web/p/tilbehorsdele-til-sikkerhedsafbrydere/2531431",
+  "https://docs.rs-online.com/1b71/0900766b814a4761.pdf",
+  "https://docs.rs-online.com/5c3d/A700000010204961.pdf",
+  "https://docs.rs-online.com/81ba/0900766b8165d5d7.pdf",
+  "https://docs.rs-online.com/d6b6/0900766b8145fdac.pdf",
+  "https://empower.abb.com/ecatalog/ec/EN_NA/p/2TLA020056R0000",
+  "https://es.rs-online.com/web/p/cables-para-sensores/1760015",
+  "https://fr.rs-online.com/web/p/cables-pour-capteurs-et-d-actionneur-actionneurs/1760015",
+  "https://in.rsdelivers.com/product/abb-jokab/2tla020056r0000-m12-c61/abb-jokab-sensor-actuator-cable/1760015",
+  "https://library.e.abb.com/public/1db71d8f14e244f09cf162d2035d88aa/Safety_products_catalog_revE_2TLC010001C0202.pdf?x-sign=vDbjh4W826whWXTI3VupTayKAA0IPlvkbcGltIon1DzHb7vjO%2FFM06vFdQ8LVPhn",
+  "https://library.e.abb.com/public/2564609e1c884caaa0d340481acd17d7/Product_sheet_-_M12-C61_2TLC010065L0201.pdf",
+  "https://library.e.abb.com/public/321cb059b56549f4970b0800f1bfa2a4/11_Control_Machine%20Safety.pdf?x-sign=2VMlVCKjLqiBd11%2BQxQDeJS11w2oc0eBbhNlL%2FUYnQNS3tafy20HD4VFWFFW3Qio",
+  "https://library.e.abb.com/public/3db3db8487a8434ea9c26aeb93320ef3/Safety_products_catalog_2TLC010001C0201_revB.pdf?x-sign=dV7aJnPQ9M4V0i%2BfS0YRPF5GjwqdEPLHvva6JPrLb%2B7nxvfQj3vq%2FMqYOPG4sNqZ",
+  "https://library.e.abb.com/public/3db3db8487a8434ea9c26aeb93320ef3/Safety_products_catalog_2TLC010001C0201_revB.pdf?x-sign=nbEzNj4hPafAocwN9VqM+rJD5rTsZZo28TcjX%2FKtkMf3MSHJHxbD159TCTAsZ9En",
+  "https://new.abb.com/docs/librariesprovider22/default-document-library/abb-safety-products-catalog_revh2_2tlc010001c0202.pdf?sfvrsn=62c6c60a_0",
+  "https://new.abb.com/docs/librariesprovider63/niederspannungsprodukte/downloads/52_en_produktliste-der-sicherheitskomponenten.pdf?sfvrsn=2",
+  "https://shop.in.abb.com/2tla020056r0000/m12-c61-cable.html",
+  "https://uk.rs-online.com/web/p/sensor-actuator-cables/1760015?gb=s",
+  "https://us.rs-online.com/product/abb-jokab-safety/2tla020056r0000/70369543/",
+  "https://www.findchips.com/detail/2TLA020056R0000/ABB-Jokab--Safety",
+  "https://www.tme.eu/dk/en/details/2tla020056r0000/sensors-cables/abb/m12-c61-6m/",
+  "https://www.wattoo.dk/kabel-6m-m12-c61-0422601511"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14857,
+  "output_tokens": 635
+ }
+}

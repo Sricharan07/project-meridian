@@ -64,6 +64,13 @@ DEFINITIONS = [
           {"refs": {"type": ["array", "null"], "items": {"type": "string"}},
            "subsystem": {"type": ["string", "null"]}},
           ["refs", "subsystem"]),
+    _tool("suggest_suppliers",
+          "Who supplied a part's BOM rows, and who else could. For a bought part: what a dated web search identified it "
+          "as and other sellers it found, each with how strong the match is (part number confirmed, found by the search, "
+          "equivalent part). For a custom part: what making it takes (material, process, size, tightest tolerance, "
+          "quantity, each cited), Danish makers whose own sites state that process, checked requirement by requirement, "
+          "and who made similar parts for this machine before. Rows not searched say why.",
+          {"ref": _REF}, ["ref"]),
     _tool("search_text",
           "Find a word or phrase in drawing notes, callout text, BOM notes and design intent, e.g. 'weld', 'o-ring', "
           "'too tight'. Case-insensitive substring match.",
@@ -104,6 +111,7 @@ def handlers(kb: KnowledgeBase, turn: dict) -> dict[str, Callable[..., object]]:
         "parts_with_material": lambda material: kb.with_material(material),
         "procurement": lambda refs, subsystem: kb.procurement(refs=refs, subsystem=subsystem),
         "search_text": lambda text: kb.search(text),
+        "suggest_suppliers": lambda ref: kb.suppliers(ref),
         "propose_correction": lambda target, proposed_value, reason: _propose(kb, turn, target, proposed_value, reason),
         "propose_link_change": lambda drawing, rows, status, reason: _filed(
             corrections.propose_link(kb, drawing, rows, status, reason, turn.get("question", ""), kb.corrections_log)),

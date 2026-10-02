@@ -1,0 +1,32 @@
+{
+ "query": "Part: VFD. Recorded supplier: RS components. Their product name or order number: Mitsubishi XYZ. Recorded link: none.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Mitsubishi Electric",
+  "part_number": "Unknown — “Mitsubishi XYZ” does not identify a specific VFD model",
+  "own_brand": false,
+  "description": "The supplied product name is too vague to determine the exact manufacturer part number or verify an RS listing.",
+  "alternatives": []
+ },
+ "sources": [
+  "https://at.rs-online.com/web/p/entwicklungstools-sensorik/0730351",
+  "https://au.rs-online.com/web/p/electric-linear-actuators/2810446",
+  "https://ch.rs-online.com/web/p/entwicklungstools-sensorik/0730351",
+  "https://cz.rs-online.com/web/p/vyvojove-nastroje-pro-snimace/0730351",
+  "https://de.rs-online.com/web/p/entwicklungstools-sensorik/0730351",
+  "https://dk.rs-online.com/web/b/mikroelektronika/",
+  "https://dk.rs-online.com/web/p/farvesensor-og-lyssensor-ic-er/2009482",
+  "https://dk.rs-online.com/web/p/sensor-udvikling/0730351",
+  "https://es.rs-online.com/es/pdf/RS_Tektronix_XYZosc.pdf",
+  "https://pl.rs-online.com/web/p/narzedzia-rozwojowe-z-kategorii-czujniki/0730351",
+  "https://us.rs-online.com/product/eti-systems/j30h-xyz-b-s-1/70089177/",
+  "https://www.rs-online.com/designspark/building-a-spresense-powered-smart-security-device-part-3-sensor-processing",
+  "https://www.rs-online.com/designspark/differentiators-in-electromagnetic-contactors-and-safety-relays"
+ ],
+ "searches": 1,
+ "usage": {
+  "input_tokens": 8718,
+  "output_tokens": 301
+ }
+}

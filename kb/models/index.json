@@ -246,7 +246,12 @@
    "difference_percent": -0.03
   },
   "file": "models/D-012.glb",
-  "section": 0.0
+  "section": 0.0,
+  "extent": [
+   120.0,
+   25.0,
+   15.0
+  ]
  },
  "D-015": {
   "drawing": "D-015",
@@ -492,7 +497,12 @@
    "difference_percent": 0.74
   },
   "file": "models/D-015.glb",
-  "section": -2.01
+  "section": -2.01,
+  "extent": [
+   270.0,
+   14.0,
+   1.0
+  ]
  },
  "D-025": {
   "drawing": "D-025",
@@ -713,7 +723,12 @@
    "difference_percent": 0.04
   },
   "file": "models/D-025.glb",
-  "section": -115.5
+  "section": -115.5,
+  "extent": [
+   250.0,
+   250.0,
+   3.0
+  ]
  },
  "D-026": {
   "drawing": "D-026",
@@ -938,7 +953,12 @@
    "difference_percent": -0.01
   },
   "file": "models/D-026.glb",
-  "section": -90.93
+  "section": -90.93,
+  "extent": [
+   250.0,
+   250.0,
+   20.0
+  ]
  },
  "D-028": {
   "drawing": "D-028",
@@ -1152,6 +1172,11 @@
    "difference_percent": -0.12
   },
   "file": "models/D-028.glb",
-  "section": 0.0
+  "section": 0.0,
+  "extent": [
+   30.0,
+   11.0,
+   2.0
+  ]
  }
 }

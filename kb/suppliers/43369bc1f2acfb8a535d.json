@@ -1,0 +1,67 @@
+{
+ "query": "Part: NEMA 23 Tr11x2 Non-Captive. Recorded supplier: OMC. Their product name or order number: 23LS22-2004N-200T. Recorded link: https://www.omc-stepperonline.com/linear-stepper-motor/nema-23-non-captive-56mm-stack-2a-lead-2mm007874-length-200mm-23ls22-2004n-200t.html?mfp=178-linear-motor-type%5BNon-Captive%5D%2C184-frame-size-mm%5BNema%2023%20%2857%20x%2057%29%5D%2C181-lead-screw-length-mm%5B200%5D.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "STEPPERONLINE",
+  "part_number": "23LS22-2004N-200T",
+  "own_brand": true,
+  "description": "NEMA 23 non-captive linear stepper motor with a 200 mm Tr11x2 lead screw and 2 A current rating.",
+  "alternatives": [
+   {
+    "company": "Frankhuai",
+    "url": "https://www.frankhuai.com/nema-23-linear-stepper-motor-lead-2mm-non-captive",
+    "same_part": false,
+    "note": "Matches the NEMA 23 non-captive format, 56 mm motor stack, 11 mm screw diameter, 2 mm lead, and 200 mm screw length."
+   }
+  ]
+ },
+ "sources": [
+  "https://au-stepperonline.com/nema-23-non-captive-56mm-stack-2-0a-lead-2mm-0-07874-length-250mm-23n22s2004aj4-250rs.html",
+  "https://de.wikipedia.org/wiki/Schrittmotor",
+  "https://en.wikipedia.org/wiki/Linear_stage",
+  "https://help.omc-stepperonline.com/hc/s/articles/how-to-download-products-drawings-and-maunals",
+  "https://help.omc-stepperonline.com/hc/s/articles/linear-motor-selection-reference",
+  "https://media.pbclinear.com/pdfs/pbc-linear-catalogs/lead-screw-assemblies-catalog.pdf",
+  "https://resources.helixlinear.com/hubfs/Helix%20Stepper%20Motor%20Linear%20Actuators.pdf",
+  "https://www.frankhuai.com/nema-23-linear-stepper-motor-lead-2mm-non-captive",
+  "https://www.intercyprus.com/products/nema-23-stepper-motor-external-56mm",
+  "https://www.novantaims.com/download/nema23-linear-actuator-datasheet/?refresh=698adb12d603f1770707730&wpdmdl=29705",
+  "https://www.omc-stepperonline.com/",
+  "https://www.omc-stepperonline.com/200mm-5mm-diameter-2mm-pitch-trapezoidal-lead-screw-ls-aa-200",
+  "https://www.omc-stepperonline.com/de/nema-23-non-captive-56mm-stapel-2a-fuehren-2mm-0-07874-laenge-200mm-23n22s2004aj-200rs",
+  "https://www.omc-stepperonline.com/download/23LS22-2004N-150T.pdf",
+  "https://www.omc-stepperonline.com/download/23LS22-2004N-250T.pdf",
+  "https://www.omc-stepperonline.com/fr/nema-23-non-captive-56mm-empiler-2a-lead-2mm-0-07874-longueur-200mm-23n22s2004aj-200rs",
+  "https://www.omc-stepperonline.com/linear-stepper-motor",
+  "https://www.omc-stepperonline.com/nema-23-external-45mm-stack-2a-lead-2mm-0-07874-length-200mm-23e18s2004ah-200rs",
+  "https://www.omc-stepperonline.com/nema-23-non-captive-56mm-stack-2-0a-lead-2mm-0-07874-length-355mm-23n22s2004aj4-355rs",
+  "https://www.omc-stepperonline.com/nema-23-stepper-motor",
+  "https://www.omc-stepperonline.com/part-number",
+  "https://www.omc-stepperonline.com/stepper-motor-linear-motion",
+  "https://www.omc-stepperonline.com/support/what-is-the-difference-between-t-y-s-and-n-series-digital-drivers",
+  "https://www.oyostepper.com/goods-160-Nema-23-Non-captive-56mm-Stack-2A-Lead-2mm007874-Length-200mm.html",
+  "https://www.oyostepper.de/goods-160-Nema-23-Non-captive-Linearer-Schrittmotor-56mm-Stapel-2A-F%C3%BChren-2mm007874-L%C3%A4nge-200mm-Schrittmotor-Linearaktuator.html",
+  "https://www.reddit.com/r/3Dprinting/comments/1aoh9qm",
+  "https://www.reddit.com/r/3Dprinting/comments/1efgq2v",
+  "https://www.reddit.com/r/CNC/comments/1ih05o2",
+  "https://www.reddit.com/r/ElegooNeptune3/comments/1afiigh",
+  "https://www.reddit.com/r/IndustrialAutomation/comments/1hecliy",
+  "https://www.reddit.com/r/diycnc/comments/15gocgw",
+  "https://www.reddit.com/r/hobbycnc/comments/11b9lmc",
+  "https://www.reddit.com/r/hobbycnc/comments/17thmss",
+  "https://www.reddit.com/r/hobbycnc/comments/18sfxx1",
+  "https://www.reddit.com/r/hobbycnc/comments/18wip06",
+  "https://www.reddit.com/r/hobbycnc/comments/yiveph",
+  "https://www.reddit.com/r/u_International-Ad239/comments/1tsfqws/help_on_choosing_stepper_motor/",
+  "https://www.soprolec.com/en/shop/m23hsl0120-1102e-200-external-linear-stepper-motor-nema-23-2mm-pitch-200-mm-length-2689",
+  "https://www.stepperonline.co.uk/nema-23-non-captive-56mm-stack-2a-lead-2mm-0-07874-length-200mm-23n22s2004aj2-200rs.html",
+  "https://www.stepperonline.com.tr/nema-23-harici-56mm-yigin-2-0a-kablo-2mm-0-07874-uzunluk-200mm-23e22s2004aj2-200rs",
+  "https://www.stepperonline.pl/nema-23-zewnetrzny-stos-56-mm-przewod-2-a-2-mm-0-07874-dlugosc-200-mm-23e22s2004aj-200rs"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 15455,
+  "output_tokens": 755
+ }
+}

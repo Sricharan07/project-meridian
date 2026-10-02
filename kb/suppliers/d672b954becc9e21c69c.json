@@ -1,0 +1,49 @@
+{
+ "query": "Part: Main solenoid valve. Recorded supplier: RS components. Their product name or order number: VQ21A1-5YO-C6-Q. Recorded link: https://dk.rs-online.com/web/p/pneumatik-magnetventiler-pilotstyret/8406740.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "SMC",
+  "part_number": "VQ21A1-5YO-C6-Q",
+  "own_brand": false,
+  "description": "SMC VQ20-series pneumatic solenoid valve with one-touch fitting, normally closed function, 981 NL/min maximum flow and 0.6 MPa maximum operating pressure.",
+  "alternatives": []
+ },
+ "sources": [
+  "https://ae.rsdelivers.com/product/smc/vq21a1-5yo-c6-q/smc-pneumatic-solenoid-valve-solenoid-rc-g-npt/8406740",
+  "https://agm.org/wp-content/uploads/2021/05/AGM-SMC-Catalogo-generale.pdf",
+  "https://dk.rs-online.com/euro/img/site/campaigns/K27_index/DK_alpha.pdf",
+  "https://dk.rs-online.com/euro/img/site/campaigns/K27_index/DK_alpha.pdf?srsltid=AfmBOopKfOHJ2dABDWcpOi5HIhS5Aek90_dvqOLOYqTHqduvne1audKD",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/?intcmp=DK-WEB-_-CP-C5-_-DTC_013_0924_NE-_-Solenoid-Valves&pn=249",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/?pn=15",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/?pn=2",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/?pn=245",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/?pn=248",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/?pn=253",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/?pn=254",
+  "https://dk.rs-online.com/web/c/pneumatik-og-hydraulik/pneumatik-ventiler/pneumatik-magnetventiler-pilotstyret/?pn=333",
+  "https://fr.rs-online.com/web/p/electrodistributeurs/8406740",
+  "https://jp.rs-online.com/web/b/smc/?intcmp=FR-WEB-_-BP-HB-_-Apr-25-_-SMC&pn=26",
+  "https://jp.rs-online.com/web/p/pneumatic-solenoid-valves/8406740",
+  "https://media.smc.eu/m/4bbab83091836c9a/original/Process-valves-Leaflet-EN.pdf",
+  "https://media.smc.eu/m/5d46924548310fc6/original/Process-valves-Leaflet-FR.pdf",
+  "https://no.rs-online.com/web/p/pneumatic-solenoid-valves/8406740",
+  "https://om.rsdelivers.com/product/smc/vq21a1-5yo-c6-q/smc-2-1-pneumatic-solenoid-valve-solenoid-pilot/8406740",
+  "https://pt.rs-online.com/web/p/valvulas-neumaticas-de-accionamiento-electrico/8406740",
+  "https://se.rs-online.com/web/p/pneumatiska-magnetventiler/8406740",
+  "https://static.smc.eu/binaries/content/assets/smc_de/products/2-port-valves_leaflet_de-de.pdf",
+  "https://static.smc.eu/binaries/content/assets/smc_tr/pdf/pdf2/10-adet-brosur/72-port-valves_leaflet_en-eu.en.tr.pdf",
+  "https://th.rs-online.com/web/p/pneumatic-solenoid-valves/8406740",
+  "https://tr.rsdelivers.com/product/smc/vq21a1-5yo-c6-q/smc-selenoid-kontrollu-pnomatik-selenoid-valfler-2/1/8406740",
+  "https://uk.rs-online.com/web/c/pneumatics-hydraulics/pneumatic-valves/pneumatic-solenoid-valves/?if=smc-pneumatic-solenoid-valves&pn=42",
+  "https://uk.rs-online.com/web/c/pneumatics-hydraulics/pneumatic-valves/pneumatic-solenoid-valves/?intcmp=UK-WEB-_-BP-MFP3-_-Mar-23-_-Festo&pn=70",
+  "https://www.ftipv.com/wp-content/uploads/pneumatics.pdf",
+  "https://www.vogel-gruppe.de/fileadmin/user_upload/Kataloge___Downloads/SMC_Katalog.pdf"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14900,
+  "output_tokens": 292
+ }
+}

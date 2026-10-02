@@ -1,0 +1,64 @@
+{
+ "query": "Process: CNC turning.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "companies": [
+   {
+    "company": "Aagaard Nielsens Maskinfabrik",
+    "url": "https://aagaardnielsen.dk/en/services/cnc-machining",
+    "city": "Ullerslev",
+    "processes": [
+     "CNC turning"
+    ],
+    "materials": [
+     "Steel",
+     "Stainless steel",
+     "Aluminium",
+     "Brass",
+     "Titanium",
+     "Technical plastics"
+    ],
+    "max_size_mm": 500,
+    "tolerance_mm": 0.005
+   },
+   {
+    "company": "NB Metal A/S",
+    "url": "https://nb-metal.dk/en",
+    "city": "Gørløse",
+    "processes": [
+     "CNC turning"
+    ],
+    "materials": [
+     "Any material"
+    ],
+    "max_size_mm": 200,
+    "tolerance_mm": 0
+   }
+  ]
+ },
+ "sources": [
+  "https://aagaardnielsen.dk/",
+  "https://aagaardnielsen.dk/en",
+  "https://aagaardnielsen.dk/en/services/cnc-machining",
+  "https://backend.orbit.dtu.dk/ws/portalfiles/portal/360796703/manuscript_version_ORBIT.pdf",
+  "https://cnc-denmark.com/cnc-turning/",
+  "https://dk.dmgmori.com/products/machines/turning/universal-turning/ctx/ctx-350",
+  "https://dk.dmgmori.com/solutions/focus-industries/job-shop",
+  "https://downloads.unido.org/ot/48/20/4820340/15001-20000_17525.pdf",
+  "https://lex.dk/drejning_-_mekanisk_bearbejdningsproces",
+  "https://nb-metal.dk/en",
+  "https://www.cnc-team.dk/en/competencies/",
+  "https://www.govinfo.gov/content/pkg/GOVPUB-C13-7fc9a36957956875e2fad1cee6bd7246/pdf/GOVPUB-C13-7fc9a36957956875e2fad1cee6bd7246.pdf",
+  "https://www.pgindustri.dk/media/caipajx0/pg_industri.pdf",
+  "https://www.polynet.dk/lenau/lenau_thesis_1989.pdf",
+  "https://www.retsinformation.dk/eli/lta/2015/437/dan",
+  "https://www.retsinformation.dk/eli/lta/2022/520",
+  "https://www.retsinformation.dk/eli/lta/2024/339"
+ ],
+ "searches": 1,
+ "usage": {
+  "input_tokens": 12862,
+  "output_tokens": 887
+ }
+}

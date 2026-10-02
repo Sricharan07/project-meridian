@@ -1,0 +1,59 @@
+{
+ "query": "Part: Heater PID. Recorded supplier: RS components. Their product name or order number: PXU10020. Recorded link: dk.rs-online.com/web/p/temperaturregulatorer/9055725.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "Red Lion",
+  "part_number": "PXU10020",
+  "own_brand": false,
+  "description": "Panel-mount PID temperature controller with one relay output, 240 V AC supply, universal RTD and thermocouple inputs, and an LCD display.",
+  "alternatives": [
+   {
+    "company": "DigiKey",
+    "url": "https://www.digikey.dk/en/products/detail/red-lion-controls/PXU10020/5017152",
+    "same_part": true,
+    "note": "Lists the exact Red Lion PXU10020 part number."
+   }
+  ]
+ },
+ "sources": [
+  "https://assets.rs-online.com/v1700169777/Datasheets/c94e5db8d85d3beb071f5b04e93db787.pdf",
+  "https://au.rs-online.com/web/p/temperature-controllers/9055725",
+  "https://befr.rs-online.com/web/p/temperature-controllers/9055725",
+  "https://benl.rs-online.com/web/p/temperature-controllers/9055725",
+  "https://dk.rs-online.com/euro/img/site/campaigns/K27_index/DK_alpha.pdf",
+  "https://dk.rs-online.com/euro/img/site/campaigns/K27_index/DK_alpha.pdf?srsltid=AfmBOoq1qdRkixejJSy034Kd0IoQXm15AqrH7xDc6WmXvKcv41aZOVOy",
+  "https://dk.rs-online.com/euro/img/task-requests/220668/a866_ppe_brochure_v7_dk_00.pdf?intcmp=DK-WEB-_-CP-C1-_-MCC_205_0521_NE-_-protectbrochure",
+  "https://dk.rs-online.com/euro/img/task-requests/220668/a866_ppe_brochure_v7_dk_00.pdf?intcmp=DK-WEB-_-CP-C1-_-MCC_205_0723_NE-_-security-all-arround",
+  "https://dk.rs-online.com/web/",
+  "https://dk.rs-online.com/web/c/automation-og-styring/",
+  "https://dk.rs-online.com/web/c/automation-og-styring/processtyring/temperaturregulatorer/",
+  "https://dk.rs-online.com/web/c/automation-og-styring/processtyring/temperaturregulatorer/?intcmp=DK-WEB-_-CP-FP4-_-MCC_243_0624_NE-_-temperature-controllers",
+  "https://dk.rs-online.com/web/c/automation-og-styring/processtyring/temperaturregulatorer/?pn=33",
+  "https://dk.rs-online.com/web/c/automation-og-styring/processtyring/temperaturregulatorer/?pn=6",
+  "https://dk.rs-online.com/web/c/automation-og-styring/processtyring/temperaturregulatorer/?pn=8",
+  "https://dk.rs-online.com/web/p/temperaturregulatorer/9055725",
+  "https://dk.rs-online.com/web/p/temperaturregulatorer/9055731",
+  "https://dk.rs-online.com/web/p/temperaturregulatorer/9055734",
+  "https://dk.rs-online.com/web/p/temperaturregulatorer/9055737",
+  "https://dk.rs-online.com/web/p/temperaturregulatorer/9055740",
+  "https://files.valinonline.com/userfiles/documents/red-lion-pxu-controllers.pdf",
+  "https://files.valinonline.com/userfiles/documents/red-lion-pxu-manual.pdf",
+  "https://media.distrelec.com/Web/Downloads/_t/ds/PXU10020_eng_tds.pdf",
+  "https://nl.rs-online.com/web/p/temperature-controllers/9055725",
+  "https://no.rs-online.com/web/p/temperature-controllers/9055725",
+  "https://ph.rs-online.com/web/p/temperature-controllers/9055725",
+  "https://sg.rs-online.com/web/p/temperature-controllers/9055725",
+  "https://uk.rs-online.com/web/p/temperature-controllers/9055725",
+  "https://uk.rs-online.com/web/p/temperature-controllers/9055725/",
+  "https://www.digikey.dk/en/products/detail/red-lion-controls/PXU10020/5017152",
+  "https://www.hms-networks.com/docs/default-source/products/redlion/manuals-and-guides---manuals/pxu-manual.pdf",
+  "https://www.infinite-electronic.kr/datasheet/71-PXU21A20.pdf",
+  "https://www.redlion.net/product/pxu-pid-controller-116-din-universal-input-relay-output-ac-power"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 15031,
+  "output_tokens": 590
+ }
+}

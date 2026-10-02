@@ -3,6 +3,8 @@
 //   D-011.p1.material.vision   -> D-011 material, vision
 //   D-023.p1.vision.c06        -> D-023 callout, vision
 //   BOM.48.amount              -> BOM 48 amount
+//   BOM.84.web.1               -> BOM 84 seller, web
+//   maker:prototech.dk         -> prototech.dk
 //   Zaxis_legend.l03           -> Z-axis diagram
 
 const DIAGRAMS = { Zaxis_legend: "Z-axis diagram", RecoaterLegend: "Recoater diagram", PowderLegend: "Powder diagram" };
@@ -10,6 +12,9 @@ const DIAGRAMS = { Zaxis_legend: "Z-axis diagram", RecoaterLegend: "Recoater dia
 export function citeLabel(id) {
   let m;
   if ((m = id.match(/^(.+)\.(C-\d{3})$/))) return `${citeLabel(m[1])}, ${m[2]}`;
+  if ((m = id.match(/^BOM\.(\d+)\.web\.part$/))) return `BOM ${m[1]} identified, web`;
+  if ((m = id.match(/^BOM\.(\d+)\.web\.\d+$/))) return `BOM ${m[1]} seller, web`;
+  if ((m = id.match(/^maker:(.+)$/))) return m[1];
   if ((m = id.match(/^BOM\.(\d+)\.(.+)$/))) return `BOM ${m[1]} ${m[2].replaceAll("_", " ")}`;
   if ((m = id.match(/^(D-\d{3})\.bom-link$/))) return `${m[1]} link`;
   if ((m = id.match(/^(D-\d{3})\.p(\d+)\.(ocr|vision)\.[ac]\d+$/))) return `${m[1]} callout, ${m[3]}`;

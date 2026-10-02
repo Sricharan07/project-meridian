@@ -20,7 +20,9 @@ const BOM_COLUMNS = {
 };
 const KIND_TITLES = { stated: "Stated in the BOM", diagram: "From the system diagrams", inferred: "Inferred from matching fits" };
 const DIAGRAM_TITLES = { Zaxis_legend: "Z-axis diagram", RecoaterLegend: "Recoater diagram", PowderLegend: "Powder diagram" };
-const TABS = [["sheet", "Sheet", "sheet"], ["model", "3D", "cube"], ["bom", "BOM", null], ["relations", "Relations", null]];
+const TABS = [["sheet", "Sheet", "sheet"], ["model", "3D", "cube"], ["bom", "BOM", null], ["suppliers", "Suppliers", null], ["relations", "Relations", null]];
+const MATCH = { "part number confirmed": ["agree", "Same part no."], "found by the search": ["single", "Found by search"], equivalent: ["info", "Equivalent"] };
+const CHECK = { pass: "agree", fail: "warn", unknown: "blank" };
 
 export class EvidencePanel {
   constructor(root, { navigate }) {
@@ -57,6 +59,7 @@ export class EvidencePanel {
       return this.openPart(attachment.ref, { sheet: attachment.sheet, marks: attachment.highlights, focus: attachment.highlights[0]?.cite, keepRefs: true });
     }
     if (attachment.type === "bom_row") return this.openPart(`BOM.${attachment.row}`, { tab: "bom", keepRefs: true });
+    if (attachment.type === "suppliers") return this.openPart(attachment.ref, { tab: "suppliers", keepRefs: true });
   }
 
   async openCite(id, refs) {
@@ -80,6 +83,11 @@ export class EvidencePanel {
         return;
       }
       return this.openPart(target.ref, { tab, sheet: evidence.source.page || 1, marks, focus: id, keepRefs: true });
+    }
+    if (evidence.method === "web") {
+      // A supplier suggestion belongs to a BOM row; a maker belongs to whichever part asked about it.
+      const ref = target.kind === "bom" ? `BOM.${target.row}` : this.state.part?.ref;
+      return ref ? this.openPart(ref, { tab: "suppliers", focus: id, keepRefs: true }) : window.open(evidence.parsed.url, "_blank", "noopener");
     }
     if (target.kind === "bom") return this.openPart(`BOM.${target.row}`, { tab: "bom", focus: id, keepRefs: true });
   }
@@ -132,7 +140,7 @@ export class EvidencePanel {
     slide($(".tab-indicator", this.root), $(".tabs .current", this.root));
 
     const body = $(".panel-body", this.root);
-    body.className = `panel-body${tab === "bom" || tab === "relations" ? " doc" : ""}`;
+    body.className = `panel-body${["bom", "suppliers", "relations"].includes(tab) ? " doc" : ""}`;
     body.style.animation = "none";
     void body.offsetWidth;  // restart the fade, so switching tabs reads as a change of view
     body.style.animation = "";
@@ -140,6 +148,7 @@ export class EvidencePanel {
     if (tab === "sheet") this.renderSheet(body);
     if (tab === "model") this.renderModel(body);
     if (tab === "bom") this.renderBom(body);
+    if (tab === "suppliers") this.renderSuppliers(body);
     if (tab === "relations") this.renderRelations(body);
   }
 
@@ -152,7 +161,7 @@ export class EvidencePanel {
       ? [drawing.subsystem, drawing.scan ? "Scanned sheet" : "Clean sheet",
          rows.length ? `BOM row${rows.length > 1 ? "s" : ""} ${rows.join(", ")}` : "No BOM row"]
       : [`BOM row ${rows[0]}`, "No supplied drawing"];
-    const available = { sheet: Boolean(drawing), model: Boolean(part.model_3d), bom: rows.length > 0, relations: true };
+    const available = { sheet: Boolean(drawing), model: Boolean(part.model_3d), bom: rows.length > 0, suppliers: rows.length > 0, relations: true };
     this.root.dataset.showing = part.ref;
     mount(this.root, html`
       <div class="panel-head">
@@ -310,6 +319,24 @@ export class EvidencePanel {
       <p class="note">Supplier, price and order data are a BOM snapshot, not current availability.</p></div>`);
   }
 
+  // Who supplied each row, and who else could: other sellers of a bought part from a dated web search,
+  // or for a custom part what making it takes, checked against what each maker's own site states.
+  async renderSuppliers(body) {
+    const { part, focus, refs } = this.state;
+    const data = await api.suppliers(part.ref);
+    if (this.state.part !== part || this.state.tab !== "suppliers") return;
+    const hit = (id) => (id === focus || refs.has(id) ? " hit" : "");
+    mount(body, html`<div class="doc-inner">${data.parts.map((p) => html`<section class="group">
+        <h3 class="group-title">Row ${p.ref.slice(4)} · ${p.name}<span class="muted" style="font-weight:400">${p.type}</span></h3>
+        ${Object.keys(p.recorded).length ? html`<p class="label">Recorded in the BOM</p><div class="rows">${Object.entries(p.recorded).map(([f, c]) => html`
+          <div class="row${hit(c.cite)}"><span class="k">${BOM_COLUMNS[f]}</span><span class="v">${f === "link" ? outbound(c.value, c.value) : c.value}</span>
+          <span>${raw(chip(c.cite))}</span></div>`)}</div>` : ""}
+        ${p.type === "Custom" ? made(p, hit) : p.identified_as ? bought(p, hit) : html`<p class="note">${p.not_searched}</p>`}
+      </section>`)}
+      <p class="note">${data.caveat}</p></div>`);
+    $(".row.hit", body)?.scrollIntoView({ block: "center" });
+  }
+
   renderRelations(body) {
     const groups = {};
     for (const r of this.state.part.relations || []) (groups[r.kind] ||= []).push(r);
@@ -398,6 +425,48 @@ export class EvidencePanel {
     if (e.target.closest("[data-close]")) this.root.classList.remove("open");
   }
 }
+
+// A bought part: what the search identified it as, and who else sells it or something equivalent.
+function bought(p, hit) {
+  const id = p.identified_as;
+  return html`<p class="label" style="margin-top:14px">Found by a web search, ${id.retrieved}</p>
+    <div class="rows">
+      <div class="row${hit(id.cite)}"><span class="k">Identified as</span><span class="v">${id.value || "Not identified"}<small>${id.own_brand ? "The seller's own brand. " : ""}${id.description}</small></span>
+        <span>${raw(chip(id.cite))}</span></div>
+      ${p.suggested.map((s) => html`<div class="row${hit(s.cite)}"><span class="k match">${raw(mark(MATCH[s.match][0], 14))}${MATCH[s.match][1]}</span>
+        <span class="v">${outbound(s.url, s.seller)}<small>${s.note}</small></span><span>${raw(chip(s.cite))}</span></div>`)}
+      ${p.suggested.length ? "" : html`<div class="row wide"><span class="v muted">The search found no other seller it could put a page to.</span><span></span></div>`}
+    </div>`;
+}
+
+// A custom part: what making it takes, makers whose own sites say they can, and who made similar parts before.
+function made(p, hit) {
+  const r = p.requirements;
+  const need = [
+    ["Material", capitalise(r.materials.join(", ")) || "Not recorded", r.material_cites[0]],
+    ["Process", r.processes.map((x) => `${PROCESS[x.process]}, ${x.why}`).join("\n") || "Not assumed without a material", null],
+    ["Size", r.size ? `${r.size.mm} mm\n${r.size.how}` : "Not known", r.size?.cite],
+    ["Tolerance", r.tightest ? `${r.tightest.text}\nTightest band ${(r.tightest.band_um / 1000).toFixed(3)} mm, about ±${(r.tightest.band_um / 2000).toFixed(3)} mm` : "No toleranced dimension read", r.tightest?.cite],
+    ["Quantity", r.quantity?.count ?? "Not recorded", r.quantity?.cite],
+  ];
+  return html`<p class="label" style="margin-top:14px">What making it takes</p>
+    <div class="rows">${need.map(([k, v, cite]) => html`<div class="row${cite ? hit(cite) : ""}"><span class="k">${k}</span><span class="v">${v}</span>
+      <span>${cite ? raw(chip(cite)) : ""}</span></div>`)}</div>
+    <p class="label" style="margin-top:14px">Makers whose sites say they can${p.makers[0] ? `, found ${p.makers[0].retrieved}` : ""}</p>
+    ${p.makers.length ? html`<div class="rows">${p.makers.map((m) => html`<div class="row${hit(m.cite)}"><span class="k">${m.city || "Denmark"}</span>
+      <span class="v">${outbound(m.url, m.name)}${m.checks.map((c) => html`<small class="check">${raw(mark(CHECK[c.result], 12))}${c.requirement}: ${c.detail}</small>`)}</span>
+      <span>${raw(chip(m.cite))}</span></div>`)}</div>`
+      : html`<p class="note">${r.processes.length ? "No maker found states this process with a material and size that fit." : "With no material recorded, no process is assumed and no maker is matched."}</p>`}
+    ${p.made_before_by.length ? html`<p class="label" style="margin-top:14px">Made before for this machine</p>
+      <div class="rows">${p.made_before_by.slice(0, 3).map((b) => html`<div class="row"><span class="k">${b.supplier}</span>
+        <span class="v">${b.rows.length} custom part${b.rows.length > 1 ? "s" : ""}${r.materials.length ? ` in ${r.materials.join(" or ")}` : ""}: rows ${b.rows.slice(0, 8).join(", ")}${b.rows.length > 8 ? "…" : ""}</span>
+        <span>${raw(chip(b.cites[0]))}</span></div>`)}</div>` : ""}`;
+}
+
+const PROCESS = { milling: "CNC milling", turning: "CNC turning", sheet: "Sheet metal", welding: "Welding", waterjet: "Waterjet cutting", polymer: "Polymer printing" };
+
+// A link that leaves the app says so, and opens beside it.
+const outbound = (url, text) => html`<a class="outbound" href="${url.startsWith("http") ? url : `https://${url}`}" target="_blank" rel="noopener noreferrer">${text}${raw(icon("external", 12))}</a>`;
 
 // One title-block field: what it says, and how sure the reading is. Text-layer values need no mark.
 function titleRow(field, f, focus) {

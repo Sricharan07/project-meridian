@@ -1,0 +1,136 @@
+{
+ "query": "Process: welding.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "companies": [
+   {
+    "company": "AKS Industries A/S",
+    "url": "https://aks.dk/en/welding/",
+    "city": "Hvidovre",
+    "processes": [
+     "Welding; specific welding methods not stated"
+    ],
+    "materials": [
+     "Iron",
+     "Stainless steel",
+     "Aluminum",
+     "Hastelloy",
+     "Inconel",
+     "Monel",
+     "Titanium",
+     "Copper",
+     "Cupronickel"
+    ],
+    "max_size_mm": 0,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "BASO GROUP",
+    "url": "https://basogroup.dk/en/services/welding/welding/",
+    "city": "",
+    "processes": [
+     "TIG welding",
+     "MIG/MAG welding",
+     "Laser welding",
+     "Stud welding",
+     "Resistance welding"
+    ],
+    "materials": [
+     "Steel",
+     "Stainless steel",
+     "Aluminum"
+    ],
+    "max_size_mm": 0,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "ECM INDUSTRIES A/S",
+    "url": "https://ecm.dk/en/process/welding",
+    "city": "",
+    "processes": [
+     "TIG welding",
+     "MIG/MAG welding",
+     "Laser welding",
+     "Induction welding",
+     "Stud welding"
+    ],
+    "materials": [
+     "Steel",
+     "Stainless steel",
+     "Aluminum"
+    ],
+    "max_size_mm": 0,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "Wemeco",
+    "url": "https://wemeco.com/en/core_activities_wemeco/",
+    "city": "",
+    "processes": [
+     "MIG/MAG welding",
+     "TIG welding",
+     "Electrode welding",
+     "Robotic welding"
+    ],
+    "materials": [
+     "Steel",
+     "Stainless steel",
+     "Aluminum",
+     "Special alloys"
+    ],
+    "max_size_mm": 6000,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "FSQ Industry & Workshop",
+    "url": "https://fsq.dk/land-based.html",
+    "city": "",
+    "processes": [
+     "Manual MMA welding",
+     "MIG welding",
+     "MAG solid-wire welding",
+     "MAG flux-core welding",
+     "MAG metal-core welding",
+     "TIG welding",
+     "Hardfacing"
+    ],
+    "materials": [
+     "Mild steel S235–S355",
+     "Stainless steel A2–A4",
+     "SMO stainless steel",
+     "Aluminum"
+    ],
+    "max_size_mm": 0,
+    "tolerance_mm": 0
+   }
+  ]
+ },
+ "sources": [
+  "https://aks.dk/en/welding/",
+  "https://athco-engineering.dk/capacity/",
+  "https://autogen.dk/fagomrader/",
+  "https://basogroup.dk/en/services/welding/laser-welding/",
+  "https://basogroup.dk/en/services/welding/welding/",
+  "https://bigscience.dk/media/1254/danishcompanies2023.pdf",
+  "https://ecm.dk/en/process/welding",
+  "https://en.wikipedia.org/wiki/Metal_fabrication",
+  "https://en.wikipedia.org/wiki/Orbital_welding",
+  "https://fsq.dk/land-based.html",
+  "https://jhstaal.dk/wp-content/uploads/2019/06/JH-Steelindustri-AS_ProfileBrochure_UK.pdf",
+  "https://kvisgaard.dk/wp-content/uploads/2021/03/kvisgaard_welding_uk.pdf",
+  "https://spmfg.com/capabilities/welding/",
+  "https://tora.dk/services/svejsning-en",
+  "https://valkwelding.com/media/site/ef4c85a2da-1691072067/valk-mailing-2023-1-en.pdf",
+  "https://weil-technology.com/en/stories/short-tube-production",
+  "https://wemeco.com/en/core_activities_wemeco/",
+  "https://www.csk.dk/images/certification/pdf/2025/EN_ISO_3834-2_certificate_EN_CSK_2025.pdf",
+  "https://www.kasag.com/fileadmin/user_upload/Firma%2C%20Leistungen%2C%20Karriere%2C%20etc/0.2.3/EN_Cutting_forming_welding_202005.pdf",
+  "https://www.vdlsteelweld.com/en/manufacturing-services/built-to-print"
+ ],
+ "searches": 1,
+ "usage": {
+  "input_tokens": 12878,
+  "output_tokens": 1193
+ }
+}

@@ -1,0 +1,122 @@
+{
+ "query": "Process: sheet metal cutting and bending.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "companies": [
+   {
+    "company": "BASO GROUP",
+    "url": "https://basogroup.dk/en/services/sheet-metal-processing/",
+    "city": "",
+    "processes": [
+     "Laser cutting",
+     "CNC press-brake bending"
+    ],
+    "materials": [
+     "Stainless steel",
+     "Aluminum",
+     "Steel",
+     "Copper",
+     "Brass",
+     "Checker plate"
+    ],
+    "max_size_mm": 4000,
+    "tolerance_mm": 0.1
+   },
+   {
+    "company": "ECM INDUSTRIES A/S",
+    "url": "https://ecm.dk/en/process/sheet-metal-work",
+    "city": "Egtved",
+    "processes": [
+     "Laser cutting",
+     "Bending"
+    ],
+    "materials": [
+     "Stainless steel",
+     "Aluminum",
+     "Brass",
+     "Copper",
+     "Steel",
+     "Checker plate"
+    ],
+    "max_size_mm": 4000,
+    "tolerance_mm": 0.1
+   },
+   {
+    "company": "Ringsted Maskinfabrik ApS",
+    "url": "https://ringstedmaskinfabrik.dk/en/our-services/metal-work/",
+    "city": "Ringsted",
+    "processes": [
+     "Laser cutting",
+     "Sheet-metal bending"
+    ],
+    "materials": [
+     "Stainless steel",
+     "Aluminum",
+     "Structural steel"
+    ],
+    "max_size_mm": 0,
+    "tolerance_mm": 0
+   },
+   {
+    "company": "Prototype Industry",
+    "url": "https://www.prototypeindustry.dk/en/sheet-metal",
+    "city": "",
+    "processes": [
+     "Laser cutting",
+     "CNC bending"
+    ],
+    "materials": [
+     "Aluminum 5052",
+     "Stainless steel 201/304",
+     "Cold-rolled steel SPCC/CRS"
+    ],
+    "max_size_mm": 600,
+    "tolerance_mm": 0.3
+   },
+   {
+    "company": "FL Automatic",
+    "url": "https://flautomatic.dk/departments/laser-cutting/?lang=en",
+    "city": "",
+    "processes": [
+     "Laser cutting",
+     "CNC bending"
+    ],
+    "materials": [
+     "Black steel",
+     "Stainless steel",
+     "Aluminum",
+     "Brass",
+     "Copper"
+    ],
+    "max_size_mm": 3000,
+    "tolerance_mm": 0.1
+   }
+  ]
+ },
+ "sources": [
+  "https://basogroup.dk/en/services/sheet-metal-processing/",
+  "https://basogroup.dk/en/services/sheet-metal-processing/cnc-press-brake-bending/",
+  "https://basogroup.dk/en/services/sheet-metal-processing/laser-cutting/",
+  "https://covi.dk/en/laser-cutting/",
+  "https://ecm.dk/en/process/sheet-metal-work",
+  "https://en.wikipedia.org/wiki/Laser_cutting",
+  "https://en.wikipedia.org/wiki/Sheet_metal",
+  "https://f.industry-supply.dk/2/a/7/2a7aj6cqvikfn9ta.pdf",
+  "https://flautomatic.dk/departments/laser-cutting/?lang=en",
+  "https://jgautomotive.com/wp-content/uploads/2025/11/R2025-09-10-Corporate-Dossier-BS-Eng.pdf",
+  "https://ringstedmaskinfabrik.dk/en/our-services/metal-work/",
+  "https://sp-i.dk/en/maskinpark/",
+  "https://subcontracteu.com/uploads/firms/1542/1542_b5846a53bf62a4daf82457321c3a8383.pdf",
+  "https://www.jpbc.dk/produkter/laserskaering/",
+  "https://www.lthd.com/pdf/MTL.pdf",
+  "https://www.prototypeindustry.dk/en/sheet-metal",
+  "https://www.prototypeindustry.dk/sheet-metal",
+  "https://www.we-make.dk/services/metal-laser-cutting"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 23030,
+  "output_tokens": 1936
+ }
+}

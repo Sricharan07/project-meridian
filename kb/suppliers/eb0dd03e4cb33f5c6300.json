@@ -1,0 +1,56 @@
+{
+ "query": "Part: Inca 1 Tina Estop. Recorded supplier: RS components. Their product name or order number: 2TLA030054R0100 INCA 1. Recorded link: https://dk.rs-online.com/web/p/nodstop-trykknapper/2320000?gb=s.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ABB",
+  "part_number": "2TLA030054R0100",
+  "own_brand": false,
+  "description": "ABB INCA 1 emergency-stop push button with twist release, two normally closed contacts, and 22.5 mm panel mounting.",
+  "alternatives": [
+   {
+    "company": "Farnell",
+    "url": "https://dk.farnell.com/en-DK/abb/2tla030054r0100/e-stop-for-enclosures-inca-1/dp/2097662",
+    "same_part": true,
+    "note": "Lists the exact ABB part number 2TLA030054R0100."
+   },
+   {
+    "company": "ABB eMart India",
+    "url": "https://shop.in.abb.com/2tla030054r0100/inca-1-emergency-stop.html",
+    "same_part": true,
+    "note": "ABB’s product page lists the exact part number 2TLA030054R0100."
+   },
+   {
+    "company": "The Parts Direct",
+    "url": "https://thepartsdirect.com/part/2tla030054r0100~abbinc",
+    "same_part": true,
+    "note": "Lists ABB part number 2TLA030054R0100."
+   }
+  ]
+ },
+ "sources": [
+  "https://de.rs-online.com/web/p/not-aus-schalter/2320000",
+  "https://dk.farnell.com/en-DK/abb/2tla030054r0100/e-stop-for-enclosures-inca-1/dp/2097662",
+  "https://docs.rs-online.com/01cf/A700000011226786.pdf",
+  "https://docs.rs-online.com/057a/A700000009346565.pdf",
+  "https://docs.rs-online.com/2350/A700000008775181.pdf",
+  "https://docs.rs-online.com/3099/A700000008961919.pdf",
+  "https://docs.rs-online.com/55df/A700000008774725.pdf",
+  "https://docs.rs-online.com/5c3d/A700000010204961.pdf",
+  "https://empower.abb.com/ecatalog/ec/EN_NA/p/2TLA030054R0100",
+  "https://es.rs-online.com/web/p/botones-pulsadores-de-parada-de-emergencia/2320000",
+  "https://int.rsdelivers.com/product/abb/2tla030054r0100-inca-1/abb-twist-release-emergency-stop-push-button-panel/2320000",
+  "https://it.rs-online.com/web/p/pulsanti-di-arresto-di-emergenza/2320000",
+  "https://se.rs-online.com/web/p/nodstoppknappar/2320000",
+  "https://shop.in.abb.com/2tla030054r0100/inca-1-emergency-stop.html",
+  "https://thepartsdirect.com/part/2tla030054r0100~abbinc",
+  "https://uk.rs-online.com/web/c/switches/push-button-switches-components/emergency-stop-push-buttons/?if=abb-emergency-stop-push-buttons&msockid=015658fb0da96f9d1b444e5a0c6d6e88&pn=2",
+  "https://uk.rs-online.com/web/p/emergency-stop-push-buttons/2320000?gb=s",
+  "https://us.rs-online.com/product/abb-jokab-safety/2tla030054r0100/70369595/"
+ ],
+ "searches": 1,
+ "usage": {
+  "input_tokens": 8680,
+  "output_tokens": 503
+ }
+}

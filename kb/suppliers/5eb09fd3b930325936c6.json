@@ -1,0 +1,58 @@
+{
+ "query": "Process: polymer 3D printing.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "companies": [
+   {
+    "company": "CPH3D",
+    "url": "https://www.cph3d.dk/",
+    "city": "Copenhagen",
+    "processes": [
+     "Polymer 3D printing (FDM)"
+    ],
+    "materials": [
+     "PLA",
+     "PETG",
+     "ASA",
+     "PETG-CF",
+     "TPU 95A",
+     "PC FR",
+     "PET-CF"
+    ],
+    "max_size_mm": 390,
+    "tolerance_mm": 0
+   }
+  ]
+ },
+ "sources": [
+  "https://3dindustriprint.dk/blog/3d-print-kobenhavn",
+  "https://3dindustriprint.dk/services/3d-print",
+  "https://backend.orbit.dtu.dk/ws/portalfiles/portal/336105152/s00170-023-11566-z.pdf",
+  "https://backend.orbit.dtu.dk/ws/portalfiles/portal/344577583/V2_PhD_thesis_-_February_2023_-Julian_Christ.pdf",
+  "https://cph3d.dk/",
+  "https://cph3d.dk/materialer",
+  "https://cph3d.dk/om-os",
+  "https://damvig.dk/wp-content/uploads/2024/12/Guidelines-061224.pdf",
+  "https://damvig.dk/wp-content/uploads/2025/03/3DP-Guidelines-Polymer_DK-1.pdf",
+  "https://en.wikipedia.org/wiki/Voxeljet",
+  "https://makehasdai.com/copenhagen-3d-printing-service/",
+  "https://makerfactory.dk/en/blogs/blog/3d-printing-copenhagen",
+  "https://prototalgroup.com/dk/services/industriel-3d-print/polymer/polyjet/",
+  "https://www.cph3d.dk/",
+  "https://www.cph3d.dk/3d-print-erhverv",
+  "https://www.cph3d.dk/3d-print-koebenhavn",
+  "https://www.cph3d.dk/resin-3d-print",
+  "https://www.euspen.eu/knowledge-base/Copenhagen%202023%20Proceedings%20Full%20Version.pdf.pdf",
+  "https://www.reddit.com/r/3Dprinting/comments/1i99vr3",
+  "https://www.reddit.com/r/3Dprinting/comments/1tw5vz5/new_to_3d_printing_functional_prototype/",
+  "https://www.reddit.com/r/3Dprinting/comments/q6h2yo",
+  "https://www.reddit.com/r/copenhagen/comments/1c71pkt",
+  "https://www.reddit.com/r/copenhagen/comments/1i46ya2"
+ ],
+ "searches": 1,
+ "usage": {
+  "input_tokens": 12799,
+  "output_tokens": 780
+ }
+}

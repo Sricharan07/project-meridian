@@ -1,0 +1,63 @@
+{
+ "query": "Part: Tangential blower. Recorded supplier: RS components. Their product name or order number: QG030-303/14. Recorded link: https://dk.rs-online.com/web/p/blaesere/1757072.",
+ "model": "gpt-6-luna",
+ "retrieved": "2026-10-02",
+ "result": {
+  "manufacturer": "ebm-papst",
+  "part_number": "QG030-303/14",
+  "own_brand": false,
+  "description": "The QG030-303/14 is an ebm-papst 24 V DC tangential blower rated at 139.4 m³/h, with dimensions of 47.5 × 363 × 50 mm.",
+  "alternatives": [
+   {
+    "company": "Mouser",
+    "url": "https://www.mouser.com/es/ProductDetail/ebm-papst/QG030-303-14?qs=DB9cKZ5ZWfUt4lkCmG86Aw%3D%3D",
+    "same_part": true,
+    "note": "The product page lists the exact ebm-papst part number QG030-303/14."
+   },
+   {
+    "company": "SR-Vent",
+    "url": "https://sr-vent.com/products/qg030-303-14",
+    "same_part": true,
+    "note": "The product page lists the exact ebm-papst part number QG030-303/14."
+   },
+   {
+    "company": "Reserv",
+    "url": "https://reserv.se/en/products/qg030-303-14",
+    "same_part": true,
+    "note": "The product page identifies the item as ebm-papst QG030-303/14."
+   }
+  ]
+ },
+ "sources": [
+  "https://asset.conrad.com/media10/add/160267/c1/-/en/001926549DS01/adatlap-1926549-ebm-papst-9392715002-keresztaramu-szellozteto-bal-motorforgasirany-24-v.pdf",
+  "https://datasheet.octopart.com/QG030-303-14-EBM-Papst-datasheet-21198672.pdf",
+  "https://de.rs-online.com/web/p/radialgeblaese/1757072",
+  "https://dk.farnell.com/en-DK/c/cooling-thermal-management/fans-blowers/blowers?brand=ebm-papst&product-range=qg030",
+  "https://dk.farnell.com/en-DK/c/cooling-thermal-management/fans-blowers/blowers?product-range=qg030",
+  "https://dk.rs-online.com/euro/img/task-requests/220668/a866_ppe_brochure_v7_dk_00.pdf?intcmp=DK-WEB-_-CP-C1-_-MCC_205_0723_NE-_-security-all-arround",
+  "https://dk.rs-online.com/web/c/varme-ventilation-blaesere-og-varmehandtering/",
+  "https://dk.rs-online.com/web/c/varme-ventilation-blaesere-og-varmehandtering/aircondition-og-ventilatorer/blaesere/?intcmp=DK-WEB-_-CP-FP15-_-MCC_204_0321_NE-_-enclosures",
+  "https://dk.rs-online.com/web/c/varme-ventilation-blaesere-og-varmehandtering/aircondition-og-ventilatorer/blaesere/?pn=3",
+  "https://dk.rs-online.com/web/p/blaesere/1757072",
+  "https://igbt.by/wp-content/uploads/2018/05/EBM-PAPST_ventilyator_Minsk_tel_80447584780_48dc_12vdc_24vdc_48vdc_230_220_analog_zamena_.pdf",
+  "https://img.ebmpapst.com/products/datasheets/DC-Querstromventilator-QG03030314-GER.pdf",
+  "https://img.ebmpapst.com/products/datasheets/DC-tangential-blower-QG03030314-ENU.pdf",
+  "https://mt.rsdelivers.com/product/ebm-papst/qg030-303-14/tangential-centrifugal-fan-475-x-363-x-50mm-1394m/1757072",
+  "https://pt.rs-online.com/web/p/ventiladores-centrifugos/1757072",
+  "https://reserv.se/en/products/qg030-303-14",
+  "https://se.rs-online.com/web/p/centrifugalflaktar/1757072",
+  "https://sr-vent.com/products/qg030-303-14",
+  "https://uk.rs-online.com/web/b/ebm-papst/?pn=12",
+  "https://uk.rs-online.com/web/p/centrifugal-fans/1757072",
+  "https://us.rs-online.com/product/ebm-papst/qg030-303-14/70104942/",
+  "https://www.mouser.co.uk/en/c/thermal-management/?airflow=82+CFM+%282.3+m3%2Fmin%29",
+  "https://www.mouser.com/en/ProductDetail/ebm-papst/QG030-303-14?qs=DB9cKZ5ZWfUt4lkCmG86Aw%3D%3D",
+  "https://www.mouser.com/es/ProductDetail/ebm-papst/QG030-303-14?qs=DB9cKZ5ZWfUt4lkCmG86Aw%3D%3D",
+  "https://www.who-sells-it.com/images/catalogs/5302/pdf_29536.pdf"
+ ],
+ "searches": 2,
+ "usage": {
+  "input_tokens": 14743,
+  "output_tokens": 552
+ }
+}
