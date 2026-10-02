@@ -19,7 +19,7 @@ fi
 [ -x .venv/bin/python ] || "$python" -m venv .venv
 .venv/bin/python -m pip install --quiet --disable-pip-version-check -r requirements.txt
 
-# Without a key the app still serves every drawing, part and the review queue; chat shows evidence without prose.
+# Without a key, chat replays the recorded answers to the example questions and shows evidence for anything else.
 [ -f .env ] || cp .env.example .env
 
 port="${PORT:-8000}"

@@ -8,9 +8,11 @@ hidden and not silently trusted.
 """
 
 import json
+import re
 import time
 from collections import Counter
 from dataclasses import asdict, dataclass, field
+from functools import cache
 from pathlib import Path
 
 from openai import OpenAI
@@ -37,6 +39,7 @@ class Turn:
     usage: dict = field(default_factory=dict)
     seconds: float = 0.0
     model: str = config.MODEL
+    note: str = ""
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -161,7 +164,12 @@ class Chat:
     # --- without an API key -------------------------------------------------------
 
     def offline(self, question: str) -> Turn:
-        """No model available: look the part up and show what the evidence says, without prose."""
+        """No model available: replay the recorded answer if this question was in the evaluation run,
+        otherwise look the part up and show what the evidence says, without prose."""
+        if recorded := _recordings().get(question_key(question)):
+            turn = Turn(**{k: v for k, v in recorded.items() if k in Turn.__dataclass_fields__})
+            turn.model, turn.note = "recorded", f"Recorded in the evaluation run of {recorded['recorded_at']}; no API key is configured."
+            return turn
         hits = self.kb.find(question)
         if not hits:
             return Turn(answer="No API key is configured, so I can only look parts up by name, and nothing matched. "
@@ -184,3 +192,13 @@ class Chat:
         return Turn(answer=answer, citations=self._citations(answer),
                     attachments=self._attachments(answer, [{"tool": "get_part", "arguments": {"ref": part["ref"]}}]),
                     model="offline")
+
+
+@cache
+def _recordings() -> dict[str, dict]:
+    path = config.ROOT / "eval" / "transcripts.json"
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def question_key(question: str) -> str:
+    return re.sub(r"\W+", " ", question.casefold()).strip()

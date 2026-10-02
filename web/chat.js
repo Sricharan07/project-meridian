@@ -5,14 +5,16 @@ import { api } from "./api.js";
 import { answerHtml, chip } from "./render.js";
 import { html, raw, mount, $ } from "./dom.js";
 
+// Questions from eval/questions.json: without an API key the app replays their recorded answers.
 const EXAMPLES = [
-  "What is the recoater arm made of?",
-  "Show me the build plate. How thick is it?",
-  "What does the build cylinder connect to?",
+  "Is the recoater arm made of stainless steel?",
+  "Show me the recoater mount block.",
+  "How thick is the heating element plate?",
   "Which drawing documents the recoater stage plate?",
+  "What connects to the print platform?",
   "What did the Box subsystem cost, and what is missing from that figure?",
+  "What does the recoater arm weigh?",
   "What does D-030 weigh?",
-  "Which parts are made of stainless steel?",
 ];
 
 const STORE = "meridian.chat";
@@ -124,6 +126,7 @@ function problems(check) {
 
 function trace(t) {
   if (t.model === "offline") return html`<details class="trace"><summary>No API key, so no model was called</summary></details>`;
+  if (t.model === "recorded") return html`<details class="trace"><summary>${t.note}</summary></details>`;
   const lookups = t.steps.length === 1 ? "1 lookup" : `${t.steps.length} lookups`;
   return html`<details class="trace">
     <summary>How this was answered · ${lookups} · ${t.seconds.toFixed(1)} s · $${t.usage.usd.toFixed(4)}</summary>
