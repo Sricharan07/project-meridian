@@ -281,3 +281,22 @@ D-026's counterbores and D-025's countersinks only show their depth when cut,
 which is why the sheets draw section views too. The cut face is found with the
 stencil buffer and hatched the way a section is.
 
+
+### The interface is built around one moment
+
+The first interface was correct and looked like a template: Tailwind's stone
+and teal, tinted boxes with a coloured left border, a row of monospace pills
+in every sentence. The redesign starts from the one thing this app does that
+a search box does not: every claim shows its source. Point at a number in an
+answer and the sheet travels to where it is printed, already marked.
+
+So the drawing is the stage, with the conversation on one side and an
+inspector on the other. References are numbered the way a drawing numbers its
+balloons, and the same number is pinned on the sheet. Colour carries meaning
+and nothing else: one safety yellow for evidence and the main action, red only
+for a disputed reading or a failed check, graphite for everything else.
+Agreement is a quiet tick; a value read off the text layer needs no mark at
+all. Motion is used where it explains a change of place (the sheet gliding to
+a reference, an indicator sliding to the current tab) and is off for readers
+who ask for reduced motion. Dark is the default because the white sheets read
+best on it; light is one click away and remembered.

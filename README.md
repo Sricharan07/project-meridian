@@ -7,7 +7,7 @@ when the part has one. When the sources disagree, or a scan cannot be read, the 
 
 The assignment brief is in [docs/brief.md](docs/brief.md).
 
-![An answer about the recoater mount block, with its sheet and 3D reconstruction side by side. The sheet's 30,0 callout is under the pointer, and the same dimension is lit on the model and in the table](docs/screenshots/model-3d.png)
+![An answer with numbered references beside the scanned sheet it cites. Pointing at reference 1 has brought the disputed material field into view, boxed in red, with the same numbers pinned on the drawing and the inspector listing what each reader saw](docs/screenshots/scan-disputed.png)
 
 ## Running it
 
@@ -25,7 +25,7 @@ For live chat, put an OpenAI key in `.env` (created from `.env.example` on first
 OPENAI_API_KEY=sk-...
 ```
 
-Without a key everything except written answers still works: drawings, 3D views, the parts table and the review
+Without a key everything except written answers still works: drawings, 3D views, the drawings page and the review
 page. Chat replays the recorded answers from the last evaluation run for the example questions, labelled as
 recordings, and for any other question shows the evidence for the part it names.
 
@@ -43,15 +43,18 @@ The example questions on the chat page are a good start. Some that show particul
 | Is the BOM's motor plate drawing D-029 or D-030? | Says the evidence cannot tell, and why |
 | What did the Box subsystem cost, and what is missing from that figure? | A total from a dated snapshot, with the rows that have no cost |
 
-Clicking a citation opens its source in the panel on the right, with the region of the sheet outlined. ⌘K (Ctrl K)
-finds any drawing or BOM row by name.
+Each fact in an answer carries a numbered reference, and the same number is pinned on the sheet where the value was
+read. Point at a reference and the sheet travels to it; references in red are readings the evidence disputes. The
+inspector beside the sheet lists every title-block field with how sure its reading is. ⌘K (Ctrl K) opens any drawing
+or BOM row by name, and the sun or moon in the top bar switches between the dark and light themes.
 
 ### The sheet and the model
 
-Five parts have a **Sheet + 3D** tab. Every dimension the model was built from is boxed on the sheet where it was read
-and drawn on the model the way the sheet gives it. Point at either, or at a row of the table below, and the other two
-light up; click to zoom the sheet to the callout and bring the model in to the dimension. **Section** cuts the part
-like the sheet's section views, hatched, through the hole worth looking at; the slider moves the cut.
+Five parts have a **3D** tab, which puts the sheet beside the model. Every dimension the model was built from is
+boxed on the sheet where it was read and drawn on the model the way the sheet gives it. Point at either, or at a row
+in the inspector, and the other two light up; click to zoom the sheet to the callout and bring the model in to the
+dimension. **Section** cuts the part like the sheet's section views, hatched, through the hole worth looking at; the
+slider moves the cut.
 
 ### A correction, end to end
 
@@ -146,7 +149,7 @@ output are in [EVALUATION.md](EVALUATION.md).
   ambiguous and five are marked probable.
 - Supplier, price and order number answers come from a BOM snapshot (retrieved 2 September 2026), and say so. Nothing is
   checked against current availability. The brief's bonus items (finding new suppliers, a graph view) were not built.
-- Without an API key, recorded answers do not change after a correction is accepted. The parts table and review page
+- Without an API key, recorded answers do not change after a correction is accepted. The drawings and review pages
   do.
 - One user, one process: the review log has no locking.
 
@@ -220,9 +223,10 @@ dataset/             the supplied drawings, BOM and diagrams, unchanged
 
 ## Screenshots
 
-A scanned sheet where the two readers disagree:
+The sheet and the model side by side: the sheet's 30,0 callout is under the pointer, and the same dimension is lit
+on the model and in the inspector:
 
-![Disputed readings on a scanned title block](docs/screenshots/scan-disputed.png)
+![Recoater mount block, sheet and reconstruction linked](docs/screenshots/model-3d.png)
 
 The build plate in section, after clicking the counterbore depth in the table: the sheet has zoomed to the hole
 callout and the model to the counterbore, cut and hatched:
@@ -243,9 +247,13 @@ A correction proposed in chat, pending in review, accepted, and the answer after
 
 ![The same question after the correction](docs/screenshots/correction-after.png)
 
-All 30 drawings, their BOM rows and how sure each link is:
+All 30 drawings by subsystem, with how each was read and how sure its BOM link is:
 
-![Parts table](docs/screenshots/parts.png)
+![Drawings](docs/screenshots/drawings.png)
+
+The light theme, on a scanned weight the two readers disagree about:
+
+![Light theme](docs/screenshots/light.png)
 
 ## Attribution
 
