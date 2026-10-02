@@ -44,6 +44,7 @@ h3 { font-size: 13px; font-weight: 600; margin: 0 0 8px; }
 .bar nav a:hover { background: var(--sunken); text-decoration: none; }
 .bar nav a.current { color: var(--text); background: var(--bg); }
 .bar-meta { margin-left: auto; color: var(--text-3); font-size: 12.5px; }
+@media (max-width: 640px) { .bar-meta { display: none; } }  /* each answer says how it was made */
 
 /* layout ------------------------------------------------------------------- */
 

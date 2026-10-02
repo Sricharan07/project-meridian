@@ -55,5 +55,5 @@ const [status, drawings] = await Promise.all([api.status(), api.drawings()]);
 evidence.drawings = Object.fromEntries(drawings.map((d) => [d.ref, d]));
 $("#bar-meta").textContent = status.model
   ? `${status.model} · BOM snapshot ${status.snapshot.revision.slice(0, 7)}`
-  : "No API key: chat shows evidence without written answers";
+  : "No API key: chat replays recorded answers or shows the evidence";
 route();
