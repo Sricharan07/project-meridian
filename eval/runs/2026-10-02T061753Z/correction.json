@@ -1,0 +1,578 @@
+{
+ "question": "What does the build cylinder fit into?",
+ "before": {
+  "answer": "The build cylinder fits around the build base: the BOM says the base should be about 1 mm smaller in radius, and the drawings give the cylinder’s inside diameter as Ø252 and the base’s outside diameter as Ø250 [BOM.47.design_intent] [BOM.46.design_intent] [D-023.p1.vision.c10] [D-024.p1.a08]. A ceramic seal sits in the base’s groove against the cylinder wall [Zaxis_legend.l07] [Zaxis_legend.l06].\n\nCaution: the cylinder drawing is a degraded scan, and its Ø262,0 and Ø264,0 H7 callouts failed the ISO 286 check; no fit relation is inferred from those readings [D-023.p1.vision.c06] [D-023.p1.vision.c07].",
+  "citations": {
+   "BOM.47.design_intent": {
+    "id": "BOM.47.design_intent",
+    "subject": "BOM.47",
+    "field": "design_intent",
+    "value": "Smaller than Build cylinder - about 1mm in radius work well. Secure build plate concentric and flat from top. Mount to spindle and linear guide rod. Contain heating elements. Accomodate seal. A few millimeters of the ceramic paper seal seem to work.",
+    "method": "csv",
+    "source": {
+     "doc": "BOM",
+     "row": 47,
+     "column": "Design Intend"
+    },
+    "label": "BOM row 47 · Design Intend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "BOM.46.design_intent": {
+    "id": "BOM.46.design_intent",
+    "subject": "BOM.46",
+    "field": "design_intent",
+    "value": "Must be round and very smooth. Careful turning is sufficient in aluminium. OD280, ID252. Ø280, t=15 is enough",
+    "method": "csv",
+    "source": {
+     "doc": "BOM",
+     "row": 46,
+     "column": "Design Intend"
+    },
+    "label": "BOM row 46 · Design Intend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "D-023.p1.vision.c10": {
+    "id": "D-023.p1.vision.c10",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø252,0",
+    "method": "vision",
+    "source": {
+     "doc": "D-023",
+     "page": 1
+    },
+    "label": "D-023 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "diameter": 252.0,
+     "kind": "dimension",
+     "legibility": "clear"
+    },
+    "note": ""
+   },
+   "D-024.p1.a08": {
+    "id": "D-024.p1.a08",
+    "subject": "D-024",
+    "field": "callout",
+    "value": "0,0 / Ø250,0 -0,3",
+    "method": "pdf-text",
+    "source": {
+     "doc": "D-024",
+     "page": 1,
+     "bbox": [
+      651.0,
+      273.2,
+      722.1,
+      304.2
+     ]
+    },
+    "label": "D-024 sheet 1",
+    "confidence": null,
+    "parsed": {
+     "tolerance": {
+      "upper": 0.0,
+      "lower": -0.3
+     },
+     "diameter": 250.0,
+     "kind": "dimension"
+    },
+    "note": ""
+   },
+   "Zaxis_legend.l07": {
+    "id": "Zaxis_legend.l07",
+    "subject": "diagram:Zaxis_legend",
+    "field": "label",
+    "value": "Ceramic seal",
+    "method": "transcribed",
+    "source": {
+     "doc": "diagram:Zaxis_legend",
+     "bbox": [
+      186.0,
+      422.0,
+      340.0,
+      446.0
+     ]
+    },
+    "label": "diagram:Zaxis_legend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "Zaxis_legend.l06": {
+    "id": "Zaxis_legend.l06",
+    "subject": "diagram:Zaxis_legend",
+    "field": "label",
+    "value": "Build base",
+    "method": "transcribed",
+    "source": {
+     "doc": "diagram:Zaxis_legend",
+     "bbox": [
+      213.0,
+      470.0,
+      340.0,
+      494.0
+     ]
+    },
+    "label": "diagram:Zaxis_legend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "D-023.p1.vision.c06": {
+    "id": "D-023.p1.vision.c06",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø262,0 H7 +0,026 / -0,026",
+    "method": "vision",
+    "source": {
+     "doc": "D-023",
+     "page": 1
+    },
+    "label": "D-023 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "fit": "H7",
+     "tolerance": {
+      "upper": 0.026,
+      "lower": -0.026
+     },
+     "diameter": 262.0,
+     "fit_check": "an H7 bore has a lower deviation of 0, but this reads -0.026; the reading, or the feature it was grouped with, is probably wrong",
+     "kind": "fit",
+     "legibility": "clear"
+    },
+    "note": ""
+   },
+   "D-023.p1.vision.c07": {
+    "id": "D-023.p1.vision.c07",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø264,0 H7 +0,026 / -0,026",
+    "method": "vision",
+    "source": {
+     "doc": "D-023",
+     "page": 1
+    },
+    "label": "D-023 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "fit": "H7",
+     "tolerance": {
+      "upper": 0.026,
+      "lower": -0.026
+     },
+     "diameter": 264.0,
+     "fit_check": "an H7 bore has a lower deviation of 0, but this reads -0.026; the reading, or the feature it was grouped with, is probably wrong",
+     "kind": "fit",
+     "legibility": "clear"
+    },
+    "note": ""
+   }
+  },
+  "attachments": [
+   {
+    "type": "drawing",
+    "ref": "D-024",
+    "name": "ByggeBase",
+    "sheet": 1,
+    "highlights": [
+     {
+      "cite": "D-024.p1.a08",
+      "sheet": 1,
+      "bbox": [
+       651.0,
+       273.2,
+       722.1,
+       304.2
+      ]
+     }
+    ],
+    "model_3d": null
+   },
+   {
+    "type": "drawing",
+    "ref": "D-023",
+    "name": "ByggeCylinder",
+    "sheet": 1,
+    "highlights": [],
+    "model_3d": null
+   },
+   {
+    "type": "drawing",
+    "ref": "D-025",
+    "name": "Bygge Base Ring",
+    "sheet": 1,
+    "highlights": [],
+    "model_3d": {
+     "is": "reconstruction from the 2D drawing, not CAD",
+     "mass_check": {
+      "volume_mm3": 28641.2,
+      "computed_g": 77.3,
+      "sheet_g": 77.3,
+      "sheet_cite": "D-025.p1.weight",
+      "difference_percent": 0.04
+     },
+     "choices_and_measurements": [
+      {
+       "name": "thickness",
+       "value": 3.0,
+       "how": "limit",
+       "note": "the sheet allows 2,0 to 3,0; the title-block weight matches 3,0",
+       "cite": "D-025.p1.a01"
+      },
+      {
+       "name": "hole spacing",
+       "value": 45.0,
+       "how": "as drawn",
+       "note": "eight holes evenly spaced, as drawn; the angle is not dimensioned",
+       "cite": null
+      }
+     ],
+     "assumptions": [],
+     "not_modelled": []
+    }
+   },
+   {
+    "type": "bom_row",
+    "row": 47,
+    "name": "Build base",
+    "cites": [
+     "BOM.47.design_intent"
+    ]
+   },
+   {
+    "type": "bom_row",
+    "row": 46,
+    "name": "Build cylinder",
+    "cites": [
+     "BOM.46.design_intent"
+    ]
+   }
+  ],
+  "steps": [
+   {
+    "tool": "find_parts",
+    "arguments": {
+     "query": "build cylinder"
+    },
+    "ms": 7
+   },
+   {
+    "tool": "get_interfaces",
+    "arguments": {
+     "ref": "D-023"
+    },
+    "ms": 3
+   },
+   {
+    "tool": "get_part",
+    "arguments": {
+     "ref": "D-023"
+    },
+    "ms": 5
+   },
+   {
+    "tool": "get_interfaces",
+    "arguments": {
+     "ref": "D-024"
+    },
+    "ms": 0
+   },
+   {
+    "tool": "get_interfaces",
+    "arguments": {
+     "ref": "D-025"
+    },
+    "ms": 0
+   },
+   {
+    "tool": "get_part",
+    "arguments": {
+     "ref": "D-024"
+    },
+    "ms": 0
+   },
+   {
+    "tool": "get_part",
+    "arguments": {
+     "ref": "D-025"
+    },
+    "ms": 0
+   }
+  ],
+  "check": {
+   "ok": true,
+   "rewritten": false,
+   "unknown_citations": [],
+   "untraced_numbers": []
+  },
+  "usage": {
+   "input_tokens": 21392,
+   "output_tokens": 609,
+   "calls": 5,
+   "usd": 0.00244
+  },
+  "seconds": 11.69,
+  "model": "gpt-6-luna",
+  "note": ""
+ },
+ "correction": {
+  "id": "C-001",
+  "target": "D-023.p1.vision.c06",
+  "subject": "D-023",
+  "current_value": "Ø262,0 H7 +0,026 / -0,026",
+  "proposed_value": "Ø262,0 j7 +0,026 / -0,026",
+  "reason": "The sheet prints j7; the vision model read it as H7.",
+  "question": "What does the build cylinder fit into?",
+  "proposed_at": "2026-10-02T06:19:21+00:00",
+  "checks": [
+   {
+    "name": "What would change",
+    "result": "note",
+    "detail": "D-023 sheet 1 currently reads \"Ø262,0 H7 +0,026 / -0,026\". The value was read by the vision model from a scan.",
+    "cites": [
+     "D-023.p1.vision.c06"
+    ]
+   },
+   {
+    "name": "ISO 286",
+    "result": "pass",
+    "detail": "j7 at Ø262: band 52 µm, IT7 at Ø262 is 52 µm; the band straddles zero, as j and js classes do.",
+    "cites": []
+   }
+  ],
+  "impact": [
+   {
+    "change": "adds",
+    "what": "inferred relation: D-003 Ø262 H8/j7 transition fit D-023",
+    "cites": [
+     "D-003.p1.vision.c15"
+    ]
+   },
+   {
+    "change": "clears",
+    "what": "Callout \"Ø262,0 H7 +0,026 / -0,026\" failed the ISO 286 check: an H7 bore has a lower deviation of 0, but this reads -0.026; the reading, or the feature it was grouped with, is probably wrong. No fit relation is inferred from it.",
+    "cites": []
+   }
+  ],
+  "status": "accepted",
+  "decided_at": "2026-10-02T06:19:21+00:00",
+  "decided_by": "evaluation run",
+  "decision_note": "Scripted scenario; the sheet shows j7 at 200 dpi."
+ },
+ "after": {
+  "answer": "The build cylinder appears to fit into the **Main Platform**: the cylinder’s corrected Ø262,0 j7 diameter matches the platform’s Ø262 H8 bore. This is an **inferred** transition fit from the drawings; no source explicitly says they mate. [D-023.p1.vision.c06.C-001] [D-003.p1.vision.c15]\n\nSeparately, the system diagram says the cylinder **registers on the Print Platform** at its top edge. [Zaxis_legend.l03] [Zaxis_legend.l04]\n\nThere is also a Ø264,0 H7 callout on the cylinder drawing, but its tolerance failed an ISO 286 check, so it should not be relied on for identifying a fit. [D-023.p1.vision.c07]",
+  "citations": {
+   "D-023.p1.vision.c06.C-001": {
+    "id": "D-023.p1.vision.c06.C-001",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø262,0 j7 +0,026 / -0,026",
+    "method": "review",
+    "source": {
+     "doc": "C-001",
+     "page": 1
+    },
+    "label": "C-001 sheet 1",
+    "confidence": null,
+    "parsed": {
+     "fit": "j7",
+     "tolerance": {
+      "upper": 0.026,
+      "lower": -0.026
+     },
+     "diameter": 262.0,
+     "kind": "fit",
+     "supersedes": "D-023.p1.vision.c06",
+     "correction": "C-001",
+     "decided_by": "evaluation run",
+     "decided_at": "2026-10-02T06:19:21+00:00"
+    },
+    "note": "The sheet prints j7; the vision model read it as H7.",
+    "correction": {
+     "by": "C-001",
+     "was": "Ø262,0 H7 +0,026 / -0,026",
+     "was_cite": "D-023.p1.vision.c06",
+     "decided_by": "evaluation run",
+     "decided_at": "2026-10-02T06:19:21+00:00",
+     "reason": "The sheet prints j7; the vision model read it as H7."
+    }
+   },
+   "D-003.p1.vision.c15": {
+    "id": "D-003.p1.vision.c15",
+    "subject": "D-003",
+    "field": "callout",
+    "value": "Ø262,0 H8 +0,081 / 0,000",
+    "method": "vision",
+    "source": {
+     "doc": "D-003",
+     "page": 1,
+     "bbox": [
+      892.0,
+      364.8,
+      951.6,
+      388.4
+     ]
+    },
+    "label": "D-003 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "fit": "H8",
+     "tolerance": {
+      "upper": 0.081,
+      "lower": 0.0
+     },
+     "diameter": 262.0,
+     "kind": "fit",
+     "legibility": "clear",
+     "ocr_match": "D-003.p1.ocr.a06",
+     "ocr_similarity": 0.82
+    },
+    "note": ""
+   },
+   "Zaxis_legend.l03": {
+    "id": "Zaxis_legend.l03",
+    "subject": "diagram:Zaxis_legend",
+    "field": "label",
+    "value": "Powder bed cylinder",
+    "method": "transcribed",
+    "source": {
+     "doc": "diagram:Zaxis_legend",
+     "bbox": [
+      86.0,
+      63.0,
+      340.0,
+      93.0
+     ]
+    },
+    "label": "diagram:Zaxis_legend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "Zaxis_legend.l04": {
+    "id": "Zaxis_legend.l04",
+    "subject": "diagram:Zaxis_legend",
+    "field": "label",
+    "value": "Main platform registration surfaces",
+    "method": "transcribed",
+    "source": {
+     "doc": "diagram:Zaxis_legend",
+     "bbox": [
+      713.0,
+      0.0,
+      1156.0,
+      30.0
+     ]
+    },
+    "label": "diagram:Zaxis_legend",
+    "confidence": null,
+    "parsed": null,
+    "note": ""
+   },
+   "D-023.p1.vision.c07": {
+    "id": "D-023.p1.vision.c07",
+    "subject": "D-023",
+    "field": "callout",
+    "value": "Ø264,0 H7 +0,026 / -0,026",
+    "method": "vision",
+    "source": {
+     "doc": "D-023",
+     "page": 1
+    },
+    "label": "D-023 sheet 1",
+    "confidence": 0.9,
+    "parsed": {
+     "fit": "H7",
+     "tolerance": {
+      "upper": 0.026,
+      "lower": -0.026
+     },
+     "diameter": 264.0,
+     "fit_check": "an H7 bore has a lower deviation of 0, but this reads -0.026; the reading, or the feature it was grouped with, is probably wrong",
+     "kind": "fit",
+     "legibility": "clear"
+    },
+    "note": ""
+   }
+  },
+  "attachments": [
+   {
+    "type": "drawing",
+    "ref": "D-023",
+    "name": "ByggeCylinder",
+    "sheet": 1,
+    "highlights": [],
+    "model_3d": null
+   },
+   {
+    "type": "drawing",
+    "ref": "D-003",
+    "name": "Main Platform",
+    "sheet": 1,
+    "highlights": [
+     {
+      "cite": "D-003.p1.vision.c15",
+      "sheet": 1,
+      "bbox": [
+       892.0,
+       364.8,
+       951.6,
+       388.4
+      ]
+     }
+    ],
+    "model_3d": null
+   }
+  ],
+  "steps": [
+   {
+    "tool": "find_parts",
+    "arguments": {
+     "query": "build cylinder"
+    },
+    "ms": 5
+   },
+   {
+    "tool": "get_interfaces",
+    "arguments": {
+     "ref": "D-023"
+    },
+    "ms": 3
+   },
+   {
+    "tool": "get_part",
+    "arguments": {
+     "ref": "D-023"
+    },
+    "ms": 5
+   }
+  ],
+  "check": {
+   "ok": true,
+   "rewritten": false,
+   "unknown_citations": [],
+   "untraced_numbers": []
+  },
+  "usage": {
+   "input_tokens": 11741,
+   "output_tokens": 484,
+   "calls": 4,
+   "usd": 0.00142
+  },
+  "seconds": 8.74,
+  "model": "gpt-6-luna",
+  "note": ""
+ },
+ "fit_relations_before": [],
+ "fit_relations_after": [
+  "Ø262 H8/j7 transition fit"
+ ],
+ "answer_changed": true,
+ "after_mentions_correction": true,
+ "original_still_citable": true
+}

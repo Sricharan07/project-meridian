@@ -1,0 +1,106 @@
+{
+ "model": "gpt-6-luna",
+ "questions": 28,
+ "pass_rate_per_run": [
+  0.929,
+  0.964
+ ],
+ "by_category": {
+  "organisation": "2/3",
+  "drawing to BOM": "4/4",
+  "interfaces": "4/4",
+  "materials": "3/3",
+  "procurement": "4/5",
+  "noisy sheets": "5/5",
+  "3D": "3/3",
+  "corrections": "1/1"
+ },
+ "failures_run_1": {
+  "org-2": [
+   "mentions Build-plate"
+  ],
+  "buy-2": [
+   "mentions not recorded"
+  ]
+ },
+ "repeatability": {
+  "same_verdict": "27/28",
+  "citation_overlap_median": 1.0
+ },
+ "latency_seconds": {
+  "median": 4.32,
+  "p90": 7.11
+ },
+ "cost_usd": {
+  "per_answer_median": 0.00089,
+  "all_runs": 0.0523
+ },
+ "rewritten_after_failed_check": 1,
+ "still_failing_check": 0,
+ "baseline": {
+  "content_pass_rate": 0.429,
+  "system_content_pass_rate": 0.929,
+  "failures": {
+   "org-1": [
+    "mentions Optical"
+   ],
+   "org-2": [
+    "mentions Build cylinder",
+    "mentions D-023"
+   ],
+   "link-1": [
+    "mentions RecoaterPlate.pdf"
+   ],
+   "link-3": [
+    "mentions ambiguous"
+   ],
+   "int-2": [
+    "mentions clamp ring"
+   ],
+   "int-4": [
+    "mentions wiper head"
+   ],
+   "buy-1": [
+    "mentions snapshot"
+   ],
+   "buy-2": [
+    "mentions not recorded"
+   ],
+   "buy-5": [
+    "mentions snapshot"
+   ],
+   "scan-1": [
+    "mentions blank"
+   ],
+   "scan-2": [
+    "mentions 4153"
+   ],
+   "scan-3": [
+    "mentions single"
+   ],
+   "3d-1": [
+    "mentions reconstruction"
+   ],
+   "3d-2": [
+    "mentions 2,0"
+   ],
+   "3d-3": [
+    "mentions not CAD"
+   ],
+   "fix-1": [
+    "mentions review"
+   ]
+  },
+  "input_tokens_per_question": 26743.0,
+  "cost_usd": 0.0795
+ },
+ "correction": {
+  "fit_relations_before": [],
+  "fit_relations_after": [
+   "Ø262 H8/j7 transition fit"
+  ],
+  "answer_changed": true,
+  "after_mentions_correction": true,
+  "original_still_citable": true
+ }
+}
