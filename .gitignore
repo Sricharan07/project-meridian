@@ -10,6 +10,3 @@ var/
 
 # Reference screenshots supplied with the brief. Not ours to redistribute.
 refrence_ui/
-
-# Local editor and agent settings
-.claude/
